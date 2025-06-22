@@ -62,10 +62,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+
 
 .icon-wrapper {
     width: 50px;
@@ -130,12 +127,6 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.action-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    color: var(--dark);
-}
 
 .action-icon {
     width: 60px;
@@ -478,11 +469,7 @@ body {
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
 }
 
-/* تأثيرات حركية */
-.status-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+
 
 /* تصميم شارة الدفع */
 .payment-status {
@@ -978,9 +965,6 @@ body {
     transition: var(--transition);
 }
 
-.chart-container:hover {
-    box-shadow: var(--card-shadow-hover);
-}
 
 .chart-wrapper {
     position: relative;

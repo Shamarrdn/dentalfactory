@@ -193,7 +193,7 @@ function updateProductGrid(products) {
 
         productElement.innerHTML = `
             <div class="product-card">
-                <a href="/products/${product.slug}" class="product-image-wrapper position-relative">
+                <a href="/products/${product.slug}" class="product-image-wrapper">
                     <img src="${imagePath}"
                          alt="${product.name}"
                          class="product-image">

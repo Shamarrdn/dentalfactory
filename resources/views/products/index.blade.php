@@ -38,6 +38,9 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>متجر بر الليث | ملابس أطفال عالية الجودة في محافظة الليث</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products.css') }}?t={{ time() }}">
@@ -74,7 +77,7 @@
     </div>
 
     <!-- Main Container -->
-    <div class="container-fluid py-4 "  style="margin-top: 60px;">
+    <div class="container-fluid py-4 "  style="margin-top: 80px;">
         <div class="row">
             <!-- Filter Sidebar -->
             <div class="col-lg-3 filter-sidebar">
@@ -143,7 +146,7 @@
                             <option value="price-low">السعر: من الأقل للأعلى</option>
                             <option value="price-high">السعر: من الأعلى للأقل</option>
                         </select>
-                        <button onclick="resetFilters()" class="btn btn-outline-primary" id="resetFiltersBtn">
+                        <button onclick="resetFilters()" id="resetFiltersBtn">
                             <i class="fas fa-filter-circle-xmark me-2"></i>
                             إزالة الفلتر
                         </button>
@@ -153,17 +156,11 @@
                     @foreach($products as $product)
                     <div class="col-md-6 col-lg-4">
                         <div class="product-card">
+                            @php
+                                $imageUrl = $product->images->isNotEmpty() ? url('storage/' . $product->images->first()->image_path) : url('images/placeholder.jpg');
+                            @endphp
                             <a href="{{ route('products.show', $product->slug) }}" class="product-image-wrapper">
-                                @if($product->images->isNotEmpty())
-                                    <img src="{{ url('storage/' . $product->images->first()->image_path) }}"
-                                         alt="{{ $product->name }}"
-                                         class="product-image">
-                                @else
-                                    <img src="{{ url('images/placeholder.jpg') }}"
-                                         alt="{{ $product->name }}"
-                                         class="product-image">
-                                @endif
-
+                                <img src="{{ $imageUrl }}" alt="{{ $product->name }}" class="product-image">
                                 @php
                                     $couponBadge = app(\App\Services\Customer\Products\ProductService::class)->getProductCouponBadge($product);
                                 @endphp
@@ -356,6 +353,3 @@
 </html>
 @endsection
 
-@section('scripts')
-// ... existing code ...
-@endsection

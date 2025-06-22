@@ -89,9 +89,7 @@
     border: 1px solid rgba(0,0,0,0.05) !important;
 }
 
-.category-card:hover {
-    border-color: var(--primary) !important;
-}
+
 
 .category-card .card-title {
     color: var(--bs-dark);
@@ -172,9 +170,6 @@
     transition: all 0.3s ease;
 }
 
-.stat-card:hover {
-    transform: translateY(-5px);
-}
 
 .stat-card .card-body {
     padding: 1.5rem;

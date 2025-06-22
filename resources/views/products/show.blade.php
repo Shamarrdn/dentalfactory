@@ -14,10 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products-show.css') }}?t={{ time() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products.css') }}?t={{ time() }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/customer/custom-green-theme.css') }}?t={{ time() }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/kids/css/common.css') }}?t={{ time() }}">
     <style>
+
         .quantity-discounts {
             border: 1px solid #e1e1e1;
             border-radius: 8px;
@@ -59,9 +58,10 @@
             border-radius: 50%;
             display: inline-block;
         }
+
     </style>
 </head>
-<body>
+<body class="{{ auth()->check() ? 'user-logged-in' : '' }}">
     <!-- Fixed Buttons Group -->
     <div class="fixed-buttons-group">
         <button class="fixed-cart-btn" id="fixedCartBtn">
@@ -269,7 +269,7 @@
 
                     <div class="product-description mb-4">
                         <h5 class="section-title">
-                            <i class="fas fa-info-circle me-2"></i>
+
                             وصف المنتج
                         </h5>
                         <p>{{ $product->description }}</p>
@@ -297,53 +297,7 @@
                     </div>
                     @endif
 
-                    <!-- Product Features Guide -->
-                    @if(!empty($availableFeatures))
-                    <div class="features-guide mb-4">
-                        <div class="alert alert-info">
-                            <h6 class="alert-heading mb-3">
-                                <i class="fas fa-lightbulb me-2"></i>
-                                ميزات الطلب المتاحة
-                            </h6>
-                            <ul class="features-list mb-0">
-                                @if($availableFeatures['allow_custom_color'])
-                                <li class="mb-2">
-                                    <i class="fas fa-palette me-2"></i>
-                                    يمكنك تحديد لون مخصص
-                                </li>
-                                @endif
-
-                                @if($availableFeatures['allow_custom_size'])
-                                <li class="mb-2">
-                                    <i class="fas fa-ruler me-2"></i>
-                                    يمكنك تحديد مقاس مخصص
-                                </li>
-                                @endif
-
-                                @if(isset($availableFeatures['colors']) && !empty($availableFeatures['colors']))
-                                <li class="mb-2">
-                                    <i class="fas fa-palette me-2"></i>
-                                    {{ count($availableFeatures['colors']) }} لون متاح للاختيار
-                                </li>
-                                @endif
-
-                                @if(isset($availableFeatures['sizes']) && !empty($availableFeatures['sizes']))
-                                <li class="mb-2">
-                                    <i class="fas fa-ruler-combined me-2"></i>
-                                    {{ count($availableFeatures['sizes']) }} مقاس متاح للاختيار
-                                </li>
-                                @endif
-
-                                @if($availableFeatures['has_discount'])
-                                <li class="mb-2">
-                                    <i class="fas fa-tags me-2"></i>
-                                    خصومات متاحة على هذا المنتج
-                                </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                    @endif
+                
 
                     <!-- Colors Section -->
                     @if($product->allow_color_selection && $product->colors->isNotEmpty())

@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: 0 0 0 0.25rem rgba(0, 146, 69, 0.25) !important;
         }
         a {
-            color: ${primaryColor};
+            color: #000000;
         }
         a:hover {
-            color: ${primaryColorHover};
+            color: #333333;
         }
         .form-control:focus, .form-select:focus {
             border-color: ${primaryColor} !important;

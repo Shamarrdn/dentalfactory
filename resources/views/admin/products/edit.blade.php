@@ -408,7 +408,7 @@
                                                     <div class="form-check form-switch">
                                                         <input class="form-check-input" type="checkbox"
                                                             id="enable_color_selection" name="enable_color_selection"
-                                                            value="1" {{ $product->enable_color_selection ? 'checked' : '' }}>
+                                                            value="1" {{ old('enable_color_selection', $product->enable_color_selection) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="enable_color_selection">
                                                             <i class="fas fa-palette me-2"></i>
                                                             السماح باختيار اللون
@@ -434,7 +434,7 @@
                                                     <div class="form-check form-switch">
                                                         <input class="form-check-input" type="checkbox"
                                                             id="enable_size_selection" name="enable_size_selection"
-                                                            value="1" {{ $product->enable_size_selection ? 'checked' : '' }}>
+                                                            value="1" {{ old('enable_size_selection', $product->enable_size_selection) ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="enable_size_selection">
                                                             <i class="fas fa-ruler me-2"></i>
                                                             السماح باختيار المقاسات المحددة
@@ -518,29 +518,55 @@
 
     function toggleColorsSection(checkbox) {
         const colorsSection = document.getElementById('colorsSection');
+        const enableColorSelectionCheckbox = document.getElementById('enable_color_selection');
         if (checkbox.checked) {
             colorsSection.classList.remove('section-collapsed');
             colorsSection.classList.add('section-expanded');
+            if (enableColorSelectionCheckbox) {
+                enableColorSelectionCheckbox.checked = true;
+            }
             if (!document.querySelector('#colorsContainer .input-group')) {
                 addColorInput();
             }
         } else {
+            if (document.querySelectorAll('#colorsContainer .input-group').length > 0) {
+                if (!confirm('هل أنت متأكد من إلغاء تفعيل الألوان؟ سيتم حذف جميع الألوان المدخلة عند الحفظ.')) {
+                    checkbox.checked = true;
+                    return;
+                }
+            }
             colorsSection.classList.remove('section-expanded');
             colorsSection.classList.add('section-collapsed');
+            if (enableColorSelectionCheckbox) {
+                enableColorSelectionCheckbox.checked = false;
+            }
         }
     }
 
     function toggleSizesSection(checkbox) {
         const sizesSection = document.getElementById('sizesSection');
+        const enableSizeSelectionCheckbox = document.getElementById('enable_size_selection');
         if (checkbox.checked) {
             sizesSection.classList.remove('section-collapsed');
             sizesSection.classList.add('section-expanded');
+            if (enableSizeSelectionCheckbox) {
+                enableSizeSelectionCheckbox.checked = true;
+            }
             if (!document.querySelector('#sizesContainer .input-group')) {
                 addSizeInput();
             }
         } else {
+            if (document.querySelectorAll('#sizesContainer .input-group').length > 0) {
+                if (!confirm('هل أنت متأكد من إلغاء تفعيل المقاسات؟ سيتم حذف جميع المقاسات المدخلة عند الحفظ.')) {
+                    checkbox.checked = true;
+                    return;
+                }
+            }
             sizesSection.classList.remove('section-expanded');
             sizesSection.classList.add('section-collapsed');
+            if (enableSizeSelectionCheckbox) {
+                enableSizeSelectionCheckbox.checked = false;
+            }
         }
     }
 

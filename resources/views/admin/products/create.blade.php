@@ -378,7 +378,7 @@
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="enableColorSelection" name="enable_color_selection"
-                                                        value="1" checked>
+                                                        value="1" {{ old('has_colors') ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="enableColorSelection">
                                                         <i class="fas fa-palette me-2"></i>
                                                         تمكين اختيار اللون
@@ -404,7 +404,7 @@
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="enableSizeSelection" name="enable_size_selection"
-                                                        value="1" checked>
+                                                        value="1" {{ old('has_sizes') ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="enableSizeSelection">
                                                         <i class="fas fa-ruler me-2"></i>
                                                         تمكين اختيار المقاس
@@ -477,6 +477,11 @@
             nameInput.addEventListener('input', function() {
                 slugInput.value = generateSlug(this.value);
             });
+        }
+
+        // Add at least one detail input field if none exists
+        if (document.querySelectorAll('#detailsContainer .input-group').length === 0) {
+            addDetailInput();
         }
     });
 
@@ -557,9 +562,14 @@
 
     function toggleColorsSection(checkbox) {
         const section = document.getElementById('colorsSection');
+        const enableColorSelectionCheckbox = document.getElementById('enableColorSelection');
+
         if (checkbox.checked) {
             section.classList.remove('section-collapsed');
             section.classList.add('section-expanded');
+            if (enableColorSelectionCheckbox) {
+                enableColorSelectionCheckbox.checked = true;
+            }
             if (document.querySelectorAll('#colorsContainer input[name="colors[]"]').length === 0) {
                 addColorInput();
             }
@@ -572,15 +582,23 @@
             }
             section.classList.remove('section-expanded');
             section.classList.add('section-collapsed');
+            if (enableColorSelectionCheckbox) {
+                enableColorSelectionCheckbox.checked = false;
+            }
             document.getElementById('colorsContainer').innerHTML = '';
         }
     }
 
     function toggleSizesSection(checkbox) {
         const section = document.getElementById('sizesSection');
+        const enableSizeSelectionCheckbox = document.getElementById('enableSizeSelection');
+
         if (checkbox.checked) {
             section.classList.remove('section-collapsed');
             section.classList.add('section-expanded');
+            if (enableSizeSelectionCheckbox) {
+                enableSizeSelectionCheckbox.checked = true;
+            }
             if (document.querySelectorAll('#sizesContainer input[name="sizes[]"]').length === 0) {
                 addSizeInput();
             }
@@ -593,35 +611,14 @@
             }
             section.classList.remove('section-expanded');
             section.classList.add('section-collapsed');
+            if (enableSizeSelectionCheckbox) {
+                enableSizeSelectionCheckbox.checked = false;
+            }
             document.getElementById('sizesContainer').innerHTML = '';
         }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        // تهيئة الأقسام المختلفة في الصفحة
-        const colorSelectionCheck = document.getElementById('enableColorSelection');
-        const sizeSelectionCheck = document.getElementById('enableSizeSelection');
-
-        if (colorSelectionCheck) {
-            colorSelectionCheck.addEventListener('change', function() {
-                const colorsSection = document.getElementById('colorsSection');
-                if (colorsSection) {
-                    colorsSection.classList.toggle('section-collapsed', !this.checked);
-                    colorsSection.classList.toggle('section-expanded', this.checked);
-                }
-            });
-        }
-
-        if (sizeSelectionCheck) {
-            sizeSelectionCheck.addEventListener('change', function() {
-                const sizesSection = document.getElementById('sizesSection');
-                if (sizesSection) {
-                    sizesSection.classList.toggle('section-collapsed', !this.checked);
-                    sizesSection.classList.toggle('section-expanded', this.checked);
-                }
-            });
-        }
-
         // Add at least one detail input field if none exists
         if (document.querySelectorAll('#detailsContainer .input-group').length === 0) {
             addDetailInput();

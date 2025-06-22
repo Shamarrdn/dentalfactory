@@ -68,7 +68,7 @@
     border-color: #009245 !important;
 }
 
-.btn-primary:hover,
+
 .btn-primary:focus {
     background-color: #007a38 !important;
     border-color: #007a38 !important;
@@ -97,10 +97,7 @@
     background-color: #fff;
 }
 
-.discount-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
+
 
 .discount-header {
     padding: 1.5rem;

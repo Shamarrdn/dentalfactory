@@ -55,11 +55,7 @@
     border: 1px solid var(--border-color);
 }
 
-.card.shadow-sm:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-    border-color: var(--primary);
-}
+
 
 .card-body {
     padding: 1.75rem;
@@ -108,9 +104,7 @@
 }
 
 /* Remove hover scale effect */
-.product-card:hover .product-image {
-    transform: none;
-}
+
 
 .no-image {
     width: 100%;
@@ -181,10 +175,6 @@
     color: white;
 }
 
-.category-badge:hover {
-    background: var(--secondary-light);
-    color: var(--secondary);
-}
 
 /* Additional Category Styling */
 .additional-categories {
@@ -198,10 +188,7 @@
     color: var(--secondary);
 }
 
-.additional-categories .category-badge:hover {
-    background-color: var(--secondary-light);
-    color: var(--secondary);
-}
+
 
 /* Button Styles */
 .btn-action {
@@ -216,10 +203,7 @@
     transition: var(--transition);
 }
 
-.btn-action:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
+
 
 .btn-light-primary,
 .btn-light-info,
@@ -236,43 +220,27 @@
     color: var(--primary);
 }
 
-.btn-light-primary:hover {
-    background-color: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-}
+
 
 .btn-light-info {
     background-color: var(--primary-light);
     color: var(--primary);
 }
 
-.btn-light-info:hover {
-    background-color: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-}
+
 
 .btn-light-danger {
     background-color: rgba(var(--danger-rgb), 0.1);
     color: var(--danger);
 }
 
-.btn-light-danger:hover {
-    background-color: var(--danger);
-    color: white;
-    transform: translateY(-2px);
-}
+
 
 .btn-light-secondary {
     background-color: var(--secondary-light);
     color: var(--secondary);
 }
 
-.btn-light-secondary:hover {
-    background-color: var(--secondary);
-    color: white;
-    transform: translateY(-2px);
 }
 
 /* Card Footer */
@@ -318,10 +286,7 @@
     transition: var(--transition);
 }
 
-.image-upload-container:hover {
-    border-color: var(--primary);
-    background: var(--primary-light);
-}
+
 
 .image-preview {
     border-radius: 1rem;
@@ -337,14 +302,12 @@
 
 /* Category Checkboxes */
 .form-check {
-    
+
     transition: var(--transition);
     border-radius: 0.5rem;
 }
 
-.form-check:hover {
-    background-color: var(--primary-light);
-}
+
 
 .form-check-input {
     cursor: pointer;

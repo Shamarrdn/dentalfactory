@@ -313,13 +313,9 @@ h1, h2, h3, h4, h5, h6 {
   background: #ffffff;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-color);
-}
+
 
 .feature-box,
-.product-card,
 .department-box,
 .pricing-box,
 .testimonial-box,

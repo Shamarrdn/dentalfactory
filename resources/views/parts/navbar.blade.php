@@ -4,7 +4,7 @@
             <div class="brand-logo">
                 <img src="https://img.icons8.com/ios-filled/50/tooth.png" alt="Logo">
             </div>
-            <span class="brand-title">مصنع منتجات الأسنان</span>
+
         </a>
 
         <ul class="nav-list" id="navList">

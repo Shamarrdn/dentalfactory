@@ -33,33 +33,32 @@
                     <table class="table table-hover align-middle coupon-table">
                         <thead class="table-light">
                             <tr>
-                                <th class="text-center">#</th>
-                                <th class="text-end">الكود</th>
-                                <th class="text-end">الاسم</th>
-                                <th class="text-end">النوع</th>
-                                <th class="text-end">القيمة</th>
-                                <th class="text-end">الحد الأدنى للطلب</th>
-                                <th class="text-center">تاريخ البدء</th>
-                                <th class="text-center">تاريخ الانتهاء</th>
-                                <th class="text-center">عدد الاستخدامات</th>
-                                <th class="text-center">الحالة</th>
-                                <th class="text-center">الإجراءات</th>
+                                <th class="text-center col-hash">#</th>
+                                <th class="text-end col-code">الكود</th>
+                                <th class="text-end col-name">الاسم</th>
+                                <th class="text-end col-type">النوع</th>
+                                <th class="text-end col-value">القيمة</th>
+                                <th class="text-end col-min-amount">الحد الأدنى للطلب</th>
+                                <th class="text-center col-dates">التواريخ</th>
+                                <th class="text-center col-usage">عدد الاستخدامات</th>
+                                <th class="text-center col-status">الحالة</th>
+                                <th class="text-center col-actions">الإجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($coupons as $coupon)
                                 <tr>
-                                    <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td><span class="coupon-code-cell">{{ $coupon->code }}</span></td>
-                                    <td>{{ $coupon->name }}</td>
-                                    <td>
+                                    <td class="text-center col-hash">{{ $loop->iteration }}</td>
+                                    <td class="col-code"><span class="coupon-code-cell">{{ $coupon->code }}</span></td>
+                                    <td class="col-name" title="{{ $coupon->name }}">{{ $coupon->name }}</td>
+                                    <td class="col-type">
                                         @if ($coupon->type == 'percentage')
                                             <span class="badge-percentage">نسبة مئوية</span>
                                         @else
                                             <span class="badge-fixed">قيمة ثابتة</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="col-value">
                                         <div class="fw-bold {{ $coupon->type == 'percentage' ? 'text-info' : 'text-primary' }}">
                                             @if ($coupon->type == 'percentage')
                                                 {{ $coupon->value }}%
@@ -68,42 +67,38 @@
                                             @endif
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="col-min-amount">
                                         @if ($coupon->min_order_amount)
                                             <div class="fw-semibold">{{ $coupon->min_order_amount }} ريال</div>
                                         @else
                                             <span class="text-muted">-</span>
                                         @endif
                                     </td>
-                                    <td class="text-center">
-                                        @if ($coupon->starts_at)
-                                            <div class="small">{{ $coupon->starts_at->format('Y-m-d') }}</div>
-                                        @else
-                                            <span class="text-muted">-</span>
-                                        @endif
+                                    <td class="text-center col-dates">
+                                        <div class="date-stacked">
+                                            @if ($coupon->starts_at)
+                                                <div class="start-date" title="تاريخ البدء">{{ $coupon->starts_at->format('Y-m-d') }}</div>
+                                            @endif
+                                            @if ($coupon->expires_at)
+                                                <div class="end-date" title="تاريخ الانتهاء">{{ $coupon->expires_at->format('Y-m-d') }}</div>
+                                            @endif
+                                        </div>
                                     </td>
-                                    <td class="text-center">
-                                        @if ($coupon->expires_at)
-                                            <div class="small">{{ $coupon->expires_at->format('Y-m-d') }}</div>
-                                        @else
-                                            <span class="text-muted">-</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
+                                    <td class="text-center col-usage">
                                         @if ($coupon->max_uses)
                                             <div class="small fw-semibold">{{ $coupon->used_count }} / {{ $coupon->max_uses }}</div>
                                         @else
                                             <div class="small fw-semibold">{{ $coupon->used_count }} / ∞</div>
                                         @endif
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center col-status">
                                         @if ($coupon->is_active)
                                             <div class="coupon-status active">نشط</div>
                                         @else
                                             <div class="coupon-status inactive">غير نشط</div>
                                         @endif
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center col-actions">
                                         <div class="btn-group">
                                             <a href="{{ route('admin.coupons.show', $coupon->id) }}" class="btn btn-sm btn-primary" title="عرض التفاصيل">
                                                 <i class="fas fa-eye"></i>
@@ -111,7 +106,7 @@
                                             <a href="{{ route('admin.coupons.edit', $coupon->id) }}" class="btn btn-sm btn-warning" title="تعديل">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('admin.coupons.destroy', $coupon->id) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('admin.coupons.destroy', $coupon->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="حذف" onclick="return confirm('هل أنت متأكد من حذف هذا الكوبون؟')">
@@ -123,7 +118,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="10">
                                         <div class="coupon-empty-state">
                                             <i class="fas fa-ticket-alt"></i>
                                             <h4>لا توجد كوبونات حتى الآن</h4>

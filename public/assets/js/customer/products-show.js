@@ -489,9 +489,17 @@ function toggleCart() {
 document.addEventListener('DOMContentLoaded', function() {
     loadCartItems();
 
-    document.getElementById('closeCart').addEventListener('click', closeCart);
-    document.getElementById('cartToggle').addEventListener('click', toggleCart);
-    document.getElementById('fixedCartBtn').addEventListener('click', toggleCart);
+    const closeCartBtn = document.getElementById('closeCart');
+    if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+
+    const cartToggleBtn = document.getElementById('cartToggle');
+    if(cartToggleBtn) cartToggleBtn.addEventListener('click', toggleCart);
+
+    const fixedCartBtn = document.getElementById('fixedCartBtn');
+    if(fixedCartBtn) fixedCartBtn.addEventListener('click', toggleCart);
+
+    const cartOverlay = document.querySelector('.cart-overlay');
+    if(cartOverlay) cartOverlay.addEventListener('click', closeCart);
 
     // Quantity selector event listeners
     const decreaseQuantityBtn = document.getElementById('decreaseQuantity');
@@ -640,15 +648,13 @@ function toggleCustomColor(checkbox) {
     if (checkbox.checked) {
         customColorGroup.classList.remove('d-none');
         customColorInput.disabled = false;
-        customColorInput.focus();
-
-        document.querySelectorAll('.color-item').forEach(item => {
+        // إلغاء تحديد أي لون من القائمة
+        document.querySelectorAll('.color-item.active').forEach(item => {
             item.classList.remove('active');
         });
-        selectedColor = null;
+        selectedColor = null; // إعادة تعيين اللون المحدد
     } else {
         customColorGroup.classList.add('d-none');
-        customColorInput.value = '';
         customColorInput.disabled = true;
     }
 }

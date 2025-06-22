@@ -47,15 +47,29 @@ class ProductService
             });
         }
 
-        if ($request->has('min_price')) {
-            $query->whereHas('sizes', function($query) use ($request) {
-                    $query->where('price', '>=', $request->min_price);
+        if ($request->has('min_price') && !is_null($request->min_price)) {
+            $minPrice = $request->input('min_price');
+            $query->where(function($q) use ($minPrice) {
+                $q->whereHas('sizes', function ($sizeQuery) use ($minPrice) {
+                    $sizeQuery->where('price', '>=', $minPrice);
+                })
+                ->orWhere(function($subQ) use ($minPrice) {
+                    $subQ->whereNotNull('base_price')
+                         ->where('base_price', '>=', $minPrice);
+                });
             });
         }
 
-        if ($request->has('max_price')) {
-            $query->whereHas('sizes', function($query) use ($request) {
-                    $query->where('price', '<=', $request->max_price);
+        if ($request->has('max_price') && !is_null($request->max_price)) {
+            $maxPrice = $request->input('max_price');
+            $query->where(function($q) use ($maxPrice) {
+                $q->whereHas('sizes', function ($sizeQuery) use ($maxPrice) {
+                    $sizeQuery->where('price', '<=', $maxPrice);
+                })
+                ->orWhere(function($subQ) use ($maxPrice) {
+                    $subQ->whereNotNull('base_price')
+                         ->where('base_price', '<=', $maxPrice);
+                });
             });
         }
 
@@ -164,16 +178,16 @@ class ProductService
         $minPrice = DB::table('products as p')
             ->leftJoin('product_sizes as ps', 'p.id', '=', 'ps.product_id')
             ->where('p.is_available', true)
-            ->min(DB::raw('COALESCE(ps.price, 0)'));
+            ->min(DB::raw('COALESCE(ps.price, p.base_price)'));
 
         $maxPrice = DB::table('products as p')
             ->leftJoin('product_sizes as ps', 'p.id', '=', 'ps.product_id')
             ->where('p.is_available', true)
-            ->max(DB::raw('COALESCE(ps.price, 0)'));
+            ->max(DB::raw('COALESCE(ps.price, p.base_price)'));
 
         return [
             'min' => $minPrice ?: 0,
-            'max' => $maxPrice ?: 0
+            'max' => $maxPrice ?: 1000
         ];
     }
 

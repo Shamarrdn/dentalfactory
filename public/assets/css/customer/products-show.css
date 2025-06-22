@@ -7,8 +7,8 @@
     --glass-background-dark: rgba(255, 255, 255, 0.15);
     --glass-border: 1px solid rgba(0, 146, 69, 0.1);
     --card-shadow: 0 8px 32px 0 rgba(0, 146, 69, 0.1);
-    --text-color: #333333;
-    --text-light: #666666;
+    --text-color: #2d3748;
+    --text-light: #718096;
     --border-color: #e0e0e0;
     --bg-light: #f8f9fa;
     --shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -36,10 +36,6 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-}
-
-.main-product-image:hover {
-    transform: scale(1.05);
 }
 
 .image-thumbnails {
@@ -76,13 +72,14 @@
     background: #fff;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
 }
 
 .product-title {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 15px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .category-badge {
@@ -95,14 +92,16 @@
 }
 
 .product-price {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--text-color);
+    margin: 1rem 0;
 }
 
 .currency {
     font-size: 1rem;
     margin-left: 5px;
+    color: var(--text-light);
 }
 
 /* Colors and Sizes */
@@ -816,7 +815,7 @@ body.cart-open {
 .product-price {
     font-size: 2rem;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--text-color);
     margin: 1rem 0;
 }
 
@@ -1999,6 +1998,8 @@ html, body {
 /* تحسين تنظيم المعلومات */
 .product-description p {
     text-align: justify;
+    color: var(--text-light);
+    line-height: 1.8;
 }
 
 /* تحسين عرض breadcrumb */
@@ -2025,7 +2026,6 @@ html, body {
     position: relative;
     overflow: hidden;
 }
-
 
 .available-coupons h5 {
     color: var(--primary-color);
