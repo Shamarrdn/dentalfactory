@@ -140,7 +140,17 @@ class CheckoutController extends Controller
     $couponDiscountAmount = 0;
     $couponResult = null;
     if ($couponCode) {
-      $couponResult = $this->discountService->applyCoupon($couponCode, $result['original_amount']);
+      $cartItems = $cart->items->map(function($item) {
+        return [
+          'product_id' => $item->product_id,
+          'quantity' => $item->quantity,
+          'subtotal' => $item->subtotal,
+          'unit_price' => $item->unit_price,
+          'name' => $item->product->name
+        ];
+      })->toArray();
+
+      $couponResult = $this->discountService->applyCoupon($couponCode, $result['original_amount'], $cartItems);
 
       if ($couponResult['success']) {
         $couponDiscountAmount = $couponResult['discount'];
