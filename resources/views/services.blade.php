@@ -8,96 +8,21 @@
 @endsection
 
 @section('content')
-<!-- Hero Section -->
-<section class="hero-section">
-    <!-- 3D Shapes Animation -->
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
 
-    <div class="container">
-        <div class="row align-items-center hero-row">
-            <div class="col-lg-6 hero-content-wrapper">
-                <div class="hero-content" data-aos="fade-left">
-                    <span class="hero-badge">خدمات طب الأسنان</span>
-                    <h1 class="hero-title">
-                        <span class="gradient-text">خدماتنا</span> المتكاملة
-                        <br>
-                        لرعاية صحة أسنانك
-                    </h1>
-                    <p class="hero-description">نقدم مجموعة متكاملة من الخدمات الطبية المتخصصة في مجال طب الأسنان بأحدث التقنيات وأعلى معايير الجودة</p>
-
-                    <div class="hero-buttons">
-                        <a href="#services" class="btn-hero-primary">
-                            <span>استعرض الخدمات</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                        <a href="#appointment" class="btn-hero-secondary">
-                            <span>احجز موعدك</span>
-                            <i class="fas fa-calendar-check" style="color: #26e07f;"></i>
-                        </a>
-                    </div>
-
-                    <div class="product-categories">
-                        <div class="category-item">
-                            <div class="category-icon">
-                                <i class="fas fa-tooth fa-2x" style="color: #26e07f;"></i>
-                            </div>
-                            <span>علاج</span>
-                        </div>
-                        <div class="category-item">
-                            <div class="category-icon">
-                                <i class="fas fa-smile-beam fa-2x" style="color: #26e07f;"></i>
-                            </div>
-                            <span>تجميل</span>
-                        </div>
-                        <div class="category-item">
-                            <div class="category-icon">
-                                <i class="fas fa-stethoscope fa-2x" style="color: #26e07f;"></i>
-                            </div>
-                            <span>فحص</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 hero-image-wrapper">
-                <div class="hero-image-container">
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80" alt="خدمات طب الأسنان" class="main-image">
-
-                        <div class="floating-badge badge-tech">
-                            <div class="badge-icon">
-                                <img src="https://img.icons8.com/ios-filled/50/26e07f/lab-items.png" alt="تقنية">
-                            </div>
-                            <span>تقنيات متطورة</span>
-                        </div>
-
-                        <div class="floating-badge badge-quality">
-                            <div class="badge-icon quality-icon">
-                                <img src="https://img.icons8.com/ios-filled/50/26e07f/certificate.png" alt="جودة">
-                            </div>
-                            <span>جودة عالمية</span>
-                            <div class="stars-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-blob"></div>
-                </div>
-            </div>
+<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
+    <div class="hero-bg-overlay"></div>
+    <div class="container position-relative z-2">
+        <h1 class="hero-bg-title mb-4">خدمات طب الأسنان المتطورة</h1>
+        <p class="hero-bg-desc mb-4">
+            نقدم مجموعة شاملة من خدمات طب الأسنان بأحدث التقنيات وأعلى معايير الجودة لضمان راحة المرضى ونتائج مثالية
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#appointment" class="hero-bg-btn main-btn">احجز موعدك</a>
+            <a href="#services" class="hero-bg-btn ghost-btn">تعرف على خدماتنا</a>
         </div>
     </div>
 </section>
 
-<!-- Main Services -->
 <section id="services" class="py-5">
     <div class="container">
         <div class="text-center mb-5">
@@ -189,7 +114,6 @@
     </div>
 </section>
 
-<!-- Additional Services -->
 <section class="py-5 bg-light curved-section">
     <div class="container">
         <div class="text-center mb-5">
@@ -262,11 +186,9 @@
     </div>
 </section>
 
-<!-- Appointment Section -->
 <section id="appointment" class="order-section-2025 py-5">
     <div class="container">
         <div class="order-wrapper position-relative">
-            <!-- Decorative elements -->
             <div class="order-blob-1"></div>
             <div class="order-blob-2"></div>
             <div class="order-pattern"></div>
@@ -411,7 +333,6 @@
     </div>
 </section>
 
-<!-- Why Choose Us -->
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">

@@ -1,3 +1,4 @@
+
 @extends('layouts.dental')
 
 @section('title', 'من نحن - مصنع منتجات الأسنان')
@@ -8,7 +9,20 @@
 @endsection
 
 @section('content')
-<!-- Our Story -->
+<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
+    <div class="hero-bg-overlay"></div>
+    <div class="container position-relative z-2">
+        <h1 class="hero-bg-title mb-4">من نحن</h1>
+        <p class="hero-bg-desc mb-4">
+            مصنع رائد في تصنيع منتجات طب الأسنان، نتميز بخبرة أكثر من 25 عاماً في مجال الصناعة الطبية
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#about" class="hero-bg-btn main-btn">تعرف علينا</a>
+            <a href="#story" class="hero-bg-btn ghost-btn">قصتنا</a>
+        </div>
+    </div>
+</section>
+
 <section class="our-story-section">
     <div class="our-story-shapes">
         <div class="our-story-shape our-story-shape-1"></div>
@@ -101,7 +115,6 @@
             <div class="text-center mb-5">
                 <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">فلسفتنا</span>
                 <h2 class="section-title gradient-text animate__animated animate__fadeInUp">رؤيتنا ورسالتنا</h2>
-                <div class="title-separator"><div class="separator-line"></div><div class="separator-icon"><i class="fas fa-compass"></i></div><div class="separator-line"></div></div>
             </div>
 
             <div class="row g-4">
@@ -161,11 +174,9 @@
     </div>
 </section>
 
-<!-- Manufacturing Facility -->
 <section class="facility-section-2025 py-5">
     <div class="container">
         <div class="facility-wrapper position-relative">
-            <!-- Decorative elements -->
             <div class="facility-shape-1"></div>
             <div class="facility-shape-2"></div>
             <div class="facility-pattern"></div>
@@ -173,7 +184,6 @@
             <div class="text-center mb-5">
                 <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">البنية التحتية</span>
                 <h2 class="section-title gradient-text animate__animated animate__fadeInUp">مرافق التصنيع المتطورة</h2>
-                <div class="title-separator"><div class="separator-line"></div><div class="separator-icon"><i class="fas fa-industry"></i></div><div class="separator-line"></div></div>
                 <p class="section-subtitle">نمتلك أحدث المرافق التصنيعية المجهزة بأفضل التقنيات العالمية</p>
             </div>
 
@@ -283,7 +293,6 @@
     </div>
 </section>
 
-<!-- Our Team -->
 <section id="team" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-5 gradient-text">فريق الخبراء</h2>
@@ -356,11 +365,9 @@
     </div>
 </section>
 
-<!-- Achievements -->
 <section id="achievements" class="achievements-section py-5">
     <div class="container">
         <div class="achievements-wrapper position-relative">
-            <!-- Decorative elements -->
             <div class="achievement-blob"></div>
             <div class="achievement-blob-2"></div>
             <div class="achievement-pattern"></div>
@@ -368,7 +375,6 @@
             <div class="text-center mb-5">
                 <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">إنجازاتنا</span>
                 <h2 class="section-title gradient-text animate__animated animate__fadeInUp">مسيرة نجاح متواصلة</h2>
-                <div class="title-separator"><div class="separator-line"></div><div class="separator-icon"><i class="fas fa-trophy"></i></div><div class="separator-line"></div></div>
             </div>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
@@ -430,11 +436,9 @@
     </div>
 </section>
 
-<!-- Certifications -->
 <section class="certifications-section py-5">
     <div class="container">
         <div class="certifications-wrapper position-relative">
-            <!-- Decorative elements -->
             <div class="cert-shape-1"></div>
             <div class="cert-shape-2"></div>
             <div class="cert-pattern"></div>
@@ -442,7 +446,6 @@
             <div class="text-center mb-5">
                 <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">الاعتماد الدولي</span>
                 <h2 class="section-title gradient-text animate__animated animate__fadeInUp">شهادات الجودة والاعتماد</h2>
-                <div class="title-separator"><div class="separator-line"></div><div class="separator-icon"><i class="fas fa-certificate"></i></div><div class="separator-line"></div></div>
                 <p class="section-subtitle">منتجاتنا معتمدة من أكبر الهيئات العالمية للجودة</p>
             </div>
 
@@ -496,11 +499,9 @@
     </div>
 </section>
 
-<!-- CTA Section -->
 <section class="cta-section-2025 py-5">
     <div class="container">
         <div class="cta-wrapper-2025 position-relative">
-            <!-- Decorative elements -->
             <div class="cta-blob-1"></div>
             <div class="cta-blob-2"></div>
             <div class="cta-dots"></div>
@@ -545,17 +546,14 @@
 
 @section('scripts')
 <script>
-    // Timeline interaction
     const timelinePoints = document.querySelectorAll('.timeline-point');
     const timelineProgress = document.querySelector('.timeline-progress');
 
     timelinePoints.forEach((point, index) => {
         point.addEventListener('mouseenter', function() {
-            // Update active state
             timelinePoints.forEach(p => p.classList.remove('active'));
             this.classList.add('active');
 
-            // Update progress bar
             if (timelineProgress) {
                 const progressWidth = ((index + 1) / timelinePoints.length) * 100;
                 timelineProgress.style.setProperty('--progress-width', progressWidth + '%');
@@ -563,7 +561,6 @@
         });
     });
 
-    // Animate counting for digit counters
     const digitCounter = document.querySelector('.digit-counter');
     if (digitCounter) {
         const targetValue = parseInt(digitCounter.textContent);
@@ -582,7 +579,6 @@
         }, interval);
     }
 
-    // Apply entry animations with slight delays
     setTimeout(() => {
         const animateCSS = (element, animation, prefix = 'animate__') =>
             new Promise((resolve, reject) => {
@@ -603,7 +599,6 @@
                 node.addEventListener('animationend', handleAnimationEnd, {once: true});
             });
 
-        // Floating elements hover effects
         const floatingElements = document.querySelectorAll('.about-floating-element');
         floatingElements.forEach(element => {
             element.addEventListener('mouseenter', function() {
@@ -615,7 +610,6 @@
             });
         });
 
-        // Story image container 3D effect
         const storyImageContainer = document.querySelector('.story-image-container');
         if (storyImageContainer) {
             storyImageContainer.addEventListener('mousemove', function(e) {
@@ -634,7 +628,6 @@
             });
         }
 
-        // Feature item interaction
         const featureItems = document.querySelectorAll('.story-feature-item');
         featureItems.forEach(item => {
             item.addEventListener('mouseenter', function() {

@@ -11,9 +11,9 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        // عرض جميع المنتجات المتاحة كـ featuredProducts
         $featuredProducts = Product::with(['category', 'images', 'colors'])
             ->where('is_available', true)
-            ->take(4)
             ->get();
 
         foreach ($featuredProducts as $product) {

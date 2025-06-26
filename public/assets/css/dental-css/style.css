@@ -1973,87 +1973,17 @@
     }
 
     .nav-list {
-      position: fixed;
-      top: 80px;
-      right: -100%;
-      width: 250px;
-      height: calc(100vh - 80px);
+      box-shadow: -5px 0 25px rgba(0,0,0,0.12);
+      border-top-left-radius: 18px;
+      border-bottom-left-radius: 18px;
+      margin-top: 8px;
+    }
+
+    .mobile-buttons {
+      display: flex !important;
       flex-direction: column;
-      background: white;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.08);
-      padding: 20px;
-      transition: all 0.3s ease;
-      align-items: flex-start;
-      gap: 15px;
-      z-index: 99;
-    }
-
-    .nav-list.show {
-      right: 0;
-    }
-
-    .nav-item-simple {
-      width: 100%;
-      margin: 3px 0;
-    }
-
-    .nav-link-simple {
-      width: 100%;
-      justify-content: flex-start;
-      padding: 12px 15px;
-    }
-
-    .nav-list .mobile-buttons {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
       gap: 10px;
-      margin-top: 15px;
-    }
-
-    .mobile-login-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      border: 1px solid #26e07f;
-      color: #26e07f;
-      padding: 10px 15px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .mobile-login-button:hover {
-      background: rgba(38, 224, 127, 0.08);
-      color: #26e07f;
-    }
-
-    .mobile-cta-button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #26e07f;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(38, 224, 127, 0.25);
-      transition: all 0.3s ease;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .mobile-cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(38, 224, 127, 0.35);
-      color: white;
+      margin-top: 20px;
     }
   }
 

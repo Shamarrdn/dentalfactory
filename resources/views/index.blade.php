@@ -4,10 +4,8 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/index.css') }}?t={{ time() }}">
-<link rel="stylesheet" href="{{ asset('assets/css/dental-css/about.css') }}?t={{ time() }}">
 
 <style>
-    /* Coupons Section Styles */
     .coupon-card {
         background: #fff;
         border-radius: 15px;
@@ -118,52 +116,7 @@
 
 @endsection
 
-@section('hero')
-<!-- Hero Section -->
-<section class="about-hero-section">
-    <div class="about-hero-shapes">
-        <div class="about-shape about-shape-1"></div>
-        <div class="about-shape about-shape-2"></div>
-        <div class="about-shape about-shape-3"></div>
-        <div class="about-shape about-shape-4"></div>
-    </div>
-    <div class="container">
-        <div class="row align-items-center about-hero-row">
-            <div class="col-lg-6 order-lg-1 about-hero-content-wrapper">
-                <div class="about-hero-content">
-                    <span class="about-hero-badge">خدماتنا الرقمية</span>
-                    <h1 class="about-hero-title">
-                        <span class="gradient-text">حلول ويب متكاملة</span> لنجاح أعمالك
-                        <br>
-                        بأحدث <span class="gradient-text">التقنيات</span>
-                    </h1>
-                    <p class="about-hero-description">نقدم حلولاً متكاملة لتصميم وتطوير المواقع الإلكترونية بأعلى معايير الجودة والابتكار.</p>
-                    <div class="about-hero-buttons">
-                        <a href="#services" class="btn-about-primary">
-                            <span>تعرف على خدماتنا</span>
-                            <i class="fas fa-cogs"></i>
-                        </a>
-                        <a href="#contact" class="btn-about-secondary">
-                            <span>تواصل معنا</span>
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 order-lg-2 about-hero-visual-wrapper">
-                <div class="about-hero-visual">
-                    <div class="about-hero-main-image">
-                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="خدمات الويب" class="main-about-image">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endsection
-
 @section('content')
-<!-- Hero Section with Background Image & Overlay -->
 <section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
     <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
@@ -177,9 +130,7 @@
         </div>
     </div>
 </section>
-<!-- /Hero Section with Background Image & Overlay -->
 
-<!-- Features -->
 <section class="features-section py-5">
     <div class="container">
         <div class="text-center mb-5">
@@ -220,7 +171,6 @@
     </div>
 </section>
 
-<!-- Coupons Section -->
 <section class="coupons-section py-5">
     <div class="container">
         <div class="text-center mb-5">
@@ -286,7 +236,6 @@
     </div>
 </section>
 
-<!-- Emergency Help -->
 <section class="emergency-section py-4" style="background: var(--primary-gradient);">
     <div class="container text-center text-white">
         <h5>هل تحتاج مساعدة في اختيار المنتجات؟</h5>
@@ -294,11 +243,9 @@
     </div>
 </section>
 
-<!-- About Us -->
 <section id="about" class="about-section py-5">
     <div class="container">
         <div class="about-wrapper position-relative">
-            <!-- Decorative elements -->
             <div class="about-blob-1"></div>
             <div class="about-blob-2"></div>
             <div class="about-pattern"></div>
@@ -400,35 +347,77 @@
             <div class="blob-shape"></div>
             <div class="blob-shape-2"></div>
 
-            <div class="row g-4 justify-content-center">
-                @forelse($featuredProducts as $product)
-                <div class="col-lg-4 col-md-6">
-                    <div class="product-card-modern h-100">
-                        <div class="product-icon-wrapper">
-                            <div class="product-icon-bg"></div>
-                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="product-icon">
-                        </div>
-                        <div class="product-content">
-                            <h3 class="gradient-text">{{ $product->name }}</h3>
-                            <p class="mb-3">{{ $product->description }}</p>
-                            <a href="{{ route('products.show', $product->slug) }}" class="btn-modern">
-                                <span>شراء الآن</span>
-                                <i class="fas fa-arrow-left"></i>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Products Carousel -->
+            <div id="productsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-wrap="true">
+                <!-- Carousel indicators -->
+                <div class="carousel-indicators">
+                    @php
+                        $totalProducts = count($featuredProducts);
+                        // عدد الشرائح = عدد المنتجات (لكل تحريك منتج واحد فقط)
+                        $slideCount = $totalProducts > 0 ? $totalProducts : 1;
+                    @endphp
+                    @for($i = 0; $i < $slideCount; $i++)
+                        <button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}" aria-current="{{ $i == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $i + 1 }}"></button>
+                    @endfor
                 </div>
-                @empty
-                <div class="col-12 text-center">
-                    <p class="text-muted">لا توجد منتجات متاحة حالياً</p>
+
+                <!-- Carousel slides -->
+                <div class="carousel-inner">
+                    @if(count($featuredProducts) > 0)
+                        @for($i = 0; $i < $totalProducts; $i++)
+                            <div class="carousel-item {{ $i == 0 ? 'active' : '' }}" data-bs-interval="{{ 3000 + ($i * 300) }}">
+                                <div class="row g-4 justify-content-center">
+                                    @for($j = 0; $j < 3; $j++)
+                                        @php
+                                            // الحصول على فهرس المنتج مع التدوير للعودة للبداية عند الانتهاء
+                                            $productIndex = ($i + $j) % $totalProducts;
+                                        @endphp
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="product-card-modern h-100">
+                                                <div class="product-icon-wrapper">
+                                                    <div class="product-icon-bg"></div>
+                                                    <img src="{{ $featuredProducts[$productIndex]->image_url }}" alt="{{ $featuredProducts[$productIndex]->name }}" class="product-icon">
+                                                </div>
+                                                <div class="product-content">
+                                                    <h3 class="gradient-text">{{ $featuredProducts[$productIndex]->name }}</h3>
+                                                    <p class="mb-3">{{ $featuredProducts[$productIndex]->description }}</p>
+                                                    <a href="{{ route('products.show', $featuredProducts[$productIndex]->slug) }}" class="btn-modern">
+                                                        <span>شراء الآن</span>
+                                                        <i class="fas fa-arrow-left"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+                        @endfor
+                    @else
+                        <div class="carousel-item active">
+                            <div class="row g-4 justify-content-center">
+                                <div class="col-12 text-center">
+                                    <p class="text-muted">لا توجد منتجات متاحة حالياً</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
-                @endforelse
+
+                <!-- Carousel controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#productsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">السابق</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">التالي</span>
+                </button>
             </div>
+            <!-- End Products Carousel -->
         </div>
     </div>
 </section>
 
-<!-- Order Section -->
 <section id="order" class="order-section py-5">
     <div class="container">
         <div class="order-wrapper position-relative">
@@ -548,7 +537,7 @@
     </div>
 </section>
 
-<!-- Testimonials -->
+
 <section class="testimonials-section py-5">
     <div class="container">
         <div class="section-heading text-center mb-5 animate__animated animate__fadeIn">
@@ -644,7 +633,7 @@
     </div>
 </section>
 
-<!-- CTA Section -->
+
 <section class="cta-section py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -683,7 +672,6 @@
 
 @section('scripts')
 <script>
-    // Counter animation
     const counters = document.querySelectorAll('.counter');
     counters.forEach(counter => {
         const targetValue = parseInt(counter.textContent);
@@ -702,7 +690,6 @@
         }, interval);
     });
 
-    // Hero image parallax effect
     const heroImage = document.querySelector('.hero-image');
     if (heroImage) {
         window.addEventListener('mousemove', (e) => {
@@ -716,7 +703,6 @@
         });
     }
 
-    // Floating badges animation
     const floatingBadges = document.querySelectorAll('.floating-badge');
     floatingBadges.forEach(badge => {
         badge.addEventListener('mouseenter', function() {
@@ -726,6 +712,66 @@
         badge.addEventListener('mouseleave', function() {
             this.style.animationPlayState = 'running';
         });
+    });
+
+    // تهيئة السلايدر
+    document.addEventListener('DOMContentLoaded', function() {
+        // تهيئة سلايدر المنتجات
+        var productCarouselElement = document.getElementById('productsCarousel');
+        if (productCarouselElement) {
+            try {
+                // محاولة تهيئة السلايدر باستخدام Bootstrap 5
+                var productsCarousel = new bootstrap.Carousel(productCarouselElement, {
+                    interval: 2000,  // تغيير السلايد كل 2 ثواني
+                    wrap: true,      // تكرار من البداية بعد الوصول للنهاية
+                    touch: true,     // دعم السحب على الأجهزة اللمسية
+                    pause: false     // عدم التوقف عند تحويم الماوس
+                });
+
+                console.log('تم تهيئة السلايدر بنجاح');
+
+                // التأكد من أن السلايدر يعمل دائما
+                productsCarousel.cycle();
+
+                // منع التوقف عند تحويم الماوس
+                productCarouselElement.addEventListener('mouseenter', function() {
+                    productsCarousel.cycle();
+                });
+
+                // إضافة تغيير السلايد كل عدة ثواني حتى مع سلايد واحد
+                setInterval(function() {
+                    productsCarousel.next();
+                }, 4000);
+
+            } catch (error) {
+                console.error('خطأ في تهيئة السلايدر:', error);
+
+                // محاولة تهيئة السلايدر بطريقة jQuery (للمتصفحات القديمة)
+                if (typeof $ !== 'undefined') {
+                    try {
+                        $('#productsCarousel').carousel({
+                            interval: 2000,
+                            wrap: true,
+                            pause: false
+                        });
+
+                        // التأكد من أن السلايدر يعمل دائما
+                        $('#productsCarousel').carousel('cycle');
+
+                        // إضافة تغيير السلايد كل عدة ثواني
+                        setInterval(function() {
+                            $('#productsCarousel').carousel('next');
+                        }, 4000);
+
+                        console.log('تم تهيئة السلايدر باستخدام jQuery');
+                    } catch (jqError) {
+                        console.error('خطأ في تهيئة السلايدر باستخدام jQuery:', jqError);
+                    }
+                }
+            }
+        } else {
+            console.warn('لم يتم العثور على عنصر السلايدر');
+        }
     });
 </script>
 @endsection

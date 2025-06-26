@@ -8,109 +8,21 @@
 @endsection
 
 @section('content')
-<!-- Hero Section -->
-<section class="contact-hero-section">
-    <!-- Modern 3D Shapes Animation -->
-    <div class="contact-hero-shapes">
-        <div class="contact-shape contact-shape-1"></div>
-        <div class="contact-shape contact-shape-2"></div>
-        <div class="contact-shape contact-shape-3"></div>
-        <div class="contact-shape contact-shape-4"></div>
-        <div class="contact-shape contact-shape-5"></div>
-        <div class="contact-shape contact-shape-6"></div>
-    </div>
 
-    <div class="container">
-        <div class="row align-items-center contact-hero-row">
-            <div class="col-lg-6 contact-hero-content-wrapper">
-                <div class="contact-hero-content" data-aos="fade-right">
-                    <span class="contact-hero-badge">تواصل معنا بسهولة</span>
-                    <h1 class="contact-hero-title">
-                        نحن نهتم <span class="gradient-text">بآرائكم</span>
-                        <br>
-                        ونلبي <span class="gradient-text">احتياجاتكم</span>
-                    </h1>
-                    <p class="contact-hero-description">فريقنا المتخصص جاهز للإجابة على استفساراتكم وتقديم حلول متكاملة لجميع منتجات طب الأسنان بجودة عالية ودقة متناهية</p>
-
-                    <div class="contact-action-buttons">
-                        <a href="#contact-form" class="contact-primary-btn">
-                            <span>أرسل رسالة</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </a>
-                        <a href="tel:+966112345678" class="contact-secondary-btn">
-                            <span>اتصل بنا</span>
-                            <i class="fas fa-phone-alt"></i>
-                        </a>
-                    </div>
-
-                    <div class="contact-hero-stats">
-                        <div class="contact-stat-item">
-                            <div class="contact-stat-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-stat-content">
-                                <div class="contact-stat-number">24/7</div>
-                                <div class="contact-stat-label">دعم فني متواصل</div>
-                            </div>
-                        </div>
-                        <div class="contact-stat-item">
-                            <div class="contact-stat-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <div class="contact-stat-content">
-                                <div class="contact-stat-number">24</div>
-                                <div class="contact-stat-label">ساعة للرد</div>
-                            </div>
-                        </div>
-                        <div class="contact-stat-item">
-                            <div class="contact-stat-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="contact-stat-content">
-                                <div class="contact-stat-number">45+</div>
-                                <div class="contact-stat-label">دولة نخدمها</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 contact-hero-image-wrapper">
-                <div class="contact-hero-image-container">
-                    <div class="contact-hero-image">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80" alt="اتصل بنا" class="contact-main-image">
-
-                        <div class="contact-floating-badge contact-badge-phone">
-                            <div class="contact-badge-icon">
-                                <i class="fas fa-phone-alt" style="color: #26e07f; font-size: 24px;"></i>
-                            </div>
-                            <span>اتصل بنا مباشرة</span>
-                        </div>
-
-                        <div class="contact-floating-badge contact-badge-email">
-                            <div class="contact-badge-icon">
-                                <i class="fas fa-envelope" style="color: #26e07f; font-size: 24px;"></i>
-                            </div>
-                            <span>راسلنا الآن</span>
-                        </div>
-
-                        <div class="contact-floating-badge contact-badge-chat">
-                            <div class="contact-badge-icon">
-                                <i class="fas fa-comments" style="color: #26e07f; font-size: 24px;"></i>
-                            </div>
-                            <span>محادثة فورية</span>
-                        </div>
-                    </div>
-                    <div class="contact-image-blob"></div>
-                    <div class="contact-image-circle"></div>
-                    <div class="contact-image-dots"></div>
-                </div>
-            </div>
+<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
+    <div class="hero-bg-overlay"></div>
+    <div class="container position-relative z-2">
+        <h1 class="hero-bg-title mb-4">تواصل معنا</h1>
+        <p class="hero-bg-desc mb-4">
+            نحن هنا لمساعدتك في كل ما تحتاجه من منتجات طب الأسنان عالية الجودة
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#contact-form" class="hero-bg-btn main-btn">تواصل الآن</a>
+            <a href="#contact-info" class="hero-bg-btn ghost-btn">معلومات الاتصال</a>
         </div>
     </div>
 </section>
 
-<!-- Contact Information Section -->
 <section class="contact-info-section py-5">
     <div class="container">
         <div class="text-center mb-5">
@@ -165,11 +77,9 @@
     </div>
 </section>
 
-<!-- Contact Form Section -->
 <section id="contact-form" class="contact-form-section py-5">
     <div class="container">
         <div class="contact-form-wrapper position-relative">
-            <!-- Decorative elements -->
             <div class="contact-form-blob"></div>
             <div class="contact-form-shape"></div>
             <div class="contact-form-dots"></div>
@@ -177,7 +87,6 @@
             <div class="text-center mb-5">
                 <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">نموذج التواصل</span>
                 <h2 class="section-title gradient-text animate__animated animate__fadeInUp">أرسل لنا رسالة</h2>
-                <div class="title-separator"><div class="separator-line"></div><div class="separator-icon"><i class="fas fa-comment-dots"></i></div><div class="separator-line"></div></div>
                 <p class="section-subtitle">املأ النموذج أدناه وسيتواصل معك فريقنا في أقرب وقت ممكن</p>
             </div>
 
@@ -237,13 +146,11 @@
 
 @section('scripts')
 <script>
-    // Contact form validation and submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Basic form validation
             const formData = new FormData(this);
             let isValid = true;
 
@@ -256,14 +163,11 @@
             });
 
             if (isValid) {
-                // Here you would typically send the form data to your server
-                // For now, we'll just show a success message
                 alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
                 this.reset();
             }
         });
 
-        // Remove invalid class on input
         contactForm.querySelectorAll('input, textarea').forEach(input => {
             input.addEventListener('input', function() {
                 this.classList.remove('is-invalid');
@@ -271,7 +175,6 @@
         });
     }
 
-    // Floating badges animation
     const floatingBadges = document.querySelectorAll('.contact-floating-badge');
     floatingBadges.forEach(badge => {
         badge.addEventListener('mouseenter', function() {
