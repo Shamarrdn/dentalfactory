@@ -487,8 +487,9 @@ function toggleCart() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    loadCartItems();
-
+    if (document.body.classList.contains('user-logged-in')) {
+        loadCartItems();
+    }
     const closeCartBtn = document.getElementById('closeCart');
     if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
 

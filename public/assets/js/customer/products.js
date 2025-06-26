@@ -575,19 +575,17 @@ function renderAdditionalCategories(product) {
 }
 
 function getCategorySlug(product) {
-    // For backward compatibility - some products might have category as string
     if (typeof product.category === 'string') {
-        // Try to find the category in the categories array
+
         const mainCategory = product.categories?.find(cat => cat.name === product.category);
         return mainCategory?.slug || '';
     }
 
-    // If product has category_id, find that category's slug
+
     if (product.category_id && product.categories?.length) {
         const mainCategory = product.categories.find(cat => cat.id === product.category_id);
         return mainCategory?.slug || '';
     }
 
-    // Fallback to the first category
     return product.categories?.[0]?.slug || '';
 }

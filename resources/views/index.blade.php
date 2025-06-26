@@ -4,6 +4,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/index.css') }}?t={{ time() }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dental-css/about.css') }}?t={{ time() }}">
 
 <style>
     /* Coupons Section Styles */
@@ -117,91 +118,66 @@
 
 @endsection
 
-@section('content')
+@section('hero')
 <!-- Hero Section -->
-<section class="hero-section">
-    <!-- 3D Shapes Animation -->
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
+<section class="about-hero-section">
+    <div class="about-hero-shapes">
+        <div class="about-shape about-shape-1"></div>
+        <div class="about-shape about-shape-2"></div>
+        <div class="about-shape about-shape-3"></div>
+        <div class="about-shape about-shape-4"></div>
     </div>
-
     <div class="container">
-        <div class="row align-items-center hero-row">
-            <div class="col-lg-6 order-lg-2 hero-content-wrapper">
-                <div class="hero-content" data-aos="fade-left">
-                    <span class="hero-badge">منتجات أسنان متطورة</span>
-                    <h1 class="hero-title">
-                        أفضل <span class="gradient-text">منتجات طب</span>
+        <div class="row align-items-center about-hero-row">
+            <div class="col-lg-6 order-lg-1 about-hero-content-wrapper">
+                <div class="about-hero-content">
+                    <span class="about-hero-badge">خدماتنا الرقمية</span>
+                    <h1 class="about-hero-title">
+                        <span class="gradient-text">حلول ويب متكاملة</span> لنجاح أعمالك
                         <br>
-                        <span class="gradient-text">الأسنان</span> بتقنيات حديثة
+                        بأحدث <span class="gradient-text">التقنيات</span>
                     </h1>
-                    <p class="hero-description">نصنع منتجات طب الأسنان عالية الجودة بأحدث التقنيات العالمية لضمان أفضل النتائج لعملائنا</p>
-
-                    <div class="hero-buttons">
-                        <a href="#order" class="btn-hero-primary">
-                            <span>اطلب منتجاتنا الآن</span>
-                            <i class="fas fa-arrow-left"></i>
+                    <p class="about-hero-description">نقدم حلولاً متكاملة لتصميم وتطوير المواقع الإلكترونية بأعلى معايير الجودة والابتكار.</p>
+                    <div class="about-hero-buttons">
+                        <a href="#services" class="btn-about-primary">
+                            <span>تعرف على خدماتنا</span>
+                            <i class="fas fa-cogs"></i>
                         </a>
-                        <a href="#services" class="btn-hero-secondary">
-                            <span>استكشف منتجاتنا</span>
+                        <a href="#contact" class="btn-about-secondary">
+                            <span>تواصل معنا</span>
+                            <i class="fas fa-envelope"></i>
                         </a>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="hero-stat-item">
-                            <div class="stat-number">+<span class="counter">25</span></div>
-                            <div class="stat-label">سنوات الخبرة</div>
-                        </div>
-                        <div class="hero-stat-item">
-                            <div class="stat-number">+<span class="counter">150</span></div>
-                            <div class="stat-label">منتج متنوع</div>
-                        </div>
-                        <div class="hero-stat-item">
-                            <div class="stat-number">+<span class="counter">45</span></div>
-                            <div class="stat-label">دولة نصدر لها</div>
-                        </div>
-                        <div class="hero-stat-item">
-                            <div class="stat-number">+<span class="counter">500</span></div>
-                            <div class="stat-label">عميل راضٍ</div>
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-6 order-lg-1 hero-image-wrapper">
-                <div class="hero-image-container">
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80" alt="منتجات طب الأسنان" class="main-image">
-
-                        <div class="floating-badge badge-tech">
-                            <div class="badge-icon">
-                                <i class="fas fa-microchip" style="color: #26e07f; font-size: 30px;"></i>
-                            </div>
-                            <span>تقنيات متطورة</span>
-                        </div>
-
-                        <div class="floating-badge badge-quality">
-                            <div class="badge-icon quality-icon">
-                                <img src="https://img.icons8.com/ios-filled/50/26e07f/prize.png" alt="جودة">
-                            </div>
-                            <span>جودة عالمية</span>
-                        </div>
-
-                        <div class="floating-badge badge-certified">
-                            <div class="badge-icon">
-                                <i class="fas fa-certificate" style="color: #26e07f; font-size: 30px;"></i>
-                            </div>
-                            <span>معتمد دولياً</span>
-                        </div>
+            <div class="col-lg-6 order-lg-2 about-hero-visual-wrapper">
+                <div class="about-hero-visual">
+                    <div class="about-hero-main-image">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="خدمات الويب" class="main-about-image">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endsection
+
+@section('content')
+<!-- Hero Section with Background Image & Overlay -->
+<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
+    <div class="hero-bg-overlay"></div>
+    <div class="container position-relative z-2">
+        <h1 class="hero-bg-title mb-4">أفضل منتجات طب الأسنان بتقنيات حديثة</h1>
+        <p class="hero-bg-desc mb-4">
+            نصنع منتجات طب الأسنان بأعلى معايير الجودة وبأحدث التقنيات العالمية لنضمن لك أفضل النتائج.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#order" class="hero-bg-btn main-btn">اطلب الآن</a>
+            <a href="#services" class="hero-bg-btn ghost-btn">استكشف المنتجات</a>
+        </div>
+    </div>
+</section>
+<!-- /Hero Section with Background Image & Overlay -->
 
 <!-- Features -->
 <section class="features-section py-5">
