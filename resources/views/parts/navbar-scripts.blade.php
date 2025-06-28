@@ -1,13 +1,5 @@
 <script>
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar-simple');
-        if (navbar && window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else if (navbar) {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
+    // تم تعطيل تغيير كلاس scrolled للنافبار
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.getElementById('menuToggle');
         const navList = document.getElementById('navList');

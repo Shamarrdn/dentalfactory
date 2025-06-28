@@ -4,6 +4,8 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/index.css') }}?t={{ time() }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 <style>
     .coupon-card {
@@ -171,68 +173,44 @@
     </div>
 </section>
 
-<section class="coupons-section py-5">
+<section class="discounted-products-section py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">العروض والخصومات</span>
-            <h2 class="gradient-text">خصومات حصرية</h2>
-            <p>استمتع بخصومات حصرية على منتجاتنا</p>
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">منتجات عليها خصم</span>
+            <h2 class="gradient-text">عروض المنتجات</h2>
         </div>
-
         <div class="row g-4 justify-content-center">
-            @forelse($coupons as $coupon)
-            <div class="col-md-6 col-lg-4">
-                <div class="coupon-card">
-                    <div class="coupon-content">
-                        <div class="coupon-header">
-                            <div class="discount-badge">
-                                <span class="discount-value">{{ $coupon->discount_percentage }}%</span>
-                                <span class="discount-text">خصم</span>
-                            </div>
-                            <div class="coupon-code">
-                                <span>كود الخصم:</span>
-                                <strong>{{ $coupon->code }}</strong>
-                            </div>
-                        </div>
-                        <div class="coupon-body">
-                            <h4>{{ $coupon->title }}</h4>
-                            <p>{{ $coupon->description }}</p>
-                            <div class="coupon-details">
-                                <div class="detail-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>ينتهي في: {{ $coupon->expires_at->format('Y/m/d') }}</span>
-                                </div>
-                                @if($coupon->min_purchase_amount)
-                                <div class="detail-item">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span>الحد الأدنى للشراء: {{ $coupon->min_purchase_amount }} ريال</span>
-                                </div>
-                                @endif
-                            </div>
-                        </div>
+            @forelse($discountedProducts as $product)
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card-modern text-center">
+                        <img src="{{ $product->image_url }}" class="img-fluid mb-3" alt="{{ $product->name }}" style="max-height:220px;object-fit:contain;">
+                        <h4 class="mb-2">{{ $product->name }}</h4>
+                        @php
+                            $coupon = $product->discounts->firstWhere('is_active', 1);
+                            $discount = $coupon ? $coupon->discount_percentage : null;
+                            $price = $product->base_price;
+                            $discountedPrice = $discount ? round($price * (1 - $discount/100), 2) : $price;
+                        @endphp
+                        @if($discount)
+                            <p>
+                                <span class="text-muted text-decoration-line-through">{{ number_format($price, 2) }} ريال</span>
+                                <span class="text-success fw-bold ms-2">{{ number_format($discountedPrice, 2) }} ريال</span>
+                                <span class="badge bg-success ms-2">خصم {{ $discount }}%</span>
+                            </p>
+                        @else
+                            <p class="fw-bold">{{ number_format($price, 2) }} ريال</p>
+                        @endif
+                        <a href="{{ route('products.show', $product->slug) }}" class="btn btn-modern mt-2">
+                            شراء الآن <i class="fas fa-arrow-left"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
             @empty
-            <div class="col-12 text-center">
-                <p class="text-muted">لا توجد خصومات متاحة حالياً</p>
-            </div>
+                <div class="col-12 text-center">
+                    <p class="text-muted">لا توجد منتجات عليها خصم حالياً</p>
+                </div>
             @endforelse
         </div>
-
-        @if($totalPages > 1)
-        <div class="pagination-wrapper mt-4 text-center">
-            <nav aria-label="Coupons pagination">
-                <ul class="pagination justify-content-center">
-                    @for($i = 1; $i <= $totalPages; $i++)
-                    <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
-                        <a class="page-link" href="?page={{ $i }}">{{ $i }}</a>
-                    </li>
-                    @endfor
-                </ul>
-            </nav>
-        </div>
-        @endif
     </div>
 </section>
 
@@ -348,70 +326,27 @@
             <div class="blob-shape-2"></div>
 
             <!-- Products Carousel -->
-            <div id="productsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-wrap="true">
-                <!-- Carousel indicators -->
-                <div class="carousel-indicators">
-                    @php
-                        $totalProducts = count($featuredProducts);
-                        // عدد الشرائح = عدد المنتجات (لكل تحريك منتج واحد فقط)
-                        $slideCount = $totalProducts > 0 ? $totalProducts : 1;
-                    @endphp
-                    @for($i = 0; $i < $slideCount; $i++)
-                        <button type="button" data-bs-target="#productsCarousel" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}" aria-current="{{ $i == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $i + 1 }}"></button>
-                    @endfor
-                </div>
-
-                <!-- Carousel slides -->
-                <div class="carousel-inner">
-                    @if(count($featuredProducts) > 0)
-                        @for($i = 0; $i < $totalProducts; $i++)
-                            <div class="carousel-item {{ $i == 0 ? 'active' : '' }}" data-bs-interval="{{ 3000 + ($i * 300) }}">
-                                <div class="row g-4 justify-content-center">
-                                    @for($j = 0; $j < 3; $j++)
-                                        @php
-                                            // الحصول على فهرس المنتج مع التدوير للعودة للبداية عند الانتهاء
-                                            $productIndex = ($i + $j) % $totalProducts;
-                                        @endphp
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="product-card-modern h-100">
-                                                <div class="product-icon-wrapper">
-                                                    <div class="product-icon-bg"></div>
-                                                    <img src="{{ $featuredProducts[$productIndex]->image_url }}" alt="{{ $featuredProducts[$productIndex]->name }}" class="product-icon">
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="gradient-text">{{ $featuredProducts[$productIndex]->name }}</h3>
-                                                    <p class="mb-3">{{ $featuredProducts[$productIndex]->description }}</p>
-                                                    <a href="{{ route('products.show', $featuredProducts[$productIndex]->slug) }}" class="btn-modern">
-                                                        <span>شراء الآن</span>
-                                                        <i class="fas fa-arrow-left"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endfor
-                                </div>
+            <div>
+                <div class="products-carousel owl-carousel owl-theme">
+                    @foreach($featuredProducts as $product)
+                    <div class="item">
+                        <div class="product-card-modern">
+                            <div class="product-icon-wrapper">
+                                <div class="product-icon-bg"></div>
+                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="product-icon">
                             </div>
-                        @endfor
-                    @else
-                        <div class="carousel-item active">
-                            <div class="row g-4 justify-content-center">
-                                <div class="col-12 text-center">
-                                    <p class="text-muted">لا توجد منتجات متاحة حالياً</p>
-                                </div>
+                            <div class="product-content">
+                                <h3 class="gradient-text">{{ $product->name }}</h3>
+                                <p class="mb-3">{{ $product->description }}</p>
+                                <a href="{{ route('products.show', $product->slug) }}" class="btn-modern">
+                                    <span>شراء الآن</span>
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
                             </div>
                         </div>
-                    @endif
+                    </div>
+                    @endforeach
                 </div>
-
-                <!-- Carousel controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#productsCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">السابق</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productsCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">التالي</span>
-                </button>
             </div>
             <!-- End Products Carousel -->
         </div>
@@ -671,7 +606,237 @@
 @endsection
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>
+    // Wait for document to be ready and make sure jQuery is available
+    document.addEventListener('DOMContentLoaded', function() {
+        // Products Carousel - initialize only if jQuery and owl carousel are available
+        if (typeof jQuery !== 'undefined') {
+            // Use jQuery safely now
+            jQuery(document).ready(function($) {
+                if ($.fn.owlCarousel) {
+                    const $carousel = $('.products-carousel');
+                    if ($carousel.length) {
+                        $carousel.owlCarousel({
+                            rtl: true,
+                            loop: true,
+                            margin: 20,
+                            nav: true,
+                            dots: true,
+                            autoplay: true,
+                            autoplayTimeout: 3000,
+                            autoplayHoverPause: true,
+                            smartSpeed: 600,
+                            fluidSpeed: 600,
+                            autoplaySpeed: 600,
+                            navSpeed: 600,
+                            dotsSpeed: 600,
+                            dragEndSpeed: 600,
+                            responsive: {
+                                0: {
+                                    items: 1,
+                                    margin: 10
+                                },
+                                576: {
+                                    items: 2,
+                                    margin: 15
+                                },
+                                992: {
+                                    items: 3,
+                                    margin: 20
+                                },
+                                1200: {
+                                    items: 4,
+                                    margin: 20
+                                }
+                            },
+                            navText: [
+                                "<i class='fas fa-chevron-right'></i>",
+                                "<i class='fas fa-chevron-left'></i>"
+                            ]
+                        });
+
+                        console.log('Owl Carousel initialized successfully');
+                    } else {
+                        console.log('Carousel not found in the page');
+                    }
+                } else {
+                    console.log('Owl Carousel plugin not available');
+                }
+            });
+        } else {
+            console.log('jQuery not available');
+        }
+
+        // Scroll Animations
+        const fadeObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, fadeObserverOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Enhanced Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(target * easeOutQuart);
+
+                element.textContent = current.toLocaleString();
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Enhanced Stats Section Observer
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('[data-count]');
+
+                    // Animate counters
+                    counters.forEach((counter, index) => {
+                        setTimeout(() => {
+                            animateCounter(counter);
+                        }, index * 200);
+                    });
+
+                    // Add entrance animation to stat cards
+                    const statCards = entry.target.querySelectorAll('.stat-card');
+                    statCards.forEach((card, index) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(50px)';
+
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    });
+
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Product Card Hover Effects
+        document.querySelectorAll('.product-card-modern').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Mobile Menu Enhancement
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        if (navbarToggler) {
+            navbarToggler.addEventListener('click', function() {
+                const navbar = document.querySelector('.navbar');
+                setTimeout(() => {
+                    if (document.querySelector('.navbar-collapse').classList.contains('show')) {
+                        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    } else {
+                        navbar.style.background = '';
+                    }
+                }, 100);
+            });
+        }
+
+        // Parallax Effect for Hero Section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Product Image Hover Effect
+        document.querySelectorAll('.product-icon-wrapper').forEach(image => {
+            image.addEventListener('mouseenter', function() {
+                const overlay = this.querySelector('.product-overlay');
+                const actions = this.querySelectorAll('.action-btn');
+
+                actions.forEach((btn, index) => {
+                    setTimeout(() => {
+                        btn.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                });
+            });
+
+            image.addEventListener('mouseleave', function() {
+                const actions = this.querySelectorAll('.action-btn');
+                actions.forEach(btn => {
+                    btn.style.transform = 'translateY(20px) scale(0.8)';
+                });
+            });
+        });
+
+        // Add some interactive particles to hero section
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: rgba(38, 224, 127, 0.3);
+                border-radius: 50%;
+                pointer-events: none;
+                animation: float 15s linear infinite;
+            `;
+
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+
+            const heroSection = document.querySelector('.hero-bg-image-section');
+            if (heroSection) {
+                heroSection.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 15000);
+            }
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 3000);
+
+        console.log('Dental Products Website Loaded Successfully! 🚀');
+    });
+
     const counters = document.querySelectorAll('.counter');
     counters.forEach(counter => {
         const targetValue = parseInt(counter.textContent);
@@ -712,66 +877,6 @@
         badge.addEventListener('mouseleave', function() {
             this.style.animationPlayState = 'running';
         });
-    });
-
-    // تهيئة السلايدر
-    document.addEventListener('DOMContentLoaded', function() {
-        // تهيئة سلايدر المنتجات
-        var productCarouselElement = document.getElementById('productsCarousel');
-        if (productCarouselElement) {
-            try {
-                // محاولة تهيئة السلايدر باستخدام Bootstrap 5
-                var productsCarousel = new bootstrap.Carousel(productCarouselElement, {
-                    interval: 2000,  // تغيير السلايد كل 2 ثواني
-                    wrap: true,      // تكرار من البداية بعد الوصول للنهاية
-                    touch: true,     // دعم السحب على الأجهزة اللمسية
-                    pause: false     // عدم التوقف عند تحويم الماوس
-                });
-
-                console.log('تم تهيئة السلايدر بنجاح');
-
-                // التأكد من أن السلايدر يعمل دائما
-                productsCarousel.cycle();
-
-                // منع التوقف عند تحويم الماوس
-                productCarouselElement.addEventListener('mouseenter', function() {
-                    productsCarousel.cycle();
-                });
-
-                // إضافة تغيير السلايد كل عدة ثواني حتى مع سلايد واحد
-                setInterval(function() {
-                    productsCarousel.next();
-                }, 4000);
-
-            } catch (error) {
-                console.error('خطأ في تهيئة السلايدر:', error);
-
-                // محاولة تهيئة السلايدر بطريقة jQuery (للمتصفحات القديمة)
-                if (typeof $ !== 'undefined') {
-                    try {
-                        $('#productsCarousel').carousel({
-                            interval: 2000,
-                            wrap: true,
-                            pause: false
-                        });
-
-                        // التأكد من أن السلايدر يعمل دائما
-                        $('#productsCarousel').carousel('cycle');
-
-                        // إضافة تغيير السلايد كل عدة ثواني
-                        setInterval(function() {
-                            $('#productsCarousel').carousel('next');
-                        }, 4000);
-
-                        console.log('تم تهيئة السلايدر باستخدام jQuery');
-                    } catch (jqError) {
-                        console.error('خطأ في تهيئة السلايدر باستخدام jQuery:', jqError);
-                    }
-                }
-            }
-        } else {
-            console.warn('لم يتم العثور على عنصر السلايدر');
-        }
     });
 </script>
 @endsection

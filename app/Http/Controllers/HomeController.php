@@ -27,15 +27,18 @@ class HomeController extends Controller
             }
         }
 
-        $allCoupons = Coupon::where('is_active', 1)
-            ->where('expires_at', '>', now())
-            ->orderBy('expires_at', 'asc')
+        $discountedProducts = Product::where('is_available', true)
+            ->whereHas('discounts', function($q) {
+                $q->where('is_active', 1)
+                  ->where('expires_at', '>', now());
+            })
+            ->with(['images', 'discounts'])
             ->get();
 
         $currentPage = $request->get('page', 1);
         $perPage = 2;
-        $coupons = $allCoupons->forPage($currentPage, $perPage);
-        $totalPages = ceil($allCoupons->count() / $perPage);
+        $totalPages = 1;
+        $coupons = collect(); // لم نعد بحاجة للكوبونات هنا
 
         $topCategories = Category::withCount('products')
             ->orderBy('products_count', 'desc')
@@ -44,7 +47,7 @@ class HomeController extends Controller
 
         return view('index', compact(
             'featuredProducts',
-            'allCoupons',
+            'discountedProducts',
             'coupons',
             'currentPage',
             'totalPages',

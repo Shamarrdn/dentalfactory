@@ -180,17 +180,7 @@ body {
     position: relative;
 }
 
-.signup-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: var(--primary-color);
-    border-radius: 2px;
-}
+
 
 /* Links and Additional Text */
 .login-link {

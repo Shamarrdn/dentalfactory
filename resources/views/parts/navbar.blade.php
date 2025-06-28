@@ -31,26 +31,14 @@
             </li>
             <li class="mobile-buttons" style="width:100%; display:none;">
                 @auth
-                    <div class="dropdown" style="width:100%;">
-                        <a href="#" class="mobile-login-button dropdown-toggle" id="userDropdownMobile" data-bs-toggle="dropdown" aria-expanded="false">
-                            لوحة التحكم <i class="fas fa-user"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="userDropdownMobile">
-                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">لوحة التحكم</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit">تسجيل الخروج</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    <a class="nav-link-simple" href="{{ route('dashboard') }}">لوحة التحكم</a>
+                    <form method="POST" action="{{ route('logout') }}" style="width:100%;">
+                        @csrf
+                        <button class="nav-link-simple" type="submit" style="background:none;border:none;width:100%;text-align:right;">تسجيل الخروج</button>
+                    </form>
                 @else
-                    <div class="d-flex flex-column gap-2" style="width:100%;">
-                        <a href="{{ route('login') }}" class="login-button"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a>
-                        <a href="{{ route('register') }}" class="cta-button"><i class="fas fa-user-plus"></i> تسجيل جديد</a>
-                    </div>
+                    <a class="nav-link-simple" href="{{ route('login') }}">تسجيل الدخول</a>
+                    <a class="nav-link-simple" href="{{ route('register') }}">تسجيل جديد</a>
                 @endauth
             </li>
         </ul>

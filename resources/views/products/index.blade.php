@@ -2,52 +2,16 @@
 
 @section('title', 'متجر بر الليث | ملابس أطفال عالية الجودة في محافظة الليث')
 
-@section('content')
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="تسوق منتجات بر الليث - ملابس أطفال عالية الجودة، تصاميم عصرية، وخامات ممتازة. منتجات متميزة بأسعار مناسبة في محافظة الليث التابعة لمكة المكرمة.">
-    <meta name="keywords" content="بر الليث، ملابس أطفال، مصنع ملابس، ملابس عصرية، ملابس أطفال جودة عالية، محافظة الليث، مكة المكرمة">
-    <meta name="author" content="بر الليث">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="msapplication-TileColor" content="#ffffff">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:site_name" content="بر الليث">
-    <meta property="og:title" content="متجر بر الليث | ملابس أطفال عالية الجودة في محافظة الليث">
-    <meta property="og:description" content="تسوق منتجات بر الليث - ملابس أطفال عالية الجودة، تصاميم عصرية، وخامات ممتازة. منتجات متميزة بأسعار مناسبة في محافظة الليث التابعة لمكة المكرمة.">
-    <meta property="og:image" content="/assets/images/logo.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_SA">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="متجر بر الليث | ملابس أطفال عالية الجودة في محافظة الليث">
-    <meta name="twitter:description" content="تسوق منتجات بر الليث - ملابس أطفال عالية الجودة، تصاميم عصرية، وخامات ممتازة. منتجات متميزة بأسعار مناسبة في محافظة الليث التابعة لمكة المكرمة.">
-    <meta name="twitter:image" content="/assets/images/logo.png">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ url()->current() }}">
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>متجر بر الليث | ملابس أطفال عالية الجودة في محافظة الليث</title>
+@section('styles')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products.css') }}?t={{ time() }}">
-     <link rel="stylesheet" href="{{ asset('assets/kids/css/common.css') }}?t={{ time() }}">
-</head>
-<body class="{{ auth()->check() ? 'user-logged-in' : '' }}" >
-    <!-- Fixed Buttons Group -->
+    <link rel="stylesheet" href="{{ asset('assets/kids/css/common.css') }}?t={{ time() }}">
+@endsection
+
+@section('content')
+<!-- Fixed Buttons Group -->
     <div class="fixed-buttons-group">
         <button class="fixed-cart-btn" id="fixedCartBtn">
             <i class="fas fa-shopping-cart fa-lg"></i>
@@ -332,10 +296,9 @@
             </div>
         </div>
     </div>
+@endsection
 
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -349,7 +312,5 @@
         };
     </script>
     <script src="/assets/js/customer/products.js"></script>
-</body>
-</html>
 @endsection
 

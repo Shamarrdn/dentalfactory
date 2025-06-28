@@ -108,7 +108,7 @@
                     </div>
                     @endif
 
-                    <button type="submit" class="btn btn-primary w-100 py-2">
+                    <button type="submit" class="btn-signup">
                         <i class="fas fa-user-plus me-2"></i>
                         إنشاء الحساب
                     </button>
