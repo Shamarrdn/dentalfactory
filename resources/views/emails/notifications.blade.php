@@ -109,7 +109,6 @@
 <body>
     <div class="email-container">
         <div class="email-header">
-            <img src="{{ asset('assets/kids/img/logo.png') }}" alt="بر الليث" style="max-width: 150px; margin-bottom: 10px;">
             <h1>{{ $title }}</h1>
         </div>
         <div class="email-body">
@@ -145,7 +144,7 @@
             </div>
         </div>
         <div class="footer">
-            © {{ date('Y') }} بر الليث - جميع الحقوق محفوظة
+            © {{ date('Y') }} مصنع منتجات الأسنان - جميع الحقوق محفوظة
         </div>
     </div>
 </body>

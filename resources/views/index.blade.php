@@ -6,119 +6,45 @@
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/index.css') }}?t={{ time() }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
-<style>
-    .coupon-card {
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-        height: 100%;
-    }
-
-    .coupon-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .coupon-content {
-        padding: 20px;
-    }
-
-    .coupon-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .discount-badge {
-        background: var(--primary-gradient);
-        color: white;
-        padding: 10px 15px;
-        border-radius: 10px;
-        text-align: center;
-        min-width: 80px;
-    }
-
-    .discount-value {
-        font-size: 24px;
-        font-weight: bold;
-        display: block;
-        line-height: 1;
-    }
-
-    .discount-text {
-        font-size: 14px;
-    }
-
-    .coupon-code {
-        text-align: left;
-    }
-
-    .coupon-code span {
-        color: #666;
-        font-size: 14px;
-    }
-
-    .coupon-code strong {
-        display: block;
-        font-size: 18px;
-        color: var(--primary-color);
-        margin-top: 5px;
-    }
-
-    .coupon-body h4 {
-        color: #333;
-        margin-bottom: 10px;
-        font-size: 18px;
-    }
-
-    .coupon-body p {
-        color: #666;
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
-
-    .coupon-details {
-        border-top: 1px solid #eee;
-        padding-top: 15px;
-    }
-
-    .detail-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-        color: #666;
-        font-size: 14px;
-    }
-
-    .detail-item i {
-        color: var(--primary-color);
-        margin-left: 8px;
-        width: 20px;
-    }
-
-    .pagination-wrapper {
-        margin-top: 30px;
-    }
-
-    .pagination .page-link {
-        color: var(--primary-color);
-        border: 1px solid #dee2e6;
-        margin: 0 2px;
-        border-radius: 5px;
-    }
-
-    .pagination .page-item.active .page-link {
-        background: var(--primary-gradient);
-        border-color: var(--primary-color);
-    }
-</style>
-
 @endsection
 
 @section('content')
+
+<!-- Toast Notifications -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+    @if(session('success'))
+    <div class="toast show border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white border-0">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">نجح الإرسال</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-light">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="toast show border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-danger text-white border-0">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <strong class="me-auto">خطأ في الإرسال</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-light">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-exclamation-circle text-danger me-2"></i>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+    </div>
+    @endif
+</div>
+
 <section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
     <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
@@ -373,63 +299,84 @@
                     <div class="order-card" data-aos="fade-up">
                         <div class="order-card-shape"></div>
                         <div class="order-form-container">
-                            <form class="order-form">
+                            <form method="POST" action="{{ route('home-form.submit') }}" class="order-form">
+                                @csrf
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="form-group floating-label">
-                                            <input type="text" class="form-control custom-input" id="companyName" required>
+                                            <input type="text" class="form-control custom-input @error('companyName') is-invalid @enderror"
+                                                   id="companyName" name="companyName" value="{{ old('companyName') }}" required>
                                             <label for="companyName" class="form-label">اسم الشركة/العيادة</label>
                                             <div class="input-icon">
                                                 <i class="fas fa-building"></i>
                                             </div>
+                                            @error('companyName')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group floating-label">
-                                            <input type="email" class="form-control custom-input" id="email" required>
+                                            <input type="email" class="form-control custom-input @error('email') is-invalid @enderror"
+                                                   id="email" name="email" value="{{ old('email') }}" required>
                                             <label for="email" class="form-label">البريد الإلكتروني</label>
                                             <div class="input-icon">
                                                 <i class="fas fa-envelope"></i>
                                             </div>
+                                            @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group floating-label">
-                                            <input type="tel" class="form-control custom-input" id="phone" required>
+                                            <input type="tel" class="form-control custom-input @error('phone') is-invalid @enderror"
+                                                   id="phone" name="phone" value="{{ old('phone') }}" required>
                                             <label for="phone" class="form-label">رقم الهاتف</label>
                                             <div class="input-icon">
                                                 <i class="fas fa-phone-alt"></i>
                                             </div>
+                                            @error('phone')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group floating-label">
-                                            <select class="form-control custom-input custom-select" id="productCategory" required>
+                                            <select class="form-control custom-input custom-select @error('productCategory') is-invalid @enderror"
+                                                    id="productCategory" name="productCategory" required>
                                                 <option value="" selected disabled></option>
-                                                <option value="implants">منتجات زراعة الأسنان</option>
-                                                <option value="cosmetic">منتجات تجميلية</option>
-                                                <option value="tools">أدوات طب الأسنان</option>
-                                                <option value="all">جميع المنتجات</option>
+                                                <option value="implants" {{ old('productCategory') == 'implants' ? 'selected' : '' }}>منتجات زراعة الأسنان</option>
+                                                <option value="cosmetic" {{ old('productCategory') == 'cosmetic' ? 'selected' : '' }}>منتجات تجميلية</option>
+                                                <option value="tools" {{ old('productCategory') == 'tools' ? 'selected' : '' }}>أدوات طب الأسنان</option>
+                                                <option value="all" {{ old('productCategory') == 'all' ? 'selected' : '' }}>جميع المنتجات</option>
                                             </select>
                                             <label for="productCategory" class="form-label">فئة المنتج</label>
                                             <div class="input-icon">
                                                 <i class="fas fa-tag"></i>
                                             </div>
+                                            @error('productCategory')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group floating-label">
-                                            <textarea class="form-control custom-input custom-textarea" id="notes" rows="3"></textarea>
+                                            <textarea class="form-control custom-input custom-textarea @error('notes') is-invalid @enderror"
+                                                      id="notes" name="notes" rows="3">{{ old('notes') }}</textarea>
                                             <label for="notes" class="form-label">ملاحظات إضافية</label>
                                             <div class="input-icon">
                                                 <i class="fas fa-comment-alt"></i>
                                             </div>
+                                            @error('notes')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 text-center mt-4">
-                                        <button type="submit" class="btn-order-submit">
-                                            <span class="btn-text">إرسال الطلب</span>
-                                            <div class="btn-icon">
+                                        <button type="submit" class="btn-order-submit" id="submitBtn">
+                                            <span class="btn-text" id="submitText">إرسال الطلب</span>
+                                            <div class="btn-icon" id="submitIcon">
                                                 <i class="fas fa-paper-plane"></i>
                                             </div>
                                         </button>
@@ -608,275 +555,5 @@
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script>
-    // Wait for document to be ready and make sure jQuery is available
-    document.addEventListener('DOMContentLoaded', function() {
-        // Products Carousel - initialize only if jQuery and owl carousel are available
-        if (typeof jQuery !== 'undefined') {
-            // Use jQuery safely now
-            jQuery(document).ready(function($) {
-                if ($.fn.owlCarousel) {
-                    const $carousel = $('.products-carousel');
-                    if ($carousel.length) {
-                        $carousel.owlCarousel({
-                            rtl: true,
-                            loop: true,
-                            margin: 20,
-                            nav: true,
-                            dots: true,
-                            autoplay: true,
-                            autoplayTimeout: 3000,
-                            autoplayHoverPause: true,
-                            smartSpeed: 600,
-                            fluidSpeed: 600,
-                            autoplaySpeed: 600,
-                            navSpeed: 600,
-                            dotsSpeed: 600,
-                            dragEndSpeed: 600,
-                            responsive: {
-                                0: {
-                                    items: 1,
-                                    margin: 10
-                                },
-                                576: {
-                                    items: 2,
-                                    margin: 15
-                                },
-                                992: {
-                                    items: 3,
-                                    margin: 20
-                                },
-                                1200: {
-                                    items: 4,
-                                    margin: 20
-                                }
-                            },
-                            navText: [
-                                "<i class='fas fa-chevron-right'></i>",
-                                "<i class='fas fa-chevron-left'></i>"
-                            ]
-                        });
-
-                        console.log('Owl Carousel initialized successfully');
-                    } else {
-                        console.log('Carousel not found in the page');
-                    }
-                } else {
-                    console.log('Owl Carousel plugin not available');
-                }
-            });
-        } else {
-            console.log('jQuery not available');
-        }
-
-        // Scroll Animations
-        const fadeObserverOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const fadeObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, fadeObserverOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            fadeObserver.observe(el);
-        });
-
-        // Enhanced Counter Animation
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-count'));
-            const duration = 2000;
-            const startTime = performance.now();
-
-            function updateCounter(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-
-                // Easing function for smooth animation
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                const current = Math.floor(target * easeOutQuart);
-
-                element.textContent = current.toLocaleString();
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target.toLocaleString();
-                }
-            }
-
-            requestAnimationFrame(updateCounter);
-        }
-
-        // Enhanced Stats Section Observer
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('[data-count]');
-
-                    // Animate counters
-                    counters.forEach((counter, index) => {
-                        setTimeout(() => {
-                            animateCounter(counter);
-                        }, index * 200);
-                    });
-
-                    // Add entrance animation to stat cards
-                    const statCards = entry.target.querySelectorAll('.stat-card');
-                    statCards.forEach((card, index) => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(50px)';
-
-                        setTimeout(() => {
-                            card.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, index * 150);
-                    });
-
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-
-        // Product Card Hover Effects
-        document.querySelectorAll('.product-card-modern').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Mobile Menu Enhancement
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (navbarToggler) {
-            navbarToggler.addEventListener('click', function() {
-                const navbar = document.querySelector('.navbar');
-                setTimeout(() => {
-                    if (document.querySelector('.navbar-collapse').classList.contains('show')) {
-                        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                    } else {
-                        navbar.style.background = '';
-                    }
-                }, 100);
-            });
-        }
-
-        // Parallax Effect for Hero Section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroBg = document.querySelector('.hero-bg');
-            if (heroBg) {
-                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Product Image Hover Effect
-        document.querySelectorAll('.product-icon-wrapper').forEach(image => {
-            image.addEventListener('mouseenter', function() {
-                const overlay = this.querySelector('.product-overlay');
-                const actions = this.querySelectorAll('.action-btn');
-
-                actions.forEach((btn, index) => {
-                    setTimeout(() => {
-                        btn.style.transform = 'translateY(0) scale(1)';
-                    }, index * 100);
-                });
-            });
-
-            image.addEventListener('mouseleave', function() {
-                const actions = this.querySelectorAll('.action-btn');
-                actions.forEach(btn => {
-                    btn.style.transform = 'translateY(20px) scale(0.8)';
-                });
-            });
-        });
-
-        // Add some interactive particles to hero section
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: absolute;
-                width: 4px;
-                height: 4px;
-                background: rgba(38, 224, 127, 0.3);
-                border-radius: 50%;
-                pointer-events: none;
-                animation: float 15s linear infinite;
-            `;
-
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-
-            const heroSection = document.querySelector('.hero-bg-image-section');
-            if (heroSection) {
-                heroSection.appendChild(particle);
-
-                setTimeout(() => {
-                    particle.remove();
-                }, 15000);
-            }
-        }
-
-        // Create particles periodically
-        setInterval(createParticle, 3000);
-
-        console.log('Dental Products Website Loaded Successfully! 🚀');
-    });
-
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-        const targetValue = parseInt(counter.textContent);
-        let currentValue = 0;
-        const duration = 2000; // ms
-        const interval = 50; // ms
-        const increment = Math.ceil(targetValue / (duration / interval));
-
-        const counterAnimation = setInterval(() => {
-            currentValue += increment;
-            if (currentValue >= targetValue) {
-                currentValue = targetValue;
-                clearInterval(counterAnimation);
-            }
-            counter.textContent = currentValue;
-        }, interval);
-    });
-
-    const heroImage = document.querySelector('.hero-image');
-    if (heroImage) {
-        window.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const { innerWidth, innerHeight } = window;
-
-            const x = (clientX / innerWidth - 0.5) * 20;
-            const y = (clientY / innerHeight - 0.5) * 20;
-
-            heroImage.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    }
-
-    const floatingBadges = document.querySelectorAll('.floating-badge');
-    floatingBadges.forEach(badge => {
-        badge.addEventListener('mouseenter', function() {
-            this.style.animationPlayState = 'paused';
-        });
-
-        badge.addEventListener('mouseleave', function() {
-            this.style.animationPlayState = 'running';
-        });
-    });
-</script>
+<script src="{{ asset('assets/js/index.js') }}?t={{ time() }}"></script>
 @endsection

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactFormMail extends Mailable
+class HomeFormMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class ContactFormMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'رسالة جديدة من نموذج الاتصال',
+            subject: 'طلب جديد من الصفحة الرئيسية',
             replyTo: $this->data['email'],
         );
     }
@@ -40,7 +40,7 @@ class ContactFormMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact',
+            view: 'emails.home-form',
         );
     }
 
@@ -56,14 +56,14 @@ class ContactFormMail extends Mailable
 
     public function build()
     {
-        return $this->subject('رسالة جديدة من نموذج الاتصال')
-                    ->view('emails.contact')
+        return $this->subject('طلب جديد من الصفحة الرئيسية')
+                    ->view('emails.home-form')
                     ->with([
-                        'name' => $this->data['name'],
+                        'companyName' => $this->data['companyName'],
                         'email' => $this->data['email'],
                         'phone' => $this->data['phone'],
-                        'subject' => $this->data['subject'],
-                        'messageContent' => $this->data['message']
+                        'productCategory' => $this->data['productCategory'],
+                        'notes' => $this->data['notes'] ?? ''
                     ]);
     }
 }

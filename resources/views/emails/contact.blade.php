@@ -1,99 +1,72 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رسالة جديدة من {{ $name }}</title>
+    <title>رسالة جديدة من نموذج الاتصال - مصنع منتجات الأسنان</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #1E2A38;
-            margin: 0;
-            padding: 0;
-            direction: rtl;
-            text-align: right;
-            background-color: #f0fff5;
+            color: #333;
+            padding: 20px;
         }
-        .email-container {
+        .container {
             max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.75);
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 146, 69, 0.08);
         }
-        .email-header {
-            background-color: #009245;
+        .header {
+            background: #26e07f;
             color: white;
             padding: 20px;
             text-align: center;
-        }
-        .email-header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .email-body {
-            padding: 30px;
-        }
-        .message-box {
-            background-color: rgba(0, 146, 69, 0.05);
-            border-right: 4px solid #009245;
-            padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
-            font-size: 16px;
-            line-height: 1.8;
         }
-        .sender-info {
-            background-color: rgba(255, 255, 255, 0.75);
-            padding: 12px;
+        .content {
+            background: white;
+            padding: 20px;
             border-radius: 5px;
-            margin-top: 10px;
         }
-        .sender-info p {
-            margin: 8px 0;
-            color: #2C3E50;
+        .field {
+            margin-bottom: 15px;
         }
-        .sender-info strong {
-            color: #009245;
-            margin-left: 10px;
-        }
-        .divider {
-            height: 1px;
-            background-color: rgba(0, 146, 69, 0.25);
-            margin: 15px 0;
-        }
-        .footer {
-            background-color: rgba(0, 146, 69, 0.05);
-            padding: 15px;
-            text-align: center;
-            font-size: 12px;
-            color: #2C3E50;
+        .label {
+            font-weight: bold;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="email-container">
-        <div class="email-header">
-            <h1>رسالة جديدة من {{ $name }}</h1>
+    <div class="container">
+        <div class="header">
+            <h2>رسالة جديدة من نموذج الاتصال</h2>
+            <p>مصنع منتجات الأسنان</p>
         </div>
-
-        <div class="email-body">
-            <div class="message-box">
-                {{ $userMessage }}
+        <div class="content">
+            <div class="field">
+                <span class="label">الاسم:</span>
+                <p>{{ $name }}</p>
             </div>
-
-            <div class="divider"></div>
-
-            <div class="sender-info">
-                <p><strong>المرسل:</strong> {{ $name }}</p>
-                <p><strong>البريد الإلكتروني:</strong> {{ $email }}</p>
+            <div class="field">
+                <span class="label">البريد الإلكتروني:</span>
+                <p>{{ $email }}</p>
             </div>
-        </div>
-
-        <div class="footer">
-            © {{ date('Y') }} بر الليث - جميع الحقوق محفوظة
+            <div class="field">
+                <span class="label">رقم الهاتف:</span>
+                <p>{{ $phone }}</p>
+            </div>
+            <div class="field">
+                <span class="label">الموضوع:</span>
+                <p>{{ $subject }}</p>
+            </div>
+            <div class="field">
+                <span class="label">الرسالة:</span>
+                <p>{{ $messageContent }}</p>
+            </div>
         </div>
     </div>
 </body>

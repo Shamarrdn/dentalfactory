@@ -17,6 +17,7 @@ use App\Http\Controllers\{
     ContactController,
     PolicyController,
     HomeController,
+    HomeFormController,
 };
 
 // Admin Controllers
@@ -178,7 +179,8 @@ Route::middleware('client')->group(function () {
 
 
 
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact/submit', [App\Http\Controllers\ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/home-form/submit', [App\Http\Controllers\HomeFormController::class, 'submit'])->name('home-form.submit');
 
 // مسارات السلة
 Route::middleware(['auth'])->group(function () {

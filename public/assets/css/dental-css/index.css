@@ -1818,3 +1818,193 @@
     box-shadow: 0 6px 18px rgba(38, 224, 127, 0.18);
     transform: translateY(-2px) scale(1.04);
 }
+
+/* === Coupon Cards Styles === */
+.coupon-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.coupon-card:hover {
+    transform: translateY(-5px);
+}
+
+.coupon-content {
+    padding: 20px;
+}
+
+.coupon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.discount-badge {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 80px;
+}
+
+.discount-value {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    line-height: 1;
+}
+
+.discount-text {
+    font-size: 14px;
+}
+
+.coupon-code {
+    text-align: left;
+}
+
+.coupon-code span {
+    color: #666;
+    font-size: 14px;
+}
+
+.coupon-code strong {
+    display: block;
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-top: 5px;
+}
+
+.coupon-body h4 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.coupon-body p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.coupon-details {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+.detail-item i {
+    color: var(--primary-color);
+    margin-left: 8px;
+    width: 20px;
+}
+
+.pagination-wrapper {
+    margin-top: 30px;
+}
+
+.pagination .page-link {
+    color: var(--primary-color);
+    border: 1px solid #dee2e6;
+    margin: 0 2px;
+    border-radius: 5px;
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--primary-gradient);
+    border-color: var(--primary-color);
+}
+
+/* === Toast Notifications === */
+.toast-container {
+    z-index: 9999;
+}
+
+.toast {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    min-width: 350px;
+    max-width: 400px;
+}
+
+.toast-header {
+    border: none;
+    padding: 15px 20px;
+    font-weight: 600;
+}
+
+.toast-body {
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.toast.show {
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* === Form Loading State === */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn .fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* === Form Validation Styles === */
+.form-control.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.invalid-feedback {
+    display: block;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+
+@media (max-width: 576px) {
+    .toast {
+        min-width: 280px;
+        max-width: 320px;
+    }
+
+    .toast-header,
+    .toast-body {
+        padding: 12px 15px;
+    }
+}

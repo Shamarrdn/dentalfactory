@@ -10,11 +10,12 @@ class FirebaseNotificationService
 {
     private $credentials;
     private $accessToken;
-    private $projectId = 'clothes-shop-6f181';
+    private $projectId = 'dental-factory-95a8a';
+    private $tokenExpiry = 0;
 
     public function __construct()
     {
-        $firebaseKey = file_get_contents(storage_path('app/firebase/clothes-shop-6f181-firebase-adminsdk-fbsvc-8797108639.json'));
+        $firebaseKey = file_get_contents(storage_path('app/firebase/dental-factory-95a8a-firebase-adminsdk-fbsvc-7665f341fa.json'));
         $this->credentials = json_decode($firebaseKey, true);
     }
 
@@ -28,7 +29,7 @@ class FirebaseNotificationService
                 'link' => $link
             ]);
 
-            if (!$this->accessToken) {
+            if (!$this->accessToken || time() >= $this->tokenExpiry) {
                 Log::info('Getting new access token');
                 $this->accessToken = $this->getAccessToken();
             }
@@ -64,20 +65,58 @@ class FirebaseNotificationService
                 'payload' => $payload
             ]);
 
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $this->accessToken,
-                'Content-Type' => 'application/json'
-            ])->post("https://fcm.googleapis.com/v1/projects/{$this->projectId}/messages:send", $payload);
+            $maxRetries = 3;
+            $retryDelay = 2;
 
-            Log::info('FCM response received', [
-                'status' => $response->status(),
-                'body' => $response->json()
-            ]);
+            for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
+                try {
+                    Log::info("FCM attempt {$attempt} of {$maxRetries}");
 
-            return [
-                'success' => $response->successful(),
-                'message' => $response->json()
-            ];
+                    $response = Http::timeout(30)
+                        ->withHeaders([
+                            'Authorization' => 'Bearer ' . $this->accessToken,
+                            'Content-Type' => 'application/json'
+                        ])
+                        ->post("https://fcm.googleapis.com/v1/projects/{$this->projectId}/messages:send", $payload);
+
+                    Log::info('FCM response received', [
+                        'attempt' => $attempt,
+                        'status' => $response->status(),
+                        'body' => $response->json()
+                    ]);
+
+                    if ($response->successful()) {
+                        Log::info('FCM notification sent successfully', [
+                            'attempt' => $attempt,
+                            'status' => $response->status()
+                        ]);
+                    }
+
+                    return [
+                        'success' => $response->successful(),
+                        'message' => $response->json()
+                    ];
+
+                } catch (\Exception $e) {
+                    Log::warning("FCM attempt {$attempt} failed", [
+                        'error' => $e->getMessage(),
+                        'attempt' => $attempt,
+                        'max_retries' => $maxRetries
+                    ]);
+
+                    if ($attempt < $maxRetries) {
+                        Log::info("Retrying in {$retryDelay} seconds...");
+                        sleep($retryDelay);
+                        $retryDelay *= 2;
+                    } else {
+                        Log::error('All FCM attempts failed', [
+                            'total_attempts' => $maxRetries,
+                            'final_error' => $e->getMessage()
+                        ]);
+                        throw $e;
+                    }
+                }
+            }
 
         } catch (\Exception $e) {
             Log::error('Error sending notification', [
@@ -93,6 +132,15 @@ class FirebaseNotificationService
     {
         try {
             Log::info('Starting to send notifications to admins');
+
+            // فحص الاتصال بالإنترنت أولاً
+            if (!$this->checkInternetConnection()) {
+                Log::warning('No internet connection available, skipping notifications');
+                return [
+                    'success' => false,
+                    'message' => 'No internet connection available'
+                ];
+            }
 
             // Get all admin users who have FCM tokens
             $admins = User::where('role', 'admin')
@@ -160,6 +208,22 @@ class FirebaseNotificationService
         }
     }
 
+    /**
+     * فحص الاتصال بالإنترنت
+     */
+    private function checkInternetConnection()
+    {
+        try {
+            $response = Http::timeout(5)->get('https://www.google.com');
+            return $response->successful();
+        } catch (\Exception $e) {
+            Log::warning('Internet connection check failed', [
+                'error' => $e->getMessage()
+            ]);
+            return false;
+        }
+    }
+
     private function getAccessToken()
     {
         try {
@@ -174,19 +238,59 @@ class FirebaseNotificationService
 
             $jwt = $this->generateJWT($payload, $this->credentials['private_key']);
 
-            $response = Http::asForm()->post($this->credentials['token_uri'], [
-                'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-                'assertion' => $jwt
-            ]);
+            $maxRetries = 3;
+            $retryDelay = 2;
 
-            if (!$response->successful()) {
-                Log::error('Failed to get access token', [
-                    'response' => $response->json()
-                ]);
-                throw new \Exception('Failed to get access token: ' . $response->body());
+            for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
+                try {
+                    $response = Http::timeout(30)
+                        ->asForm()
+                        ->post($this->credentials['token_uri'], [
+                            'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+                            'assertion' => $jwt
+                        ]);
+
+                    if (!$response->successful()) {
+                        Log::error('Failed to get access token', [
+                            'attempt' => $attempt,
+                            'response' => $response->json()
+                        ]);
+
+                        if ($attempt < $maxRetries) {
+                            Log::info("Retrying token request in {$retryDelay} seconds...");
+                            sleep($retryDelay);
+                            $retryDelay *= 2;
+                            continue;
+                        }
+
+                        throw new \Exception('Failed to get access token: ' . $response->body());
+                    }
+
+                    $tokenData = $response->json();
+                    $this->tokenExpiry = $now + ($tokenData['expires_in'] ?? 3600) - 300;
+
+                    Log::info('Access token obtained successfully', [
+                        'expires_in' => $tokenData['expires_in'] ?? 3600,
+                        'token_expiry' => $this->tokenExpiry
+                    ]);
+
+                    return $tokenData['access_token'];
+
+                } catch (\Exception $e) {
+                    Log::warning("Token request attempt {$attempt} failed", [
+                        'error' => $e->getMessage(),
+                        'attempt' => $attempt
+                    ]);
+
+                    if ($attempt < $maxRetries) {
+                        Log::info("Retrying token request in {$retryDelay} seconds...");
+                        sleep($retryDelay);
+                        $retryDelay *= 2;
+                    } else {
+                        throw $e;
+                    }
+                }
             }
-
-            return $response->json()['access_token'];
 
         } catch (\Exception $e) {
             Log::error('Error getting access token', [

@@ -109,9 +109,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.profile-card:hover {
-    transform: translateY(-5px);
-}
+
 
 .profile-header {
     text-align: center;
@@ -133,9 +131,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.avatar:hover {
-    transform: scale(1.05);
-}
+
 
 .user-name {
     font-size: 1.75rem;
@@ -166,9 +162,7 @@ body {
     transition: transform 0.2s ease;
 }
 
-.detail-item:hover {
-    transform: translateX(5px);
-}
+
 
 .detail-icon {
     color: var(--primary-color);
@@ -213,11 +207,7 @@ body {
     font-weight: 500;
 }
 
-.menu-item:hover {
-    background: rgba(0, 146, 69, 0.08);
-    color: var(--primary-color);
-    transform: translateX(5px);
-}
+
 
 .menu-item.active {
     background: var(--gradient-primary);
@@ -247,9 +237,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.content-section:hover {
-    transform: translateY(-5px);
-}
+
 
 .section-header {
     display: flex;
@@ -323,10 +311,7 @@ body {
     box-shadow: 0 4px 15px rgba(0,146,69,0.2);
 }
 
-.livewire-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,146,69,0.3);
-}
+
 
 /* Form Group Styling */
 .form-group {

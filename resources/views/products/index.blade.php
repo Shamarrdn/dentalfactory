@@ -1,6 +1,6 @@
 @extends('layouts.dental')
 
-@section('title', 'متجر بر الليث | ملابس أطفال عالية الجودة في محافظة الليث')
+@section('title', 'مصنع منتجات الاسنان | منتجات أسنان عالية الجودة')
 
 @section('styles')
     <link rel="preconnect" href="https://fonts.googleapis.com">

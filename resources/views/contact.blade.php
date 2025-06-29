@@ -9,6 +9,41 @@
 
 @section('content')
 
+<!-- Toast Notifications -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+    @if(session('success'))
+    <div class="toast show border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white border-0">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">نجح الإرسال</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-light">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="toast show border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-danger text-white border-0">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <strong class="me-auto">خطأ في الإرسال</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-light">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-exclamation-circle text-danger me-2"></i>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+    </div>
+    @endif
+</div>
+
 <section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
     <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
@@ -95,42 +130,63 @@
                     <div class="contact-form-card" data-aos="fade-up">
                         <div class="contact-form-card-shape"></div>
                         <div class="contact-form-container">
-                            <form id="contactForm" class="contact-form">
+                            <form method="POST" action="{{ route('contact.submit') }}" class="contact-form">
+                                @csrf
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name">الاسم الكامل</label>
-                                            <input type="text" class="form-control" id="name" name="name" required>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                   id="name" name="name" value="{{ old('name') }}" required>
+                                            @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="email">البريد الإلكتروني</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                   id="email" name="email" value="{{ old('email') }}" required>
+                                            @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">رقم الجوال</label>
-                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                            <input type="tel" class="form-control @error('phone') is-invalid @enderror"
+                                                   id="phone" name="phone" value="{{ old('phone') }}" required>
+                                            @error('phone')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="subject">الموضوع</label>
-                                            <input type="text" class="form-control" id="subject" name="subject" required>
+                                            <input type="text" class="form-control @error('subject') is-invalid @enderror"
+                                                   id="subject" name="subject" value="{{ old('subject') }}" required>
+                                            @error('subject')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="message">الرسالة</label>
-                                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                            <textarea class="form-control @error('message') is-invalid @enderror"
+                                                      id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
+                                            @error('message')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg">
-                                            <span>إرسال الرسالة</span>
-                                            <i class="fas fa-paper-plane ms-2"></i>
+                                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                            <span id="submitText">إرسال الرسالة</span>
+                                            <i class="fas fa-paper-plane ms-2" id="submitIcon"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -146,34 +202,60 @@
 
 @section('scripts')
 <script>
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    // Form submission handling with loading state
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.querySelector('.contact-form');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitIcon = document.getElementById('submitIcon');
 
-            const formData = new FormData(this);
-            let isValid = true;
-
-            formData.forEach((value, key) => {
-                if (!value.trim()) {
-                    isValid = false;
-                    const input = this.querySelector(`[name="${key}"]`);
-                    input.classList.add('is-invalid');
-                }
+        if (contactForm && submitBtn) {
+            contactForm.addEventListener('submit', function() {
+                // Show loading state
+                submitBtn.disabled = true;
+                submitText.textContent = 'جاري الإرسال...';
+                submitIcon.className = 'fas fa-spinner fa-spin ms-2';
+                submitBtn.classList.add('disabled');
             });
+        }
 
-            if (isValid) {
-                alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
-                this.reset();
+        // Auto-hide toasts after 5 seconds with smooth animation
+        const toasts = document.querySelectorAll('.toast');
+        toasts.forEach(toast => {
+            // Add fade-in animation
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease-in-out';
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 5000);
+        });
+
+        // Add click to dismiss functionality
+        toasts.forEach(toast => {
+            const closeBtn = toast.querySelector('.btn-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                });
             }
         });
-
-        contactForm.querySelectorAll('input, textarea').forEach(input => {
-            input.addEventListener('input', function() {
-                this.classList.remove('is-invalid');
-            });
-        });
-    }
+    });
 
     const floatingBadges = document.querySelectorAll('.contact-floating-badge');
     floatingBadges.forEach(badge => {

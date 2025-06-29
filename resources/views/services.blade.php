@@ -114,7 +114,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light curved-section">
+<section class="py-5 bg-light ">
     <div class="container">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">خدمات متخصصة</span>
@@ -186,153 +186,6 @@
     </div>
 </section>
 
-<section id="appointment" class="order-section-2025 py-5">
-    <div class="container">
-        <div class="order-wrapper position-relative">
-            <div class="order-blob-1"></div>
-            <div class="order-blob-2"></div>
-            <div class="order-pattern"></div>
-
-            <div class="text-center mb-5">
-                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">حجز موعد</span>
-                <h2 class="section-title gradient-text animate__animated animate__fadeInUp">احجز موعدك الآن</h2>
-                <div class="title-separator"><div class="separator-line"></div><div class="separator-icon"><i class="fas fa-calendar-check"></i></div><div class="separator-line"></div></div>
-                <p class="section-subtitle">املأ النموذج التالي وسيتواصل معك فريقنا في أقرب وقت لتأكيد الموعد</p>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="order-card">
-                        <div class="order-card-inner">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="order-form-container">
-                                        <div class="order-card-header">
-                                            <div class="order-card-icon">
-                                                <div class="icon-pulse"></div>
-                                                <i class="fas fa-calendar-check"></i>
-                                            </div>
-                                            <h3 class="order-card-title">معلومات الحجز</h3>
-                                        </div>
-
-                                        <form class="order-form">
-                                            <div class="row g-4">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating custom-input">
-                                                        <input type="text" class="form-control" id="name" placeholder="الاسم الكامل" required>
-                                                        <label for="name">الاسم الكامل</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating custom-input">
-                                                        <input type="email" class="form-control" id="email" placeholder="البريد الإلكتروني" required>
-                                                        <label for="email">البريد الإلكتروني</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating custom-input">
-                                                        <input type="tel" class="form-control" id="phone" placeholder="رقم الهاتف" required>
-                                                        <label for="phone">رقم الهاتف</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating custom-input">
-                                                        <input type="date" class="form-control" id="date" required>
-                                                        <label for="date">التاريخ المفضل</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-floating custom-input">
-                                                        <select class="form-select" id="service" required>
-                                                            <option value="" selected disabled>اختر الخدمة المطلوبة</option>
-                                                            <option>زراعة الأسنان</option>
-                                                            <option>تجميل الأسنان</option>
-                                                            <option>علاج الأسنان</option>
-                                                            <option>تقويم الأسنان</option>
-                                                            <option>طب أسنان الأطفال</option>
-                                                            <option>أخرى</option>
-                                                        </select>
-                                                        <label for="service">الخدمة المطلوبة</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-floating custom-input">
-                                                        <textarea class="form-control" id="notes" style="height: 120px" placeholder="ملاحظات إضافية"></textarea>
-                                                        <label for="notes">ملاحظات إضافية</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-center mt-4">
-                                                <button type="submit" class="btn-order-submit">
-                                                    <span class="btn-text">تأكيد الحجز</span>
-                                                    <span class="btn-icon"><i class="fas fa-calendar-check"></i></span>
-                                                    <div class="btn-shine"></div>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 d-none d-lg-block">
-                                    <div class="order-benefits">
-                                        <div class="order-illustration">
-                                            <img src="https://img.icons8.com/ios-filled/250/26e07f/tooth.png" alt="خدمات طب الأسنان" class="main-illustration">
-                                            <div class="illustration-shape"></div>
-                                        </div>
-
-                                        <div class="benefits-list">
-                                            <h4 class="benefits-title">مميزات خدماتنا</h4>
-
-                                            <div class="benefit-item">
-                                                <div class="benefit-icon">
-                                                    <i class="fas fa-user-md"></i>
-                                                </div>
-                                                <div class="benefit-content">
-                                                    <h5>أطباء متخصصون</h5>
-                                                    <p>فريق من الأطباء المتخصصين ذوي الخبرة</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="benefit-item">
-                                                <div class="benefit-icon">
-                                                    <i class="fas fa-medal"></i>
-                                                </div>
-                                                <div class="benefit-content">
-                                                    <h5>جودة عالمية</h5>
-                                                    <p>خدمات معتمدة بمعايير عالمية</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="benefit-item">
-                                                <div class="benefit-icon">
-                                                    <i class="fas fa-headset"></i>
-                                                </div>
-                                                <div class="benefit-content">
-                                                    <h5>دعم فني</h5>
-                                                    <p>فريق دعم فني متخصص على مدار الساعة</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="discount-badge">
-                                                <div class="discount-content">
-                                                    <span class="discount-label">خصم</span>
-                                                    <span class="discount-value">20%</span>
-                                                    <span class="discount-text">على أول زيارة</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
@@ -388,29 +241,29 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-7">
                                     <div class="cta-content">
-                                        <span class="cta-badge">عرض خاص</span>
-                                        <h2 class="cta-title">جاهز لتحسين صحة أسنانك؟</h2>
-                                        <p class="cta-desc">احجز موعدك الآن واستفد من عروضنا الحصرية وخدمة العملاء المتميزة</p>
+                                        <span class="cta-badge">تواصل معنا</span>
+                                        <h2 class="cta-title">هل لديك استفسارات حول خدماتنا؟</h2>
+                                        <p class="cta-desc">فريقنا المتخصص جاهز للإجابة على جميع استفساراتك وتقديم المشورة الطبية المناسبة</p>
 
                                         <div class="cta-features">
                                             <div class="feature-tag">
                                                 <i class="fas fa-user-md"></i>
-                                                <span>أطباء متخصصون</span>
+                                                <span>استشارة مجانية</span>
                                             </div>
                                             <div class="feature-tag">
                                                 <i class="fas fa-headset"></i>
                                                 <span>دعم 24/7</span>
                                             </div>
                                             <div class="feature-tag">
-                                                <i class="fas fa-shield-alt"></i>
-                                                <span>جودة عالية</span>
+                                                <i class="fas fa-comments"></i>
+                                                <span>رد سريع</span>
                                             </div>
                                         </div>
 
                                         <div class="cta-actions">
-                                            <a href="#appointment" class="btn-cta-primary">
-                                                <span class="btn-text">احجز موعدك</span>
-                                                <span class="btn-icon"><i class="fas fa-calendar-check" style="color: #ffffff;"></i></span>
+                                            <a href="/contact" class="btn-cta-primary">
+                                                <span class="btn-text">تواصل معنا</span>
+                                                <span class="btn-icon"><i class="fas fa-headset" style="color: #ffffff;"></i></span>
                                                 <div class="btn-shine"></div>
                                             </a>
                                             <span class="or-divider">أو</span>
@@ -423,34 +276,34 @@
                                 </div>
 
                                 <div class="col-lg-5">
-                                    <div class="cta-offer-card">
-                                        <div class="offer-card-header">
-                                            <div class="discount-icon">
-                                                <i class="fas fa-percentage"></i>
+                                    <div class="cta-contact-card">
+                                        <div class="contact-card-header">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-comments"></i>
                                             </div>
-                                            <h3 class="offer-title">خصم خاص</h3>
+                                            <h3 class="contact-title">وسائل التواصل</h3>
                                         </div>
 
-                                        <div class="offer-body">
-                                            <div class="offer-value">
-                                                <span class="value-number">20</span>
-                                                <span class="value-symbol">%</span>
+                                        <div class="contact-body">
+                                            <div class="contact-item">
+                                                <i class="fas fa-phone"></i>
+                                                <span>+966 XX XXX XXXX</span>
                                             </div>
-                                            <p class="offer-desc">على أول زيارة مع رمز الخصم</p>
-                                            <div class="promo-code">
-                                                <span>DENT2025</span>
-                                                <div class="promo-shine"></div>
+                                            <div class="contact-item">
+                                                <i class="fas fa-envelope"></i>
+                                                <span>info@dentalclinic.com</span>
+                                            </div>
+                                            <div class="contact-item">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span>الرياض، المملكة العربية السعودية</span>
                                             </div>
                                         </div>
 
-                                        <div class="offer-footer">
-                                            <div class="offer-timer">
-                                                <div class="timer-icon">
-                                                    <i class="fas fa-clock"></i>
-                                                </div>
-                                                <div class="timer-text">
-                                                    <p>العرض ساري حتى نهاية الشهر</p>
-                                                </div>
+                                        <div class="contact-footer">
+                                            <div class="social-links">
+                                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                                             </div>
                                         </div>
                                     </div>
