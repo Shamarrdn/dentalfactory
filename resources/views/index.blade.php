@@ -262,8 +262,8 @@
                                 <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="product-icon">
                             </div>
                             <div class="product-content">
-                                <h3 class="gradient-text">{{ $product->name }}</h3>
-                                <p class="mb-3">{{ $product->description }}</p>
+                                <h3 >{{ $product->name }}</h3>
+                                <p class="mb-3 text-black">{{ $product->description }}</p>
                                 <a href="{{ route('products.show', $product->slug) }}" class="btn-modern">
                                     <span>شراء الآن</span>
                                     <i class="fas fa-arrow-left"></i>

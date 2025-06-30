@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <!-- Period Comparison -->
+        <!-- Period Comparison -->
     <div class="card mb-4">
         <div class="card-header">
             <h5 class="card-title">مقارنة الفترات</h5>
@@ -98,12 +98,62 @@
                     <div class="p-4 bg-light rounded">
                         <h6 class="text-muted">الفترة الحالية</h6>
                         <h3 class="mb-0">{{ number_format($salesReport['growth']['current_amount'], 2) }} ر.س</h3>
+                        <div class="text-muted mt-2 small">
+                            من
+                            @if(request('period') == 'today')
+                                {{ now()->startOfDay()->format('Y/m/d') }}
+                            @elseif(request('period') == 'week')
+                                {{ now()->startOfWeek()->format('Y/m/d') }}
+                            @elseif(request('period') == 'year')
+                                {{ now()->startOfYear()->format('Y/m/d') }}
+                            @elseif(request('start_date'))
+                                {{ \Carbon\Carbon::parse(request('start_date'))->format('Y/m/d') }}
+                            @else
+                                {{ now()->startOfMonth()->format('Y/m/d') }}
+                            @endif
+                            إلى
+                            @if(request('end_date'))
+                                {{ \Carbon\Carbon::parse(request('end_date'))->format('Y/m/d') }}
+                            @else
+                                {{ now()->format('Y/m/d') }}
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="p-4 bg-light rounded">
                         <h6 class="text-muted">الفترة السابقة</h6>
                         <h3 class="mb-0">{{ number_format($salesReport['growth']['previous_amount'], 2) }} ر.س</h3>
+                        <div class="text-muted mt-2 small">
+                            @php
+                                // Get start date of current period
+                                $currentStart = null;
+                                if(request('start_date')) {
+                                    $currentStart = \Carbon\Carbon::parse(request('start_date'));
+                                } else {
+                                    if(request('period') == 'today') {
+                                        $currentStart = now()->startOfDay();
+                                    } elseif(request('period') == 'week') {
+                                        $currentStart = now()->startOfWeek();
+                                    } elseif(request('period') == 'year') {
+                                        $currentStart = now()->startOfYear();
+                                    } else {
+                                        $currentStart = now()->startOfMonth();
+                                    }
+                                }
+
+                                // Get end date of current period
+                                $currentEnd = request('end_date') ? \Carbon\Carbon::parse(request('end_date')) : now();
+
+                                // Calculate days in current period
+                                $periodInDays = $currentStart->diffInDays($currentEnd);
+
+                                // Calculate previous period dates
+                                $previousEnd = $currentStart->copy()->subDay();
+                                $previousStart = $previousEnd->copy()->subDays($periodInDays);
+                            @endphp
+                            من {{ $previousStart->format('Y/m/d') }} إلى {{ $previousEnd->format('Y/m/d') }}
+                        </div>
                     </div>
                 </div>
             </div>

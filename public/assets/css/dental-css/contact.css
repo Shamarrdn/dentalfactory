@@ -3,7 +3,7 @@
     min-height: 90vh;
     padding-top: 80px;
     width: 100%;
-    background: url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80') center center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80') center center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,22 +88,9 @@
 
 /* Contact Information Cards - Modern Glass Design */
 .contact-info-section {
-    background: linear-gradient(135deg, #f8fdfa 0%, #f0feff 100%);
-    position: relative;
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
 }
 
-.contact-info-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(circle at 30% 20%, rgba(38, 224, 127, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(19, 197, 193, 0.05) 0%, transparent 50%);
-    z-index: 1;
-}
 
 .contact-info-section .container {
     position: relative;
@@ -276,37 +263,23 @@
     position: relative;
     padding: 100px 0;
     overflow: hidden;
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-}
-
-.contact-form-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(circle at 10% 90%, rgba(38, 224, 127, 0.08) 0%, transparent 70%),
-        radial-gradient(circle at 90% 10%, rgba(19, 197, 193, 0.08) 0%, transparent 70%);
-    z-index: 1;
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
 }
 
 .contact-form-wrapper {
     position: relative;
     z-index: 2;
+
 }
 
 .contact-form-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.8);
     padding: 50px;
-    box-shadow:
-        0 20px 80px rgba(0, 0, 0, 0.07),
-        0 10px 30px rgba(38, 224, 127, 0.1);
+
     position: relative;
     overflow: hidden;
     transition: all 0.5s ease;
@@ -703,7 +676,8 @@
 
 
 .contact-info-card {
-    background: #fff;
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;
     border-radius: var(--border-radius);
     transition: var(--transition);
     box-shadow: var(--shadow-sm);

@@ -1,10 +1,7 @@
 <nav class="navbar-simple">
     <div class="container">
         <a class="navbar-brand-simple" href="{{ route('home') }}">
-            <div class="brand-logo">
-                <img src="https://img.icons8.com/ios-filled/50/tooth.png" alt="Logo">
-            </div>
-
+            <img src="{{ asset('logo.png') }}" alt="Logo" class="logo-img">
         </a>
 
         <ul class="nav-list" id="navList">

@@ -1775,40 +1775,19 @@
     margin-left: 10px;
   }
 
-  .brand-logo {
-    width: 45px;
-    height: 45px;
-    background: #26e07f;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(38, 224, 127, 0.15);
+  .logo-img {
+    height: 80px;
+    width: auto;
+    max-width: 200px;
     transition: all 0.3s ease;
-    flex-shrink: 0;
+    display: block;
   }
 
-  .brand-logo:hover {
+  .navbar-brand-simple:hover .logo-img {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(38, 224, 127, 0.2);
   }
 
-  .brand-logo img {
-    width: 25px;
-    height: 25px;
-    filter: brightness(0) invert(1);
-  }
-
-  .brand-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #26e07f;
-    transition: all 0.3s ease;
-  }
-
-  .navbar-brand-simple:hover .brand-title {
-    transform: translateY(-1px);
-  }
+  /* Removed .brand-title styles as we're not using the title text anymore */
 
   .nav-list {
     display: flex;
@@ -1950,6 +1929,10 @@
       right: 0;
     }
 
+    .logo-img {
+      height: 85px;
+    }
+
     .mobile-toggle {
       display: block;
       margin-left: 10px;
@@ -2011,6 +1994,10 @@
     .navbar-brand-simple {
       position: relative;
       right: 0;
+    }
+
+    .logo-img {
+      height: 85px;
     }
 
     .mobile-toggle {

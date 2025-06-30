@@ -11,12 +11,11 @@
                         <option value="week" @selected(request('period') === 'week')>هذا الأسبوع</option>
                         <option value="month" @selected(request('period') === 'month' || !request('period'))>هذا الشهر</option>
                         <option value="year" @selected(request('period') === 'year')>هذه السنة</option>
-                        <option value="custom" @selected(request('period') === 'custom')>فترة مخصصة</option>
                     </select>
                 </div>
 
-                <!-- فترة مخصصة -->
-                <div class="custom-date-inputs md:col-span-2 grid grid-cols-2 gap-4" style="display: none;">
+                <!-- حقول التاريخ تظهر دائماً -->
+                <div class="md:col-span-2 grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">من تاريخ</label>
                         <input type="date" name="start_date" value="{{ request('start_date') }}"
@@ -37,6 +36,9 @@
                     <a href="{{ route('admin.reports.index') }}" class="btn btn-secondary">
                         إلغاء الفلتر
                     </a>
+                    <button type="button" class="btn btn-success" onclick="window.print()">
+                        <i class="fas fa-print me-1"></i> طباعة
+                    </button>
                 </div>
             </div>
         </form>

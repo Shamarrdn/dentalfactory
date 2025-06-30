@@ -5,7 +5,7 @@
     min-height: 90vh;
     padding-top: 80px;
     width: 100%;
-    background: url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80') center center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80') center center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,6 +95,8 @@
     padding: 100px 0;
     overflow: hidden;
     z-index: 1;
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;
 }
 
 .our-story-section::before {
@@ -473,8 +475,8 @@
     transition: var(--transition);
     border-radius: var(--border-radius);
     padding: 2rem;
-    background: #fff;
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;
     border: 1px solid rgba(230, 230, 230, 0.5);
 }
 
@@ -563,9 +565,10 @@
 
 /* Manufacturing Facilities Section 2025 Style */
 .facility-section-2025 {
+
     position: relative;
-    background: linear-gradient(135deg, #f0faff 0%, #f7fffa 100%);
-    padding: 80px 0;
+  background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;    padding: 80px 0;
     overflow: hidden;
     margin-top: 30px;
 }
@@ -870,9 +873,8 @@
 /* Vision & Mission Section 2025 Style */
 .vision-mission-section {
     position: relative;
-    background: linear-gradient(135deg, #f5fbff 0%, #f9fffc 100%);
-    padding: 80px 0;
-    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    
 }
 
 .vm-wrapper {
@@ -1143,8 +1145,8 @@
 /* Certifications Section 2025 Style */
 .certifications-section {
     position: relative;
-    background: linear-gradient(135deg, #f5fbfd 0%, #fafffe 100%);
-    padding: 80px 0;
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;    padding: 80px 0;
     overflow: hidden;
 }
 
@@ -1413,11 +1415,10 @@
 }
 
 .cta-card-2025 {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
+    background: linear-gradient(145deg, #ffffff, #f5f9fa);
+    box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 30px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.7);
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);

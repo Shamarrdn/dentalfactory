@@ -34,26 +34,37 @@ class DashboardController extends Controller
 
             // الإحصائيات الأساسية
             $stats = array_merge($stats, [
-                'orders' => Order::count(),
+                'orders' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
+                    ->where('order_status', Order::ORDER_STATUS_COMPLETED)
+                    ->count(),
                 'users' => User::count(),
                 'products' => Product::count(),
                 'revenue' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
+                    ->where('order_status', Order::ORDER_STATUS_COMPLETED)
                     ->sum('total_amount'),
                 'pending_orders' => Order::where('order_status', Order::ORDER_STATUS_PENDING)->count(),
                 'processing_orders' => Order::where('order_status', Order::ORDER_STATUS_PROCESSING)->count(),
-                'completed_orders' => Order::where('order_status', Order::ORDER_STATUS_COMPLETED)->count(),
+                'completed_orders' => Order::where('order_status', Order::ORDER_STATUS_COMPLETED)
+                    ->where('payment_status', Order::PAYMENT_STATUS_PAID)
+                    ->count(),
                 'out_for_delivery_orders' => Order::where('order_status', Order::ORDER_STATUS_OUT_FOR_DELIVERY)->count(),
                 'on_the_way_orders' => Order::where('order_status', Order::ORDER_STATUS_ON_THE_WAY)->count(),
                 'delivered_orders' => Order::where('order_status', Order::ORDER_STATUS_DELIVERED)->count(),
                 'returned_orders' => Order::where('order_status', Order::ORDER_STATUS_RETURNED)->count(),
-                'today_orders' => Order::whereDate('created_at', Carbon::today())->count(),
+                'today_orders' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
+                    ->where('order_status', Order::ORDER_STATUS_COMPLETED)
+                    ->whereDate('created_at', Carbon::today())
+                    ->count(),
                 'today_revenue' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
                     ->whereDate('created_at', Carbon::today())
                     ->sum('total_amount'),
-                'month_orders' => Order::whereMonth('created_at', Carbon::now()->month)
+                'month_orders' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
+                    ->where('order_status', Order::ORDER_STATUS_COMPLETED)
+                    ->whereMonth('created_at', Carbon::now()->month)
                     ->whereYear('created_at', Carbon::now()->year)
                     ->count(),
                 'month_revenue' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
+                    ->where('order_status', Order::ORDER_STATUS_COMPLETED)
                     ->whereMonth('created_at', Carbon::now()->month)
                     ->whereYear('created_at', Carbon::now()->year)
                     ->sum('total_amount')
@@ -61,6 +72,7 @@ class DashboardController extends Controller
 
             // تحسين بيانات المبيعات للرسم البياني
             $salesData = Order::where('payment_status', Order::PAYMENT_STATUS_PAID)
+                ->where('order_status', Order::ORDER_STATUS_COMPLETED)
                 ->where('created_at', '>=', now()->subMonths(12))
                 ->select(
                     DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'),
@@ -175,7 +187,8 @@ class DashboardController extends Controller
             // المنتجات الأكثر مبيعاً
             $topProducts = Product::withCount(['orderItems as sales_count' => function ($query) {
                 $query->whereHas('order', function ($q) {
-                    $q->where('payment_status', Order::PAYMENT_STATUS_PAID);
+                    $q->where('payment_status', Order::PAYMENT_STATUS_PAID)
+                     ->where('order_status', Order::ORDER_STATUS_COMPLETED);
                 });
             }])
                 ->orderByDesc('sales_count')
@@ -222,7 +235,11 @@ class DashboardController extends Controller
                     'month_revenue' => 0,
                     'pending_orders' => 0,
                     'processing_orders' => 0,
-                    'completed_orders' => 0
+                    'completed_orders' => 0,
+                    'out_for_delivery_orders' => 0,
+                    'on_the_way_orders' => 0,
+                    'delivered_orders' => 0,
+                    'returned_orders' => 0
                 ],
                 'chartLabels' => [now()->format('M Y')],
                 'chartData' => [0],

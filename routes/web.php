@@ -150,6 +150,7 @@ Route::middleware([
                     ->name('orders.update-payment-status');
                 Route::patch('/orders/{order:uuid}/payment', [AdminOrderController::class, 'updatePayment'])
                     ->name('orders.update-payment');
+                Route::get('/sales-statistics', [AdminOrderController::class, 'salesStatistics'])->name('sales.statistics');
             });
 
             // Reports Management

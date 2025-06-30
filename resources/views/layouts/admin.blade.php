@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin/admin-layout.css') }}">
 
     @yield('styles')
+    <style>
+        .sidebar-logo img {
+            max-height: 85px;
+            width: auto;
+        }
+    </style>
 </head>
 <body class="h-100">
     <div class="admin-layout">
@@ -23,7 +29,7 @@
         <aside class="sidebar shadow-sm" id="sidebar">
             <div class="sidebar-header">
                 <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">
-                    مصنع منتجات الأسنان
+                    <img src="{{ asset('logo.png') }}" alt="مصنع منتجات الأسنان" class="img-fluid">
                 </a>
                 <button class="d-lg-none btn btn-close" id="closeSidebar" aria-label="Close">
                     <i class="fas fa-times"></i>
@@ -45,16 +51,26 @@
                 <!-- Products Section -->
                 <div class="nav-section">
                     <div class="nav-section-title">المنتجات</div>
+
+                    <div class="nav-item">
+                        <a href="{{ route('admin.categories.index') }}" class="nav-link {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+                            <i class="fas fa-tags"></i>
+                            <span class="nav-title">التصنيفات</span>
+                        </a>
+                    </div>
+
                     <div class="nav-item">
                         <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                             <i class="fas fa-box"></i>
                             <span class="nav-title">المنتجات</span>
                         </a>
                     </div>
+
+
                     <div class="nav-item">
-                        <a href="{{ route('admin.categories.index') }}" class="nav-link {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-                            <i class="fas fa-tags"></i>
-                            <span class="nav-title">التصنيفات</span>
+                        <a href="{{ route('admin.sales.statistics') }}" class="nav-link {{ request()->routeIs('admin.sales.statistics') ? 'active' : '' }}">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="nav-title">إحصائيات المبيعات</span>
                         </a>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Notifications\OrderStatusUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,7 +57,9 @@ class OrderController extends Controller
             'total_orders' => Order::count(),
             'completed_orders' => Order::where('order_status', Order::ORDER_STATUS_COMPLETED)->count(),
             'processing_orders' => Order::where('order_status', Order::ORDER_STATUS_PROCESSING)->count(),
-            'total_revenue' => Order::where('payment_status', Order::PAYMENT_STATUS_PAID)->sum('total_amount')
+            'total_revenue' => Order::where('order_status', Order::ORDER_STATUS_COMPLETED)
+                                    ->where('payment_status', Order::PAYMENT_STATUS_PAID)
+                                    ->sum('total_amount')
         ];
 
         $orders = $query->paginate(10);
@@ -207,27 +210,7 @@ class OrderController extends Controller
         $oldStatus = $order->order_status;
         $newStatus = $validated['order_status'];
 
-        // تحديث المخزون عند اكتمال الطلب أو التوصيل
-        if (($newStatus === Order::ORDER_STATUS_COMPLETED || $newStatus === Order::ORDER_STATUS_DELIVERED)
-            && !in_array($oldStatus, [Order::ORDER_STATUS_COMPLETED, Order::ORDER_STATUS_DELIVERED])) {
-            foreach ($order->items as $item) {
-                $product = $item->product;
-                if ($product->stock < $item->quantity) {
-                    DB::rollBack();
-                    return back()->with('error', "المخزون غير كافي للمنتج: {$product->name}");
-                }
-                $product->decrement('stock', $item->quantity);
-            }
-        }
-
-        // إعادة المخزون عند تغيير حالة الطلب من مكتمل/تم التوصيل إلى أي حالة أخرى
-        if (in_array($oldStatus, [Order::ORDER_STATUS_COMPLETED, Order::ORDER_STATUS_DELIVERED])
-            && !in_array($newStatus, [Order::ORDER_STATUS_COMPLETED, Order::ORDER_STATUS_DELIVERED])) {
-            foreach ($order->items as $item) {
-                $item->product->increment('stock', $item->quantity);
-            }
-        }
-
+        // تحديث حالة الطلب
         $order->update([
             'order_status' => $validated['order_status']
         ]);
@@ -319,5 +302,66 @@ class OrderController extends Controller
     ]);
 
     return back()->with('success', 'Payment status updated successfully.');
+  }
+
+  public function salesStatistics(Request $request)
+  {
+    // تحديد الفترة الزمنية للتقرير
+    $startDate = $request->start_date ? date('Y-m-d', strtotime($request->start_date)) : date('Y-m-d', strtotime('-30 days'));
+    $endDate = $request->end_date ? date('Y-m-d', strtotime($request->end_date)) : date('Y-m-d');
+
+    // الحصول على إحصائيات المبيعات: عدد القطع المباعة لكل منتج
+    $salesData = OrderItem::with(['product'])
+        ->select('product_id', DB::raw('SUM(quantity) as total_quantity'), DB::raw('SUM(subtotal) as total_sales'))
+        ->whereHas('order', function($query) {
+            // فقط الطلبات المكتملة والمدفوعة
+            $query->where('order_status', Order::ORDER_STATUS_COMPLETED)
+                  ->where('payment_status', Order::PAYMENT_STATUS_PAID);
+        })
+        ->whereHas('order', function($query) use ($startDate, $endDate) {
+            // فلترة بالفترة الزمنية
+            $query->whereDate('created_at', '>=', $startDate)
+                  ->whereDate('created_at', '<=', $endDate);
+        })
+        ->groupBy('product_id')
+        ->orderBy('total_quantity', 'desc')
+        ->get();
+
+    // تجهيز بيانات المخطط
+    $chartLabels = [];
+    $chartData = [];
+    $salesTable = [];
+    $totalItemsSold = 0;
+
+    foreach ($salesData as $item) {
+        if ($item->product) {
+            $chartLabels[] = $item->product->name;
+            $chartData[] = $item->total_quantity;
+            $totalItemsSold += $item->total_quantity;
+
+            $salesTable[] = [
+                'id' => $item->product->id,
+                'name' => $item->product->name,
+                'quantity' => $item->total_quantity,
+                'total_sales' => $item->total_sales,
+                'average_price' => $item->total_quantity > 0 ? $item->total_sales / $item->total_quantity : 0
+            ];
+        }
+    }
+
+    // إحصائيات إضافية
+    $totalProducts = count($salesTable);
+    $totalSales = array_sum(array_column($salesTable, 'total_sales'));
+
+    return view('admin.sales.statistics', compact(
+        'salesTable',
+        'chartLabels',
+        'chartData',
+        'startDate',
+        'endDate',
+        'totalItemsSold',
+        'totalProducts',
+        'totalSales'
+    ));
   }
 }

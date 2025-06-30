@@ -114,7 +114,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light ">
+<section class="py-5 bg-light additional-services-section">
     <div class="container">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">خدمات متخصصة</span>
@@ -186,7 +186,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light">
+<section class="py-5 bg-light why-choose-us-section">
     <div class="container">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">ميزاتنا</span>
@@ -226,7 +226,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section-2025 py-5">
+<section class="cta-section-2025 py-5" id="contact-us">
     <div class="container">
         <div class="cta-wrapper position-relative">
             <!-- Decorative elements -->
@@ -241,21 +241,30 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-7">
                                     <div class="cta-content">
-                                        <span class="cta-badge">تواصل معنا</span>
-                                        <h2 class="cta-title">هل لديك استفسارات حول خدماتنا؟</h2>
-                                        <p class="cta-desc">فريقنا المتخصص جاهز للإجابة على جميع استفساراتك وتقديم المشورة الطبية المناسبة</p>
+                                        <div class="cta-pulse-badge">
+                                            <span class="cta-badge">تواصل معنا الآن</span>
+                                            <span class="pulse-circle"></span>
+                                        </div>
+                                        <h2 class="cta-title animated-gradient">استفسارات حول خدماتنا؟</h2>
+                                        <p class="cta-desc">فريقنا المتخصص جاهز على مدار الساعة للإجابة على جميع استفساراتك وتقديم المشورة الطبية المناسبة لحالتك</p>
 
                                         <div class="cta-features">
                                             <div class="feature-tag">
-                                                <i class="fas fa-user-md"></i>
+                                                <div class="feature-icon-wrapper">
+                                                    <i class="fas fa-user-md"></i>
+                                                </div>
                                                 <span>استشارة مجانية</span>
                                             </div>
                                             <div class="feature-tag">
-                                                <i class="fas fa-headset"></i>
+                                                <div class="feature-icon-wrapper">
+                                                    <i class="fas fa-headset"></i>
+                                                </div>
                                                 <span>دعم 24/7</span>
                                             </div>
                                             <div class="feature-tag">
-                                                <i class="fas fa-comments"></i>
+                                                <div class="feature-icon-wrapper">
+                                                    <i class="fas fa-comments"></i>
+                                                </div>
                                                 <span>رد سريع</span>
                                             </div>
                                         </div>
@@ -263,7 +272,7 @@
                                         <div class="cta-actions">
                                             <a href="/contact" class="btn-cta-primary">
                                                 <span class="btn-text">تواصل معنا</span>
-                                                <span class="btn-icon"><i class="fas fa-headset" style="color: #ffffff;"></i></span>
+                                                <span class="btn-icon"><i class="fas fa-headset"></i></span>
                                                 <div class="btn-shine"></div>
                                             </a>
                                             <span class="or-divider">أو</span>
@@ -276,34 +285,50 @@
                                 </div>
 
                                 <div class="col-lg-5">
-                                    <div class="cta-contact-card">
+                                    <div class="cta-contact-card floating-card">
+                                        <div class="card-decoration-circle"></div>
+                                        <div class="card-decoration-dots"></div>
+
                                         <div class="contact-card-header">
                                             <div class="contact-icon">
                                                 <i class="fas fa-comments"></i>
+                                                <div class="icon-ripple"></div>
                                             </div>
                                             <h3 class="contact-title">وسائل التواصل</h3>
                                         </div>
 
                                         <div class="contact-body">
                                             <div class="contact-item">
-                                                <i class="fas fa-phone"></i>
+                                                <div class="contact-item-icon">
+                                                    <i class="fas fa-phone"></i>
+                                                </div>
                                                 <span>+966 XX XXX XXXX</span>
                                             </div>
                                             <div class="contact-item">
-                                                <i class="fas fa-envelope"></i>
+                                                <div class="contact-item-icon">
+                                                    <i class="fas fa-envelope"></i>
+                                                </div>
                                                 <span>info@dentalclinic.com</span>
                                             </div>
                                             <div class="contact-item">
-                                                <i class="fas fa-map-marker-alt"></i>
+                                                <div class="contact-item-icon">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                </div>
                                                 <span>الرياض، المملكة العربية السعودية</span>
                                             </div>
                                         </div>
 
                                         <div class="contact-footer">
                                             <div class="social-links">
-                                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                                <a href="#" class="social-link hover-effect">
+                                                    <i class="fab fa-whatsapp"></i>
+                                                </a>
+                                                <a href="#" class="social-link hover-effect">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                                <a href="#" class="social-link hover-effect">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -366,6 +391,18 @@
                         } else if (entry.target.classList.contains('badge-quality')) {
                             animateCSS('.badge-quality', 'fadeInLeft', '1s', 0.7);
                         }
+                    } else if (entry.target.classList.contains('cta-card-2025')) {
+                        animateCSS('.cta-card-2025', 'fadeInUp', '1s', 0.3);
+                    } else if (entry.target.classList.contains('cta-contact-card')) {
+                        animateCSS('.cta-contact-card', 'fadeInUp', '1s', 0.5);
+                    } else if (entry.target.classList.contains('cta-title')) {
+                        animateCSS('.cta-title', 'fadeInUp', '1s', 0.2);
+                    } else if (entry.target.classList.contains('cta-pulse-badge')) {
+                        animateCSS('.cta-pulse-badge', 'fadeIn', '0.8s');
+                    } else if (entry.target.classList.contains('cta-features')) {
+                        animateCSS('.cta-features', 'fadeInUp', '1s', 0.4);
+                    } else if (entry.target.classList.contains('cta-actions')) {
+                        animateCSS('.cta-actions', 'fadeInUp', '1s', 0.6);
                     }
                     animationObserver.unobserve(entry.target);
                 }
@@ -373,7 +410,7 @@
         }, observerOptions);
 
         // Observe elements to animate
-        const elementsToAnimate = document.querySelectorAll('.hero-badge, .hero-title, .hero-description, .hero-buttons, .product-categories, .hero-image, .floating-badge');
+        const elementsToAnimate = document.querySelectorAll('.hero-badge, .hero-title, .hero-description, .hero-buttons, .product-categories, .hero-image, .floating-badge, .cta-card-2025, .cta-contact-card, .cta-title, .cta-pulse-badge, .cta-features, .cta-actions');
         elementsToAnimate.forEach(element => {
             animationObserver.observe(element);
         });
@@ -390,6 +427,34 @@
                     icon.removeEventListener('animationend', handler);
                 });
             });
+        });
+
+        // Animate contact items on hover
+        const contactItems = document.querySelectorAll('.contact-item');
+        contactItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.contact-item-icon i');
+                icon.classList.add('animate__animated', 'animate__heartBeat');
+
+                icon.addEventListener('animationend', function handler() {
+                    icon.classList.remove('animate__animated', 'animate__heartBeat');
+                    icon.removeEventListener('animationend', handler);
+                });
+            });
+        });
+
+        // Add parallax effect to blobs
+        window.addEventListener('mousemove', function(e) {
+            const blob1 = document.querySelector('.cta-blob-1');
+            const blob2 = document.querySelector('.cta-blob-2');
+
+            if (blob1 && blob2) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                blob1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+                blob2.style.transform = `translate(${-x * 30}px, ${-y * 30}px)`;
+            }
         });
     });
 </script>

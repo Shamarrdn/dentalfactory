@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/customer/layout.css') }}">
     @yield('styles')
     <style>
-
+        .navbar-brand img {
+            max-height: 85px;
+            width: auto;
+        }
     </style>
 </head>
 
@@ -30,7 +33,7 @@
         <div class="container-fluid">
             <!-- Logo positioned at the beginning -->
             <a class="navbar-brand logo-container" href="/">
-                مصنع منتجات الأسنان
+                <img src="{{ asset('logo.png') }}" alt="مصنع منتجات الأسنان" class="img-fluid">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

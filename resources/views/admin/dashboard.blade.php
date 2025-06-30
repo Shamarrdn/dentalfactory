@@ -16,7 +16,7 @@
                 </div>
                 <div class="stat-content">
                     <div class="stat-value h4 mb-1">{{ $stats['orders'] ?? 0 }}</div>
-                    <div class="stat-title text-muted">إجمالي الطلبات</div>
+                    <div class="stat-title text-muted">إجمالي الطلبات المكتملة والمدفوعة</div>
                     <div class="trend small mt-2">
                         <span class="me-2">اليوم: {{ $stats['today_orders'] ?? 0 }}</span>
                         <span>الشهر: {{ $stats['month_orders'] ?? 0 }}</span>
@@ -172,7 +172,7 @@
     <div class="col-12 col-lg-8">
         <div class="chart-container bg-white rounded-3 shadow-sm">
             <div class="activity-header border-bottom">
-                <h5 class="activity-title">نظرة عامة على المبيعات</h5>
+                <h5 class="activity-title">نظرة عامة على المبيعات المكتملة والمدفوعة</h5>
             </div>
             <div class="chart-wrapper position-relative" style="height: 300px;">
                 <canvas id="salesChart"></canvas>
@@ -416,7 +416,7 @@
             data: {
                 labels: chartConfig.labels,
                 datasets: [{
-                    label: 'المبيعات الشهرية (ريال)',
+                    label: 'المبيعات الشهرية المكتملة والمدفوعة (ريال)',
                     data: chartConfig.data,
                     backgroundColor: 'rgba(13, 110, 253, 0.2)',
                     borderColor: 'rgb(13, 110, 253)',

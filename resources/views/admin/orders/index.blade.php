@@ -89,14 +89,7 @@
                                             <p class="text-muted mb-0 fs-sm">إدارة ومتابعة طلبات العملاء</p>
                                         </div>
                                         <div class="actions d-flex gap-2">
-                                            <button type="button" class="btn btn-light-primary btn-wave">
-                                                <i class="fas fa-file-export me-2"></i>
-                                                تصدير التقرير
-                                            </button>
-                                            <button type="button" class="btn btn-light-success btn-wave">
-                                                <i class="fas fa-print me-2"></i>
-                                                طباعة
-                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -209,9 +202,7 @@
                                                             <td class="text-center">{{ $order['order_number'] }}</td>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
-                                                                    <div class="avatar-circle bg-primary text-white me-2">
-                                                                        {{ substr($order['customer_name'], 0, 1) }}
-                                                                    </div>
+                                                                
                                                                     <div>
                                                                         <h6 class="mb-0">{{ $order['customer_name'] }}</h6>
                                                                         <small class="text-muted">{{ $order['customer_phone'] }}</small>
