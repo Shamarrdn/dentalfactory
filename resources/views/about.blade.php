@@ -103,11 +103,11 @@
     </div>
 </section>
 
-<!-- Mission & Vision -->
+
 <section class="vision-mission-section py-5">
     <div class="container">
         <div class="vm-wrapper position-relative">
-            <!-- Decorative elements -->
+
             <div class="vm-shape-1"></div>
             <div class="vm-shape-2"></div>
             <div class="vm-pattern"></div>

@@ -135,7 +135,7 @@
   }
 
   .btn-primary:hover {
-    transform: translateY(-5px);
+
     box-shadow: 0 15px 35px rgba(38, 224, 127, 0.3) !important;
   }
 
@@ -1110,13 +1110,10 @@
   }
 
   .navbar-brand:hover .brand-icon-modern {
-    transform: translateY(-5px) rotate3d(1, 1, 1, 10deg);
     box-shadow: 0 15px 30px rgba(38, 224, 127, 0.35);
   }
 
-  .navbar-brand:hover .brand-icon-modern img {
-    transform: scale(1.15);
-  }
+
 
   .navbar-brand:hover .brand-text-modern::after {
     width: 100%;
@@ -1187,22 +1184,14 @@
     transition: all 0.4s ease;
   }
 
-  .nav-link-modern:hover,
-  .nav-link-modern.active {
-    color: var(--primary);
-    transform: translateY(-2px);
-  }
+
 
   .nav-link-modern:hover::before,
   .nav-link-modern.active::before {
     width: 60%;
   }
 
-  .nav-link-modern:hover::after,
-  .nav-link-modern.active::after {
-    opacity: 1;
-    transform: scale(1);
-  }
+
 
   .nav-link-modern:hover i,
   .nav-link-modern.active i {
@@ -1747,7 +1736,9 @@
     z-index: 1000;
     background: rgba(255, 255, 255, 0.98);
     height: 80px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 0;
     transition: all 0.3s ease;
   }
@@ -1783,9 +1774,7 @@
     display: block;
   }
 
-  .navbar-brand-simple:hover .logo-img {
-    transform: translateY(-2px);
-  }
+
 
   /* Removed .brand-title styles as we're not using the title text anymore */
 

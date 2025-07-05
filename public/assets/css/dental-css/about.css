@@ -1,4 +1,32 @@
 /* ===== OUR STORY SECTION - MODERN 2025 STYLING ===== */
+/* --- Fix Overflow Issues --- */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* --- Hero Section with Background Image & Overlay --- */
 .hero-bg-image-section {
     position: relative;
@@ -874,7 +902,7 @@
 .vision-mission-section {
     position: relative;
     background: linear-gradient(145deg, #ffffff, #f5f9fa);
-    
+
 }
 
 .vm-wrapper {
@@ -1953,3 +1981,6 @@
     color: white !important;
 }
 
+.cart-link{
+    color: black !important;
+}
