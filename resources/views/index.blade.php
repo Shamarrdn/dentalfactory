@@ -384,12 +384,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="promo-badge">
-                            <div class="badge-inner">
-                                <div class="discount">10<span class="percent">%</span></div>
-                                <div class="badge-text">خصم<br>للطلب الأول</div>
-                            </div>
-                        </div>
+                    
                     </div>
 
                     <!-- Features -->
@@ -516,38 +511,6 @@
 </section>
 
 
-<section class="cta-section py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="cta-card animate__animated animate__fadeIn">
-                    <div class="cta-bg-elements">
-                        <div class="cta-circle"></div>
-                        <div class="cta-circle cta-circle-2"></div>
-                        <div class="cta-dots"></div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-lg-8">
-                            <div class="cta-content">
-                                <h2 class="cta-title">جاهز لتجربة منتجاتنا عالية الجودة؟</h2>
-                                <p class="cta-text">احصل على خصم <span class="highlight">10%</span> على أول طلب مع رمز الخصم</p>
-                                <div class="discount-badge">
-                                    <span>DENT2025</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 text-lg-end text-center mt-4 mt-lg-0">
-                            <a href="#order" class="cta-btn">
-                                <span>اطلب الآن</span>
-                                <i class="fas fa-arrow-left"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 @endsection

@@ -23,12 +23,13 @@
     </div>
 </section>
 
-<section id="services" class="py-5">
-    <div class="container">
+<!-- قسم الخدمات الرئيسية -->
+<section id="services" class="py-5 section-spacing">
+    <div class="container py-5">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">خدماتنا الرئيسية</span>
             <h2 class="gradient-text">خدمات متكاملة</h2>
-            <p>مجموعة متكاملة من الخدمات الطبية المتخصصة في مجال طب الأسنان</p>
+            <p class="section-subtitle">مجموعة متكاملة من الخدمات الطبية المتخصصة في مجال طب الأسنان</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -114,12 +115,13 @@
     </div>
 </section>
 
-<section class="py-5 bg-light additional-services-section">
-    <div class="container">
+<!-- قسم الخدمات الإضافية -->
+<section class="py-5 additional-services-section section-spacing">
+    <div class="container py-5">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">خدمات متخصصة</span>
             <h2 class="gradient-text">خدمات إضافية</h2>
-            <p>خدمات متخصصة لتلبية كافة احتياجاتكم في مجال طب الأسنان</p>
+            <p class="section-subtitle">خدمات متخصصة لتلبية كافة احتياجاتكم في مجال طب الأسنان</p>
         </div>
         <div class="row g-4">
             <div class="col-md-3">
@@ -186,12 +188,13 @@
     </div>
 </section>
 
-<section class="py-5 bg-light why-choose-us-section">
-    <div class="container">
+<!-- قسم لماذا تختارنا -->
+<section class="py-5 why-choose-us-section section-spacing">
+    <div class="container py-5">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">ميزاتنا</span>
             <h2 class="gradient-text">لماذا تختارنا؟</h2>
-            <p>أسباب تجعل خدماتنا الخيار الأفضل لرعاية صحة أسنانك</p>
+            <p class="section-subtitle">أسباب تجعل خدماتنا الخيار الأفضل لرعاية صحة أسنانك</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -225,122 +228,7 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="cta-section-2025 py-5" id="contact-us">
-    <div class="container">
-        <div class="cta-wrapper position-relative">
-            <!-- Decorative elements -->
-            <div class="cta-blob-1"></div>
-            <div class="cta-blob-2"></div>
-            <div class="cta-particles"></div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="cta-card-2025">
-                        <div class="cta-card-inner">
-                            <div class="row align-items-center">
-                                <div class="col-lg-7">
-                                    <div class="cta-content">
-                                        <div class="cta-pulse-badge">
-                                            <span class="cta-badge">تواصل معنا الآن</span>
-                                            <span class="pulse-circle"></span>
-                                        </div>
-                                        <h2 class="cta-title animated-gradient">استفسارات حول خدماتنا؟</h2>
-                                        <p class="cta-desc">فريقنا المتخصص جاهز على مدار الساعة للإجابة على جميع استفساراتك وتقديم المشورة الطبية المناسبة لحالتك</p>
-
-                                        <div class="cta-features">
-                                            <div class="feature-tag">
-                                                <div class="feature-icon-wrapper">
-                                                    <i class="fas fa-user-md"></i>
-                                                </div>
-                                                <span>استشارة مجانية</span>
-                                            </div>
-                                            <div class="feature-tag">
-                                                <div class="feature-icon-wrapper">
-                                                    <i class="fas fa-headset"></i>
-                                                </div>
-                                                <span>دعم 24/7</span>
-                                            </div>
-                                            <div class="feature-tag">
-                                                <div class="feature-icon-wrapper">
-                                                    <i class="fas fa-comments"></i>
-                                                </div>
-                                                <span>رد سريع</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="cta-actions">
-                                            <a href="/contact" class="btn-cta-primary">
-                                                <span class="btn-text">تواصل معنا</span>
-                                                <span class="btn-icon"><i class="fas fa-headset"></i></span>
-                                                <div class="btn-shine"></div>
-                                            </a>
-                                            <span class="or-divider">أو</span>
-                                            <a href="#services" class="btn-cta-secondary">
-                                                <span class="btn-text">تصفح الخدمات</span>
-                                                <span class="btn-icon"><i class="fas fa-angle-left"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-5">
-                                    <div class="cta-contact-card floating-card">
-                                        <div class="card-decoration-circle"></div>
-                                        <div class="card-decoration-dots"></div>
-
-                                        <div class="contact-card-header">
-                                            <div class="contact-icon">
-                                                <i class="fas fa-comments"></i>
-                                                <div class="icon-ripple"></div>
-                                            </div>
-                                            <h3 class="contact-title">وسائل التواصل</h3>
-                                        </div>
-
-                                        <div class="contact-body">
-                                            <div class="contact-item">
-                                                <div class="contact-item-icon">
-                                                    <i class="fas fa-phone"></i>
-                                                </div>
-                                                <span>+966 XX XXX XXXX</span>
-                                            </div>
-                                            <div class="contact-item">
-                                                <div class="contact-item-icon">
-                                                    <i class="fas fa-envelope"></i>
-                                                </div>
-                                                <span>info@dentalclinic.com</span>
-                                            </div>
-                                            <div class="contact-item">
-                                                <div class="contact-item-icon">
-                                                    <i class="fas fa-map-marker-alt"></i>
-                                                </div>
-                                                <span>الرياض، المملكة العربية السعودية</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="contact-footer">
-                                            <div class="social-links">
-                                                <a href="#" class="social-link hover-effect">
-                                                    <i class="fab fa-whatsapp"></i>
-                                                </a>
-                                                <a href="#" class="social-link hover-effect">
-                                                    <i class="fab fa-instagram"></i>
-                                                </a>
-                                                <a href="#" class="social-link hover-effect">
-                                                    <i class="fab fa-twitter"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection
 
 @section('scripts')
@@ -455,6 +343,24 @@
                 blob1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
                 blob2.style.transform = `translate(${-x * 30}px, ${-y * 30}px)`;
             }
+        });
+
+        // فلترة البطاقات عند التمرير - تظهر تأثير مدهش
+        const productCards = document.querySelectorAll('.product-card');
+
+        const productCardsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    productCardsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        productCards.forEach(card => {
+            productCardsObserver.observe(card);
         });
     });
 </script>
