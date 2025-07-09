@@ -100,7 +100,6 @@
 .product-card {
     border: none;
     border-radius: 18px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     height: 100%;
     background: #fff;
@@ -132,7 +131,6 @@
 }
 
 .product-card:hover {
-    transform: translateY(-15px);
     box-shadow: 0 20px 40px rgba(38, 224, 127, 0.15);
     border-color: rgba(38, 224, 127, 0.3);
 }
@@ -354,7 +352,6 @@
 }
 
 .feature-box:hover {
-    transform: translateY(-15px);
     box-shadow: 0 20px 40px rgba(38, 224, 127, 0.1);
     border-color: rgba(38, 224, 127, 0.2);
 }

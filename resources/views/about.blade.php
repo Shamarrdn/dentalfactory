@@ -60,8 +60,8 @@
                                 <i class="fas fa-calendar-check"></i>
                             </div>
                             <div class="decoration-content">
-                                <h6>خبرة +25 عام</h6>
-                                <p>منذ عام 2000</p>
+                                <h6>خبرة متميزة</h6>
+                                <p>جودة عالية</p>
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
             <div class="col-md-6">
                 <div class="story-content-wrapper">
                     <h2 class="story-title gradient-text">قصتنا</h2>
-                    <p class="story-lead">تأسس مصنعنا عام 2000 بهدف تصنيع أفضل منتجات طب الأسنان في المنطقة</p>
-                    <p class="story-text">نؤمن بأن جودة المنتجات الطبية هي حق لكل مريض، لذلك نسعى دائماً لتصنيع منتجات عالية الجودة بأحدث التقنيات وأعلى معايير الجودة العالمية. فريقنا من المهندسين والخبراء المتخصصين يمتلك خبرة واسعة في مختلف مجالات تصنيع منتجات طب الأسنان.</p>
+                    <p class="story-lead">تأسس مصنع نجران للمواد الطبية للأسنان بهدف توفير بديل محلي عالي الجودة لمنتجات طب الأسنان</p>
+                    <p class="story-text">نسعى في مصنع نجران للمواد الطبية للأسنان إلى تلبية احتياجات السوق المحلي والإقليمي من خلال تصنيع مجموعة متنوعة من منتجات طب الأسنان بأعلى معايير الجودة وبأسعار تنافسية. تشمل منتجاتنا مواد الترميم المباشر وغير المباشر، منتجات الوقاية، ومنتجات مكافحة العدوى مثل مطهر اليدين وأقنعة الوجه. نعتمد على كوادر ماهرة ذات كفاءة عالية ومعدات حديثة لضمان دقة وجودة الإنتاج.</p>
 
                     <div class="story-feature-item">
                         <div class="feature-icon-wrapper">
@@ -152,19 +152,19 @@
                         </div>
                         <h3 class="mission-title">رسالتنا</h3>
                         <div class="mission-decoration"></div>
-                        <p class="mission-desc">تصنيع منتجات طب أسنان عالية الجودة باستخدام أحدث التقنيات، مع التركيز على الابتكار والتطوير المستمر لتلبية احتياجات السوق العالمية.</p>
+                        <p class="mission-desc">نلتزم بإنتاج مواد طبية متخصصة في مجال طب الأسنان تتميز بالكفاءة والسلامة، مع التركيز على الابتكار والاستدامة، لتلبية احتياجات القطاع الطبي السعودي وتعزيز الثقة في المنتج المحلي.</p>
                         <div class="mission-features">
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>تقنيات متطورة</span>
+                                <span>الكفاءة والسلامة</span>
                             </div>
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>تطوير مستمر</span>
+                                <span>الابتكار والاستدامة</span>
                             </div>
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>تلبية احتياجات السوق</span>
+                                <span>تعزيز المنتج المحلي</span>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
             <div class="text-center mb-5">
                 <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">البنية التحتية</span>
                 <h2 class="section-title gradient-text animate__animated animate__fadeInUp">مرافق التصنيع المتطورة</h2>
-                <p class="section-subtitle">نمتلك أحدث المرافق التصنيعية المجهزة بأفضل التقنيات العالمية</p>
+                <p class="section-subtitle">نمتلك أحدث المرافق التصنيعية المجهزة وفقًا لأعلى المعايير العالمية لضمان جودة المنتجات وسلامتها</p>
             </div>
 
             <div class="facility-cards">
@@ -192,16 +192,16 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="facility-card">
                             <div class="facility-card-image">
-                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80" alt="مصنع الإنتاج">
+                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80" alt="خطوط الإنتاج">
                                 <div class="facility-overlay">
                                     <div class="facility-stats">
                                         <div class="stat">
-                                            <div class="stat-value">5000</div>
-                                            <div class="stat-label">متر مربع</div>
+                                            <div class="stat-value">100%</div>
+                                            <div class="stat-label">أوتوماتيكية</div>
                                         </div>
                                         <div class="stat">
-                                            <div class="stat-value">24/7</div>
-                                            <div class="stat-label">تشغيل</div>
+                                            <div class="stat-value">GMP</div>
+                                            <div class="stat-label">متوافق</div>
                                         </div>
                                     </div>
                                 </div>
@@ -210,12 +210,12 @@
                                 <div class="facility-icon">
                                     <i class="fas fa-cogs"></i>
                                 </div>
-                                <h3 class="facility-title">مصنع الإنتاج</h3>
-                                <p class="facility-desc">مساحة 5000 متر مربع مجهزة بأحدث تقنيات التصنيع لإنتاج منتجات عالية الجودة.</p>
+                                <h3 class="facility-title">خطوط الإنتاج الأوتوماتيكية</h3>
+                                <p class="facility-desc">خطوط إنتاج أوتوماتيكية دقيقة مصممة وفق أحدث التقنيات العالمية لضمان الكفاءة والجودة.</p>
                                 <ul class="facility-features">
-                                    <li><i class="fas fa-check-circle"></i> خطوط إنتاج آلية</li>
-                                    <li><i class="fas fa-check-circle"></i> معدات متطورة</li>
-                                    <li><i class="fas fa-check-circle"></i> آلات حديثة</li>
+                                    <li><i class="fas fa-check-circle"></i> دقة عالية في التصنيع</li>
+                                    <li><i class="fas fa-check-circle"></i> أنظمة مراقبة متكاملة</li>
+                                    <li><i class="fas fa-check-circle"></i> كفاءة إنتاجية متميزة</li>
                                 </ul>
                             </div>
                             <div class="facility-card-shine"></div>
@@ -294,76 +294,6 @@
 </section>
 
 
-<section id="achievements" class="achievements-section py-5">
-    <div class="container">
-        <div class="achievements-wrapper position-relative">
-            <div class="achievement-blob"></div>
-            <div class="achievement-blob-2"></div>
-            <div class="achievement-pattern"></div>
-
-            <div class="text-center mb-5">
-                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">إنجازاتنا</span>
-                <h2 class="section-title gradient-text animate__animated animate__fadeInUp">مسيرة نجاح متواصلة</h2>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="achievement-card-2025 h-100">
-                        <div class="achievement-card-inner">
-                            <div class="achievement-icon">
-                                <div class="icon-backdrop"></div>
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-value">
-                                    <span class="counter">25</span><span class="plus">+</span>
-                                </div>
-                                <h3 class="achievement-title">سنوات الخبرة</h3>
-                                <p class="achievement-desc">نصنع منتجات طب الأسنان منذ أكثر من 25 عاماً بتميز وإتقان</p>
-                            </div>
-                            <div class="achievement-decoration"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="achievement-card-2025 h-100">
-                        <div class="achievement-card-inner">
-                            <div class="achievement-icon">
-                                <div class="icon-backdrop"></div>
-                                <i class="fas fa-globe-americas"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-value">
-                                    <span class="counter">45</span><span class="plus">+</span>
-                                </div>
-                                <h3 class="achievement-title">دولة حول العالم</h3>
-                                <p class="achievement-desc">نصدر منتجاتنا لأكثر من 45 دولة حول العالم بجودة عالية</p>
-                            </div>
-                            <div class="achievement-decoration"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="achievement-card-2025 h-100">
-                        <div class="achievement-card-inner">
-                            <div class="achievement-icon">
-                                <div class="icon-backdrop"></div>
-                                <i class="fas fa-teeth"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-value">
-                                    <span class="counter">150</span><span class="plus">+</span>
-                                </div>
-                                <h3 class="achievement-title">منتج مختلف</h3>
-                                <p class="achievement-desc">تشكيلة واسعة من منتجات طب الأسنان المتطورة والمبتكرة</p>
-                            </div>
-                            <div class="achievement-decoration"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="certifications-section py-5">
     <div class="container">
@@ -446,7 +376,6 @@
                                 <ul class="cta-features">
                                     <li><i class="fas fa-check-circle"></i> منتجات حاصلة على شهادات الجودة العالمية</li>
                                     <li><i class="fas fa-check-circle"></i> دعم فني متكامل</li>
-                                    <li><i class="fas fa-check-circle"></i> شحن لجميع أنحاء العالم</li>
                                 </ul>
                             </div>
                         </div>

@@ -12,48 +12,48 @@
 <section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
     <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
-        <h1 class="hero-bg-title mb-4">خدمات طب الأسنان المتطورة</h1>
+        <h1 class="hero-bg-title mb-4">منتجات طب الأسنان عالية الجودة</h1>
         <p class="hero-bg-desc mb-4">
-            نقدم مجموعة شاملة من خدمات طب الأسنان بأحدث التقنيات وأعلى معايير الجودة لضمان راحة المرضى ونتائج مثالية
+            نقدم مجموعة شاملة من منتجات طب الأسنان المصنعة بأعلى معايير الجودة لتلبية احتياجات أطباء الأسنان والمرضى
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="#appointment" class="hero-bg-btn main-btn">احجز موعدك</a>
-            <a href="#services" class="hero-bg-btn ghost-btn">تعرف على خدماتنا</a>
+            <a href="#products" class="hero-bg-btn main-btn">تصفح منتجاتنا</a>
+            <a href="{{ route('contact') }}" class="hero-bg-btn ghost-btn">تواصل معنا</a>
         </div>
     </div>
 </section>
 
-<!-- قسم الخدمات الرئيسية -->
-<section id="services" class="py-5 section-spacing">
+<!-- قسم المنتجات الرئيسية -->
+<section id="products" class="py-5 section-spacing">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">خدماتنا الرئيسية</span>
-            <h2 class="gradient-text">خدمات متكاملة</h2>
-            <p class="section-subtitle">مجموعة متكاملة من الخدمات الطبية المتخصصة في مجال طب الأسنان</p>
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">منتجاتنا الرئيسية</span>
+            <h2 class="gradient-text">منتجات متكاملة</h2>
+            <p class="section-subtitle">مجموعة متكاملة من المنتجات الطبية المتخصصة في مجال طب الأسنان</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="product-card card h-100 floating-card">
                     <div class="position-relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80"
-                            alt="زراعة الأسنان" class="product-image">
-                        <span class="badge-new">خدمة جديدة</span>
+                            alt="منتجات الترميم المباشرة" class="product-image">
+                        <span class="badge-new">منتج جديد</span>
                     </div>
                     <div class="card-body text-center">
                         <div class="product-icon">
                             <i class="fas fa-teeth-open fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h4 class="mb-3">زراعة الأسنان</h4>
-                        <p>خدمات زراعة الأسنان المتكاملة بأحدث التقنيات العالمية</p>
+                        <h4 class="mb-3">منتجات الترميم المباشرة</h4>
+                        <p>منتجات عالية الجودة للترميم المباشر للأسنان</p>
                         <ul class="list-unstyled text-start feature-list">
-                            <li>زراعة الأسنان الفورية</li>
-                            <li>زراعة الأسنان التقليدية</li>
-                            <li>زراعة الأسنان المتقدمة</li>
+                            <li>مركبات الكومبومرز</li>
+                            <li>مواد ترميم أيونومر زجاجي</li>
+                            <li>منتجات ترميمية أخرى</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#appointment" class="btn btn-primary rounded-pill px-4">
-                                <i class="fas fa-calendar-check me-2" style="color: #ffffff;"></i>
-                                احجز موعدك
+                            <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill px-4">
+                                <i class="fas fa-shopping-cart me-2" style="color: #ffffff;"></i>
+                                اطلب الآن
                             </a>
                         </div>
                     </div>
@@ -63,23 +63,23 @@
                 <div class="product-card card h-100 floating-card">
                     <div class="position-relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=80"
-                            alt="تجميل الأسنان" class="product-image">
+                            alt="منتجات الترميم غير المباشر" class="product-image">
                     </div>
                     <div class="card-body text-center">
                         <div class="product-icon">
                             <i class="fas fa-smile-beam fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h4 class="mb-3">تجميل الأسنان</h4>
-                        <p>خدمات تجميل الأسنان المتطورة للحصول على ابتسامة مثالية</p>
+                        <h4 class="mb-3">منتجات الترميم غير المباشر</h4>
+                        <p>منتجات متطورة للترميم غير المباشر للأسنان</p>
                         <ul class="list-unstyled text-start feature-list">
-                            <li>تبييض الأسنان</li>
-                            <li>قشور السيراميك</li>
-                            <li>تقويم الأسنان</li>
+                            <li>تيجان وأدوات التيجان</li>
+                            <li>الأسمنت</li>
+                            <li>مادة مانعة للتسريب</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#appointment" class="btn btn-primary rounded-pill px-4">
-                                <i class="fas fa-calendar-check me-2" style="color: #ffffff;"></i>
-                                احجز موعدك
+                            <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill px-4">
+                                <i class="fas fa-shopping-cart me-2" style="color: #ffffff;"></i>
+                                اطلب الآن
                             </a>
                         </div>
                     </div>
@@ -89,23 +89,23 @@
                 <div class="product-card card h-100 floating-card">
                     <div class="position-relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80"
-                            alt="علاج الأسنان" class="product-image">
+                            alt="منتجات الوقاية" class="product-image">
                     </div>
                     <div class="card-body text-center">
                         <div class="product-icon">
                             <i class="fas fa-tooth fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h4 class="mb-3">علاج الأسنان</h4>
-                        <p>خدمات علاج الأسنان الشاملة بأحدث التقنيات</p>
+                        <h4 class="mb-3">منتجات الوقاية</h4>
+                        <p>منتجات متخصصة للوقاية وصحة الفم والأسنان</p>
                         <ul class="list-unstyled text-start feature-list">
-                            <li>علاج الجذور</li>
-                            <li>حشو الأسنان</li>
-                            <li>علاج اللثة</li>
+                            <li>الورنيش</li>
+                            <li>معجون الأسنان</li>
+                            <li>خيط الأسنان</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#appointment" class="btn btn-primary rounded-pill px-4">
-                                <i class="fas fa-calendar-check me-2" style="color: #ffffff;"></i>
-                                احجز موعدك
+                            <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill px-4">
+                                <i class="fas fa-shopping-cart me-2" style="color: #ffffff;"></i>
+                                اطلب الآن
                             </a>
                         </div>
                     </div>
@@ -115,26 +115,26 @@
     </div>
 </section>
 
-<!-- قسم الخدمات الإضافية -->
+<!-- قسم المنتجات الإضافية -->
 <section class="py-5 additional-services-section section-spacing">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">خدمات متخصصة</span>
-            <h2 class="gradient-text">خدمات إضافية</h2>
-            <p class="section-subtitle">خدمات متخصصة لتلبية كافة احتياجاتكم في مجال طب الأسنان</p>
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">منتجات متخصصة</span>
+            <h2 class="gradient-text">منتجات إضافية</h2>
+            <p class="section-subtitle">منتجات متخصصة لتلبية كافة احتياجاتكم في مجال طب الأسنان</p>
         </div>
         <div class="row g-4">
             <div class="col-md-3">
                 <div class="product-card card h-100">
                     <div class="card-body text-center p-4">
                         <div class="product-icon">
-                            <i class="fas fa-x-ray fa-2x" style="color: #26e07f;"></i>
+                            <i class="fas fa-shield-virus fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h5 class="mt-3 mb-3">الأشعة السينية</h5>
-                        <p>خدمات الأشعة السينية المتطورة للتشخيص الدقيق</p>
-                        <a href="#appointment" class="btn btn-outline-primary rounded-pill px-3 mt-3">
-                            <i class="fas fa-calendar-check me-2" style="color: #26e07f;"></i>
-                            احجز موعدك
+                        <h5 class="mt-3 mb-3">منتجات مكافحة العدوى</h5>
+                        <p>منتجات متطورة لمكافحة العدوى وضمان بيئة آمنة</p>
+                        <a href="{{ route('contact') }}" class="btn btn-outline-primary rounded-pill px-3 mt-3">
+                            <i class="fas fa-shopping-cart me-2" style="color: #26e07f;"></i>
+                            اطلب الآن
                         </a>
                     </div>
                 </div>
@@ -143,13 +143,13 @@
                 <div class="product-card card h-100">
                     <div class="card-body text-center p-4">
                         <div class="product-icon">
-                            <i class="fas fa-tooth fa-2x" style="color: #26e07f;"></i>
+                            <i class="fas fa-hand-sparkles fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h5 class="mt-3 mb-3">طب أسنان الأطفال</h5>
-                        <p>خدمات متخصصة لرعاية أسنان الأطفال</p>
-                        <a href="#appointment" class="btn btn-outline-primary rounded-pill px-3 mt-3">
-                            <i class="fas fa-calendar-check me-2" style="color: #26e07f;"></i>
-                            احجز موعدك
+                        <h5 class="mt-3 mb-3">منتجات التعقيم</h5>
+                        <p>جل مطهر لليدين ومنتجات مراقبة التعقيم</p>
+                        <a href="{{ route('contact') }}" class="btn btn-outline-primary rounded-pill px-3 mt-3">
+                            <i class="fas fa-shopping-cart me-2" style="color: #26e07f;"></i>
+                            اطلب الآن
                         </a>
                     </div>
                 </div>
@@ -160,11 +160,11 @@
                         <div class="product-icon">
                             <i class="fas fa-teeth fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h5 class="mt-3 mb-3">تقويم الأسنان</h5>
-                        <p>خدمات تقويم الأسنان المتطورة للكبار والصغار</p>
-                        <a href="#appointment" class="btn btn-outline-primary rounded-pill px-3 mt-3">
-                            <i class="fas fa-calendar-check me-2" style="color: #26e07f;"></i>
-                            احجز موعدك
+                        <h5 class="mt-3 mb-3">لاصقات الأسنان</h5>
+                        <p>لاصقات أسنان عالية الجودة للاستخدامات المختلفة</p>
+                        <a href="{{ route('contact') }}" class="btn btn-outline-primary rounded-pill px-3 mt-3">
+                            <i class="fas fa-shopping-cart me-2" style="color: #26e07f;"></i>
+                            اطلب الآن
                         </a>
                     </div>
                 </div>
@@ -173,13 +173,13 @@
                 <div class="product-card card h-100">
                     <div class="card-body text-center p-4">
                         <div class="product-icon">
-                            <i class="fas fa-tooth fa-2x" style="color: #26e07f;"></i>
+                            <i class="fas fa-pump-medical fa-2x" style="color: #26e07f;"></i>
                         </div>
-                        <h5 class="mt-3 mb-3">طب الأسنان التجميلي</h5>
-                        <p>خدمات تجميل الأسنان المتطورة للحصول على ابتسامة مثالية</p>
-                        <a href="#appointment" class="btn btn-outline-primary rounded-pill px-3 mt-3">
-                            <i class="fas fa-calendar-check me-2" style="color: #26e07f;"></i>
-                            احجز موعدك
+                        <h5 class="mt-3 mb-3">غسولات الفم</h5>
+                        <p>جل وغسولات الفم المطهرة للعناية بصحة الفم</p>
+                        <a href="{{ route('contact') }}" class="btn btn-outline-primary rounded-pill px-3 mt-3">
+                            <i class="fas fa-shopping-cart me-2" style="color: #26e07f;"></i>
+                            اطلب الآن
                         </a>
                     </div>
                 </div>
@@ -193,17 +193,17 @@
     <div class="container py-5">
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">ميزاتنا</span>
-            <h2 class="gradient-text">لماذا تختارنا؟</h2>
-            <p class="section-subtitle">أسباب تجعل خدماتنا الخيار الأفضل لرعاية صحة أسنانك</p>
+            <h2 class="gradient-text">لماذا تختار منتجاتنا؟</h2>
+            <p class="section-subtitle">أسباب تجعل منتجاتنا الخيار الأفضل لعيادتك ومرضاك</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="text-center feature-box">
                     <div class="product-icon mx-auto">
-                        <i class="fas fa-user-md fa-2x" style="color: #26e07f;"></i>
+                        <i class="fas fa-certificate fa-2x" style="color: #26e07f;"></i>
                     </div>
-                    <h5 class="mt-3 mb-3">أطباء متخصصون</h5>
-                    <p>فريق من الأطباء المتخصصين ذوي الخبرة في مختلف مجالات طب الأسنان</p>
+                    <h5 class="mt-3 mb-3">جودة عالمية</h5>
+                    <p>منتجات مصنعة وفق أعلى معايير الجودة العالمية ومعتمدة من الهيئات الرقابية</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -212,16 +212,16 @@
                         <i class="fas fa-flask fa-2x" style="color: #26e07f;"></i>
                     </div>
                     <h5 class="mt-3 mb-3">تقنيات متطورة</h5>
-                    <p>أحدث التقنيات والمعدات الطبية التي تضمن أفضل النتائج</p>
+                    <p>منتجات مصنعة باستخدام أحدث التقنيات والمعدات التي تضمن أفضل النتائج</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="text-center feature-box">
                     <div class="product-icon mx-auto">
-                        <i class="fas fa-clock fa-2x" style="color: #26e07f;"></i>
+                        <i class="fas fa-truck-fast fa-2x" style="color: #26e07f;"></i>
                     </div>
-                    <h5 class="mt-3 mb-3">مواعيد مرنة</h5>
-                    <p>نقدم مواعيد مرنة تناسب جدولك مع إمكانية الحجز السريع</p>
+                    <h5 class="mt-3 mb-3">توصيل سريع</h5>
+                    <p>نوفر خدمة توصيل سريعة وموثوقة لجميع منتجاتنا مع دعم فني متكامل</p>
                 </div>
             </div>
         </div>
