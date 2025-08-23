@@ -1295,7 +1295,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary-gradient);
+    background: rgb(38, 224, 128);
     color: white;
     font-weight: 700;
     font-size: 1.1rem;

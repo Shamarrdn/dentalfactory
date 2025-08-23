@@ -38,8 +38,20 @@
                     <div class="nav-item d-flex align-items-center">
                         <a href="/cart" class="nav-icon position-relative" style="color: var(--primary);">
                             <i class="fas fa-shopping-cart"></i>
-                            @if(isset($stats) && $stats['cart_items_count'] > 0)
-                            <span class="cart-badge">{{ $stats['cart_items_count'] }}</span>
+                            @php
+                                // حساب العدد الكلي للمنتجات (وليس فقط عدد العناصر المختلفة)
+                                $cart_total_quantity = 0;
+                                if(isset($stats) && isset($stats['cart_items_details']) && is_array($stats['cart_items_details'])) {
+                                    foreach($stats['cart_items_details'] as $item) {
+                                        $cart_total_quantity += isset($item['quantity']) ? $item['quantity'] : 0;
+                                    }
+                                } elseif(isset($stats) && isset($stats['cart_items_count'])) {
+                                    // fallback للعدد القديم
+                                    $cart_total_quantity = $stats['cart_items_count'];
+                                }
+                            @endphp
+                            @if($cart_total_quantity > 0)
+                                <span class="cart-badge">{{ $cart_total_quantity }}</span>
                             @endif
                         </a>
                     </div>

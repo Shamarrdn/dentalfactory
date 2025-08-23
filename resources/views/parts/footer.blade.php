@@ -7,9 +7,9 @@
                     <div class="footer-brand">
                         <div class="footer-logo">
                             <div class="footer-logo-icon">
-                                <img src="https://img.icons8.com/ios-filled/50/ffffff/tooth.png" alt="Logo">
+                                <img src="{{ asset('logo.png') }}" alt="Logo" width="600" height="600">
                             </div>
-                            <h4 class="footer-logo-text">مصنع منتجات الأسنان</h4>
+                            <h4 class="">مصنع منتجات الأسنان</h4>
                         </div>
                         <p class="footer-description">
                             نصنع أفضل منتجات طب الأسنان بأحدث التقنيات العالمية لضمان أعلى مستويات الجودة والكفاءة

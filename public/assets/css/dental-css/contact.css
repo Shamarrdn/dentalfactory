@@ -216,7 +216,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--primary-gradient);
+    background: rgb(38, 224, 127) !important; /* لون ثابت */
     color: white;
     text-decoration: none;
     font-weight: 700;
@@ -247,6 +247,7 @@
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(38, 224, 127, 0.35);
+    /* background: #10b3b0 !important; لون ثابت عند الهوفر */
 }
 
 .contact-info-link i {
@@ -402,6 +403,13 @@
     transform: translateY(-130%) scale(0.8);
 }
 
+.submit{
+    background: #26e07f !important; /* لون ثابت */
+    color: white;
+}
+.submit:hover{
+    color: white;
+}
 .btn-contact-submit {
     display: inline-flex;
     align-items: center;
@@ -409,7 +417,7 @@
     gap: 10px;
     padding: 15px 50px;
     border-radius: 50px;
-    background: linear-gradient(135deg, #26e07f 0%, #13c5c1 100%);
+    background: #26e07f     ; /* لون ثابت */
     color: white;
     font-size: 18px;
     font-weight: 700;
@@ -728,13 +736,24 @@
     color: var(--primary);
 }
 
+/* --- إلغاء تأثير hover على الأيقونة داخل كروت معلومات التواصل --- */
+.contact-info-card:hover .contact-info-icon {
+    /* لا تغيير عند الهوفر */
+    transform: none;
+    background: var(--primary-light);
+}
+.contact-info-card:hover .contact-info-icon i {
+    /* لا تغيير عند الهوفر */
+    /* color: var(--primary); */
+}
+
 .contact-info-card:hover .contact-info-icon {
     transform: scale(1.1);
-    background: var(--primary);
+    /* background: var(--primary); */
 }
 
 .contact-info-card:hover .contact-info-icon i {
-    color: #fff;
+    /* color: #fff; */
 }
 
 /* Mobile Responsive Fixes */

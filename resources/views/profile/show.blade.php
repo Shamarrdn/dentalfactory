@@ -330,7 +330,7 @@ body {
 
 .danger-zone {
     border-left: 4px solid #e74c3c;
-    background: #fff5f5;
+   
 }
 
 .danger-zone .section-icon {

@@ -106,15 +106,13 @@
 
                 @if ($showingConfirmation)
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
-                        <x-secondary-button wire:loading.attr="disabled">
-                            {{ __('Cancel') }}
-                        </x-secondary-button>
+                            {{ __('Cancel') }} 
                     </x-confirms-password>
                 @else
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
-                        <x-danger-button wire:loading.attr="disabled">
-                            {{ __('Disable') }}
-                        </x-danger-button>
+                            <x-danger-button wire:loading.attr="disabled">
+                                {{ __('Disable') }}
+                            </x-danger-button>
                     </x-confirms-password>
                 @endif
 

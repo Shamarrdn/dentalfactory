@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        <button type="submit" class="btn btn submit btn-lg" id="submitBtn">
                                             <span id="submitText">إرسال الرسالة</span>
                                             <i class="fas fa-paper-plane ms-2" id="submitIcon"></i>
                                         </button>
