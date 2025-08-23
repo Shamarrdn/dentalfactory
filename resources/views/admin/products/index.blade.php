@@ -152,6 +152,21 @@
                                                         {{ number_format($product->min_price, 0) }} - {{ number_format($product->max_price, 0) }} ريال
                                                     @endif
                                                 </div>
+
+                                                <!-- Tax Information -->
+                                                @if($product->hasTax())
+                                                <div class="tax-info mt-2">
+                                                    <span class="tax-preview">
+                                                        <i class="fas fa-percentage"></i>
+                                                        {{ $product->tax_display }}
+                                                        @if($product->tax_type === 'percentage')
+                                                            ضريبة
+                                                        @else
+                                                            ضريبة ثابتة
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                                @endif
                                             </div>
 
                                             <div class="card-footer bg-light border-top p-3">

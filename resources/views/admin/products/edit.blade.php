@@ -464,6 +464,178 @@
                                     </div>
                                 </div>
 
+                                <!-- Tax Settings -->
+                                <div class="col-12 mt-4">
+                                    <div class="card card-body shadow-sm border-0">
+                                        <div class="card-title d-flex align-items-center justify-content-between">
+                                            <h5>
+                                                <i class="fas fa-percentage text-primary me-2"></i>
+                                                إعدادات الضريبة
+                                            </h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="hasTax" name="has_tax"
+                                                    value="1" {{ old('has_tax', $product->has_tax) ? 'checked' : '' }}
+                                                    onchange="toggleTaxSection(this)">
+                                                <label class="form-check-label" for="hasTax">تفعيل الضريبة</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="taxSection" class="{{ old('has_tax', $product->has_tax) ? 'section-expanded' : 'section-collapsed' }}">
+                                            <div class="row g-3 mt-2">
+                                                <!-- Tax Type -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-tag me-1"></i>
+                                                        نوع الضريبة
+                                                    </label>
+                                                    <select name="tax_type" class="form-select @error('tax_type') is-invalid @enderror" id="taxType">
+                                                        <option value="">اختر نوع الضريبة</option>
+                                                        <option value="percentage" {{ old('tax_type', $product->tax_type) === 'percentage' ? 'selected' : '' }}>نسبة مئوية (%)</option>
+                                                        <option value="fixed" {{ old('tax_type', $product->tax_type) === 'fixed' ? 'selected' : '' }}>مبلغ ثابت (ر.س)</option>
+                                                    </select>
+                                                    @error('tax_type')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <!-- Tax Value -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-calculator me-1"></i>
+                                                        قيمة الضريبة
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input type="number" name="tax_value" 
+                                                            class="form-control @error('tax_value') is-invalid @enderror"
+                                                            placeholder="أدخل قيمة الضريبة" 
+                                                            step="0.01" min="0" max="100"
+                                                            value="{{ old('tax_value', $product->tax_value) }}"
+                                                            id="taxValue">
+                                                        <span class="input-group-text" id="taxUnit">
+                                                            {{ old('tax_type', $product->tax_type) === 'fixed' ? 'ر.س' : '%' }}
+                                                        </span>
+                                                    </div>
+                                                    @error('tax_value')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                    <small class="form-text text-muted" id="taxHint">
+                                                        @if(old('tax_type', $product->tax_type) === 'fixed')
+                                                            أدخل قيمة الضريبة الثابتة بالريال السعودي
+                                                        @else
+                                                            أدخل نسبة الضريبة المئوية (مثال: 15 لـ 15%)
+                                                        @endif
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                            @if($product->has_tax && $product->tax_value)
+                                            <div class="alert alert-success mt-3">
+                                                <i class="fas fa-info-circle me-2"></i>
+                                                <strong>الضريبة الحالية:</strong>
+                                                {{ $product->tax_display }}
+                                                @if($product->base_price)
+                                                    - قيمة الضريبة على السعر الأساسي: {{ number_format($product->calculateTaxAmount($product->base_price), 2) }} ر.س
+                                                @endif
+                                            </div>
+                                            @endif
+
+                                            <div class="alert alert-info mt-3">
+                                                <i class="fas fa-info-circle me-2"></i>
+                                                <strong>ملاحظة:</strong> 
+                                                <span id="taxNote">
+                                                    سيتم إضافة الضريبة إلى سعر المنتج وعرضها للعميل بوضوح.
+                                                    النسبة المئوية تطبق على السعر الأساسي، بينما المبلغ الثابت يضاف كما هو.
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Related Products -->
+                                <div class="col-12">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-header bg-light">
+                                            <h6 class="card-title mb-0">
+                                                <i class="fas fa-link text-primary me-2"></i>
+                                                المنتجات ذات الصلة
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div id="related-products-container">
+                                                        @if($product->relatedProducts->count() > 0)
+                                                            @foreach($product->relatedProducts as $index => $relatedProductRelation)
+                                                                <div class="related-product-row mb-3">
+                                                                    <div class="row align-items-end">
+                                                                        <div class="col-md-6">
+                                                                            <label class="form-label">اختر منتج ذو صلة</label>
+                                                                            <select name="related_products[]" class="form-select">
+                                                                                <option value="">-- اختر منتج --</option>
+                                                                                @foreach($allProducts as $availableProduct)
+                                                                                    <option value="{{ $availableProduct->id }}" 
+                                                                                        {{ $availableProduct->id == $relatedProductRelation->related_product_id ? 'selected' : '' }}>
+                                                                                        {{ $availableProduct->name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="form-label">نوع العلاقة</label>
+                                                                            <select name="related_product_types[]" class="form-select">
+                                                                                <option value="frequently_bought_together" {{ $relatedProductRelation->type == 'frequently_bought_together' ? 'selected' : '' }}>يُشترى مع بعض غالباً</option>
+                                                                                <option value="recommended" {{ $relatedProductRelation->type == 'recommended' ? 'selected' : '' }}>منتجات مُوصى بها</option>
+                                                                                <option value="similar" {{ $relatedProductRelation->type == 'similar' ? 'selected' : '' }}>منتجات مشابهة</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <button type="button" class="btn btn-danger btn-sm remove-related-product" style="{{ $loop->first && $product->relatedProducts->count() == 1 ? 'display: none;' : '' }}">
+                                                                                <i class="fas fa-trash"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @else
+                                                            <div class="related-product-row mb-3">
+                                                                <div class="row align-items-end">
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">اختر منتج ذو صلة</label>
+                                                                        <select name="related_products[]" class="form-select">
+                                                                            <option value="">-- اختر منتج --</option>
+                                                                            @foreach($allProducts as $availableProduct)
+                                                                                <option value="{{ $availableProduct->id }}">{{ $availableProduct->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label class="form-label">نوع العلاقة</label>
+                                                                        <select name="related_product_types[]" class="form-select">
+                                                                            <option value="frequently_bought_together">يُشترى مع بعض غالباً</option>
+                                                                            <option value="recommended">منتجات مُوصى بها</option>
+                                                                            <option value="similar">منتجات مشابهة</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <button type="button" class="btn btn-danger btn-sm remove-related-product" style="display: none;">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                    <button type="button" class="btn btn-outline-primary btn-sm" id="add-related-product">
+                                                        <i class="fas fa-plus me-1"></i>
+                                                        أضف منتج آخر
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Submit Button -->
                                 <div class="col-12">
                                     <div class="card border-0 shadow-sm">
@@ -653,6 +825,132 @@
         if (document.querySelectorAll('#detailsContainer .input-group').length === 0) {
             addDetailInput();
         }
+
+        // Setup tax type change handler
+        const taxTypeSelect = document.getElementById('taxType');
+        const taxUnit = document.getElementById('taxUnit');
+        const taxHint = document.getElementById('taxHint');
+        const taxValue = document.getElementById('taxValue');
+
+        if (taxTypeSelect) {
+            taxTypeSelect.addEventListener('change', function() {
+                updateTaxUI(this.value);
+            });
+
+            // Initialize UI based on current value
+            updateTaxUI(taxTypeSelect.value);
+        }
+    });
+
+    function toggleTaxSection(checkbox) {
+        const section = document.getElementById('taxSection');
+
+        if (checkbox.checked) {
+            section.classList.remove('section-collapsed');
+            section.classList.add('section-expanded');
+        } else {
+            if (document.querySelector('#taxSection input[name="tax_value"]').value) {
+                if (!confirm('هل أنت متأكد من إلغاء تفعيل الضريبة؟ سيتم حذف جميع إعدادات الضريبة المدخلة.')) {
+                    checkbox.checked = true;
+                    return;
+                }
+            }
+            section.classList.remove('section-expanded');
+            section.classList.add('section-collapsed');
+            
+            // Reset tax fields
+            document.getElementById('taxType').value = '';
+            document.getElementById('taxValue').value = '';
+            updateTaxUI('');
+        }
+    }
+
+    function updateTaxUI(taxType) {
+        const taxUnit = document.getElementById('taxUnit');
+        const taxHint = document.getElementById('taxHint');
+        const taxValue = document.getElementById('taxValue');
+
+        if (taxType === 'percentage') {
+            taxUnit.textContent = '%';
+            taxHint.textContent = 'أدخل نسبة الضريبة المئوية (مثال: 15 لـ 15%)';
+            taxValue.setAttribute('max', '100');
+            taxValue.setAttribute('placeholder', 'أدخل نسبة الضريبة');
+        } else if (taxType === 'fixed') {
+            taxUnit.textContent = 'ر.س';
+            taxHint.textContent = 'أدخل قيمة الضريبة الثابتة بالريال السعودي';
+            taxValue.removeAttribute('max');
+            taxValue.setAttribute('placeholder', 'أدخل قيمة الضريبة');
+        } else {
+            taxUnit.textContent = '%';
+            taxHint.textContent = 'أدخل قيمة الضريبة';
+            taxValue.setAttribute('placeholder', 'أدخل قيمة الضريبة');
+        }
+    }
+
+    // Related Products functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.getElementById('add-related-product');
+        const container = document.getElementById('related-products-container');
+        
+        // Add new related product row
+        addButton.addEventListener('click', function() {
+            const newRow = createRelatedProductRow();
+            container.appendChild(newRow);
+            updateRemoveButtons();
+        });
+        
+        // Handle remove button clicks
+        container.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-related-product') || e.target.closest('.remove-related-product')) {
+                const row = e.target.closest('.related-product-row');
+                row.remove();
+                updateRemoveButtons();
+            }
+        });
+        
+        function createRelatedProductRow() {
+            const row = document.createElement('div');
+            row.className = 'related-product-row mb-3';
+            row.innerHTML = `
+                <div class="row align-items-end">
+                    <div class="col-md-6">
+                        <label class="form-label">اختر منتج ذو صلة</label>
+                        <select name="related_products[]" class="form-select">
+                            <option value="">-- اختر منتج --</option>
+                            @foreach($allProducts as $availableProduct)
+                                <option value="{{ $availableProduct->id }}">{{ $availableProduct->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">نوع العلاقة</label>
+                        <select name="related_product_types[]" class="form-select">
+                            <option value="frequently_bought_together">يُشترى مع بعض غالباً</option>
+                            <option value="recommended">منتجات مُوصى بها</option>
+                            <option value="similar">منتجات مشابهة</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger btn-sm remove-related-product">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return row;
+        }
+        
+        function updateRemoveButtons() {
+            const rows = container.children;
+            const removeButtons = container.querySelectorAll('.remove-related-product');
+            
+            removeButtons.forEach(button => {
+                button.style.display = rows.length > 1 ? 'block' : 'none';
+            });
+        }
+        
+        // Initial update
+        updateRemoveButtons();
     });
 </script>
 @endsection

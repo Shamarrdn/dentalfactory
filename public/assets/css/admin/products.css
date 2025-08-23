@@ -394,4 +394,91 @@
 
 .section-expanded {
     display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tax Section Styles */
+.tax-section {
+    transition: var(--transition);
+}
+
+.tax-section .alert {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.tax-section .alert-success {
+    background: rgba(var(--success-rgb), 0.1);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.tax-section .alert-info {
+    background: rgba(var(--info-rgb), 0.1);
+    color: var(--info);
+    border-left: 4px solid var(--info);
+}
+
+.tax-unit-display {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    border-radius: 0 1rem 1rem 0;
+    border-left: 2px solid var(--primary);
+}
+
+.tax-type-select:focus {
+    box-shadow: 0 0 0 4px var(--primary-light);
+    border-color: var(--primary);
+}
+
+/* Tax Switch Enhancement */
+.form-check-input.tax-switch {
+    width: 3rem;
+    height: 1.5rem;
+    border-radius: 2rem;
+    background-color: var(--border-color);
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.form-check-input.tax-switch:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.form-check-input.tax-switch:focus {
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* Tax Preview Badge */
+.tax-preview {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--success-light);
+    color: var(--success);
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tax-preview i {
+    font-size: 1rem;
 }

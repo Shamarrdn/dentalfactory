@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products-show.css') }}?t={{ time() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products.css') }}?t={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/customer/frequently-bought-together.css') }}?t={{ time() }}">
 
     <style>
         .quantity-discounts {
@@ -409,6 +410,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Frequently Bought Together Section -->
+        @livewire('frequently-bought-together', ['product' => $product])
     </div>
 
     <!-- Footer -->
@@ -450,5 +454,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/customer/products-show.js') }}?t={{ time() }}"></script>
     <script src="{{ asset('assets/js/customer/green-theme.js') }}?t={{ time() }}"></script>
+    
+    <script>
+        // Livewire event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Listen for Livewire events
+            Livewire.on('show-success', message => {
+                alert('✅ ' + message);
+                updateCartDisplay(); // Update cart count if function exists
+            });
+            
+            Livewire.on('show-error', message => {
+                alert('❌ ' + message);
+            });
+            
+            Livewire.on('show-login-prompt', () => {
+                showLoginPrompt('{{ route('login') }}');
+            });
+            
+            Livewire.on('cart-updated', () => {
+                // Refresh cart if needed
+                if (typeof updateCartDisplay === 'function') {
+                    updateCartDisplay();
+                }
+            });
+        });
+    </script>
 @endsection
 

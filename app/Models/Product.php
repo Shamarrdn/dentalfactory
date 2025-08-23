@@ -27,7 +27,10 @@ class Product extends Model
     'enable_custom_color',
     'enable_custom_size',
     'enable_color_selection',
-    'enable_size_selection'
+    'enable_size_selection',
+    'has_tax',
+    'tax_type',
+    'tax_value'
   ];
 
   protected $casts = [
@@ -36,6 +39,8 @@ class Product extends Model
     'enable_custom_size' => 'boolean',
     'enable_color_selection' => 'boolean',
     'enable_size_selection' => 'boolean',
+    'has_tax' => 'boolean',
+    'tax_value' => 'decimal:2',
     'details' => 'array'
   ];
 
@@ -103,6 +108,64 @@ class Product extends Model
   public function quantityDiscounts()
   {
     return $this->hasMany(QuantityDiscount::class);
+  }
+
+  /**
+   * Related products that are frequently bought together
+   */
+  public function relatedProducts()
+  {
+    return $this->hasMany(RelatedProduct::class, 'product_id');
+  }
+
+  /**
+   * Products that reference this product as related
+   */
+  public function relatedByProducts()
+  {
+    return $this->hasMany(RelatedProduct::class, 'related_product_id');
+  }
+
+  /**
+   * Get frequently bought together products
+   */
+  public function frequentlyBoughtTogether()
+  {
+    return $this->belongsToMany(
+      Product::class,
+      'related_products',
+      'product_id',
+      'related_product_id'
+    )->wherePivot('type', 'frequently_bought_together')
+     ->withTimestamps();
+  }
+
+  /**
+   * Get recommended products
+   */
+  public function recommendedProducts()
+  {
+    return $this->belongsToMany(
+      Product::class,
+      'related_products',
+      'product_id',
+      'related_product_id'
+    )->wherePivot('type', 'recommended')
+     ->withTimestamps();
+  }
+
+  /**
+   * Get similar products
+   */
+  public function similarProducts()
+  {
+    return $this->belongsToMany(
+      Product::class,
+      'related_products',
+      'product_id',
+      'related_product_id'
+    )->wherePivot('type', 'similar')
+     ->withTimestamps();
   }
 
   /**
@@ -313,5 +376,67 @@ class Product extends Model
     }
 
     return false;
+  }
+
+  /**
+   * احسب قيمة الضريبة لسعر معين
+   *
+   * @param float $price السعر الأساسي
+   * @return float قيمة الضريبة
+   */
+  public function calculateTaxAmount($price)
+  {
+    if (!$this->has_tax || !$this->tax_value) {
+      return 0;
+    }
+
+    if ($this->tax_type === 'percentage') {
+      return ($price * $this->tax_value) / 100;
+    } elseif ($this->tax_type === 'fixed') {
+      return $this->tax_value;
+    }
+
+    return 0;
+  }
+
+  /**
+   * احسب السعر مع الضريبة
+   *
+   * @param float $price السعر الأساسي
+   * @return float السعر مع الضريبة
+   */
+  public function getPriceWithTax($price)
+  {
+    return $price + $this->calculateTaxAmount($price);
+  }
+
+  /**
+   * احصل على نص وصف الضريبة
+   *
+   * @return string|null
+   */
+  public function getTaxDisplayAttribute()
+  {
+    if (!$this->has_tax || !$this->tax_value) {
+      return null;
+    }
+
+    if ($this->tax_type === 'percentage') {
+      return $this->tax_value . '%';
+    } elseif ($this->tax_type === 'fixed') {
+      return $this->tax_value . ' ر.س';
+    }
+
+    return null;
+  }
+
+  /**
+   * تحقق من وجود ضريبة على المنتج
+   *
+   * @return bool
+   */
+  public function hasTax()
+  {
+    return $this->has_tax && !is_null($this->tax_value) && $this->tax_value > 0;
   }
 }

@@ -234,4 +234,60 @@ class CartService
             'cart_count' => $cart->items->sum('quantity')
         ];
     }
+
+    /**
+     * Add multiple products to cart in one transaction
+     *
+     * @param Request $request
+     * @param array $products Array of product data with keys: product_id, quantity, color, size
+     * @return array
+     */
+    public function addMultipleToCart(Request $request, array $products)
+    {
+        $results = [];
+        $successCount = 0;
+        $errorMessages = [];
+
+        foreach ($products as $productData) {
+            // Create a new request for each product
+            $productRequest = new Request();
+            $productRequest->setMethod('POST');
+            $productRequest->setSession($request->session());
+            
+            $productRequest->merge([
+                'product_id' => $productData['product_id'],
+                'quantity' => $productData['quantity'] ?? 1,
+                'color' => $productData['color'] ?? null,
+                'size' => $productData['size'] ?? null
+            ]);
+
+            $result = $this->addToCart($productRequest);
+            
+            if ($result['success']) {
+                $successCount++;
+            } else {
+                $product = Product::find($productData['product_id']);
+                $errorMessages[] = ($product ? $product->name : 'المنتج') . ': ' . $result['message'];
+            }
+
+            $results[] = $result;
+        }
+
+        // Get final cart information
+        $cartInfo = $this->getCartItems($request);
+
+        return [
+            'success' => $successCount > 0,
+            'message' => $successCount > 0 
+                ? "تم إضافة {$successCount} منتج إلى السلة بنجاح" 
+                : 'فشل في إضافة المنتجات إلى السلة',
+            'success_count' => $successCount,
+            'error_count' => count($products) - $successCount,
+            'error_messages' => $errorMessages,
+            'cart_count' => $cartInfo['count'],
+            'cart_total' => $cartInfo['total'],
+            'detailed_results' => $results,
+            'status' => $successCount > 0 ? 200 : 422
+        ];
+    }
 }

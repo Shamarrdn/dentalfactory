@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\RelatedProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -78,7 +79,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        $allProducts = Product::where('is_available', true)->orderBy('name')->get();
+        return view('admin.products.create', compact('categories', 'allProducts'));
     }
 
     public function store(Request $request)
@@ -100,6 +102,12 @@ class ProductController extends Controller
             'detail_keys.*' => 'nullable|string|max:255',
             'detail_values.*' => 'nullable|string|max:255',
             'base_price' => 'nullable|numeric|min:0',
+            'has_tax' => 'boolean',
+            'tax_type' => 'nullable|in:percentage,fixed',
+            'tax_value' => 'nullable|numeric|min:0|max:100',
+            'related_products' => 'nullable|array',
+            'related_products.*' => 'exists:products,id',
+            'related_product_types.*' => 'nullable|in:frequently_bought_together,recommended,similar',
         ];
 
         // Add color validation rules only if colors are enabled
@@ -120,6 +128,22 @@ class ProductController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+
+        // Custom validation for tax fields
+        if ($request->has_tax) {
+            if (empty($request->tax_type)) {
+                return back()->withErrors(['tax_type' => 'نوع الضريبة مطلوب عند تفعيل الضريبة'])
+                    ->withInput();
+            }
+            if (!$request->tax_value || $request->tax_value <= 0) {
+                return back()->withErrors(['tax_value' => 'قيمة الضريبة مطلوبة ويجب أن تكون أكبر من الصفر'])
+                    ->withInput();
+            }
+            if ($request->tax_type === 'percentage' && $request->tax_value > 100) {
+                return back()->withErrors(['tax_value' => 'نسبة الضريبة المئوية يجب أن تكون أقل من أو تساوي 100%'])
+                    ->withInput();
+            }
+        }
 
         try {
             DB::beginTransaction();
@@ -197,6 +221,20 @@ class ProductController extends Controller
                 }
             }
 
+            // Handle related products
+            if ($request->has('related_products') && is_array($request->related_products)) {
+                foreach ($request->related_products as $index => $relatedProductId) {
+                    if ($relatedProductId != $product->id) { // Prevent self-referencing
+                        $type = $request->related_product_types[$index] ?? 'frequently_bought_together';
+                        
+                        $product->relatedProducts()->create([
+                            'related_product_id' => $relatedProductId,
+                            'type' => $type
+                        ]);
+                    }
+                }
+            }
+
             DB::commit();
             return redirect()->route('admin.products.index')
                 ->with('success', 'تم إضافة المنتج بنجاح');
@@ -209,10 +247,14 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $product->load(['images', 'colors', 'sizes', 'categories']);
+        $product->load(['images', 'colors', 'sizes', 'categories', 'relatedProducts.relatedProduct']);
         $categories = Category::all();
         $selectedCategories = $product->categories->pluck('id')->toArray();
-        return view('admin.products.edit', compact('product', 'categories', 'selectedCategories'));
+        $allProducts = Product::where('is_available', true)
+                             ->where('id', '!=', $product->id)
+                             ->orderBy('name')->get();
+        
+        return view('admin.products.edit', compact('product', 'categories', 'selectedCategories', 'allProducts'));
     }
 
     public function update(Request $request, Product $product)
@@ -236,6 +278,12 @@ class ProductController extends Controller
                 'detail_keys.*' => 'nullable|string|max:255',
                 'detail_values.*' => 'nullable|string|max:255',
                 'base_price' => 'nullable|numeric|min:0',
+                'has_tax' => 'boolean',
+                'tax_type' => 'nullable|in:percentage,fixed',
+                'tax_value' => 'nullable|numeric|min:0|max:100',
+                'related_products' => 'nullable|array',
+                'related_products.*' => 'exists:products,id',
+                'related_product_types.*' => 'nullable|in:frequently_bought_together,recommended,similar',
             ];
 
             // Add color validation rules only if colors are enabled
@@ -256,6 +304,22 @@ class ProductController extends Controller
             }
 
             $validated = $request->validate($rules);
+
+            // Custom validation for tax fields
+            if ($request->has_tax) {
+                if (empty($request->tax_type)) {
+                    return back()->withErrors(['tax_type' => 'نوع الضريبة مطلوب عند تفعيل الضريبة'])
+                        ->withInput();
+                }
+                if (!$request->tax_value || $request->tax_value <= 0) {
+                    return back()->withErrors(['tax_value' => 'قيمة الضريبة مطلوبة ويجب أن تكون أكبر من الصفر'])
+                        ->withInput();
+                }
+                if ($request->tax_type === 'percentage' && $request->tax_value > 100) {
+                    return back()->withErrors(['tax_value' => 'نسبة الضريبة المئوية يجب أن تكون أقل من أو تساوي 100%'])
+                        ->withInput();
+                }
+            }
 
             DB::beginTransaction();
 
@@ -388,6 +452,22 @@ class ProductController extends Controller
                 $product->images()->where('id', $request->is_primary)->update(['is_primary' => true]);
             }
 
+            // Handle related products update
+            $product->relatedProducts()->delete(); // Remove all existing related products
+            
+            if ($request->has('related_products') && is_array($request->related_products)) {
+                foreach ($request->related_products as $index => $relatedProductId) {
+                    if ($relatedProductId != $product->id) { // Prevent self-referencing
+                        $type = $request->related_product_types[$index] ?? 'frequently_bought_together';
+                        
+                        $product->relatedProducts()->create([
+                            'related_product_id' => $relatedProductId,
+                            'type' => $type
+                        ]);
+                    }
+                }
+            }
+
             DB::commit();
             return redirect()->route('admin.products.index')
                 ->with('success', 'تم تحديث المنتج بنجاح');
@@ -413,6 +493,8 @@ class ProductController extends Controller
             $product->colors()->delete();
             $product->sizes()->delete();
             $product->orderItems()->delete();
+            $product->relatedProducts()->delete();
+            $product->relatedByProducts()->delete();
             // Detach relations
             $product->discounts()->detach();
             $product->categories()->detach();
