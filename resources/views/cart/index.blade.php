@@ -82,6 +82,9 @@
                   <span class="price-label">الإجمالي الفرعي:</span>
                   <div class="price-box subtotal" id="price-{{ $item->id }}">
                     {{ number_format($itemSubtotal, 2) }} ريال
+                    @if($item->product->hasTax())
+                      <small class="text-muted d-block">شامل الضريبة</small>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -100,7 +103,16 @@
           </div>
           <div class="summary-item">
             <span class="summary-label">الإجمالي الكلي</span>
-            <span class="total-amount" id="total">{{ number_format($total, 2) }} ريال</span>
+            <span class="total-amount" id="total">{{ number_format($total, 2) }} ريال
+              @php
+                $hasAnyTax = $cart_items->contains(function($item) {
+                  return $item->product->hasTax();
+                });
+              @endphp
+              @if($hasAnyTax)
+                <small class="text-muted d-block">شامل الضريبة</small>
+              @endif
+            </span>
           </div>
           <a href="{{ route('checkout.index') }}" class="checkout-btn">
             متابعة الشراء

@@ -109,21 +109,24 @@ class CartService
             ->first();
 
         // تحديد السعر بناءً على المقاس
-        $itemPrice = 0; // Default price is 0 if no price source is found
+        $basePrice = 0; // Default price is 0 if no price source is found
 
         // جمع سعر المقاس إذا تم اختياره
         if ($request->size && $product->enable_size_selection) {
             $size = $product->sizes->where('size', $request->size)->first();
             if ($size && $size->price) {
-                $itemPrice = $size->price;
+                $basePrice = $size->price;
             }
         }
 
         // إذا لم يتم تحديد سعر من المقاس، نستخدم أقل سعر متاح
-        if ($itemPrice == 0) {
+        if ($basePrice == 0) {
             $priceRange = $product->getPriceRange();
-            $itemPrice = $priceRange['min'];
+            $basePrice = $priceRange['min'];
         }
+
+        // إضافة الضريبة إلى السعر إذا كانت موجودة
+        $itemPrice = $product->hasTax() ? $product->getPriceWithTax($basePrice) : $basePrice;
 
         if ($cartItem) {
             $cartItem->quantity += $request->quantity;

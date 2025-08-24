@@ -100,6 +100,11 @@ class Product extends Model
     return $this->hasMany(OrderItem::class);
   }
 
+  public function links(): HasMany
+  {
+    return $this->hasMany(ProductLink::class);
+  }
+
   public function discounts()
   {
     return $this->belongsToMany(Coupon::class, 'coupon_product');

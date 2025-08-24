@@ -47,7 +47,7 @@ class ProductController extends Controller
             abort(404, 'المنتج غير متوفر حالياً');
         }
 
-        $product->load(['category', 'images', 'colors', 'sizes', 'quantityDiscounts']);
+        $product->load(['category', 'images', 'colors', 'sizes', 'quantityDiscounts', 'links']);
 
         $availableFeatures = $this->productService->getAvailableFeatures($product);
         $relatedProducts = $this->productService->getRelatedProducts($product);

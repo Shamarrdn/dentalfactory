@@ -549,6 +549,12 @@
                                     </div>
                                 </div>
 
+                                <!-- Product Links Section -->
+                                <div class="col-12">
+                                    @livewire('admin.product-links-manager')
+                                    <input type="hidden" name="productLinks" id="productLinksData">
+                                </div>
+
                                 <!-- Submit Button -->
                                 <div class="col-12">
                                     <div class="card border-0 shadow-sm">
@@ -572,6 +578,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="/assets/css/admin/products.css">
+<link rel="stylesheet" href="{{ asset('assets/css/admin/product-links.css') }}">
 @endsection
 
 @section('scripts')
@@ -871,6 +878,65 @@
         
         // Initial update
         updateRemoveButtons();
+    });
+
+    // Product Links Integration
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default submission temporarily
+                
+                // Get links data from Livewire component
+                if (typeof Livewire !== 'undefined') {
+                    // Find the product links manager component
+                    const linkComponents = Livewire.all().filter(component => 
+                        component.el.querySelector('.product-links-manager')
+                    );
+                    
+                    if (linkComponents.length > 0) {
+                        try {
+                            // Use the global function for better reliability
+                            setTimeout(() => {
+                                let validLinks = [];
+                                
+                                // Try using the global function first
+                                if (typeof window.getProductLinksData === 'function') {
+                                    validLinks = window.getProductLinksData();
+                                } else {
+                                    // Fallback to direct component access
+                                    const linksData = linkComponents[0].get('links') || [];
+                                    validLinks = linksData.filter(link => 
+                                        link.url && link.url.trim() !== '' && 
+                                        link.caption && link.caption.trim() !== ''
+                                    );
+                                }
+                                
+                                console.log('Collected links data:', validLinks);
+                                document.getElementById('productLinksData').value = JSON.stringify(validLinks);
+                                
+                                // Now submit the form
+                                e.target.removeEventListener('submit', arguments.callee);
+                                e.target.submit();
+                            }, 200);
+                        } catch (error) {
+                            console.log('Product links data error:', error);
+                            // Submit anyway if there's an error
+                            e.target.removeEventListener('submit', arguments.callee);
+                            e.target.submit();
+                        }
+                    } else {
+                        // No links component found, submit normally
+                        e.target.removeEventListener('submit', arguments.callee);
+                        e.target.submit();
+                    }
+                } else {
+                    // Livewire not available, submit normally
+                    e.target.removeEventListener('submit', arguments.callee);
+                    e.target.submit();
+                }
+            });
+        }
     });
 </script>
 @endsection

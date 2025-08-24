@@ -235,6 +235,40 @@ class ProductController extends Controller
                 }
             }
 
+            // Handle product links if provided via Livewire component
+            \Log::info('Product Links Data:', ['productLinks' => $request->productLinks]);
+            
+            if ($request->has('productLinks')) {
+                $linksData = is_string($request->productLinks) ? 
+                    json_decode($request->productLinks, true) : 
+                    $request->productLinks;
+                    
+                \Log::info('Parsed Links Data:', ['linksData' => $linksData]);
+                    
+                if (is_array($linksData) && !empty($linksData)) {
+                    foreach ($linksData as $linkData) {
+                        if (!empty($linkData['url']) && !empty($linkData['caption'])) {
+                            // Validate URL format
+                            $url = $linkData['url'];
+                            if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                                // Add https if missing
+                                if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+                                    $url = "https://" . $url;
+                                }
+                            }
+                            
+                            $createdLink = $product->links()->create([
+                                'url' => $url,
+                                'caption' => $linkData['caption'],
+                                'description' => $linkData['description'] ?? null,
+                            ]);
+                            
+                            \Log::info('Created Link:', $createdLink->toArray());
+                        }
+                    }
+                }
+            }
+
             DB::commit();
             return redirect()->route('admin.products.index')
                 ->with('success', 'تم إضافة المنتج بنجاح');
@@ -247,7 +281,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $product->load(['images', 'colors', 'sizes', 'categories', 'relatedProducts.relatedProduct']);
+        $product->load(['images', 'colors', 'sizes', 'categories', 'relatedProducts.relatedProduct', 'links']);
         $categories = Category::all();
         $selectedCategories = $product->categories->pluck('id')->toArray();
         $allProducts = Product::where('is_available', true)
@@ -468,6 +502,42 @@ class ProductController extends Controller
                 }
             }
 
+            // Handle product links update
+            \Log::info('Update Product Links Data:', ['productLinks' => $request->productLinks]);
+            
+            $product->links()->delete(); // Remove all existing links
+            
+            if ($request->has('productLinks')) {
+                $linksData = is_string($request->productLinks) ? 
+                    json_decode($request->productLinks, true) : 
+                    $request->productLinks;
+                    
+                \Log::info('Update Parsed Links Data:', ['linksData' => $linksData]);
+                    
+                if (is_array($linksData) && !empty($linksData)) {
+                    foreach ($linksData as $linkData) {
+                        if (!empty($linkData['url']) && !empty($linkData['caption'])) {
+                            // Validate URL format
+                            $url = $linkData['url'];
+                            if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                                // Add https if missing
+                                if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+                                    $url = "https://" . $url;
+                                }
+                            }
+                            
+                            $createdLink = $product->links()->create([
+                                'url' => $url,
+                                'caption' => $linkData['caption'],
+                                'description' => $linkData['description'] ?? null,
+                            ]);
+                            
+                            \Log::info('Updated Created Link:', $createdLink->toArray());
+                        }
+                    }
+                }
+            }
+
             DB::commit();
             return redirect()->route('admin.products.index')
                 ->with('success', 'تم تحديث المنتج بنجاح');
@@ -495,6 +565,7 @@ class ProductController extends Controller
             $product->orderItems()->delete();
             $product->relatedProducts()->delete();
             $product->relatedByProducts()->delete();
+            $product->links()->delete();
             // Detach relations
             $product->discounts()->detach();
             $product->categories()->detach();

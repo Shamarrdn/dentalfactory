@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class FrequentlyBoughtTogether extends Component
 {
     public $product;
-    public $relatedProducts = [];
+    public $frequentlyBoughtProducts = [];
+    public $recommendedProducts = [];
+    public $similarProducts = [];
     public $selectedProducts = [];
     public $totalPrice = 0;
     public $mainProductPrice = 0;
@@ -33,37 +35,72 @@ class FrequentlyBoughtTogether extends Component
 
     public function loadRelatedProducts()
     {
-        $this->relatedProducts = $this->product
-            ->frequentlyBoughtTogether()
+        // Load frequently bought together products
+        $this->frequentlyBoughtProducts = $this->loadProductsByType('frequently_bought_together');
+        
+        // Load recommended products
+        $this->recommendedProducts = $this->loadProductsByType('recommended');
+        
+        // Load similar products
+        $this->similarProducts = $this->loadProductsByType('similar');
+    }
+
+    private function loadProductsByType($type)
+    {
+        return $this->product
+            ->belongsToMany(Product::class, 'related_products', 'product_id', 'related_product_id')
+            ->wherePivot('type', $type)
             ->with(['images', 'sizes'])
             ->where('is_available', true)
             ->get()
-            ->map(function ($relatedProduct) {
+            ->map(function ($relatedProduct) use ($type) {
+                $baseMinPrice = $relatedProduct->min_price ?? 0;
+                $baseMaxPrice = $relatedProduct->max_price ?? 0;
+                
+                // إضافة الضريبة إلى الأسعار إذا كانت موجودة
+                $minPriceWithTax = $relatedProduct->hasTax() ? $relatedProduct->getPriceWithTax($baseMinPrice) : $baseMinPrice;
+                $maxPriceWithTax = $relatedProduct->hasTax() ? $relatedProduct->getPriceWithTax($baseMaxPrice) : $baseMaxPrice;
+                
                 return [
                     'id' => $relatedProduct->id,
                     'name' => $relatedProduct->name,
-                    'price' => $relatedProduct->min_price ?? 0,
-                    'max_price' => $relatedProduct->max_price ?? 0,
+                    'price' => $minPriceWithTax,
+                    'max_price' => $maxPriceWithTax,
                     'image_url' => $relatedProduct->image_url,
                     'selected' => true, // Default to selected
+                    'type' => $type,
                 ];
             })->toArray();
     }
 
     public function calculateMainProductPrice()
     {
-        $this->mainProductPrice = $this->product->min_price ?? 0;
+        $basePrice = $this->product->min_price ?? 0;
+        // إضافة الضريبة إلى السعر الأساسي إذا كانت موجودة
+        $this->mainProductPrice = $this->product->hasTax() ? $this->product->getPriceWithTax($basePrice) : $basePrice;
     }
 
-    public function toggleProduct($index)
+    public function toggleProduct($type, $index)
     {
-        $this->relatedProducts[$index]['selected'] = !$this->relatedProducts[$index]['selected'];
+        if ($type === 'frequently_bought_together') {
+            $this->frequentlyBoughtProducts[$index]['selected'] = !$this->frequentlyBoughtProducts[$index]['selected'];
+        } elseif ($type === 'recommended') {
+            $this->recommendedProducts[$index]['selected'] = !$this->recommendedProducts[$index]['selected'];
+        } elseif ($type === 'similar') {
+            $this->similarProducts[$index]['selected'] = !$this->similarProducts[$index]['selected'];
+        }
+        
         $this->updateSelectedProducts();
     }
 
     public function updateSelectedProducts()
     {
-        $this->selectedProducts = collect($this->relatedProducts)
+        $allProducts = collect()
+            ->merge(collect($this->frequentlyBoughtProducts))
+            ->merge(collect($this->recommendedProducts))
+            ->merge(collect($this->similarProducts));
+            
+        $this->selectedProducts = $allProducts
             ->where('selected', true)
             ->values()
             ->toArray();
@@ -75,6 +112,13 @@ class FrequentlyBoughtTogether extends Component
     {
         $relatedTotal = collect($this->selectedProducts)->sum('price');
         $this->totalPrice = $this->mainProductPrice + $relatedTotal;
+    }
+
+    public function hasAnyRelatedProducts()
+    {
+        return count($this->frequentlyBoughtProducts) > 0 || 
+               count($this->recommendedProducts) > 0 || 
+               count($this->similarProducts) > 0;
     }
 
     public function addAllToCart()

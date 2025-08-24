@@ -85,6 +85,9 @@
                                     <h4 class="item-name">{{ $item->product->name }}</h4>
                                     <p class="item-price">
                                         {{ $item->unit_price }} ريال × {{ $item->quantity }}
+                                        @if($item->product->hasTax())
+                                          <small class="text-muted">(شامل الضريبة)</small>
+                                        @endif
                                     </p>
                                     @if($item->color || $item->size)
                                     <p class="item-options">
@@ -98,6 +101,9 @@
                                     @endif
                                     <p class="item-subtotal">
                                         الإجمالي: {{ $item->subtotal }} ريال
+                                        @if($item->product->hasTax())
+                                          <small class="text-muted">(شامل الضريبة)</small>
+                                        @endif
                                     </p>
                                 </div>
                             </div>
