@@ -283,14 +283,23 @@
             .sidebar {
                 top: 90px;
                 height: calc(100vh - 90px);
+                transform: translateX(100%);
+            }
+
+            .sidebar.show {
                 transform: translateX(0);
             }
 
             .sidebar-toggle {
-                display: none;
+                display: block;
             }
 
             .main-content {
+                margin-right: 0;
+                transition: margin-right 0.3s ease;
+            }
+
+            .main-content.sidebar-open {
                 margin-right: 280px;
             }
         }
@@ -417,12 +426,7 @@
             transform: rotate(180deg);
         }
 
-        /* Show the dropdown menu on hover on desktop */
-        @media (min-width: 992px) {
-            .dropdown:hover .dropdown-menu {
-                display: block;
-            }
-        }
+        /* Disable hover dropdown to prevent conflicts */
 
         /* Mobile optimizations for dropdown */
         @media (max-width: 991px) {

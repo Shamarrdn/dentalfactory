@@ -29,10 +29,36 @@
                                                 <i class="fas fa-arrow-right me-2"></i>
                                                 عودة للطلبات
                                             </a>
-                                            <button onclick="window.print()" class="btn btn-light-primary">
-                                                <i class="fas fa-print me-2"></i>
-                                                طباعة الطلب
-                                            </button>
+                                            
+                                            <!-- Invoice Dropdown Button -->
+                                            <div class="dropdown">
+                                                <button class="btn btn-gradient-invoice dropdown-toggle" type="button" id="invoiceDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" onclick="toggleInvoiceDropdown()">
+                                                    <i class="fas fa-file-invoice me-2"></i>
+                                                    طباعة الفاتورة
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="invoiceDropdown">
+                                                    <li>
+                                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.orders.invoice.view', $order->uuid) }}" target="_blank">
+                                                            <i class="fas fa-eye text-info me-2"></i>
+                                                            <div>
+                                                                <div class="fw-bold">عرض الفاتورة</div>
+                                                                <small class="text-muted">فتح الفاتورة في نافذة جديدة</small>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li>
+                                                        <button class="dropdown-item d-flex align-items-center" onclick="sendInvoiceByEmail('{{ $order->uuid }}')">
+                                                            <i class="fas fa-envelope text-primary me-2"></i>
+                                                            <div>
+                                                                <div class="fw-bold">إرسال للعميل</div>
+                                                                <small class="text-muted">إرسال نسخة بالإيميل</small>
+                                                            </div>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -446,4 +472,314 @@
 
 @section('styles')
 <link rel="stylesheet" href="/assets/css/admin/orders.css">
+<style>
+    /* Invoice Button Styles */
+    .btn-gradient-invoice {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
+    }
+    
+    .btn-gradient-invoice:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+        color: white;
+    }
+    
+    .btn-gradient-invoice:focus {
+        box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.5);
+        color: white;
+    }
+    
+    /* Dropdown Styles */
+    .dropdown-menu {
+        border: none;
+        border-radius: 12px;
+        padding: 0.5rem 0;
+        min-width: 280px;
+        z-index: 99999 !important;
+        display: none;
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        transform: none !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    .dropdown-menu.show {
+        display: block !important;
+        z-index: 99999 !important;
+    }
+    
+    .dropdown.show .dropdown-menu {
+        display: block !important;
+        z-index: 99999 !important;
+    }
+    
+    /* Force dropdown to appear above everything */
+    .dropdown {
+        position: relative !important;
+        z-index: 10000 !important;
+    }
+    
+    /* Ensure parent containers don't clip the dropdown */
+    .actions,
+    .card,
+    .card-body,
+    .orders-container,
+    .main-content-wrapper,
+    .container-fluid,
+    .content-wrapper,
+    .content-header {
+        overflow: visible !important;
+        z-index: auto !important;
+    }
+    
+    /* Special handling for the specific card that contains the dropdown */
+    .actions .dropdown {
+        position: static !important;
+    }
+    
+    .actions .dropdown-menu {
+        position: fixed !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+    }
+    
+    /* Force dropdown to use body as boundary */
+    body {
+        overflow-x: visible !important;
+    }
+    
+    .dropdown-item {
+        padding: 0.75rem 1rem;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .dropdown-item:hover {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        transform: translateX(5px);
+    }
+    
+    .dropdown-item i {
+        width: 20px;
+        text-align: center;
+    }
+    
+    /* Toast Notification */
+    .toast-success {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        border: none;
+    }
+    
+    .toast-success .toast-header {
+        background: transparent;
+        border: none;
+        color: white;
+    }
+    
+    .toast-success .btn-close {
+        filter: brightness(0) invert(1);
+    }
+</style>
+@endsection
+
+@section('scripts')
+<script>
+    // Initialize Invoice Dropdown
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOMContentLoaded fired');
+        
+        // Check if Bootstrap is loaded
+        if (typeof bootstrap !== 'undefined') {
+            console.log('Bootstrap is available:', bootstrap);
+            
+            // Find dropdown button
+            const dropdownButton = document.querySelector('#invoiceDropdown');
+            console.log('Dropdown button found:', dropdownButton);
+            
+            if (dropdownButton) {
+                // Initialize dropdown manually
+                try {
+                    const dropdown = new bootstrap.Dropdown(dropdownButton, {
+                        boundary: 'viewport',
+                        offset: [0, 2],
+                        display: 'dynamic'
+                    });
+                    console.log('Dropdown initialized successfully:', dropdown);
+                    
+                    // Add click event listener as backup
+                    dropdownButton.addEventListener('click', function(e) {
+                        console.log('Dropdown button clicked');
+                        e.preventDefault();
+                        dropdown.toggle();
+                    });
+                    
+                } catch (error) {
+                    console.error('Error initializing dropdown:', error);
+                }
+            } else {
+                console.error('Dropdown button not found');
+            }
+        } else {
+            console.error('Bootstrap is not loaded');
+        }
+        
+        // Alternative initialization method
+        setTimeout(function() {
+            const allDropdowns = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+            console.log('All dropdown elements found:', allDropdowns.length);
+            
+            allDropdowns.forEach(function(element) {
+                if (!element.classList.contains('dropdown-initialized')) {
+                    try {
+                        new bootstrap.Dropdown(element);
+                        element.classList.add('dropdown-initialized');
+                        console.log('Dropdown initialized for element:', element);
+                    } catch (error) {
+                        console.error('Error initializing dropdown element:', error);
+                    }
+                }
+            });
+        }, 100);
+    });
+    
+    // Manual Dropdown Toggle (Backup Solution)
+    window.toggleInvoiceDropdown = function() {
+        const dropdown = document.querySelector('#invoiceDropdown').closest('.dropdown');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+            menu.classList.remove('show');
+            menu.style.display = 'none';
+        } else {
+            // Close any other open dropdowns first
+            document.querySelectorAll('.dropdown.show').forEach(d => {
+                d.classList.remove('show');
+                const m = d.querySelector('.dropdown-menu');
+                if (m) {
+                    m.classList.remove('show');
+                    m.style.display = 'none';
+                }
+            });
+            
+            dropdown.classList.add('show');
+            menu.classList.add('show');
+            menu.style.display = 'block';
+            
+            // Calculate position relative to viewport
+            const buttonRect = dropdown.getBoundingClientRect();
+            const menuWidth = 280; // min-width from CSS
+            
+            // Force positioning
+            menu.style.position = 'fixed';
+            menu.style.top = (buttonRect.bottom + 5) + 'px';
+            menu.style.left = (buttonRect.right - menuWidth) + 'px';
+            menu.style.right = 'auto';
+            menu.style.zIndex = '99999';
+            menu.style.transform = 'none';
+            menu.style.width = menuWidth + 'px';
+            
+            // Ensure it's not off-screen
+            if (buttonRect.right - menuWidth < 10) {
+                menu.style.left = '10px';
+                menu.style.right = 'auto';
+            }
+            
+            console.log('Dropdown positioned at:', {
+                top: menu.style.top,
+                left: menu.style.left,
+                width: menu.style.width
+            });
+        }
+    };
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('#invoiceDropdown').closest('.dropdown');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove('show');
+            menu.classList.remove('show');
+            menu.style.display = 'none';
+        }
+    });
+
+    // Send Invoice by Email Function
+    async function sendInvoiceByEmail(orderUuid) {
+        try {
+            // Show loading state
+            const button = event.target.closest('.dropdown-item');
+            const originalContent = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i><div><div class="fw-bold">جاري الإرسال...</div><small class="text-muted">يرجى الانتظار</small></div>';
+            button.disabled = true;
+            
+            // Send request
+            const response = await fetch(`{{ route('admin.orders.invoice.send', '') }}/${orderUuid}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
+            
+            const result = await response.json();
+            
+            // Restore button
+            button.innerHTML = originalContent;
+            button.disabled = false;
+            
+            if (response.ok) {
+                // Show success notification
+                showNotification('تم إرسال الفاتورة بنجاح!', 'تم إرسال نسخة من الفاتورة إلى بريد العميل الإلكتروني', 'success');
+            } else {
+                // Show error notification
+                showNotification('خطأ في الإرسال', result.message || 'حدث خطأ أثناء إرسال الفاتورة', 'error');
+            }
+        } catch (error) {
+            console.error('Error sending invoice:', error);
+            showNotification('خطأ في الإرسال', 'حدث خطأ غير متوقع', 'error');
+        }
+    }
+    
+    // Show Notification Function
+    function showNotification(title, message, type = 'success') {
+        // Remove existing toasts
+        const existingToasts = document.querySelectorAll('.toast');
+        existingToasts.forEach(toast => toast.remove());
+        
+        // Create toast HTML
+        const toastHtml = `
+            <div class="toast toast-${type}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+                <div class="toast-header">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                    <strong class="me-auto">${title}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    ${message}
+                </div>
+            </div>
+        `;
+        
+        // Add to page
+        document.body.insertAdjacentHTML('beforeend', toastHtml);
+        
+        // Initialize and show
+        const toastElement = document.querySelector('.toast:last-child');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
+</script>
 @endsection

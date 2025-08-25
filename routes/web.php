@@ -120,6 +120,15 @@ Route::middleware([
             Route::get('/', [OrderController::class, 'index'])->name('index');
             Route::get('/{order:uuid}', [OrderController::class, 'show'])->name('show');
         });
+
+        // Customer Invoice Routes
+        Route::prefix('customer/orders')->name('customer.orders.')->group(function () {
+            Route::prefix('{uuid}/invoice')->name('invoice.')->group(function () {
+                Route::get('/view', [App\Http\Controllers\Customer\InvoiceController::class, 'view'])->name('view');
+                Route::post('/send', [App\Http\Controllers\Customer\InvoiceController::class, 'sendByEmail'])->name('send');
+                Route::get('/data', [App\Http\Controllers\Customer\InvoiceController::class, 'getData'])->name('data');
+            });
+        });
     });
 
     // Admin Routes
@@ -153,6 +162,14 @@ Route::middleware([
                 Route::patch('/orders/{order:uuid}/payment', [AdminOrderController::class, 'updatePayment'])
                     ->name('orders.update-payment');
                 Route::get('/sales-statistics', [AdminOrderController::class, 'salesStatistics'])->name('sales.statistics');
+                
+                // Invoice Routes
+                Route::prefix('orders/{uuid}/invoice')->name('orders.invoice.')->group(function () {
+                    Route::get('/view', [App\Http\Controllers\Admin\InvoiceController::class, 'view'])->name('view');
+                    Route::get('/download', [App\Http\Controllers\Admin\InvoiceController::class, 'download'])->name('download');
+                    Route::post('/send', [App\Http\Controllers\Admin\InvoiceController::class, 'sendByEmail'])->name('send');
+                    Route::get('/data', [App\Http\Controllers\Admin\InvoiceController::class, 'getData'])->name('data');
+                });
             });
 
             // Reports Management

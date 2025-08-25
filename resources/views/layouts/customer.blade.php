@@ -225,9 +225,9 @@
                 // Adjust main content margin for desktop
                 if ($(window).width() >= 992) {
                     if (sidebar.hasClass('show')) {
-                        mainContent.css('margin-right', '280px');
+                        mainContent.addClass('sidebar-open');
                     } else {
-                        mainContent.css('margin-right', '0');
+                        mainContent.removeClass('sidebar-open');
                     }
                 }
             });
@@ -249,9 +249,9 @@
 
                 if ($(window).width() >= 992) {
                     sidebar.removeClass('show');
-                    mainContent.css('margin-right', '280px');
+                    mainContent.removeClass('sidebar-open');
                 } else {
-                    mainContent.css('margin-right', '0');
+                    mainContent.removeClass('sidebar-open');
                 }
             });
         });

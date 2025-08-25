@@ -40,9 +40,11 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     padding: 2rem 0;
-    margin-top:2.5rem ;
     margin-bottom: 2.5rem;
     box-shadow: none;
+    overflow: visible !important; /* Allow dropdowns to show */
+    position: relative;
+    z-index: 2;
 }
 
 .page-title {
@@ -78,19 +80,37 @@ body {
     border-radius: 20px;
     border: 1px solid var(--border-color);
     box-shadow: none;
-    margin-bottom: 2rem;
-    overflow: hidden;
+    margin-bottom: 4rem; /* زيادة المسافة بين الكروت */
+    padding-bottom: 2rem; /* إضافة padding في الأسفل */
+    overflow: visible !important; /* Allow dropdowns to show */
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 100%;
 }
 
 .order-card:hover {
+    z-index: 20;
     box-shadow: none;
     border-color: rgba(108, 92, 231, 0.3);
 }
 
 .order-header {
     padding: 1.75rem;
+    padding-bottom: 4rem; /* مساحة إضافية في الأسفل للـ dropdown */
     border-bottom: 1px solid var(--border-color);
     background: linear-gradient(45deg, rgba(108, 92, 231, 0.08), transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow: visible !important;
+    min-height: 8rem; /* ضمان ارتفاع كافي */
+}
+
+.order-info {
+    flex: 0 0 auto;
 }
 
 .order-icon {
@@ -114,19 +134,26 @@ body {
 }
 
 .order-number {
-    font-weight: 600;
-    color: #333;
+    font-weight: 700;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    text-shadow: 0 1px 2px rgba(0, 146, 69, 0.1);
 }
 
 .order-meta {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     color: var(--text-light);
     font-size: 1rem;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 10;
+    overflow: visible !important;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .order-date, .order-total {
@@ -156,9 +183,13 @@ body {
 }
 
 .order-total {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    background: rgba(0, 146, 69, 0.1);
+    border: 2px solid rgba(0, 146, 69, 0.2);
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
 }
 
 /* Status Badges */
@@ -199,7 +230,18 @@ body {
 
 /* Order Items */
 .order-details {
-    padding: 1.75rem;
+    padding: 1.5rem;
+    margin-top: 0;
+}
+
+.order-details .row {
+    margin: 0 -0.5rem;
+    gap: 0;
+}
+
+.order-details .col-md-3 {
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .order-item {
@@ -208,10 +250,11 @@ body {
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid var(--border-color);
     border-radius: 15px;
-    padding: 1.25rem;
+    padding: 1rem;
     height: 100%;
     display: flex;
     flex-direction: column;
+    max-height: 320px;
 }
 
 .order-item:hover {
@@ -221,25 +264,31 @@ body {
 
 .item-image {
     width: 100%;
-    height: 200px;
+    height: 140px;
     object-fit: contain;
     border-radius: 12px;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     border: 1px solid var(--border-color);
     background: white;
     padding: 0.5rem;
 }
 
 .item-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .item-price {
     color: var(--text-light);
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -249,10 +298,10 @@ body {
 .item-subtotal {
     color: var(--primary-color);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-top: auto;
     background: rgba(108, 92, 231, 0.08);
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 12px;
     text-align: center;
 }
@@ -384,6 +433,37 @@ body {
     font-size: 1.1rem;
 }
 
+/* Desktop specific fixes */
+@media (min-width: 992px) {
+    .container {
+        max-width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 4rem; /* مساحة إضافية في الأسفل */
+        overflow: visible !important;
+    }
+
+    .order-card {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 5rem; /* مساحة أكبر بين الكروت على الديسكتوب */
+    }
+
+    .header-container .container {
+        max-width: 100%;
+        overflow: visible !important;
+    }
+
+    main.container {
+        max-width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 5rem; /* مساحة إضافية في الأسفل */
+        overflow: visible !important;
+        min-height: calc(100vh - 200px); /* ضمان ارتفاع كافي */
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-container {
@@ -404,17 +484,72 @@ body {
         width: 100%;
     }
 
-    .order-meta .btn-primary {
+    .order-header {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .order-meta {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .order-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0;
+        justify-content: stretch;
+    }
+
+    .order-actions .btn-primary,
+    .invoice-dropdown {
+        width: 100%;
+    }
+
+    .invoice-dropdown .dropdown-toggle {
         width: 100%;
         justify-content: center;
     }
 
+    .order-date, .order-total, .order-discount {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .order-details {
+        padding: 1rem;
+    }
+
+    .order-details .col-md-3 {
+        padding: 0 0.25rem;
+        margin-bottom: 0.75rem;
+    }
+
     .order-item {
-        margin-bottom: 1.5rem;
+        padding: 0.75rem;
+        max-height: 280px;
     }
 
     .item-image {
-        height: 150px;
+        height: 120px;
+        margin-bottom: 0.75rem;
+    }
+
+    .item-name {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .item-price {
+        font-size: 0.8rem;
+    }
+
+    .item-subtotal {
+        font-size: 1rem;
+        padding: 0.4rem 0.6rem;
     }
 
     .empty-state {
@@ -466,15 +601,141 @@ body {
     background: var(--secondary-color);
 }
 
-/* Add specific styles for the view details button */
-.order-meta .btn-primary {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    margin-right: auto; /* Push button to the right */
+/* Order Actions */
+.order-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 50;
+    overflow: visible !important;
+    margin-top: 1rem;
+    margin-bottom: 3rem; /* إضافة مساحة في الأسفل للـ dropdown */
+    padding-bottom: 2rem; /* مساحة إضافية */
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 4rem; /* ضمان ارتفاع كافي */
 }
 
-.order-meta .btn-primary i {
+.order-actions .btn-primary {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 146, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.order-actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 146, 69, 0.3);
+}
+
+.order-actions .btn-primary i {
     font-size: 1.1rem;
+    margin-left: 0.5rem;
+}
+
+/* Invoice Dropdown Specific Styles */
+.invoice-dropdown {
+    position: relative;
+    z-index: 50;
+    display: inline-block !important;
+}
+
+.invoice-dropdown .dropdown-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem !important;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #007bff;
+    color: #007bff;
+    background: transparent;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.invoice-dropdown .dropdown-toggle:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.invoice-dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 9999;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    min-width: 220px;
+    margin-top: 5px;
+    margin-bottom: 2rem; /* مساحة في الأسفل */
+    display: none;
+    max-height: none; /* إلغاء تحديد الارتفاع */
+}
+
+.invoice-dropdown .dropdown-menu.show {
+    display: block;
+}
+
+.invoice-dropdown .dropdown-item {
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.invoice-dropdown .dropdown-item:hover {
+    background: #f8f9fa;
+    color: #007bff;
+}
+
+.invoice-dropdown .dropdown-item i {
+    width: 20px;
+    text-align: center;
+    margin-left: 0.5rem;
+}
+
+/* Fix dropdown behavior */
+.dropdown-menu[data-bs-popper] {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.dropdown:not(.show) .dropdown-menu {
+    display: none !important;
+}
+
+.dropdown.show .dropdown-menu {
+    display: block !important;
+}
+
+/* Ensure dropdown is always on top when open */
+.dropdown.show {
+    z-index: 9999 !important;
+}
+
+.dropdown.show .dropdown-menu {
+    z-index: 10000 !important;
+    position: absolute !important;
+}
+
+/* Force all other cards to lower z-index when dropdown is open */
+.order-card:has(.dropdown.show) {
+    z-index: 100 !important;
+}
+
+.order-card:has(.dropdown.show) ~ .order-card {
+    z-index: 5 !important;
 }
 
 /* Order Tracking Timeline - Enhanced */

@@ -1,0 +1,269 @@
+/* Invoice Dropdown Buttons Styles for Customer Pages */
+
+.invoice-dropdown .dropdown-menu {
+    border: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 220px;
+    animation: fadeInScale 0.2s ease-out;
+    z-index: 99999 !important;
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+}
+
+.invoice-dropdown .dropdown-item {
+    padding: 12px 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: right;
+    color: #2d3748;
+}
+
+.invoice-dropdown .dropdown-item:hover {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    transform: translateX(-3px);
+    color: #2d3748;
+}
+
+.invoice-dropdown .dropdown-item i {
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+.invoice-dropdown .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 13px;
+}
+
+.invoice-dropdown .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    color: white;
+}
+
+.invoice-dropdown .btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    color: white;
+}
+
+/* Order Actions Container */
+.order-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.order-actions .btn {
+    white-space: nowrap;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.header-actions .invoice-dropdown .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Notification Toast Styles */
+.notification-toast {
+    font-family: 'Tajawal', 'Noto Sans Arabic', Arial, sans-serif;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Loading State */
+.btn .bi-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Force visibility for all invoice elements */
+.invoice-dropdown,
+.invoice-dropdown .btn,
+.invoice-dropdown .dropdown-menu,
+.header-actions,
+.order-actions {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1000 !important;
+}
+
+/* Fix z-index and overflow issues */
+.invoice-dropdown {
+    position: relative !important;
+    z-index: 10000 !important;
+}
+
+.order-card,
+.header-container,
+.container,
+.main-content,
+.order-header,
+.order-meta {
+    overflow: visible !important;
+    z-index: auto !important;
+}
+
+.invoice-dropdown .dropdown-menu.show {
+    display: block !important;
+    z-index: 99999 !important;
+    position: absolute !important;
+}
+
+.header-actions .dropdown {
+    display: inline-block !important;
+}
+
+.order-actions .dropdown {
+    display: inline-block !important;
+}
+
+/* Ensure buttons are visible */
+.btn.btn-outline-primary {
+    background: transparent !important;
+    border: 2px solid #007bff !important;
+    color: #007bff !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn.btn-outline-primary:hover {
+    background: #007bff !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .order-actions {
+        flex-direction: row;
+        width: 100%;
+        gap: 8px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    
+    .order-actions .btn,
+    .order-actions .dropdown {
+        flex: 1;
+        min-width: 48%;
+        font-size: 14px;
+    }
+    
+    .order-actions .dropdown-menu {
+        width: 100%;
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .header-actions .dropdown,
+    .header-actions .btn {
+        width: 100%;
+    }
+    
+    .invoice-dropdown .btn {
+        padding: 10px 15px;
+        font-size: 12px;
+        width: 100%;
+    }
+    
+    .invoice-dropdown .dropdown-item {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .invoice-dropdown .dropdown-menu {
+        min-width: 180px;
+    }
+    
+    .invoice-dropdown .dropdown-item {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .notification-toast {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .invoice-dropdown .dropdown-item {
+    text-align: right;
+}
+
+[dir="rtl"] .invoice-dropdown .dropdown-item:hover {
+    transform: translateX(3px);
+}
+
+[dir="rtl"] .invoice-dropdown .dropdown-item i {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+/* Print Styles */
+@media print {
+    .invoice-dropdown,
+    .order-actions,
+    .header-actions,
+    .no-print {
+        display: none !important;
+    }
+}
