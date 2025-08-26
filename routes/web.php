@@ -20,6 +20,8 @@ use App\Http\Controllers\{
     PolicyController,
     HomeController,
     HomeFormController,
+    NewsController,
+    AchievementController,
 };
 
 // Admin Controllers
@@ -30,7 +32,9 @@ use App\Http\Controllers\Admin\{
     ReportController as AdminReportController,
     DashboardController as AdminDashboardController,
     CouponController,
-    QuantityDiscountController
+    QuantityDiscountController,
+    NewsController as AdminNewsController,
+    AchievementController as AdminAchievementController
 };
 
 // Public Routes
@@ -61,6 +65,18 @@ Route::prefix('products')->name('products.')->group(function () {
     Route::get('/{product}', [ProductController::class, 'show'])->name('show');
 });
 
+// News Routes (Public)
+Route::prefix('news')->name('news.')->group(function () {
+    Route::get('/', [NewsController::class, 'index'])->name('index');
+    Route::get('/{news:slug}', [NewsController::class, 'show'])->name('show');
+});
+
+// Achievements Routes (Public)
+Route::prefix('achievements')->name('achievements.')->group(function () {
+    Route::get('/', [AchievementController::class, 'index'])->name('index');
+    Route::get('/{achievement:slug}', [AchievementController::class, 'show'])->name('show');
+});
+
 // Auth Routes
 Route::middleware([
     'auth:sanctum',
@@ -80,8 +96,8 @@ Route::middleware([
         Route::post('/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('mark-all-read');
     });
 
-    // Customer Routes
-    Route::middleware(['role:customer'])->group(function () {
+    // Customer Routes - Allow both admin and customer roles
+    Route::middleware(['role:customer|admin'])->group(function () {
 
 
         // Phones
@@ -179,6 +195,27 @@ Route::middleware([
 
             // Quantity Discounts Routes
             Route::resource('quantity-discounts', QuantityDiscountController::class);
+
+            // News Management Routes
+            Route::patch('news/{id}/toggle-status', [AdminNewsController::class, 'toggleStatusById'])->name('news.toggle-status');
+            Route::resource('news', AdminNewsController::class);
+
+            // Achievements Management Routes
+            Route::patch('achievements/{id}/toggle-status', [AdminAchievementController::class, 'toggleStatusById'])->name('achievements.toggle-status');
+            Route::resource('achievements', AdminAchievementController::class);
+
+            // Pages Management Routes
+            Route::patch('pages/{page}/toggle-status', [App\Http\Controllers\Admin\PageController::class, 'toggleStatus'])->name('pages.toggle-status');
+            Route::post('pages/update-order', [App\Http\Controllers\Admin\PageController::class, 'updateOrder'])->name('pages.update-order');
+            Route::post('pages/upload-image', [App\Http\Controllers\Admin\PageController::class, 'uploadImage'])->name('pages.upload-image');
+            Route::resource('pages', App\Http\Controllers\Admin\PageController::class);
+
+            // Settings Management Routes
+            Route::prefix('settings')->name('settings.')->group(function () {
+                Route::get('general', [App\Http\Controllers\Admin\SettingsController::class, 'general'])->name('general');
+                Route::post('general', [App\Http\Controllers\Admin\SettingsController::class, 'updateGeneral'])->name('general.update');
+                Route::post('test-map', [App\Http\Controllers\Admin\SettingsController::class, 'testEmbeddedMap'])->name('test-map');
+            });
         });
 });
 
@@ -211,5 +248,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/policy', [PolicyController::class, 'index'])->name('policy');
+
+// Static Pages Routes - should be at the end to avoid conflicts
+Route::get('/page/{slug}', [App\Http\Controllers\PageController::class, 'show'])->name('page.show');
+
 Route::post('/admin/update-fcm-token', [App\Http\Controllers\Admin\DashboardController::class, 'updateFcmToken'])
     ->middleware(['auth', 'admin']);

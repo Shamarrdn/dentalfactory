@@ -14,10 +14,19 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Auth::user()->orders()
-            ->with(['items.product'])
-            ->latest()
-            ->paginate(10);
+        $user = Auth::user();
+
+        // If user is admin, show all orders. If customer, show only their orders
+        if ($user->hasRole('admin')) {
+            $orders = Order::with(['items.product', 'user'])
+                ->latest()
+                ->paginate(10);
+        } else {
+            $orders = $user->orders()
+                ->with(['items.product'])
+                ->latest()
+                ->paginate(10);
+        }
 
         return view('orders.index', compact('orders'));
     }
@@ -27,6 +36,7 @@ class OrderController extends Controller
         $this->authorize('view', $order);
 
         $order->load(['items.product']);
+
         return view('orders.show', compact('order'));
     }
 

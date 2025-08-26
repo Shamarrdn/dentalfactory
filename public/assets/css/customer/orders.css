@@ -80,8 +80,8 @@ body {
     border-radius: 20px;
     border: 1px solid var(--border-color);
     box-shadow: none;
-    margin-bottom: 4rem; /* زيادة المسافة بين الكروت */
-    padding-bottom: 2rem; /* إضافة padding في الأسفل */
+    margin-bottom: 0.2rem; /* تقليل المسافة بين الكروت */
+    padding-bottom: 0.1rem; /* تقليل padding في الأسفل */
     overflow: visible !important; /* Allow dropdowns to show */
     position: relative;
     z-index: 10;
@@ -96,8 +96,8 @@ body {
 }
 
 .order-header {
-    padding: 1.75rem;
-    padding-bottom: 4rem; /* مساحة إضافية في الأسفل للـ dropdown */
+    padding: 1rem;
+    padding-bottom: 1rem; /* تقليل مساحة الأسفل */
     border-bottom: 1px solid var(--border-color);
     background: linear-gradient(45deg, rgba(108, 92, 231, 0.08), transparent);
     display: flex;
@@ -106,7 +106,7 @@ body {
     flex-wrap: wrap;
     gap: 1rem;
     overflow: visible !important;
-    min-height: 8rem; /* ضمان ارتفاع كافي */
+    min-height: 4rem; /* تقليل الارتفاع المطلوب */
 }
 
 .order-info {
@@ -114,8 +114,8 @@ body {
 }
 
 .order-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: rgba(108, 92, 231, 0.1);
     border-radius: 15px;
     display: flex;
@@ -230,7 +230,7 @@ body {
 
 /* Order Items */
 .order-details {
-    padding: 1.5rem;
+    padding: 1rem;
     margin-top: 0;
 }
 
@@ -241,7 +241,7 @@ body {
 
 .order-details .col-md-3 {
     padding: 0 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .order-item {
@@ -250,11 +250,11 @@ body {
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid var(--border-color);
     border-radius: 15px;
-    padding: 1rem;
+    padding: 0.75rem;
     height: 100%;
     display: flex;
     flex-direction: column;
-    max-height: 320px;
+    max-height: 280px;
 }
 
 .order-item:hover {

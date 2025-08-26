@@ -56,6 +56,20 @@
                             <li><a class="dropdown-item {{ request()->is('products*') ? 'active' : '' }}" href="/products">
                                 <i class="fas fa-tshirt ms-1"></i>المنتجات
                             </a></li>
+                            <li><a class="dropdown-item {{ request()->is('news*') ? 'active' : '' }}" href="{{ route('news.index') }}">
+                                <i class="fas fa-newspaper ms-1"></i>الأخبار
+                            </a></li>
+                            <li><a class="dropdown-item {{ request()->is('achievements*') ? 'active' : '' }}" href="{{ route('achievements.index') }}">
+                                <i class="fas fa-trophy ms-1"></i>الإنجازات
+                            </a></li>
+                            @php
+                                $companyProfilePage = \App\Models\Page::where('slug', 'company-profile')->published()->first();
+                            @endphp
+                            @if($companyProfilePage)
+                            <li><a class="dropdown-item {{ request()->is('page/company-profile') ? 'active' : '' }}" href="{{ route('page.show', 'company-profile') }}">
+                                <i class="fas fa-building ms-1"></i>الملف التعريفي للشركة
+                            </a></li>
+                            @endif
                             <li><a class="dropdown-item {{ request()->is('about*') ? 'active' : '' }}" href="/about">
                                 <i class="fas fa-info-circle ms-1"></i>من نحن
                             </a></li>
@@ -82,7 +96,15 @@
                     </li>
                 </ul>
                 <div class="nav-buttons d-flex align-items-center">
-                    <a href="/cart" class="btn btn-link position-relative">
+                    <a href="{{ route('news.index') }}" class="btn btn-link ms-2" title="الأخبار">
+                        <i class="fas fa-newspaper"></i>
+                        <span class="d-none d-md-inline">الأخبار</span>
+                    </a>
+                    <a href="{{ route('achievements.index') }}" class="btn btn-link ms-2" title="الإنجازات">
+                        <i class="fas fa-trophy"></i>
+                        <span class="d-none d-md-inline">الإنجازات</span>
+                    </a>
+                    <a href="/cart" class="btn btn-link position-relative ms-2">
                         <i class="fas fa-shopping-cart"></i>
                         @if($stats['cart_items_count'] > 0)
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -128,6 +150,18 @@
                     <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="/products">
                         <i class="fas fa-shopping-bag"></i>
                         المنتجات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('news*') ? 'active' : '' }}" href="{{ route('news.index') }}">
+                        <i class="fas fa-newspaper"></i>
+                        الأخبار
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('achievements*') ? 'active' : '' }}" href="{{ route('achievements.index') }}">
+                        <i class="fas fa-trophy"></i>
+                        الإنجازات
                     </a>
                 </li>
                 <li class="nav-item">

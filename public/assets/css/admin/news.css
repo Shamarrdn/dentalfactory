@@ -1,0 +1,354 @@
+/* Admin News Styles */
+
+/* News Index Page */
+.news-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+/* Image Preview */
+#imagePreview img {
+    border: 2px dashed #dee2e6;
+    padding: 10px;
+    background: #f8f9fa;
+}
+
+/* Character Counter */
+.char-counter {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.char-counter.text-danger {
+    font-weight: 600;
+}
+
+/* Status Badges */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+
+/* Button Groups */
+.btn-group .btn {
+    border-radius: 0;
+}
+
+.btn-group .btn:first-child {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+}
+
+.btn-group .btn:last-child {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+/* Table Responsive */
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+    padding: 1rem 0.75rem;
+}
+
+.table td {
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Empty State */
+.empty-state i {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Widget Styles */
+.sidebar-widget {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+/* Publishing Options */
+.publishing-options .form-control,
+.publishing-options .form-select {
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+}
+
+/* Image Upload Area */
+.image-upload-area {
+    border: 2px dashed #ced4da;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.image-upload-area:hover {
+    border-color: #007bff;
+    background: #e7f3ff;
+}
+
+.image-upload-area.drag-over {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+/* Quill.js Overrides */
+.ql-toolbar {
+    border-radius: 0.5rem 0.5rem 0 0;
+    border: 1px solid #ced4da;
+    border-bottom: none;
+    background: #f8f9fa;
+}
+
+.ql-container {
+    border-radius: 0 0 0.5rem 0.5rem;
+    border: 1px solid #ced4da;
+    font-family: 'Tajawal', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.ql-editor {
+    direction: rtl;
+    text-align: right;
+    line-height: 1.6;
+}
+
+.ql-editor.ql-blank::before {
+    color: #6c757d;
+    font-style: normal;
+    right: 15px;
+    left: auto;
+}
+
+/* RTL Support for Quill */
+.ql-toolbar .ql-align .ql-picker-options {
+    direction: rtl;
+}
+
+.ql-snow .ql-picker-options {
+    direction: rtl;
+}
+
+/* Focus State */
+.ql-container.ql-snow:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* News Show Page */
+.article-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.article-title {
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
+.article-meta .meta-item {
+    background: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #6c757d;
+    border: 1px solid #e9ecef;
+}
+
+/* SEO Preview */
+.seo-preview {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f8f9fa;
+}
+
+.seo-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.seo-url {
+    margin-bottom: 0.5rem;
+}
+
+.seo-description {
+    line-height: 1.4;
+}
+
+/* Quick Actions */
+.quick-actions .btn {
+    margin-bottom: 0.5rem;
+    text-align: right;
+}
+
+/* Search and Filters */
+.filters-card {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.filters-card .form-control,
+.filters-card .form-select {
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+/* Pagination */
+.pagination {
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.pagination .page-link {
+    border-radius: 0.5rem;
+    margin: 0 0.25rem;
+    color: #007bff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination .page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.25rem;
+    }
+    
+    .article-header {
+        padding: 1rem;
+    }
+    
+    .sidebar-widget {
+        padding: 1rem;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #007bff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

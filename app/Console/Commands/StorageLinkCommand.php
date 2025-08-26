@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -11,7 +11,7 @@ class StorageLinkCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'storage:link {--relative : Create the symbolic link using relative paths}';
+    protected $signature = 'custom:storage-link {--relative : Create the symbolic link using relative paths}';
 
     /**
      * The console command description.

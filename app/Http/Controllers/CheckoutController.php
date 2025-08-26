@@ -13,6 +13,10 @@ use App\Exceptions\CheckoutException;
 use App\Notifications\OrderCreated;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Mail\InvoiceEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CheckoutController extends Controller
 {
@@ -280,8 +284,11 @@ class CheckoutController extends Controller
         } catch (\Exception $e) {
         }
 
+        // إرسال الفاتورة عبر البريد الإلكتروني
+        $this->sendInvoiceEmail($order);
+
         return redirect()->route('orders.show', $order)
-          ->with('success', 'تم إنشاء الطلب بنجاح');
+          ->with('success', 'تم تأكيد طلبك بنجاح وتم إرسال الفاتورة إلى بريدك الإلكتروني');
       });
     } catch (ValidationException $e) {
       return back()->withErrors($e->errors())->withInput();
@@ -294,5 +301,94 @@ class CheckoutController extends Controller
         ->withInput()
         ->withErrors(['error' => 'حدث خطأ غير متوقع. الرجاء المحاولة مرة أخرى أو الاتصال بالدعم الفني.']);
     }
+  }
+
+  /**
+   * Send invoice email to customer after order confirmation
+   */
+  private function sendInvoiceEmail(Order $order)
+  {
+    try {
+      // Load order relationships for invoice data
+      $order->load(['items.product.images', 'user']);
+
+      // Check if user has valid email
+      if (!$order->user || !$order->user->email || $order->user->email === 'customer@example.com') {
+        Log::warning('Invalid email for invoice sending', [
+          'order_id' => $order->id,
+          'email' => $order->user ? $order->user->email : 'null'
+        ]);
+        return;
+      }
+
+      // Prepare invoice data
+      $invoiceData = $this->getInvoiceData($order);
+
+      // Generate PDF content
+      $pdf = Pdf::loadView('customer.invoices.template', $invoiceData)
+        ->setPaper('a4', 'portrait')
+        ->setOptions([
+          'defaultFont' => 'Arial',
+          'isHtml5ParserEnabled' => true,
+          'isRemoteEnabled' => true,
+          'dpi' => 150,
+          'defaultPaperSize' => 'a4',
+          'chroot' => public_path()
+        ]);
+
+      // Get PDF content as string
+      $pdfContent = $pdf->output();
+      $fileName = 'فاتورة-الطلب-' . $order->order_number . '.pdf';
+
+      // Send email with PDF attachment
+      Mail::to($order->user->email)->send(new InvoiceEmail($order, $pdfContent, $fileName));
+
+      Log::info('Invoice sent successfully after order confirmation', [
+        'order_id' => $order->id,
+        'email' => $order->user->email
+      ]);
+
+    } catch (\Exception $e) {
+      Log::error('Failed to send invoice email after order confirmation', [
+        'order_id' => $order->id,
+        'message' => $e->getMessage(),
+        'file' => $e->getFile(),
+        'line' => $e->getLine()
+      ]);
+    }
+  }
+
+  /**
+   * Get invoice data for PDF generation
+   */
+  private function getInvoiceData(Order $order)
+  {
+    // Calculate totals
+    $subtotal = $order->items->sum('subtotal');
+    $totalTax = 0;
+    
+    foreach ($order->items as $item) {
+      if ($item->product && method_exists($item->product, 'hasTax') && $item->product->hasTax()) {
+        $itemTax = ($item->subtotal * $item->product->tax_rate) / (100 + $item->product->tax_rate);
+        $totalTax += $itemTax;
+      }
+    }
+
+    return [
+      'order' => $order,
+      'subtotal' => $subtotal,
+      'totalTax' => $totalTax,
+      'finalTotal' => $order->total_amount,
+      'customer' => $order->user,
+      'items' => $order->items,
+      'storeInfo' => [
+        'name' => 'مصنع منتجات الأسنان',
+        'logo' => '🦷',
+        'address' => 'المملكة العربية السعودية',
+        'phone' => '+966 XX XXX XXXX',
+        'email' => 'info@dentalfactory.com',
+        'website' => 'www.dentalfactory.com'
+      ]
+    ];
   }
 }

@@ -103,6 +103,29 @@
                     </div>
                 </div>
 
+                <!-- News Section -->
+                <div class="nav-section">
+                    <div class="nav-section-title">المحتوى</div>
+                    <div class="nav-item">
+                        <a href="{{ route('admin.news.index') }}" class="nav-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+                            <i class="fas fa-newspaper"></i>
+                            <span class="nav-title">الأخبار</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{{ route('admin.achievements.index') }}" class="nav-link {{ request()->routeIs('admin.achievements.*') ? 'active' : '' }}">
+                            <i class="fas fa-trophy"></i>
+                            <span class="nav-title">الإنجازات</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{{ route('admin.pages.index') }}" class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
+                            <i class="fas fa-file-alt"></i>
+                            <span class="nav-title">إدارة الصفحات</span>
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Reports Section -->
                 <div class="nav-section">
                     <div class="nav-section-title">التقارير</div>
@@ -110,6 +133,17 @@
                         <a href="{{ route('admin.reports.index') }}" class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
                             <i class="fas fa-chart-bar"></i>
                             <span class="nav-title">التقارير</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="nav-section">
+                    <div class="nav-section-title">الإعدادات</div>
+                    <div class="nav-item">
+                        <a href="{{ route('admin.settings.general') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs"></i>
+                            <span class="nav-title">الإعدادات العامة</span>
                         </a>
                     </div>
                 </div>

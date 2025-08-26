@@ -73,11 +73,17 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <h4>عنواننا</h4>
-                    <p>123 شارع الصناعة، المنطقة الصناعية<br>الرياض، المملكة العربية السعودية</p>
-                    <a href="#" class="contact-info-link">
-                        <span>عرض على الخريطة</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                    @php
+                        $companyAddress = \App\Models\Setting::get('company_address', '123 شارع الصناعة، المنطقة الصناعية، الرياض، المملكة العربية السعودية');
+                        $googleMapsUrl = \App\Models\Setting::get('google_maps_url', '');
+                    @endphp
+                    <p>{{ $companyAddress }}</p>
+                    @if($googleMapsUrl)
+                        <a href="{{ $googleMapsUrl }}" target="_blank" class="contact-info-link">
+                            <span>عرض على الخريطة</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
 
@@ -111,6 +117,40 @@
         </div>
     </div>
 </section>
+
+@php
+    $embeddedMapCode = \App\Models\Setting::get('embedded_map_code', '');
+@endphp
+
+@if($embeddedMapCode)
+<!-- Interactive Map Section -->
+<section class="interactive-map-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">موقعنا</span>
+            <h2 class="gradient-text">خريطة تفاعلية</h2>
+            <p>تفضل بزيارتنا في موقعنا أو تواصل معنا للحصول على الاتجاهات</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="map-container" data-aos="fade-up">
+                    <div class="map-wrapper">
+                        {!! $embeddedMapCode !!}
+                    </div>
+                    @if($googleMapsUrl)
+                        <div class="map-actions text-center mt-3">
+                            <a href="{{ $googleMapsUrl }}" target="_blank" class="btn btn-primary btn-lg">
+                                <i class="fas fa-directions"></i> احصل على الاتجاهات
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 
 <section id="contact-form" class="contact-form-section py-5">
     <div class="container">

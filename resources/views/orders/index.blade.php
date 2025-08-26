@@ -42,6 +42,11 @@
                     </div>
                     <div class="ms-3">
                         <h3 class="order-number">طلب #{{ $order->order_number }}</h3>
+                        @if(Auth::user()->hasRole('admin') && $order->user)
+                        <p class="customer-name mb-1 text-muted">
+                            <i class="bi bi-person"></i> {{ $order->user->name }}
+                        </p>
+                        @endif
                         <span class="status-badge status-{{ $order->order_status }}">
                             {{ match($order->order_status) {
                                 'completed' => 'مكتمل',
@@ -81,36 +86,12 @@
                     <i class="bi bi-eye"></i>
                     عرض التفاصيل
                 </a>
-                <div class="dropdown invoice-dropdown">
-                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="invoiceDropdown{{ $order->id }}">
-                        <i class="bi bi-receipt"></i>
-                        الفاتورة
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="invoiceDropdown{{ $order->id }}">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('customer.orders.invoice.view', $order->uuid) }}" target="_blank">
-                                <i class="bi bi-eye text-info me-2"></i>
-                                عرض الفاتورة
-                            </a>
-                        </li>
-                        <li>
-                            <button type="button" class="dropdown-item" onclick="printOrderInvoice('{{ $order->uuid }}')">
-                                <i class="bi bi-printer text-primary me-2"></i>
-                                طباعة الفاتورة
-                            </button>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <button type="button" class="dropdown-item" onclick="requestInvoiceByEmail('{{ $order->uuid }}')">
-                                <i class="bi bi-envelope text-success me-2"></i>
-                                إرسال لإيميلي
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+                <a href="{{ route('customer.orders.invoice.view', $order->uuid) }}" class="btn btn-outline-primary" target="_blank">
+                    <i class="bi bi-receipt"></i>
+                    عرض الفاتورة
+                </a>
             </div>
         </div>
-
         <div class="order-details">
             <div class="row">
                 @foreach($order->items->take(4) as $item)
@@ -211,195 +192,4 @@
     </div>
 </main>
 
-@section('scripts')
-<script>
-    // Print order invoice
-    function printOrderInvoice(orderUuid) {
-        const printUrl = `/customer/orders/${orderUuid}/invoice/view`;
-        const printWindow = window.open(printUrl, '_blank', 'width=800,height=600');
-        
-        printWindow.onload = function() {
-            setTimeout(() => {
-                printWindow.print();
-            }, 1000);
-        };
-    }
-    
-    // Request invoice by email
-    async function requestInvoiceByEmail(orderUuid) {
-        const button = event.target;
-        const originalContent = button.innerHTML;
-        
-        try {
-            // Show loading state
-            button.innerHTML = '<i class="bi bi-spinner bi-spin me-2"></i>جاري الإرسال...';
-            button.disabled = true;
-            
-            const response = await fetch(`/customer/orders/${orderUuid}/invoice/send`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            });
-            
-            const data = await response.json();
-            
-            if (data.success) {
-                showNotification('تم إرسال الفاتورة إلى إيميلك بنجاح!', 'success');
-            } else {
-                showNotification('حدث خطأ أثناء إرسال الفاتورة', 'error');
-            }
-            
-        } catch (error) {
-            console.error('Error:', error);
-            showNotification('حدث خطأ أثناء إرسال الفاتورة', 'error');
-        } finally {
-            // Restore button
-            setTimeout(() => {
-                button.innerHTML = originalContent;
-                button.disabled = false;
-            }, 1000);
-        }
-    }
-    
-    // Show notification
-    function showNotification(message, type = 'success') {
-        // Remove existing notifications
-        const existing = document.querySelectorAll('.notification-toast');
-        existing.forEach(n => n.remove());
-        
-        // Create notification
-        const notification = document.createElement('div');
-        notification.className = `notification-toast position-fixed top-0 start-50 translate-middle-x mt-3`;
-        notification.style.cssText = `
-            z-index: 9999;
-            padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            font-weight: 600;
-            animation: slideDown 0.3s ease-out;
-            background: ${type === 'success' ? 'linear-gradient(135deg, #28a745, #20c997)' : 'linear-gradient(135deg, #dc3545, #c82333)'};
-            color: white;
-            border: none;
-        `;
-        
-        notification.innerHTML = `
-            <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
-            ${message}
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Auto remove after 3 seconds
-        setTimeout(() => {
-            notification.style.animation = 'slideUp 0.3s ease-out';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-    
-    // Initialize Bootstrap dropdowns
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize all dropdowns normally
-        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-        var dropdownList = dropdownElementList.map(function(dropdownToggleEl) {
-            return new bootstrap.Dropdown(dropdownToggleEl, {
-                autoClose: true,
-                boundary: 'viewport'
-            });
-        });
-        
-        // Handle dropdown show/hide events for z-index management
-        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-            toggle.addEventListener('show.bs.dropdown', function() {
-                // Find the current order card and dropdown
-                const orderCard = this.closest('.order-card');
-                const dropdown = this.closest('.dropdown');
-                const dropdownMenu = this.nextElementSibling;
-                
-                // Reset all cards z-index to lowest
-                document.querySelectorAll('.order-card').forEach(function(card) {
-                    card.style.zIndex = '5';
-                });
-                
-                // Reset all dropdowns to lower z-index
-                document.querySelectorAll('.dropdown').forEach(function(dd) {
-                    dd.style.zIndex = '10';
-                });
-                
-                // Set current card to highest z-index
-                if (orderCard) {
-                    orderCard.style.zIndex = '99999';
-                }
-                
-                // Set current dropdown to even higher z-index
-                if (dropdown) {
-                    dropdown.style.zIndex = '100000';
-                }
-                
-                // Set dropdown menu to highest possible z-index
-                if (dropdownMenu) {
-                    dropdownMenu.style.zIndex = '100001';
-                    dropdownMenu.style.position = 'absolute';
-                }
-                
-                // Add a class to identify the active dropdown
-                document.querySelectorAll('.dropdown-active').forEach(function(el) {
-                    el.classList.remove('dropdown-active');
-                });
-                if (dropdown) {
-                    dropdown.classList.add('dropdown-active');
-                }
-            });
-            
-            toggle.addEventListener('hide.bs.dropdown', function() {
-                // Reset z-index when dropdown closes
-                const orderCard = this.closest('.order-card');
-                const dropdown = this.closest('.dropdown');
-                const dropdownMenu = this.nextElementSibling;
-                
-                if (orderCard) {
-                    orderCard.style.zIndex = '10';
-                }
-                
-                if (dropdown) {
-                    dropdown.style.zIndex = '50';
-                    dropdown.classList.remove('dropdown-active');
-                }
-                
-                if (dropdownMenu) {
-                    dropdownMenu.style.zIndex = '9999';
-                }
-            });
-        });
-        
-        // Add click outside to close functionality
-        document.addEventListener('click', function(e) {
-            // Close all dropdowns when clicking outside
-            if (!e.target.closest('.dropdown')) {
-                dropdownList.forEach(function(dropdown) {
-                    dropdown.hide();
-                });
-            }
-        });
-        
-        // Prevent dropdown from staying open
-        document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-            menu.addEventListener('click', function(e) {
-                // Close dropdown after clicking menu item (except for buttons)
-                if (e.target.tagName === 'A') {
-                    const dropdown = bootstrap.Dropdown.getInstance(this.previousElementSibling);
-                    if (dropdown) {
-                        dropdown.hide();
-                    }
-                }
-            });
-        });
-    });
-    
-    // Global error handler
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript error:', e.error);
-    });
-</script>
 @endsection
