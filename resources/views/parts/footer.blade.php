@@ -4,6 +4,7 @@
     <div class="footer-content">
         <div class="container">
             <div class="row g-4">
+                <!-- Company Brand -->
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-brand">
                         <div class="footer-logo">
@@ -23,6 +24,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Quick Links -->
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-links">
                         <h5 class="footer-heading">روابط سريعة</h5>
@@ -33,9 +36,9 @@
                             <li><a href="{{ route('contact') }}">اتصل بنا</a></li>
                         </ul>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <div class="footer-links">
+                    
+                    <!-- Policies -->
+                    <div class="footer-links mt-4">
                         <h5 class="footer-heading">السياسات</h5>
                         <ul class="list-unstyled">
                             @php
@@ -50,6 +53,8 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Latest News -->
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-news">
                         <h5 class="footer-heading">أحدث الأخبار</h5>
@@ -77,7 +82,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12">
+
+                <!-- Contact Info -->
+                <div class="col-lg-3 col-md-6">
                     <div class="footer-contact">
                         <h5 class="footer-heading">اتصل بنا</h5>
                         <div class="contact-info">
@@ -87,7 +94,7 @@
                                 </div>
                                 <div class="contact-text">
                                     @php
-                                        $companyAddress = \App\Models\Setting::get('company_address', '123 شارع الصناعة، المنطقة الصناعية');
+                                        $companyAddress = \App\Models\Setting::get('company_address', 'مصر الجديدة، شارع حسن حسين');
                                         $googleMapsUrl = \App\Models\Setting::get('google_maps_url', '');
                                     @endphp
                                     <p>{{ $companyAddress }}</p>
@@ -103,7 +110,10 @@
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
                                 <div class="contact-text">
-                                    <p>+1 234 567 890</p>
+                                    @php
+                                        $companyPhone = \App\Models\Setting::get('company_phone', '+20 567 234 890');
+                                    @endphp
+                                    <p>{{ $companyPhone }}</p>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -111,11 +121,13 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="contact-text">
-                                    <p>info@dentalproducts.com</p>
+                                    @php
+                                        $companyEmail = \App\Models\Setting::get('company_email', 'info@dentalproducts.com');
+                                    @endphp
+                                    <p>{{ $companyEmail }}</p>
                                 </div>
                             </div>
                         </div>
-                    
                     </div>
                 </div>
             </div>

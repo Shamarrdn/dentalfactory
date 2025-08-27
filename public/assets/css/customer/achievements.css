@@ -2,18 +2,20 @@
 .achievements-page {
     font-family: 'Tajawal', sans-serif;
     direction: rtl;
-    background: #f8f9fa;
+    background: transparent;
     min-height: 100vh;
 }
 
 /* Hero Section */
 .achievements-hero {
-    background: linear-gradient(135deg, #2E8B57 0%, #3CB371 50%, #20B2AA 100%);
-    color: white;
-    padding: 4rem 0 3rem;
+    background: transparent;
+    color: #2c3e50;
+    padding: 200px 0 80px;
+    margin-top: -20px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-bottom: 3px solid #28a745;
 }
 
 .achievements-hero::before {
@@ -23,8 +25,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"><path d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,186.7C672,192,768,192,864,186.7C960,181,1056,171,1152,165.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(255,255,255,0.1)"/></svg>') center/cover;
-    opacity: 0.3;
+    background: rgba(0,0,0,0.1);
+    z-index: 1;
 }
 
 .achievements-hero-content {
@@ -36,15 +38,45 @@
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: none;
+    color: #1a5a96;
+}
+
+.achievements-hero h1 i {
+    margin-left: 15px;
+    font-size: 2.5rem;
+    color: #28a745;
 }
 
 .achievements-hero p {
-    font-size: 1.25rem;
-    opacity: 0.9;
+    font-size: 1.3rem;
+    opacity: 0.8;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+    color: #495057;
+}
+
+@media (max-width: 768px) {
+    .achievements-hero {
+        padding: 120px 0 60px;
+    }
+    
+    .achievements-hero h1 {
+        font-size: 2.2rem;
+        color: #1a5a96;
+    }
+    
+    .achievements-hero h1 i {
+        font-size: 2rem;
+        margin-left: 10px;
+        color: #28a745;
+    }
+    
+    .achievements-hero p {
+        font-size: 1.1rem;
+        color: #495057;
+    }
 }
 
 /* Achievements Grid */
@@ -112,7 +144,7 @@
 
 .view-btn {
     background: white;
-    color: #2E8B57;
+    color: #007bff;
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 25px;
@@ -128,7 +160,7 @@
 
 .view-btn:hover {
     background: #f8f9fa;
-    color: #2E8B57;
+    color: #007bff;
     transform: scale(1.05);
 }
 
@@ -167,7 +199,7 @@
 }
 
 .achievement-views {
-    color: #2E8B57;
+    color: #007bff;
     font-size: 0.85rem;
     font-weight: 600;
     display: flex;
@@ -185,7 +217,7 @@
     position: relative;
     height: 400px;
     overflow: hidden;
-    background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
 }
 
 .achievement-detail-image {
@@ -238,7 +270,7 @@
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 15px;
-    border-right: 4px solid #2E8B57;
+    border-right: 4px solid #007bff;
 }
 
 .achievement-detail-body {
@@ -354,7 +386,7 @@
 }
 
 .pagination .page-link {
-    color: #2E8B57;
+    color: #007bff;
     border: 2px solid #e9ecef;
     border-radius: 10px;
     padding: 0.75rem 1rem;
@@ -364,15 +396,15 @@
 }
 
 .pagination .page-link:hover {
-    background: #2E8B57;
+    background: #007bff;
     color: white;
-    border-color: #2E8B57;
+    border-color: #007bff;
     transform: translateY(-2px);
 }
 
 .pagination .page-item.active .page-link {
-    background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
-    border-color: #2E8B57;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border-color: #007bff;
     color: white;
 }
 

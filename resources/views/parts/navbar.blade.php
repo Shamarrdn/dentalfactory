@@ -29,11 +29,52 @@
                         <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="/products">المنتجات</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->is('news*') ? 'active' : '' }}" href="{{ route('news.index') }}">الأخبار</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('achievements*') ? 'active' : '' }}" href="{{ route('achievements.index') }}">الإنجازات</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="{{ route('contact') }}">تواصل معنا</a>
                     </li>
                 </ul>
 
                 <div class="navbar-actions">
+                    <!-- User Dropdown -->
+                    @auth
+                        <div class="nav-item dropdown me-3">
+                            <a class="nav-link dropdown-toggle btn btn-outline-primary btn-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-1"></i>حسابي
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="/dashboard">
+                                    <i class="fas fa-tachometer-alt me-2"></i>لوحة التحكم
+                                </a></li>
+                                <li><a class="dropdown-item" href="/user/profile">
+                                    <i class="fas fa-user me-2"></i>الملف الشخصي
+                                </a></li>
+                                <li><a class="dropdown-item" href="/orders">
+                                    <i class="fas fa-shopping-bag me-2"></i>طلباتي
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="nav-item me-3">
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">تسجيل الدخول</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary btn-sm">إنشاء حساب</a>
+                        </div>
+                    @endauth
+                    
                     <!-- Cart -->
                     <div class="nav-item d-flex align-items-center">
                         <a href="/cart" class="nav-icon position-relative" style="color: var(--primary);">

@@ -193,3 +193,22 @@
 </main>
 
 @endsection
+
+@section('scripts')
+<script>
+$(document).ready(function() {
+    console.log('Orders page scripts loaded');
+    
+    // Additional debugging for this page
+    setTimeout(function() {
+        const dropdowns = document.querySelectorAll('.dropdown-toggle');
+        console.log('Orders page - Found dropdowns:', dropdowns.length);
+        
+        dropdowns.forEach(function(dropdown, index) {
+            const instance = bootstrap.Dropdown.getInstance(dropdown);
+            console.log(`Orders page - Dropdown ${index + 1} instance:`, instance ? 'EXISTS' : 'MISSING');
+        });
+    }, 300);
+});
+</script>
+@endsection

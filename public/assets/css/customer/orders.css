@@ -44,7 +44,7 @@ body {
     box-shadow: none;
     overflow: visible !important; /* Allow dropdowns to show */
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .page-title {
@@ -736,6 +736,41 @@ body {
 
 .order-card:has(.dropdown.show) ~ .order-card {
     z-index: 5 !important;
+}
+
+/* Fix navbar dropdown z-index conflicts */
+.glass-navbar {
+    z-index: 1050 !important;
+}
+
+.glass-navbar .dropdown {
+    position: relative;
+    z-index: 1051 !important;
+}
+
+.glass-navbar .dropdown-menu {
+    z-index: 1052 !important;
+    position: absolute !important;
+    display: none;
+}
+
+.glass-navbar .dropdown-menu.show {
+    display: block !important;
+    z-index: 1052 !important;
+}
+
+/* Ensure navbar dropdowns work on orders pages */
+.navbar-nav .nav-item.dropdown {
+    position: relative;
+    z-index: 1051 !important;
+}
+
+.navbar-nav .nav-item.dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1052 !important;
+    min-width: 200px;
 }
 
 /* Order Tracking Timeline - Enhanced */

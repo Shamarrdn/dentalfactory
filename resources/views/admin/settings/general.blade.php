@@ -35,7 +35,7 @@
             <div class="col-lg-8">
                 <!-- Company Information -->
                 <div class="card mb-4" style="border-radius: 15px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #2E8B57 0%, #3CB371 50%, #20B2AA 100%); color: white; border-radius: 15px 15px 0 0;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); color: white; border-radius: 15px 15px 0 0;">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-building"></i> معلومات الشركة
                         </h5>
@@ -117,7 +117,7 @@
 
                 <!-- Maps Settings -->
                 <div class="card mb-4" style="border-radius: 15px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FF6B9D 100%); color: white; border-radius: 15px 15px 0 0;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px 15px 0 0;">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-map"></i> إعدادات الخرائط
                         </h5>

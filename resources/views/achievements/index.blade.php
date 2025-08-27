@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.dental')
 
 @section('title', 'الإنجازات')
 
@@ -33,9 +33,9 @@
                             <input type="text" class="form-control" name="search" 
                                    value="{{ request('search') }}" 
                                    placeholder="البحث في الإنجازات..."
-                                   style="border-radius: 25px 0 0 25px; border: 2px solid #667eea; padding: 12px 20px;">
+                                   style="border-radius: 25px 0 0 25px; border: 2px solid #007bff; padding: 12px 20px;">
                             <button class="btn btn-primary" type="submit" 
-                                    style="border-radius: 0 25px 25px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 12px 20px;">
+                                    style="border-radius: 0 25px 25px 0; background: linear-gradient(135deg, #007bff, #0056b3); border: none; padding: 12px 20px;">
                                 <i class="fas fa-search"></i>
                             </button>
                             @if(request('search'))

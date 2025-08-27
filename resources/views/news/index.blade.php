@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.dental')
 
 @section('title', 'الأخبار')
 
@@ -7,14 +7,21 @@
 @endsection
 
 @section('content')
-<div class="container my-5">
-    <!-- Page Header -->
-    <div class="row mb-5">
-        <div class="col-12 text-center">
-            <h1 class="display-4 fw-bold text-primary mb-3">الأخبار</h1>
-            <p class="lead text-muted">تابع آخر الأخبار والمستجدات في عالم منتجات الأسنان</p>
+<!-- Hero Section -->
+<section class="news-hero">
+    <div class="news-hero-content">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1><i class="fas fa-newspaper"></i> الأخبار</h1>
+                    <p>تابع آخر الأخبار والمستجدات في عالم منتجات الأسنان</p>
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+<div class="container my-5">
 
     <!-- Search Bar -->
     <div class="row mb-4">
@@ -103,11 +110,17 @@
         @if($news->hasPages())
             <div class="row mt-5">
                 <div class="col-12">
-                    <nav aria-label="تنقل الصفحات">
-                        <div class="d-flex justify-content-center">
-                            {{ $news->withQueryString()->links() }}
+                    <div class="pagination-wrapper">
+                        <!-- Pagination Info -->
+                        <div class="pagination-info">
+                            عرض {{ $news->firstItem() }} إلى {{ $news->lastItem() }} من {{ $news->total() }} نتيجة
                         </div>
-                    </nav>
+                        
+                        <!-- Pagination Links -->
+                        <nav aria-label="تنقل الصفحات">
+                            {{ $news->withQueryString()->links('custom.pagination') }}
+                        </nav>
+                    </div>
                 </div>
             </div>
         @endif

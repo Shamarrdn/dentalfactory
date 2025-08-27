@@ -19,6 +19,56 @@
             max-height: 85px;
             width: auto;
         }
+        
+        /* Force dropdown visibility */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 1000;
+            display: none;
+            min-width: 200px;
+            padding: 0.5rem 0;
+            margin: 0;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: 0.375rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+        }
+        
+        .dropdown-menu.show {
+            display: block !important;
+        }
+        
+        .dropdown-toggle::after {
+            display: inline-block;
+            margin-right: 0.255em;
+            vertical-align: 0.255em;
+            content: "";
+            border-top: 0.3em solid;
+            border-left: 0.3em solid transparent;
+            border-bottom: 0;
+            border-right: 0.3em solid transparent;
+        }
+        
+        /* Prevent dropdown from being hidden by overflow */
+        .navbar-collapse {
+            overflow: visible !important;
+        }
+        
+        .nav-item.dropdown {
+            position: static;
+        }
+        
+        @media (min-width: 992px) {
+            .nav-item.dropdown {
+                position: relative;
+            }
+        }
     </style>
 </head>
 
@@ -213,33 +263,72 @@
         @yield('content')
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Load jQuery first -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Then load Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // CSRF token setup
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        // Initialize Bootstrap components and functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Enable all dropdowns
-            var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-            var dropdownList = dropdownElementList.map(function(dropdownToggleEl) {
-                return new bootstrap.Dropdown(dropdownToggleEl);
+        // Simple and effective dropdown fix
+        $(document).ready(function() {
+            // CSRF token setup
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
 
-            // Add touch-friendly behavior
-            if ('ontouchstart' in document.documentElement) {
-                $('.dropdown-toggle').on('click', function(e) {
-                    // For touch devices, prevent clicks from navigating
-                    // Allow the dropdown to toggle instead
-                    e.preventDefault();
+            console.log('Initializing Bootstrap dropdowns...');
+
+            // Simple Bootstrap dropdown initialization
+            setTimeout(function() {
+                // Remove any existing instances first
+                document.querySelectorAll('.dropdown-toggle').forEach(function(element) {
+                    const instance = bootstrap.Dropdown.getInstance(element);
+                    if (instance) {
+                        instance.dispose();
+                    }
                 });
-            }
+
+                // Initialize all dropdowns
+                const dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+                const dropdownList = dropdownElementList.map(function(dropdownToggleEl) {
+                    return new bootstrap.Dropdown(dropdownToggleEl);
+                });
+
+                console.log('Dropdowns initialized:', dropdownList.length);
+            }, 100);
+
+            // Backup: Manual click handling for stubborn dropdowns
+            $(document).on('click', '.dropdown-toggle', function(e) {
+                const $this = $(this);
+                const $menu = $this.next('.dropdown-menu');
+                
+                // Toggle the dropdown menu manually
+                if ($menu.hasClass('show')) {
+                    $menu.removeClass('show');
+                    $this.attr('aria-expanded', 'false');
+                } else {
+                    // Close other dropdowns first
+                    $('.dropdown-menu.show').removeClass('show');
+                    $('.dropdown-toggle[aria-expanded="true"]').attr('aria-expanded', 'false');
+                    
+                    // Open this dropdown
+                    $menu.addClass('show');
+                    $this.attr('aria-expanded', 'true');
+                }
+                
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            // Close dropdowns when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.dropdown').length) {
+                    $('.dropdown-menu.show').removeClass('show');
+                    $('.dropdown-toggle[aria-expanded="true"]').attr('aria-expanded', 'false');
+                }
+            });
 
             // Sidebar functionality
             const sidebar = $('.sidebar');

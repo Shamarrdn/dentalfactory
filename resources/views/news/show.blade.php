@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.dental')
 
 @section('title', $news->title)
 

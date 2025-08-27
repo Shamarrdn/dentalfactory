@@ -18,5 +18,16 @@
 <style>
     body {
         font-family: 'Cairo', sans-serif;
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+    }
+    
+    html {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+    }
+    
+    .container, .container-fluid {
+        background: transparent !important;
     }
 </style>
