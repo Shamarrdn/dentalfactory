@@ -34,7 +34,7 @@ class SettingsController extends Controller
             'company_address' => 'nullable|string|max:500',
             'google_maps_url' => 'nullable|url|max:1000',
             'embedded_map_code' => 'nullable|string|max:5000',
-            'company_phone' => 'nullable|string|max:20',
+            'company_phone' => 'nullable|string|max:1000',
             'company_email' => 'nullable|email|max:100',
             'company_website' => 'nullable|url|max:200',
         ];
@@ -44,7 +44,7 @@ class SettingsController extends Controller
             'google_maps_url.url' => 'رابط Google Maps يجب أن يكون رابط صحيح',
             'google_maps_url.max' => 'رابط Google Maps يجب أن يكون أقل من 1000 حرف',
             'embedded_map_code.max' => 'كود الخريطة يجب أن يكون أقل من 5000 حرف',
-            'company_phone.max' => 'رقم الهاتف يجب أن يكون أقل من 20 حرف',
+            'company_phone.max' => 'أرقام الهواتف يجب أن تكون أقل من 1000 حرف',
             'company_email.email' => 'البريد الإلكتروني يجب أن يكون صحيح',
             'company_email.max' => 'البريد الإلكتروني يجب أن يكون أقل من 100 حرف',
             'company_website.url' => 'موقع الشركة يجب أن يكون رابط صحيح',
@@ -96,8 +96,8 @@ class SettingsController extends Controller
             ],
             'company_phone' => [
                 'value' => '',
-                'type' => 'text',
-                'label' => 'رقم هاتف الشركة',
+                'type' => 'textarea',
+                'label' => 'أرقام هواتف الشركة',
                 'sort_order' => 4,
             ],
             'company_email' => [

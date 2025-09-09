@@ -118,7 +118,7 @@
                 </div>
                 <div class="row g-4" id="productGrid">
                     @foreach($products as $product)
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-6 col-md-6 col-lg-4">
                         <div class="product-card">
                             @php
                                 $imageUrl = $product->images->isNotEmpty() ? url('storage/' . $product->images->first()->image_path) : url('images/placeholder.jpg');

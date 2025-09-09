@@ -72,12 +72,17 @@
                         <div class="form-group mb-4">
                             <label for="company_phone" class="form-label">
                                 <i class="fas fa-phone text-success"></i>
-                                رقم هاتف الشركة
+                                أرقام هواتف الشركة
                             </label>
-                            <input type="text" name="company_phone" id="company_phone" 
-                                   class="form-control @error('company_phone') is-invalid @enderror" 
-                                   value="{{ old('company_phone', $settings->where('key', 'company_phone')->first()->value ?? '') }}" 
-                                   placeholder="+966 123 456 789">
+                            <textarea name="company_phone" id="company_phone" 
+                                      class="form-control @error('company_phone') is-invalid @enderror" 
+                                      rows="3" 
+                                      placeholder="+966 123 456 789&#10;+966 987 654 321&#10;+966 555 123 456"
+                                      style="resize: vertical;">{{ old('company_phone', $settings->where('key', 'company_phone')->first()->value ?? '') }}</textarea>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle text-info"></i>
+                                يمكنك إدخال أكثر من رقم هاتف، كل رقم في سطر منفصل
+                            </div>
                             @error('company_phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -298,6 +303,38 @@ document.addEventListener('DOMContentLoaded', function() {
         
         element.addEventListener('input', updateCounter);
         updateCounter();
+    }
+    
+    // Phone numbers handling
+    const phoneTextarea = document.getElementById('company_phone');
+    
+    // Auto-resize textarea based on content
+    function autoResize() {
+        phoneTextarea.style.height = 'auto';
+        phoneTextarea.style.height = phoneTextarea.scrollHeight + 'px';
+    }
+    
+    // Initial resize
+    autoResize();
+    
+    // Resize on input
+    phoneTextarea.addEventListener('input', autoResize);
+    
+    // Add phone number validation and formatting
+    phoneTextarea.addEventListener('blur', function() {
+        const lines = this.value.split('\n').filter(line => line.trim() !== '');
+        const formattedLines = lines.map(line => {
+            // Remove extra spaces and format phone number
+            return line.trim().replace(/\s+/g, ' ');
+        });
+        
+        this.value = formattedLines.join('\n');
+        autoResize();
+    });
+    
+    // Add placeholder text with line breaks
+    if (!phoneTextarea.value) {
+        phoneTextarea.placeholder = '+966 123 456 789\n+966 987 654 321\n+966 555 123 456';
     }
 });
 </script>

@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.dental')
 
 @section('title', 'سلة التسوق')
 
@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-<div class="container py-4">
+<div class="container py-4" style="margin-top: 80px;">
   <div id="alerts-container"></div>
 
   <div class="d-flex justify-content-between align-items-center mb-4">

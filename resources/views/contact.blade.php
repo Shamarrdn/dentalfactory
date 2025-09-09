@@ -93,8 +93,13 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <h4>اتصل بنا</h4>
-                    <p>+966 11 234 5678<br>+966 50 123 4567</p>
-                    <a href="tel:+966112345678" class="contact-info-link">
+                    @php
+                        $companyPhone = \App\Models\Setting::get('company_phone', '');
+                        $phoneNumbers = get_phone_numbers_array($companyPhone);
+                        $firstPhone = !empty($phoneNumbers) ? $phoneNumbers[0] : '+966 11 234 5678';
+                    @endphp
+                    <p>{!! format_phone_numbers($companyPhone, '<br>') ?: '+966 11 234 5678<br>+966 50 123 4567' !!}</p>
+                    <a href="tel:{{ str_replace([' ', '+'], '', $firstPhone) }}" class="contact-info-link">
                         <span>اتصل الآن</span>
                         <i class="fas fa-phone"></i>
                     </a>
@@ -107,8 +112,14 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h4>راسلنا</h4>
-                    <p>info@dentalproducts.com<br>sales@dentalproducts.com</p>
-                    <a href="mailto:info@dentalproducts.com" class="contact-info-link">
+                    @php
+                        $companyEmail = \App\Models\Setting::get('company_email', '');
+                        $companyWebsite = \App\Models\Setting::get('company_website', '');
+                        $displayEmail = $companyEmail ?: 'info@dentalproducts.com';
+                        $displayWebsite = $companyWebsite ?: 'sales@dentalproducts.com';
+                    @endphp
+                    <p>{{ $displayEmail }}@if($companyWebsite)<br>{{ $companyWebsite }}@endif</p>
+                    <a href="mailto:{{ $displayEmail }}" class="contact-info-link">
                         <span>أرسل رسالة</span>
                         <i class="fas fa-paper-plane"></i>
                     </a>
@@ -120,6 +131,7 @@
 
 @php
     $embeddedMapCode = \App\Models\Setting::get('embedded_map_code', '');
+    $googleMapsUrl = \App\Models\Setting::get('google_maps_url', '');
 @endphp
 
 @if($embeddedMapCode)

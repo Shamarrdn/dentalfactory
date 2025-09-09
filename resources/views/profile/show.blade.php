@@ -1,6 +1,7 @@
-@extends(auth()->user()->hasRole('admin') ? 'layouts.admin' : 'layouts.customer')
+@extends(auth()->user()->hasRole('admin') ? 'layouts.admin' : 'layouts.dental')
 
 @section('content')
+<div class="container py-4" style="margin-top: 80px;">
 <div class="profile-page-container overflow-y-auto">
     <!-- User Profile Card -->
 
@@ -360,4 +361,5 @@ body {
     }
 }
 </style>
+</div>
 @endsection

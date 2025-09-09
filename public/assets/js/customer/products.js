@@ -180,7 +180,7 @@ function updateProductGrid(products) {
 
     products.forEach(product => {
         const productElement = document.createElement('div');
-        productElement.className = 'col-md-6 col-lg-4';
+        productElement.className = 'col-6 col-md-6 col-lg-4';
 
         const couponBadgeHtml = product.coupon_badge
             ? product.coupon_badge.badge_html

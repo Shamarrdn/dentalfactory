@@ -68,11 +68,6 @@
                                 </li>
                             </ul>
                         </div>
-                    @else
-                        <div class="nav-item me-3">
-                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">تسجيل الدخول</a>
-                            <a href="{{ route('register') }}" class="btn btn-primary btn-sm">إنشاء حساب</a>
-                        </div>
                     @endauth
                     
                     <!-- Cart -->
@@ -97,36 +92,14 @@
                         </a>
                     </div>
 
-                    <!-- User Menu -->
-                    <div class="nav-item dropdown user-dropdown" >
-                        @auth
-                            <a class="btn btn-outline-primary btn-sm dropdown-toggle user-toggle-btn" href="#" id="userDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false" >
-                                <i class="fas fa-user-circle me-1"></i>
-                                <span class="account-text">حسابي</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="/dashboard"><i class="fas fa-tachometer-alt me-2"></i>لوحة التحكم</a></li>
-                                <li><a class="dropdown-item" href="/user/profile"><i class="fas fa-user me-2"></i>الملف الشخصي</a></li>
-                                <li><a class="dropdown-item" href="/orders"><i class="fas fa-shopping-bag me-2"></i>طلباتي</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        @else
-                            <div class="auth-buttons">
-                                <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">تسجيل الدخول</a>
-                                <a href="{{ route('register') }}" class="btn btn-primary btn-sm">إنشاء حساب</a>
-                            </div>
-                        @endauth
-                    </div>
+                    <!-- Auth Buttons for Guests -->
+                    @guest
+                        <div class="nav-item d-flex align-items-center ms-3">
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">تسجيل الدخول</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary btn-sm">إنشاء حساب</a>
+                        </div>
+                    @endguest
+
                 </div>
             </div>
         </div>

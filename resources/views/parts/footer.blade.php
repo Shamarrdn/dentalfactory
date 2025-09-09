@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Quick Links -->
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-5 col-md-6">
                     <div class="footer-links">
                         <h5 class="footer-heading">روابط سريعة</h5>
                         <ul class="list-unstyled">
@@ -54,34 +54,6 @@
                     </div>
                 </div>
 
-                <!-- Latest News -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-news">
-                        <h5 class="footer-heading">أحدث الأخبار</h5>
-                        <div class="latest-news">
-                            @php
-                                $latestNews = \App\Models\News::published()->latest()->limit(3)->get();
-                            @endphp
-                            @if($latestNews->count() > 0)
-                                @foreach($latestNews as $article)
-                                <div class="news-item">
-                                    <a href="{{ route('news.show', $article->slug) }}" class="news-link">
-                                        <h6 class="news-title">{{ Str::limit($article->title, 40) }}</h6>
-                                        <small class="news-date">{{ $article->published_at->format('Y-m-d') }}</small>
-                                    </a>
-                                </div>
-                                @endforeach
-                                <div class="mt-2">
-                                    <a href="{{ route('news.index') }}" class="btn btn-outline-light btn-sm">
-                                        <i class="fas fa-newspaper ms-1"></i>جميع الأخبار
-                                    </a>
-                                </div>
-                            @else
-                                <p class="text-muted">لا توجد أخبار حالياً</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Contact Info -->
                 <div class="col-lg-3 col-md-6">
@@ -113,7 +85,7 @@
                                     @php
                                         $companyPhone = \App\Models\Setting::get('company_phone', '+20 567 234 890');
                                     @endphp
-                                    <p>{{ $companyPhone }}</p>
+                                    <p>{!! format_phone_numbers($companyPhone, '<br>') ?: $companyPhone !!}</p>
                                 </div>
                             </div>
                             <div class="contact-item">

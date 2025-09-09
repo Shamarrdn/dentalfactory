@@ -16,10 +16,24 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
-
         return $this->clientDashboard($user);
+    }
 
+    public function getStats(Request $request)
+    {
+        $user = Auth::user();
+        
+        $cartItemsCount = CartItem::join('carts', 'cart_items.cart_id', '=', 'carts.id')
+            ->where('carts.user_id', $user->id)
+            ->sum('cart_items.quantity');
+
+        $stats = [
+            'orders_count' => $user->orders()->count(),
+            'cart_items_count' => $cartItemsCount,
+            'unread_notifications' => $user->unreadNotifications()->count(),
+        ];
+
+        return response()->json($stats);
     }
 
     private function clientDashboard($user)
@@ -57,43 +71,10 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        // العناوين وأرقام الهواتف
-        $addresses = $user->addresses()
-            ->latest()
-            ->get()
-            ->map(function ($address) {
-                return [
-                    'id' => $address->id,
-                    'full_address' => $this->formatAddress($address),
-                    'type' => $address->type,
-                    'type_text' => $address->type_text,
-                    'created_at' => $address->created_at->format('Y/m/d'),
-                    'is_primary' => $address->is_primary,
-                    'type_color' => $this->getAddressTypeColor($address->type)
-                ];
-            });
-
-        $phones = $user->phoneNumbers()
-            ->latest()
-            ->get()
-            ->map(function ($phone) {
-                return [
-                    'id' => $phone->id,
-                    'phone' => $this->formatPhoneNumber($phone->phone),
-                    'type' => $phone->type,
-                    'type_text' => $phone->type_text,
-                    'created_at' => $phone->created_at->format('Y/m/d'),
-                    'is_primary' => $phone->is_primary,
-                    'type_color' => $this->getPhoneTypeColor($phone->type)
-                ];
-            });
-
         return view('dashboard', compact(
             'stats',
             'recent_orders',
-            'recent_notifications',
-            'addresses',
-            'phones'
+            'recent_notifications'
         ));
     }
 
@@ -119,43 +100,4 @@ class DashboardController extends Controller
         };
     }
 
-    private function formatPhoneNumber(string $phone): string
-    {
-        // تنسيق رقم الهاتف بشكل أفضل للقراءة
-        return substr($phone, 0, 2) . ' ' . substr($phone, 2, 3) . ' ' . substr($phone, 5);
-    }
-
-    private function formatAddress(object $address): string
-    {
-        $parts = [
-            $address->city,
-            $address->area,
-            'شارع ' . $address->street,
-            $address->building_no ? 'مبنى ' . $address->building_no : null,
-            $address->details
-        ];
-
-        return implode('، ', array_filter($parts));
-    }
-
-    private function getAddressTypeColor(string $type): string
-    {
-        return match ($type) {
-            'home' => 'success',
-            'work' => 'info',
-            'other' => 'secondary',
-            default => 'primary'
-        };
-    }
-
-    private function getPhoneTypeColor(string $type): string
-    {
-        return match ($type) {
-            'mobile' => 'success',
-            'home' => 'info',
-            'work' => 'warning',
-            'other' => 'secondary',
-            default => 'primary'
-        };
-    }
 }

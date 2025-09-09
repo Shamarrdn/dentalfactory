@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.dental')
 
 @section('title', $page->meta_title ?: $page->title . ' - مصنع منتجات الأسنان')
 @section('meta_description', $page->meta_description ?: Str::limit(strip_tags($page->content), 160))

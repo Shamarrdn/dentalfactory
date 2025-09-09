@@ -752,6 +752,77 @@ body.cart-open {
         height: 28px;
         left: 0.75rem;
     }
+
+    /* Mobile Product Grid - 2 products per row */
+    .product-card {
+        margin-bottom: 1rem;
+    }
+
+    .product-details {
+        padding: 0.75rem;
+    }
+
+    .product-title {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        min-height: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .product-category {
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .product-category .badge {
+        font-size: 0.65rem;
+        padding: 4px 8px;
+    }
+
+    .order-product-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .order-product-btn i {
+        font-size: 1rem;
+    }
+
+    .product-rating {
+        margin-bottom: 0.5rem;
+    }
+
+    .product-rating .reviews {
+        font-size: 0.8rem;
+    }
+
+    /* Reduce gap between products on mobile */
+    .row.g-4 {
+        --bs-gutter-x: 0.75rem;
+        --bs-gutter-y: 0.75rem;
+    }
+
+    /* Better coupon badge for mobile */
+    .coupon-badge {
+        top: 5px;
+        left: 5px;
+        max-width: 90px;
+    }
+
+    .coupon-badge .badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.3rem;
+    }
+
+    .coupon-badge small {
+        font-size: 0.5rem;
+        margin-top: 1px;
+    }
 }
 
 /* Cart Animation */

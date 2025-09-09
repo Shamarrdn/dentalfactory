@@ -1,324 +1,284 @@
-// Phone Numbers Functions
-$(document).ready(function() {
-    $('#addPhoneForm').on('submit', function(e) {
-        e.preventDefault();
-        const formData = $(this).serialize();
-
-        $.post('/phones', formData)
-            .done(function(response) {
-                $('#addPhoneModal').modal('hide');
-                location.reload();
-            })
-            .fail(function(xhr) {
-                alert(xhr.responseJSON?.message || 'حدث خطأ أثناء إضافة رقم الهاتف');
-            });
-    });
-
-    // Delete Phone
-    $('.delete-phone').on('click', function() {
-        if (confirm('هل أنت متأكد من حذف رقم الهاتف؟')) {
-            const id = $(this).data('id');
-            $.ajax({
-                url: `/phones/${id}`,
-                type: 'DELETE',
-                success: function() {
-                    location.reload();
-                },
-                error: function(xhr) {
-                    alert(xhr.responseJSON?.message || 'حدث خطأ أثناء حذف رقم الهاتف');
-                }
-            });
-        }
-    });
-
-    // Make Phone Primary
-    $('.make-primary-phone').on('click', function() {
-        const id = $(this).data('id');
-        $.post(`/phones/${id}/make-primary`)
-            .done(function() {
-                location.reload();
-            })
-            .fail(function(xhr) {
-                alert(xhr.responseJSON?.message || 'حدث خطأ أثناء تعيين الرقم كرقم رئيسي');
-            });
-    });
-
-    // Make Address Primary
-    $('.make-primary-address').on('click', function() {
-        const id = $(this).data('id');
-        $.post(`/addresses/${id}/make-primary`)
-            .done(function() {
-                location.reload();
-            })
-            .fail(function(xhr) {
-                alert(xhr.responseJSON?.message || 'حدث خطأ أثناء تعيين العنوان كعنوان رئيسي');
-            });
-    });
-
-    // Reset Forms After Modal Close
-    $('#addPhoneModal, #editPhoneModal').on('hidden.bs.modal', function() {
-        $(this).find('form')[0].reset();
-    });
-
-    $('#addAddressModal, #editAddressModal').on('hidden.bs.modal', function() {
-        $(this).find('form')[0].reset();
-    });
-
-    // Mark Notifications as Read
-    $('.notification-dropdown .dropdown-item').on('click', function() {
-        const notificationId = $(this).data('id');
-        if (!notificationId) return;
-
-        $.post(`/notifications/${notificationId}/read`)
-            .done(function() {
-                // تحديث عدد الإشعارات غير المقروءة
-                const unreadCount = parseInt($('.notifications .card-info h3').text()) - 1;
-                $('.notifications .card-info h3').text(unreadCount);
-
-                // إزالة تنسيق "غير مقروء"
-                $(this).removeClass('unread');
-
-                // إزالة البادج إذا لم يعد هناك إشعارات غير مقروءة
-                if (unreadCount <= 0) {
-                    $('.notifications .badge').remove();
-                } else {
-                    $('.notifications .badge').text(unreadCount);
-                }
-            })
-            .fail(function() {
-                console.error('فشل في تحديث حالة الإشعار');
-            });
-    });
-
-    // تحميل بيانات الهاتف للتعديل
-    $('.edit-phone').on('click', function() {
-        const id = $(this).data('id');
-
-        $.get(`/phones/${id}`)
-            .done(function(phone) {
-                const form = $('#editPhoneForm');
-                form.find('input[name="phone"]').val(phone.phone);
-                form.find('select[name="type"]').val(phone.type);
-                form.find('input[name="phone_id"]').val(phone.id);
-            })
-            .fail(function() {
-                alert('حدث خطأ أثناء تحميل بيانات رقم الهاتف');
-            });
-    });
-
-    // تعديل رقم الهاتف
-    $('#editPhoneForm').on('submit', function(e) {
-        e.preventDefault();
-        const id = $(this).find('input[name="phone_id"]').val();
-        const formData = $(this).serialize();
-
-        $.ajax({
-            url: `/phones/${id}`,
-            type: 'PUT',
-            data: formData,
-            success: function(response) {
-                $('#editPhoneModal').modal('hide');
-                location.reload();
-            },
-            error: function(xhr) {
-                alert(xhr.responseJSON?.message || 'حدث خطأ أثناء تعديل رقم الهاتف');
-            }
-        });
-    });
-
-    // تحميل بيانات العنوان للتعديل
-    $('.edit-address').on('click', function() {
-        const id = $(this).data('id');
-
-        $.get(`/addresses/${id}`)
-            .done(function(address) {
-                const form = $('#editAddressForm');
-                form.find('select[name="type"]').val(address.type);
-                form.find('input[name="city"]').val(address.city);
-                form.find('input[name="area"]').val(address.area);
-                form.find('input[name="street"]').val(address.street);
-                form.find('input[name="building_no"]').val(address.building_no);
-                form.find('textarea[name="details"]').val(address.details);
-                form.find('input[name="address_id"]').val(address.id);
-            })
-            .fail(function() {
-                alert('حدث خطأ أثناء تحميل بيانات العنوان');
-            });
-    });
-
-    // تعديل العنوان
-    $('#editAddressForm').on('submit', function(e) {
-        e.preventDefault();
-        const id = $(this).find('input[name="address_id"]').val();
-        const formData = $(this).serialize();
-
-        $.ajax({
-            url: `/addresses/${id}`,
-            type: 'PUT',
-            data: formData,
-            success: function(response) {
-                $('#editAddressModal').modal('hide');
-                location.reload();
-            },
-            error: function(xhr) {
-                alert(xhr.responseJSON?.message || 'حدث خطأ أثناء تعديل العنوان');
-            }
-        });
-    });
-
-    // إضافة عنوان
-    $('#addAddressForm').on('submit', function(e) {
-        e.preventDefault();
-        const formData = $(this).serialize();
-
-        $.post('/addresses', formData)
-            .done(function(response) {
-                $('#addAddressModal').modal('hide');
-                location.reload();
-            })
-            .fail(function(xhr) {
-                alert(xhr.responseJSON?.message || 'حدث خطأ أثناء إضافة العنوان');
-            });
-    });
-
-    // حذف العنوان
-    $('.delete-address').on('click', function() {
-        if (!confirm('هل أنت متأكد من حذف هذا العنوان؟')) return;
-
-        const id = $(this).data('id');
-        $.ajax({
-            url: `/addresses/${id}`,
-            type: 'DELETE',
-            success: function() {
-                location.reload();
-            },
-            error: function() {
-                alert('حدث خطأ أثناء حذف العنوان');
-            }
-        });
-    });
-
-    // التحقق من صحة نموذج العنوان
-    function validateAddressForm(form) {
-        const required = ['city', 'area', 'street'];
-        for (const field of required) {
-            const value = form.find(`[name="${field}"]`).val();
-            if (!value || !value.trim()) {
-                alert(`الرجاء إدخال ${field === 'city' ? 'المدينة' : field === 'area' ? 'المنطقة' : 'الشارع'}`);
-                return false;
-            }
-        }
-        return true;
-    }
-
-    $('#addAddressForm, #editAddressForm').on('submit', function(e) {
-        if (!validateAddressForm($(this))) {
-            e.preventDefault();
-        }
-    });
-
-    // User Guide Toggle Functionality
-    // استرجاع حالة دليل الاستخدام من localStorage
-    const guideState = localStorage.getItem('userGuideVisible') === 'true';
-
-    // تطبيق الحالة المحفوظة عند تحميل الصفحة
-    if (guideState) {
-        $('#userGuide').addClass('show');
-        $('#guideToggle').addClass('active');
-    }
-
-    // معالجة النقر على زر التبديل
-    $('#guideToggle').click(function() {
-        const $guide = $('#userGuide');
-        const $button = $(this);
-
-        // تبديل الحالة مع تأثير حركي
-        $button.toggleClass('active');
-
-        if ($guide.hasClass('show')) {
-            $guide.removeClass('show');
-            // تخزين الحالة
-            localStorage.setItem('userGuideVisible', 'false');
-
-            // تدوير الأيقونة
-            $button.find('i').css('transform', 'rotate(0deg)');
-        } else {
-            $guide.addClass('show');
-            // تخزين الحالة
-            localStorage.setItem('userGuideVisible', 'true');
-
-            // تدوير الأيقونة
-            $button.find('i').css('transform', 'rotate(180deg)');
-
-            // تمرير سلس إلى قسم الإرشادات
-            $('html, body').animate({
-                scrollTop: $guide.offset().top - 20
-            }, 500);
-        }
-    });
-
-    // إضافة تأثير حركي عند التحويم على عناصر الإرشادات
-    $('.guide-item').hover(
-        function() {
-            $(this).find('i').addClass('fa-bounce');
-        },
-        function() {
-            $(this).find('i').removeClass('fa-bounce');
-        }
-    );
-
-    // إغلاق الدليل عند النقر خارجه
-    $(document).on('click', function(event) {
-        const $guide = $('#userGuide');
-        const $button = $('#guideToggle');
-
-        if ($guide.hasClass('show') &&
-            !$(event.target).closest('#userGuide').length &&
-            !$(event.target).closest('#guideToggle').length) {
-
-            $guide.removeClass('show');
-            $button.removeClass('active');
-            $button.find('i').css('transform', 'rotate(0deg)');
-            localStorage.setItem('userGuideVisible', 'false');
-        }
-    });
-
-    // إضافة تأثير ظهور تدريجي للعناصر
-    if ($('#userGuide').hasClass('show')) {
-        $('.guide-item').each(function(index) {
-            $(this).css({
-                'animation': `fadeInUp 0.5s ease forwards ${index * 0.1}s`,
-                'opacity': '0'
-            });
-        });
-    }
-
-    // تحديث حالة الدليل عند تغيير حجم النافذة
-    let resizeTimer;
-    $(window).on('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            if ($('#userGuide').hasClass('show')) {
-                $('html, body').animate({
-                    scrollTop: $('#userGuide').offset().top - 20
-                }, 300);
-            }
-        }, 250);
-    });
+// Dashboard JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize dashboard animations
+    initializeAnimations();
+    
+    // Initialize tooltips
+    initializeTooltips();
+    
+    // Initialize stat cards animations
+    initializeStatCards();
+    
+    // Initialize responsive behavior
+    initializeResponsive();
+    
+    // Initialize auto-refresh for stats
+    initializeAutoRefresh();
 });
 
-// إضافة تأثيرات حركية CSS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+// Initialize animations for dashboard elements
+function initializeAnimations() {
+    // Add fade-in animation to stat cards
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('fade-in');
+    });
+    
+    // Add slide-in animations to dashboard cards
+    const dashboardCards = document.querySelectorAll('.dashboard-card');
+    dashboardCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        if (index % 2 === 0) {
+            card.classList.add('slide-in-left');
+        } else {
+            card.classList.add('slide-in-right');
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    });
+    
+    // Add hover effects to interactive elements
+    const interactiveElements = document.querySelectorAll('.order-item, .quick-action-btn');
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(-4px)';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+            });
+    });
+}
+
+// Initialize tooltips for better UX
+function initializeTooltips() {
+    // Initialize Bootstrap tooltips if available
+    if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     }
-`;
-document.head.appendChild(style);
+}
+
+// Initialize stat cards with counter animations
+function initializeStatCards() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    // Intersection Observer for counter animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+    
+    statNumbers.forEach(number => {
+        observer.observe(number);
+    });
+}
+
+// Animate counter numbers
+function animateCounter(element) {
+    const target = parseInt(element.textContent);
+    const duration = 2000; // 2 seconds
+    const step = target / (duration / 16); // 60 FPS
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current);
+        }
+    }, 16);
+}
+
+// Initialize responsive behavior
+function initializeResponsive() {
+    // Handle mobile navigation for dashboard
+    const mobileBreakpoint = 768;
+    
+    function handleResize() {
+        const isMobile = window.innerWidth < mobileBreakpoint;
+        
+        // Adjust dashboard layout for mobile
+        const dashboardCards = document.querySelectorAll('.dashboard-card');
+        dashboardCards.forEach(card => {
+            if (isMobile) {
+                card.classList.add('mobile-layout');
+            } else {
+                card.classList.remove('mobile-layout');
+            }
+        });
+        
+        // Adjust stat cards layout
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach(card => {
+            if (isMobile) {
+                card.classList.add('mobile-stat');
+            } else {
+                card.classList.remove('mobile-stat');
+            }
+        });
+    }
+    
+    // Initial check
+    handleResize();
+    
+    // Listen for resize events
+    window.addEventListener('resize', handleResize);
+}
+
+// Initialize auto-refresh for dashboard stats
+function initializeAutoRefresh() {
+    // Refresh stats every 5 minutes
+    const refreshInterval = 5 * 60 * 1000; // 5 minutes
+    
+    setInterval(() => {
+        refreshDashboardStats();
+    }, refreshInterval);
+}
+
+// Refresh dashboard statistics
+function refreshDashboardStats() {
+    // Only refresh if page is visible
+    if (document.hidden) return;
+    
+    fetch('/dashboard/stats', {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        updateStatCards(data);
+    })
+    .catch(error => {
+        console.log('Stats refresh failed:', error);
+    });
+}
+
+// Update stat cards with new data
+function updateStatCards(data) {
+    // Update orders count
+    const ordersCount = document.querySelector('.stat-orders .stat-number');
+    if (ordersCount && data.orders_count !== undefined) {
+        animateCounterUpdate(ordersCount, data.orders_count);
+    }
+    
+    // Update cart items count
+    const cartCount = document.querySelector('.stat-cart .stat-number');
+    if (cartCount && data.cart_items_count !== undefined) {
+        animateCounterUpdate(cartCount, data.cart_items_count);
+    }
+    
+    // Update notifications count
+    const notificationsCount = document.querySelector('.stat-notifications .stat-number');
+    if (notificationsCount && data.unread_notifications !== undefined) {
+        animateCounterUpdate(notificationsCount, data.unread_notifications);
+    }
+}
+
+// Animate counter update
+function animateCounterUpdate(element, newValue) {
+    const currentValue = parseInt(element.textContent);
+    if (currentValue === newValue) return;
+    
+    const duration = 1000;
+    const step = (newValue - currentValue) / (duration / 16);
+    let current = currentValue;
+    
+    const timer = setInterval(() => {
+        current += step;
+        if ((step > 0 && current >= newValue) || (step < 0 && current <= newValue)) {
+            element.textContent = newValue;
+            clearInterval(timer);
+            
+            // Add highlight effect
+            element.parentElement.parentElement.classList.add('updated');
+            setTimeout(() => {
+                element.parentElement.parentElement.classList.remove('updated');
+            }, 2000);
+        } else {
+            element.textContent = Math.floor(current);
+        }
+    }, 16);
+}
+
+// Handle quick action clicks
+document.addEventListener('click', function(e) {
+    // Handle quick action buttons
+    if (e.target.closest('.quick-action-btn')) {
+        const button = e.target.closest('.quick-action-btn');
+        
+        // Add click animation
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            button.style.transform = '';
+        }, 150);
+    }
+    
+    // Handle stat card clicks
+    if (e.target.closest('.stat-card')) {
+        const card = e.target.closest('.stat-card');
+        
+        // Add click animation
+        card.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            card.style.transform = '';
+        }, 150);
+    }
+});
+
+// Handle page visibility change
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        // Page became visible, refresh stats
+        setTimeout(refreshDashboardStats, 1000);
+    }
+});
+
+// Utility functions
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Error handling
+window.addEventListener('error', function(e) {
+    console.error('Dashboard error:', e.error);
+});
+
+// Performance monitoring
+if ('performance' in window) {
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            console.log('Dashboard load time:', loadTime + 'ms');
+        }, 0);
+    });
+}
