@@ -28,8 +28,8 @@
         <div class="col-md-6 mx-auto">
             <form method="GET" action="{{ route('news.index') }}">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" 
-                           value="{{ request('search') }}" 
+                    <input type="text" class="form-control" name="search"
+                           value="{{ request('search') }}"
                            placeholder="البحث في الأخبار...">
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>
@@ -63,14 +63,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <article class="news-card h-100">
                         <div class="news-image">
-                            <img src="{{ $article->cover_image_url }}" 
-                                 alt="{{ $article->title }}" 
+                            <img src="{{ $article->cover_image_url }}"
+                                 alt="{{ $article->title }}"
                                  class="img-fluid">
                             <div class="news-badge">
                                 <span class="badge bg-primary">جديد</span>
                             </div>
                         </div>
-                        
+
                         <div class="news-content">
                             <div class="news-meta">
                                 <span class="news-date">
@@ -82,19 +82,19 @@
                                     {{ $article->reading_time }} دقيقة
                                 </span>
                             </div>
-                            
+
                             <h3 class="news-title">
                                 <a href="{{ route('news.show', $article->slug) }}">
                                     {{ $article->title }}
                                 </a>
                             </h3>
-                            
+
                             <p class="news-excerpt">
                                 {{ $article->short_description }}
                             </p>
-                            
+
                             <div class="news-footer">
-                                <a href="{{ route('news.show', $article->slug) }}" 
+                                <a href="{{ route('news.show', $article->slug) }}"
                                    class="btn btn-outline-primary btn-sm">
                                     اقرأ المزيد
                                     <i class="fas fa-arrow-left ms-1"></i>
@@ -111,7 +111,7 @@
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
-                        {{ $news->withQueryString()->simplePaginate() }}
+                        {{ $news->withQueryString()->links() }}
                     </div>
                 </div>
             </div>
@@ -160,14 +160,14 @@
                     <p class="section-subtitle">اطلع على أبرز الأخبار والمقالات</p>
                 </div>
             </div>
-            
+
             <div class="row">
                 @foreach($news->take(3) as $featured)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="featured-card">
                             <div class="featured-image">
-                                <img src="{{ $featured->cover_image_url }}" 
-                                     alt="{{ $featured->title }}" 
+                                <img src="{{ $featured->cover_image_url }}"
+                                     alt="{{ $featured->title }}"
                                      class="img-fluid">
                             </div>
                             <div class="featured-content">
@@ -199,7 +199,7 @@
 // Add smooth scroll animation for news cards
 document.addEventListener('DOMContentLoaded', function() {
     const newsCards = document.querySelectorAll('.news-card');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, {
         threshold: 0.1
     });
-    
+
     newsCards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -225,7 +225,7 @@ document.querySelectorAll('.news-card').forEach(card => {
         this.style.transform = 'translateY(-10px)';
         this.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
     });
-    
+
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0)';
         this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';

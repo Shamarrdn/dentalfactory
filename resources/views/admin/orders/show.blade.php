@@ -29,7 +29,7 @@
                                                 <i class="fas fa-arrow-right me-2"></i>
                                                 عودة للطلبات
                                             </a>
-                                            
+
                                             <!-- Invoice Dropdown Button -->
                                             <a href="{{ route('admin.orders.invoice.view', $order->uuid) }}" class="btn btn-gradient-invoice" target="_blank">
                                                 <i class="fas fa-eye me-2"></i>
@@ -460,18 +460,18 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
     }
-    
+
     .btn-gradient-invoice:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
         color: white;
     }
-    
+
     .btn-gradient-invoice:focus {
         box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.5);
         color: white;
     }
-    
+
     /* Dropdown Styles */
     .dropdown-menu {
         border: none;
@@ -487,23 +487,23 @@
         transform: none !important;
         box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
     }
-    
+
     .dropdown-menu.show {
         display: block !important;
         z-index: 99999 !important;
     }
-    
+
     .dropdown.show .dropdown-menu {
         display: block !important;
         z-index: 99999 !important;
     }
-    
+
     /* Force dropdown to appear above everything */
     .dropdown {
         position: relative !important;
         z-index: 10000 !important;
     }
-    
+
     /* Ensure parent containers don't clip the dropdown */
     .actions,
     .card,
@@ -516,57 +516,55 @@
         overflow: visible !important;
         z-index: auto !important;
     }
-    
+
     /* Special handling for the specific card that contains the dropdown */
     .actions .dropdown {
         position: static !important;
     }
-    
+
     .actions .dropdown-menu {
         position: fixed !important;
         top: auto !important;
         right: auto !important;
         left: auto !important;
     }
-    
+
     /* Force dropdown to use body as boundary */
     body {
         overflow-x: visible !important;
     }
-    
+
     .dropdown-item {
         padding: 0.75rem 1rem;
         border: none;
         transition: all 0.3s ease;
     }
-    
+
     .dropdown-item:hover {
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         transform: translateX(5px);
     }
-    
+
     .dropdown-item i {
         width: 20px;
         text-align: center;
     }
-    
+
     /* Toast Notification */
     .toast-success {
         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
         color: white;
         border: none;
     }
-    
+
     .toast-success .toast-header {
         background: transparent;
         border: none;
         color: white;
     }
-    
+
     .toast-success .btn-close {
         filter: brightness(0) invert(1);
     }
 </style>
-@endsection
-
 @endsection
