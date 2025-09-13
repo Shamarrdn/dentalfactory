@@ -29,19 +29,17 @@
 
     <form action="{{ route('admin.settings.general.update') }}" method="POST" class="settings-form">
         @csrf
-        
         <div class="row">
             <!-- Main Settings -->
             <div class="col-lg-8">
                 <!-- Company Information -->
-                <div class="card mb-4" style="border-radius: 15px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); color: white; border-radius: 15px 15px 0 0;">
+                <div class="card mb-3" style="border-radius: 12px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.06); max-height: 680px; overflow-y: auto;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); color: white; border-radius: 12px 12px 0 0; padding: 0.5rem 1rem; min-height: 45px;">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-building"></i> معلومات الشركة
                         </h5>
                     </div>
-                    <div class="card-body" style="padding: 2rem;">
-                        
+                    <div class="card-body" style="padding: 0.7rem;">
                         <!-- Error Messages -->
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -54,30 +52,28 @@
                         @endif
 
                         <!-- Company Address -->
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-1">
                             <label for="company_address" class="form-label">
                                 <i class="fas fa-map-marker-alt text-primary"></i>
                                 عنوان الشركة
                             </label>
                             <textarea name="company_address" id="company_address" 
                                       class="form-control @error('company_address') is-invalid @enderror" 
-                                      rows="3" placeholder="أدخل عنوان الشركة الكامل">{{ old('company_address', $settings->where('key', 'company_address')->first()->value ?? '') }}</textarea>
+                                      rows="1" placeholder="أدخل عنوان الشركة الكامل">{{ old('company_address', $settings->where('key', 'company_address')->first()->value ?? '') }}</textarea>
                             @error('company_address')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <small class="form-text text-muted">العنوان الذي سيظهر في موقع الشركة وفي الفواتير</small>
                         </div>
-
                         <!-- Company Phone -->
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-2">
                             <label for="company_phone" class="form-label">
                                 <i class="fas fa-phone text-success"></i>
                                 أرقام هواتف الشركة
                             </label>
                             <textarea name="company_phone" id="company_phone" 
                                       class="form-control @error('company_phone') is-invalid @enderror" 
-                                      rows="3" 
-                                      placeholder="+966 123 456 789&#10;+966 987 654 321&#10;+966 555 123 456"
+                                      rows="1" 
+                                      placeholder="+966 123 456 789"
                                       style="resize: vertical;">{{ old('company_phone', $settings->where('key', 'company_phone')->first()->value ?? '') }}</textarea>
                             <div class="form-text">
                                 <i class="fas fa-info-circle text-info"></i>
@@ -87,9 +83,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <!-- Company Email -->
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-2">
                             <label for="company_email" class="form-label">
                                 <i class="fas fa-envelope text-info"></i>
                                 البريد الإلكتروني للشركة
@@ -102,9 +97,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <!-- Company Website -->
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-2">
                             <label for="company_website" class="form-label">
                                 <i class="fas fa-globe text-primary"></i>
                                 موقع الشركة الإلكتروني
@@ -121,16 +115,15 @@
                 </div>
 
                 <!-- Maps Settings -->
-                <div class="card mb-4" style="border-radius: 15px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px 15px 0 0;">
+                <div class="card mb-3" style="border-radius: 12px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.06); max-height: 650px; overflow-y: auto;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px 12px 0 0; padding: 0.5rem 1rem; min-height: 45px;">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-map"></i> إعدادات الخرائط
                         </h5>
                     </div>
-                    <div class="card-body" style="padding: 2rem;">
-                        
+                    <div class="card-body" style="padding: 0.7rem;">
                         <!-- Google Maps URL -->
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-2">
                             <label for="google_maps_url" class="form-label">
                                 <i class="fab fa-google text-danger"></i>
                                 رابط Google Maps
@@ -144,22 +137,20 @@
                             @enderror
                             <small class="form-text text-muted">رابط الموقع على خرائط Google، سيظهر كأيقونة في الموقع</small>
                         </div>
-
                         <!-- Embedded Map Code -->
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-2">
                             <label for="embedded_map_code" class="form-label">
                                 <i class="fas fa-code text-warning"></i>
                                 كود الخريطة التفاعلية (iFrame)
                             </label>
                             <textarea name="embedded_map_code" id="embedded_map_code" 
                                       class="form-control @error('embedded_map_code') is-invalid @enderror" 
-                                      rows="6" placeholder='<iframe src="https://www.google.com/maps/embed?..." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>'>{{ old('embedded_map_code', $settings->where('key', 'embedded_map_code')->first()->value ?? '') }}</textarea>
+                                      rows="3" placeholder='<iframe src="https://www.google.com/maps/embed?..." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>'>{{ old('embedded_map_code', $settings->where('key', 'embedded_map_code')->first()->value ?? '') }}</textarea>
                             @error('embedded_map_code')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small class="form-text text-muted">كود HTML للخريطة التفاعلية من Google Maps، ستظهر في صفحة "تواصل معنا"</small>
                         </div>
-
                         <!-- Map Instructions -->
                         <div class="alert alert-info">
                             <h6><i class="fas fa-info-circle"></i> كيفية الحصول على كود الخريطة:</h6>
@@ -178,13 +169,13 @@
             <!-- Sidebar -->
             <div class="col-lg-4">
                 <!-- Save Settings -->
-                <div class="card mb-4" style="border-radius: 15px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #093637 100%); color: white; border-radius: 15px 15px 0 0;">
+                <div class="card mb-4" style="border-radius: 12px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.06); max-height: 180px;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #093637 100%); color: white; border-radius: 12px 12px 0 0; padding: 0.5rem 1rem; min-height: 45px;">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-save"></i> حفظ الإعدادات
                         </h5>
                     </div>
-                    <div class="card-body" style="padding: 1.5rem;">
+                    <div class="card-body" style="padding: 0.7rem;">
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success btn-lg">
                                 <i class="fas fa-save"></i> حفظ جميع الإعدادات
@@ -197,13 +188,13 @@
                 </div>
 
                 <!-- Map Preview -->
-                <div class="card" style="border-radius: 15px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px 15px 0 0;">
+                <div class="card" style="border-radius: 12px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.06); max-height: 280px; overflow-y: auto;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px 12px 0 0; padding: 0.5rem 1rem; min-height: 45px;">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-eye"></i> معاينة الخريطة
                         </h5>
                     </div>
-                    <div class="card-body" style="padding: 1.5rem;">
+                    <div class="card-body" style="padding: 0.7rem;">
                         <div id="map-preview">
                             <p class="text-muted text-center">أدخل كود الخريطة لرؤية المعاينة</p>
                         </div>

@@ -645,27 +645,27 @@
                     </div>
 
                     <div class="product-description mb-4">
-                        <h5 class="section-title">
-
+                        <h6 class="section-title" style="font-size: 2rem; font-weight: 600; color: #2d3748; margin-bottom: 0.75rem;">
+                            <i class="fas fa-align-right me-2 text-muted"></i>
                             وصف المنتج
-                        </h5>
-                        <p>{{ $product->description }}</p>
+                        </h6>
+                        <p style="font-size: 0.9rem; line-height: 1.6; color: #4a5568;">{{ $product->description }}</p>
                     </div>
 
                     <!-- Product Details Section -->
                     @if($product->details && count($product->details) > 0)
                     <div class="product-details-section mb-4">
-                        <h5 class="section-title">
-                            <i class="fas fa-list-ul me-2"></i>
+                        <h6 class="section-title" style="font-size: 2rem; font-weight: 600; color: #2d3748; margin-bottom: 0.75rem;">
+                            <i class="fas fa-list-ul me-2 text-muted"></i>
                             تفاصيل المنتج
-                        </h5>
+                        </h6>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
                                 <tbody>
                                     @foreach($product->details as $key => $value)
                                     <tr>
-                                        <th class="bg-light" style="width: 40%">{{ $key }}</th>
-                                        <td>{{ $value }}</td>
+                                        <th class="bg-light" style="width: 40%; font-size: 0.85rem; font-weight: 600;">{{ $key }}</th>
+                                        <td style="font-size: 0.85rem; color: #4a5568;">{{ $value }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

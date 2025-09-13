@@ -7,6 +7,40 @@
 <link rel="stylesheet" href="{{ asset('assets/css/customer/news.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<style>
+    /* إصلاح مظهر القائمة المنسدلة - إزالة الخلفية الخضراء والمثلثات */
+    .custom-select option {
+        background: #ffffff !important;
+        color: #333333 !important;
+        border: none !important;
+        background-image: none !important;
+        padding: 8px 15px !important;
+    }
+    
+    .custom-select option:hover,
+    .custom-select option:focus,
+    .custom-select option:active {
+        background: #f8f9fa !important;
+        color: #333333 !important;
+        background-image: none !important;
+    }
+    
+    .custom-select option:checked {
+        background: #e9ecef !important;
+        color: #333333 !important;
+        background-image: none !important;
+    }
+    
+    /* إزالة أي أنماط إضافية */
+    select.custom-select option,
+    select option {
+        background: #ffffff !important;
+        color: #333 !important;
+        background-image: none !important;
+        background-repeat: no-repeat !important;
+        background-size: 0 !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -361,7 +395,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" style="margin-top: 15px;">
                                         <div class="form-group floating-label">
                                             <textarea class="form-control custom-input custom-textarea @error('notes') is-invalid @enderror"
                                                       id="notes" name="notes" rows="3">{{ old('notes') }}</textarea>

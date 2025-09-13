@@ -108,18 +108,10 @@
 
         <!-- Pagination -->
         @if($news->hasPages())
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-12">
-                    <div class="pagination-wrapper">
-                        <!-- Pagination Info -->
-                        <div class="pagination-info">
-                            عرض {{ $news->firstItem() }} إلى {{ $news->lastItem() }} من {{ $news->total() }} نتيجة
-                        </div>
-                        
-                        <!-- Pagination Links -->
-                        <nav aria-label="تنقل الصفحات">
-                            {{ $news->withQueryString()->links('custom.pagination') }}
-                        </nav>
+                    <div class="d-flex justify-content-center">
+                        {{ $news->withQueryString()->simplePaginate() }}
                     </div>
                 </div>
             </div>

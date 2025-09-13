@@ -331,7 +331,7 @@
 @section('content')
 <div class="orders-container">
     <div class="container">
-        <!-- Page Header -->
+    <!-- Page Header -->
         <div class="page-header">
             <h1 class="page-title">
                 <i class="bi bi-bag-check me-3"></i>
@@ -342,91 +342,91 @@
             <div class="action-buttons">
                 <a href="/products" class="btn btn-primary">
                     <i class="bi bi-cart-plus"></i>
-                    متابعة التسوق
-                </a>
+                متابعة التسوق
+            </a>
             </div>
         </div>
 
         <!-- Orders List -->
-        @forelse($orders as $order)
-            <div class="order-card">
+    @forelse($orders as $order)
+    <div class="order-card">
                 <!-- Order Header -->
-                <div class="order-header">
+        <div class="order-header">
                     <div class="order-number">
                         <i class="bi bi-receipt me-2"></i>
                         طلب #{{ $order->order_number }}
-                    </div>
+                </div>
                     
-                    @if(Auth::user()->hasRole('admin') && $order->user)
+                        @if(Auth::user()->hasRole('admin') && $order->user)
                         <div class="customer-info mt-2">
                             <i class="bi bi-person-circle me-2"></i>
                             {{ $order->user->name }}
                         </div>
-                    @endif
+                        @endif
                     
                     <div class="order-status">
-                        <span class="status-badge status-{{ $order->order_status }}">
+                    <span class="status-badge status-{{ $order->order_status }}">
                             <i class="bi bi-clock-history me-1"></i>
-                            {{ match($order->order_status) {
-                                'completed' => 'مكتمل',
-                                'cancelled' => 'ملغي', 
-                                'processing' => 'قيد المعالجة',
-                                'pending' => 'قيد الانتظار',
-                                'out_for_delivery' => 'جاري التوصيل',
-                                'on_the_way' => 'في الطريق',
-                                'delivered' => 'تم التوصيل',
-                                'returned' => 'مرتجع',
-                                default => 'غير معروف'
-                            } }}
-                        </span>
-                    </div>
-                    
-                    <div class="order-meta">
-                        <div class="order-date">
+                        {{ match($order->order_status) {
+                            'completed' => 'مكتمل',
+                            'cancelled' => 'ملغي',
+                            'processing' => 'قيد المعالجة',
+                            'pending' => 'قيد الانتظار',
+                            'out_for_delivery' => 'جاري التوصيل',
+                            'on_the_way' => 'في الطريق',
+                            'delivered' => 'تم التوصيل',
+                            'returned' => 'مرتجع',
+                            default => 'غير معروف'
+                        } }}
+                    </span>
+            </div>
+            
+            <div class="order-meta">
+                <div class="order-date">
                             <i class="bi bi-calendar3"></i>
                             {{ $order->created_at->format('Y/m/d - H:i') }}
-                        </div>
+                </div>
                         
-                        @if($order->original_amount > $order->total_amount)
-                            <div class="order-discount">
+                @if($order->original_amount > $order->total_amount)
+                <div class="order-discount">
                                 <i class="bi bi-tag-fill"></i>
                                 خصم: {{ number_format($order->original_amount - $order->total_amount, 2) }} ريال
-                            </div>
-                        @endif
-                        
-                        <div class="order-total">
-                            <i class="bi bi-currency-dollar"></i>
-                            {{ number_format($order->total_amount, 2) }} ريال
-                        </div>
-                    </div>
                 </div>
-                
+                @endif
+                        
+                <div class="order-total">
+                    <i class="bi bi-currency-dollar"></i>
+                    {{ number_format($order->total_amount, 2) }} ريال
+                        </div>
+                </div>
+            </div>
+            
                 <!-- Order Body -->
                 <div class="order-body">
                     <div class="order-items">
                         @foreach($order->items->take(6) as $item)
-                            <div class="order-item">
-                                @if($item->product->images->first())
-                                    <img src="{{ url('storage/' . $item->product->images->first()->image_path) }}"
-                                         alt="{{ $item->product->name }}"
-                                         class="item-image">
+                    <div class="order-item">
+                        @if($item->product->images->first())
+                        <img src="{{ url('storage/' . $item->product->images->first()->image_path) }}"
+                            alt="{{ $item->product->name }}"
+                            class="item-image">
                                 @else
                                     <div class="item-image" style="background: linear-gradient(135deg, #ddd, #f8f9fa); display: flex; align-items: center; justify-content: center;">
                                         <i class="bi bi-image" style="font-size: 2rem; color: #999;"></i>
                                     </div>
-                                @endif
+                        @endif
                                 
-                                <h4 class="item-name">{{ $item->product->name }}</h4>
+                            <h4 class="item-name">{{ $item->product->name }}</h4>
                                 <p class="item-quantity">
                                     <i class="bi bi-box"></i>
-                                    الكمية: {{ $item->quantity }}
-                                </p>
-                                @if($item->price > 0)
+                                الكمية: {{ $item->quantity }}
+                            </p>
+                            @if($item->price > 0)
                                     <div class="item-price">
-                                        {{ number_format($item->price * $item->quantity, 2) }} ريال
-                                    </div>
-                                @endif
+                                {{ number_format($item->price * $item->quantity, 2) }} ريال
                             </div>
+                            @endif
+                        </div>
                         @endforeach
                     </div>
                     
@@ -436,7 +436,7 @@
                                 <i class="bi bi-three-dots"></i>
                                 و {{ $order->items->count() - 6 }} منتجات إضافية
                             </p>
-                        </div>
+                </div>
                     @endif
                     
                     <!-- Order Actions -->
@@ -449,23 +449,23 @@
                            class="btn btn-outline-primary" target="_blank">
                             <i class="bi bi-file-earmark-text"></i>
                             عرض الفاتورة
-                        </a>
-                    </div>
-                </div>
+                </a>
             </div>
-        @empty
-            <div class="empty-state">
-                <div class="empty-state-icon">
+        </div>
+    </div>
+    @empty
+    <div class="empty-state">
+        <div class="empty-state-icon">
                     <i class="bi bi-bag-x"></i>
-                </div>
-                <h3>لا توجد طلبات حتى الآن</h3>
+        </div>
+        <h3>لا توجد طلبات حتى الآن</h3>
                 <p>ابدأ رحلة التسوق واكتشف منتجاتنا المميزة</p>
                 <a href="/products" class="btn btn-primary btn-lg">
                     <i class="bi bi-cart-plus"></i>
-                    ابدأ التسوق الآن
-                </a>
-            </div>
-        @endforelse
+            ابدأ التسوق الآن
+        </a>
+    </div>
+    @endforelse
 
         <!-- Pagination -->
         @if($orders->hasPages())

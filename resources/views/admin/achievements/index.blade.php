@@ -195,8 +195,8 @@
             </div>
 
             <!-- Pagination -->
-            <div class="pagination-wrapper">
-                {{ $achievements->withQueryString()->links() }}
+            <div class="pagination-wrapper d-flex justify-content-center mt-4">
+                {{ $achievements->withQueryString()->links('custom.admin-pagination') }}
             </div>
         @else
             <div class="empty-state">

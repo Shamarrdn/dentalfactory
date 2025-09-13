@@ -430,8 +430,8 @@
                                 'returned' => 'مرتجع',
                                 default => 'غير معروف'
                             } }}
+                    </div>
                 </div>
-            </div>
             
             <!-- Order Info Grid -->
             <div class="order-info-grid">
@@ -446,10 +446,10 @@
                 <div class="info-card">
                     <div class="info-icon">
                         <i class="bi bi-person-circle"></i>
-                    </div>
+            </div>
                     <div class="info-label">العميل</div>
                     <div class="info-value">{{ $order->user->name }}</div>
-                </div>
+            </div>
                 
                 <div class="info-card">
                     <div class="info-icon">
@@ -462,10 +462,10 @@
                 <div class="info-card">
                     <div class="info-icon">
                         <i class="bi bi-box-seam"></i>
-                    </div>
+                            </div>
                     <div class="info-label">عدد المنتجات</div>
                     <div class="info-value">{{ $order->items->count() }} منتج</div>
-                </div>
+                        </div>
                     </div>
                 </div>
 
@@ -487,7 +487,7 @@
                                 <div class="product-image" style="background: linear-gradient(135deg, #ddd, #f8f9fa); display: flex; align-items: center; justify-content: center;">
                                     <i class="bi bi-image" style="font-size: 2.5rem; color: #999;"></i>
                                 </div>
-                            @endif
+                                @endif
                             
                             <h4 class="product-name">{{ $item->product->name }}</h4>
                             
@@ -499,27 +499,27 @@
                                 <div class="product-detail">
                                     <div class="product-detail-label">الكمية</div>
                                     <div class="product-detail-value">{{ $item->quantity }}</div>
-                                        </div>
+                        </div>
 
                                 @if($item->price > 0)
                                     <div class="product-detail">
                                         <div class="product-detail-label">السعر</div>
                                         <div class="product-detail-value">{{ number_format($item->price, 2) }} ريال</div>
                                         </div>
-                                    
+
                                     <div class="product-detail" style="grid-column: 1/-1;">
                                         <div class="product-detail-label">المجموع</div>
                                         <div class="product-detail-value" style="color: #6b7280; font-size: 1.3rem;">
                                             {{ number_format($item->price * $item->quantity, 2) }} ريال
                                         </div>
-                                    </div>
-                                @endif
-                                
+                                        </div>
+                                        @endif
+
                                 @if($item->color)
                                     <div class="product-detail">
                                         <div class="product-detail-label">اللون</div>
                                         <div class="product-detail-value">{{ $item->color }}</div>
-                                    </div>
+                                        </div>
                                         @endif
                                 
                                 @if($item->size)
@@ -528,8 +528,8 @@
                                         <div class="product-detail-value">{{ $item->size }}</div>
                                     </div>
                                     @endif
+                                </div>
                             </div>
-                        </div>
                     @endforeach
                 </div>
             </div>
@@ -570,15 +570,15 @@
                             <div class="address-item">
                                 <div class="address-icon">
                                     <i class="bi bi-mailbox"></i>
-                                </div>
+                    </div>
                                 <div class="address-content">
                                     <div class="address-label">الرمز البريدي</div>
                                     <div class="address-value">{{ $order->postal_code }}</div>
-                                </div>
-                    </div>
-                        @endif
                     </div>
                 </div>
+                        @endif
+                    </div>
+                    </div>
             </div>
         @endif
 
@@ -599,28 +599,28 @@
                         <div class="total-item">
                             <div class="total-label">الضرائب</div>
                             <div class="total-value">{{ number_format($order->tax_amount ?? 0, 2) }} ريال</div>
-                        </div>
-                        
+                </div>
+
                         @if($order->discount_amount > 0)
                             <div class="total-item">
                                 <div class="total-label">الخصم</div>
                                 <div class="total-value">- {{ number_format($order->discount_amount, 2) }} ريال</div>
-                            </div>
+                    </div>
                         @endif
                         
                         <div class="total-item">
                             <div class="total-label">رسوم التوصيل</div>
                             <div class="total-value">{{ number_format($order->shipping_cost ?? 0, 2) }} ريال</div>
-                        </div>
                     </div>
+                </div>
                     
                     <div class="grand-total">
                         <i class="bi bi-currency-dollar me-2"></i>
                         المجموع النهائي: {{ number_format($order->total_amount, 2) }} ريال
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
+</div>
 
         <!-- Action Buttons -->
         <div class="action-buttons">

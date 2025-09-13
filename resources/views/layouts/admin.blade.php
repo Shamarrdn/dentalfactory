@@ -118,12 +118,6 @@
                             <span class="nav-title">الإنجازات</span>
                         </a>
                     </div>
-                    <div class="nav-item">
-                        <a href="{{ route('admin.pages.index') }}" class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
-                            <i class="fas fa-file-alt"></i>
-                            <span class="nav-title">إدارة الصفحات</span>
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Reports Section -->
