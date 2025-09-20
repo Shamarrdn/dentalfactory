@@ -216,20 +216,20 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transform = 'translateY(20px)';
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
+        
+        // Disable all hover effects
+        card.style.pointerEvents = 'auto';
+        card.addEventListener('mouseenter', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        card.addEventListener('mouseover', function(e) {
+            e.preventDefault();
+            return false;
+        });
     });
 });
 
-// Add hover effects
-document.querySelectorAll('.news-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px)';
-        this.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
-    });
-
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
-    });
-});
+// Hover effects disabled for better UX
 </script>
 @endsection

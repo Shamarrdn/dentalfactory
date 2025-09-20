@@ -382,6 +382,21 @@ function updateCartDisplay(data) {
         element.textContent = data.count || data.cart_count;
     });
 
+    // تحديث عداد السلة في الـ navbar
+    if (typeof updateCartCount === 'function') {
+        updateCartCount(data.count || data.cart_count);
+    }
+
+    // إرسال custom event
+    document.dispatchEvent(new CustomEvent('cartUpdated', { detail: { count: data.count || data.cart_count } }));
+
+    // إجبار refresh للـ navbar cart count
+    if (typeof loadCartCount === 'function') {
+        setTimeout(function() {
+            loadCartCount();
+        }, 200);
+    }
+
     cartTotal.textContent = (data.total || data.cart_total) + ' ر.س';
 
     cartItems.innerHTML = '';
@@ -473,6 +488,21 @@ function updateQuantity(itemId, change, newValue = null) {
             cartCountElements.forEach(element => {
                 element.textContent = data.cart_count;
             });
+
+            // تحديث عداد السلة في الـ navbar
+            if (typeof updateCartCount === 'function') {
+                updateCartCount(data.cart_count);
+            }
+
+            // إرسال custom event
+            document.dispatchEvent(new CustomEvent('cartUpdated', { detail: { count: data.cart_count } }));
+            
+            // إجبار refresh للـ navbar cart count
+            if (typeof loadCartCount === 'function') {
+                setTimeout(function() {
+                    loadCartCount();
+                }, 200);
+            }
         } else {
             quantityInput.value = currentValue;
             showNotification(data.message || 'فشل تحديث الكمية', 'error');
@@ -589,3 +619,36 @@ function getCategorySlug(product) {
 
     return product.categories?.[0]?.slug || '';
 }
+
+// إضافة listeners للأزرار المحددة في صفحة المنتجات
+$(document).ready(function() {
+    // Listen for quantity buttons in product listing
+    $(document).on('click', '.quantity-btn, button[onclick*="updateQuantity"], .btn-quantity', function() {
+        console.log('Quantity button clicked in products page');
+        setTimeout(function() {
+            if (typeof loadCartCount === 'function') {
+                loadCartCount();
+            }
+        }, 400);
+    });
+    
+    // Listen for add to cart buttons
+    $(document).on('click', '.add-to-cart-btn, button[onclick*="addToCart"], .btn-add-cart', function() {
+        console.log('Add to cart button clicked');
+        setTimeout(function() {
+            if (typeof loadCartCount === 'function') {
+                loadCartCount();
+            }
+        }, 600);
+    });
+    
+    // Listen for any cart-related form submissions
+    $(document).on('submit', 'form[action*="cart"], form[action*="add-to-cart"]', function() {
+        console.log('Cart form submitted');
+        setTimeout(function() {
+            if (typeof loadCartCount === 'function') {
+                loadCartCount();
+            }
+        }, 800);
+    });
+});

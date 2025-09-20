@@ -18,6 +18,74 @@
             max-height: 85px;
             width: auto;
         }
+        
+        /* Hide scrollbars but keep functionality */
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari, Opera */
+        }
+        
+        /* Apply to sidebar navigation */
+        .sidebar-nav {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .sidebar-nav::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Apply to all table responsive containers */
+        .table-responsive {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .table-responsive::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Apply to specific admin tables and containers */
+        .recent-orders-table tbody,
+        .achievements-table tbody,
+        .orders-table tbody,
+        .achievements-table .table-responsive,
+        .orders-container .table-responsive,
+        .table-wrapper,
+        .table-wrapper .table-responsive {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .recent-orders-table tbody::-webkit-scrollbar,
+        .achievements-table tbody::-webkit-scrollbar,
+        .orders-table tbody::-webkit-scrollbar,
+        .achievements-table .table-responsive::-webkit-scrollbar,
+        .orders-container .table-responsive::-webkit-scrollbar,
+        .table-wrapper::-webkit-scrollbar,
+        .table-wrapper .table-responsive::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for any overflow containers in admin */
+        .admin-layout .overflow-auto,
+        .admin-layout .overflow-scroll,
+        .admin-layout .overflow-x-auto,
+        .admin-layout .overflow-y-auto {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .admin-layout .overflow-auto::-webkit-scrollbar,
+        .admin-layout .overflow-scroll::-webkit-scrollbar,
+        .admin-layout .overflow-x-auto::-webkit-scrollbar,
+        .admin-layout .overflow-y-auto::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body class="h-100">

@@ -794,7 +794,8 @@ a:hover {
     }
 
     .navbar-actions {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .nav-icon {
@@ -817,6 +818,12 @@ a:hover {
 
     .user-toggle i {
         font-size: 2rem; /* زيادة حجم أيقونة المستخدم في الموبايل */
+    }
+    
+    /* Mobile auth buttons styling */
+    .navbar-actions .nav-item:has(.btn) {
+        margin-top: 0.5rem;
+        flex-basis: 100%;
     }
 
     /* Fix auth buttons in collapsed menu */

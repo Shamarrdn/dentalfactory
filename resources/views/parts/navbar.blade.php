@@ -39,66 +39,104 @@
                     </li>
                 </ul>
 
-                <div class="navbar-actions">
+                <div class="navbar-actions d-flex align-items-center">
                     <!-- User Dropdown -->
                     @auth
-                        <div class="nav-item dropdown me-3">
-                            <a class="nav-link dropdown-toggle btn btn-outline-primary btn-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="user-dropdown me-3" style="position: relative;">
+                            <button class="btn btn-outline-primary btn-sm user-dropdown-toggle" type="button">
                                 <i class="fas fa-user me-1"></i>حسابي
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="/dashboard">
-                                    <i class="fas fa-tachometer-alt me-2"></i>لوحة التحكم
-                                </a></li>
-                                <li><a class="dropdown-item" href="/user/profile">
-                                    <i class="fas fa-user me-2"></i>الملف الشخصي
-                                </a></li>
-                                <li><a class="dropdown-item" href="/orders">
-                                    <i class="fas fa-shopping-bag me-2"></i>طلباتي
-                                </a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
+                                <i class="fas fa-chevron-down ms-1" style="font-size: 10px;"></i>
+                            </button>
+                            <div class="user-dropdown-menu" style="
+                                position: absolute;
+                                top: 100%;
+                                right: 0;
+                                background: white;
+                                border: 1px solid #ddd;
+                                border-radius: 8px;
+                                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                                min-width: 200px;
+                                z-index: 1050;
+                                display: none;
+                                margin-top: 5px;
+                            ">
+                                <a href="/notifications" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; border-bottom: 1px solid #f0f0f0;">
+                                    <i class="fas fa-bell me-2" style="color: #007bff;"></i>الإشعارات
+                                </a>
+                                <a href="/user/profile" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; border-bottom: 1px solid #f0f0f0;">
+                                    <i class="fas fa-user me-2" style="color: #17a2b8;"></i>الملف الشخصي
+                                </a>
+                                @if(!auth()->user()->hasRole('admin'))
+                                <a href="/orders" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; border-bottom: 1px solid #f0f0f0;">
+                                    <i class="fas fa-shopping-bag me-2" style="color: #28a745;"></i>طلباتي
+                                </a>
+                                @endif
+                                <a href="{{ route('logout') }}" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc3545; border-top: 1px solid #f0f0f0;"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
                     @endauth
-                    
+
+                    <!-- Auth Buttons for Guests -->
+                    @guest
+                        <div class="nav-item d-flex align-items-center me-3">
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">تسجيل الدخول</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary btn-sm">إنشاء حساب</a>
+                        </div>
+                    @endguest
+
                     <!-- Cart -->
                     <div class="nav-item d-flex align-items-center">
                         <a href="/cart" class="nav-icon position-relative" style="color: var(--primary);">
                             <i class="fas fa-shopping-cart"></i>
                             @php
-                                // حساب العدد الكلي للمنتجات (وليس فقط عدد العناصر المختلفة)
+                                // حساب العدد الكلي للمنتجات
                                 $cart_total_quantity = 0;
-                                if(isset($stats) && isset($stats['cart_items_details']) && is_array($stats['cart_items_details'])) {
+                                
+                                // أولاً جرب cartCount من ViewComposer
+                                if(isset($cartCount)) {
+                                    $cart_total_quantity = $cartCount;
+                                }
+                                // ثم جرب stats
+                                elseif(isset($stats) && isset($stats['cart_items_details']) && is_array($stats['cart_items_details'])) {
                                     foreach($stats['cart_items_details'] as $item) {
                                         $cart_total_quantity += isset($item['quantity']) ? $item['quantity'] : 0;
                                     }
                                 } elseif(isset($stats) && isset($stats['cart_items_count'])) {
-                                    // fallback للعدد القديم
                                     $cart_total_quantity = $stats['cart_items_count'];
                                 }
+                                
+                                // Debug information
+                                if(config('app.debug')) {
+                                    \Log::info('Navbar cart count debug', [
+                                        'cartCount' => $cartCount ?? 'not set',
+                                        'stats' => $stats ?? 'not set',
+                                        'cart_total_quantity' => $cart_total_quantity
+                                    ]);
+                                }
                             @endphp
-                            @if($cart_total_quantity > 0)
-                                <span class="cart-badge">{{ $cart_total_quantity }}</span>
-                            @endif
+                            <span class="cart-badge" style="
+                                position: absolute;
+                                top: -8px;
+                                right: -8px;
+                                background: #dc3545;
+                                color: white;
+                                border-radius: 50%;
+                                width: 20px;
+                                height: 20px;
+                                font-size: 12px;
+                                display: {{ $cart_total_quantity > 0 ? 'flex' : 'none' }};
+                                align-items: center;
+                                justify-content: center;
+                                font-weight: bold;
+                            " data-cart-count="{{ $cart_total_quantity }}">{{ $cart_total_quantity }}</span>
                         </a>
                     </div>
-
-                    <!-- Auth Buttons for Guests -->
-                    @guest
-                        <div class="nav-item d-flex align-items-center ms-3">
-                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">تسجيل الدخول</a>
-                            <a href="{{ route('register') }}" class="btn btn-primary btn-sm">إنشاء حساب</a>
-                        </div>
-                    @endguest
 
                 </div>
             </div>

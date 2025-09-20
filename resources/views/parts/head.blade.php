@@ -20,14 +20,115 @@
         font-family: 'Cairo', sans-serif;
         background-color: #ffffff !important;
         background: #ffffff !important;
+        /* Hide scrollbars but keep functionality */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    body::-webkit-scrollbar {
+        display: none;
     }
     
     html {
         background-color: #ffffff !important;
         background: #ffffff !important;
+        /* Hide scrollbars */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    html::-webkit-scrollbar {
+        display: none;
     }
     
     .container, .container-fluid {
         background: transparent !important;
+    }
+    
+    /* Navbar Styles */
+    .glass-navbar {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand img {
+        max-height: 85px;
+        width: auto;
+    }
+    
+    /* Force dropdown visibility */
+    .dropdown {
+        position: relative;
+    }
+    
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1000;
+        display: none;
+        min-width: 200px;
+        padding: 0.5rem 0;
+        margin: 0;
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: 0.375rem;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    }
+    
+    .dropdown-menu.show {
+        display: block !important;
+    }
+    
+    .dropdown-toggle::after {
+        display: inline-block;
+        margin-right: 0.255em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.3em solid;
+        border-left: 0.3em solid transparent;
+        border-bottom: 0;
+        border-right: 0.3em solid transparent;
+    }
+    
+    /* Prevent dropdown from being hidden by overflow */
+    .navbar-collapse {
+        overflow: visible !important;
+    }
+    
+    .nav-item.dropdown {
+        position: static;
+    }
+    
+    @media (min-width: 992px) {
+        .nav-item.dropdown {
+            position: relative;
+        }
+    }
+    
+    .nav-buttons .btn {
+        color: #666;
+        text-decoration: none;
+    }
+    
+    .nav-buttons .btn:hover {
+        color: #007bff;
+    }
+    
+    .navbar-nav .nav-link {
+        font-weight: 500;
+    }
+    
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        color: #333;
+    }
+    
+    .dropdown-item:hover,
+    .dropdown-item.active {
+        background-color: #f8f9fa;
+        color: #007bff;
     }
 </style>

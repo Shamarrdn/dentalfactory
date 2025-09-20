@@ -129,7 +129,7 @@ class FrequentlyBoughtTogether extends Component
         }
 
         if (empty($this->selectedProducts)) {
-            $this->dispatch('show-error', 'يرجى اختيار منتج واحد على الأقل');
+            // $this->dispatch('show-error', 'يرجى اختيار منتج واحد على الأقل'); // Disabled alert
             return;
         }
 
@@ -148,7 +148,7 @@ class FrequentlyBoughtTogether extends Component
             $mainResult = $this->cartService->addToCart($request);
 
             if (!$mainResult['success']) {
-                $this->dispatch('show-error', $mainResult['message']);
+                // $this->dispatch('show-error', $mainResult['message']); // Disabled alert
                 return;
             }
 
@@ -175,15 +175,15 @@ class FrequentlyBoughtTogether extends Component
 
             if ($successCount > 1) {
                 $this->dispatch('cart-updated');
-                $this->dispatch('show-success', "تم إضافة {$successCount} منتج إلى السلة بنجاح");
+                // $this->dispatch('show-success', "تم إضافة {$successCount} منتج إلى السلة بنجاح"); // Disabled alert
             }
 
             if (!empty($errorMessages)) {
-                $this->dispatch('show-error', 'بعض المنتجات لم يتم إضافتها: ' . implode(', ', $errorMessages));
+                // $this->dispatch('show-error', 'بعض المنتجات لم يتم إضافتها: ' . implode(', ', $errorMessages)); // Disabled alert
             }
 
         } catch (\Exception $e) {
-            $this->dispatch('show-error', 'حدث خطأ أثناء إضافة المنتجات للسلة');
+            // $this->dispatch('show-error', 'حدث خطأ أثناء إضافة المنتجات للسلة'); // Disabled alert
         }
     }
 

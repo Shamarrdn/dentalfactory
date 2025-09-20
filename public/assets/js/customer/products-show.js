@@ -189,6 +189,21 @@ function addToCart() {
                 element.textContent = data.cart_count;
             });
 
+            // تحديث عداد السلة في الـ navbar
+            if (typeof updateCartCount === 'function') {
+                updateCartCount(data.cart_count);
+            }
+
+            // إرسال custom event
+            document.dispatchEvent(new CustomEvent('cartItemAdded', { detail: { count: data.cart_count } }));
+
+            // إجبار refresh للـ navbar cart count
+            if (typeof loadCartCount === 'function') {
+                setTimeout(function() {
+                    loadCartCount();
+                }, 200);
+            }
+
             showNotification('تم إضافة المنتج للسلة بنجاح', 'success');
 
             // تحديث محتوى السلة
@@ -348,6 +363,21 @@ function updateCartQuantity(itemId, change, newValue = null) {
             cartCountElements.forEach(element => {
                 element.textContent = data.cart_count;
             });
+
+            // تحديث عداد السلة في الـ navbar
+            if (typeof updateCartCount === 'function') {
+                updateCartCount(data.cart_count);
+            }
+
+            // إرسال custom event
+            document.dispatchEvent(new CustomEvent('cartUpdated', { detail: { count: data.cart_count } }));
+
+            // إجبار refresh للـ navbar cart count
+            if (typeof loadCartCount === 'function') {
+                setTimeout(function() {
+                    loadCartCount();
+                }, 200);
+            }
 
             showNotification('تم تحديث الكمية بنجاح', 'success');
         } else {
@@ -659,3 +689,40 @@ function toggleCustomColor(checkbox) {
         customColorInput.disabled = true;
     }
 }
+
+// إضافة listeners للأزرار المحددة
+$(document).ready(function() {
+    // Listen for quantity buttons (+ and -)
+    $(document).on('click', '.quantity-btn, .btn-sm, button[onclick*="updateCartQuantity"], button[onclick*="changeQuantity"]', function() {
+        console.log('Quantity button clicked in product page');
+        // إجبار refresh بعد فترة قصيرة
+        setTimeout(function() {
+            if (typeof loadCartCount === 'function') {
+                loadCartCount();
+            }
+        }, 400);
+    });
+    
+    // Listen for any button with + or - text content
+    $(document).on('click', 'button', function() {
+        const buttonText = $(this).text().trim();
+        if (buttonText === '+' || buttonText === '-' || buttonText.includes('+') || buttonText.includes('-')) {
+            console.log('Plus/Minus button clicked:', buttonText);
+            setTimeout(function() {
+                if (typeof loadCartCount === 'function') {
+                    loadCartCount();
+                }
+            }, 300);
+        }
+    });
+    
+    // Listen for input changes in quantity fields
+    $(document).on('change', 'input[name="quantity"], .quantity-input, input[type="number"]', function() {
+        console.log('Quantity input changed');
+        setTimeout(function() {
+            if (typeof loadCartCount === 'function') {
+                loadCartCount();
+            }
+        }, 500);
+    });
+});

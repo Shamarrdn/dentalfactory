@@ -130,8 +130,8 @@ Route::middleware([
             Route::post('/apply-coupon', 'applyCoupon')->name('apply-coupon');
         });
 
-        // Orders
-        Route::prefix('orders')->name('orders.')->group(function () {
+        // Orders - Only for customers, not admins
+        Route::middleware(['role:customer'])->prefix('orders')->name('orders.')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('index');
             Route::get('/{order:uuid}', [OrderController::class, 'show'])->name('show');
         });

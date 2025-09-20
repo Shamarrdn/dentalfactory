@@ -4,6 +4,31 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/customer/achievements.css') }}">
+<style>
+    /* Hide scrollbars for achievements index page */
+    body, html {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+    }
+    
+    body::-webkit-scrollbar,
+    html::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .achievements-page,
+    .achievements-grid,
+    .achievement-card {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .achievements-page::-webkit-scrollbar,
+    .achievements-grid::-webkit-scrollbar,
+    .achievement-card::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -161,6 +186,17 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transform = 'translateY(30px)';
         card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(card);
+        
+        // Disable all hover effects
+        card.style.pointerEvents = 'auto';
+        card.addEventListener('mouseenter', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        card.addEventListener('mouseover', function(e) {
+            e.preventDefault();
+            return false;
+        });
     });
 
     // Enhanced search functionality
@@ -185,16 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add hover effects to achievement cards
-    document.querySelectorAll('.achievement-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+    // Hover effects disabled for better UX
 
     // Lazy loading for images
     const images = document.querySelectorAll('.achievement-image');

@@ -34,6 +34,15 @@ class AppServiceProvider extends ServiceProvider
                     $cartCount = $cart->items()->sum('quantity');
                 }
             }
+            
+            // Debug information
+            if(config('app.debug')) {
+                \Log::info('Navbar ViewComposer cart count', [
+                    'user_id' => Auth::id(),
+                    'cartCount' => $cartCount
+                ]);
+            }
+            
             $view->with('cartCount', $cartCount);
         });
     }

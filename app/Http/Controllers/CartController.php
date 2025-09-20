@@ -387,7 +387,7 @@ class CartController extends Controller
         }
 
         return request()->ajax() ?
-            response()->json(['count' => $count]) :
+            response()->json(['success' => true, 'count' => $count]) :
             $count;
     }
 }

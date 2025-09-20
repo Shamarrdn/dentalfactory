@@ -197,33 +197,6 @@
             color: #2c5aa0;
         }
         
-        /* Horizontal Quantity Selector Styles */
-        .quantity-controls {
-            width: fit-content;
-            margin: 0;
-            padding: 0;
-            background: transparent;
-            border-radius: 0;
-            box-shadow: none;
-        }
-        
-        .quantity-controls .section-title {
-            margin-right: 15px;
-            color: #2d3748;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        /* Section Titles Enhancement */
-        .section-title {
-            color: #2d3748 !important;
-            font-weight: 600 !important;
-        }
-        
-        .section-title i {
-            color: #4299e1 !important;
-        }
-        
         /* Stock Badge Enhancement */
         .stock-badge.in-stock {
             background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%) !important;
@@ -237,90 +210,19 @@
             border: 1px solid #feb2b2 !important;
         }
         
-        .btn-quantity-horizontal {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 2px solid #cbd5e0;
-            color: #4a5568;
-            width: 60px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(74, 85, 104, 0.1);
+        /* Simple Quantity Selector */
+        .quantity-container {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
         }
         
-        .btn-quantity-horizontal:hover {
-            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
-            color: #2d3748;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 85, 104, 0.15);
-            border-color: #a0aec0;
+        .quantity-container:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
         }
         
-        .btn-quantity-horizontal:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(74, 85, 104, 0.2);
-        }
-        
-        .quantity-display {
-            background: linear-gradient(135deg, #ffffff 0%, #fafcff 100%);
-            border: 2px solid #cbd5e0;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(74, 85, 104, 0.1);
-            padding: 6px;
-        }
-        
-        .quantity-input-horizontal {
-            border: none !important;
-            width: 100px !important;
-            height: 45px !important;
-            font-size: 1.6rem !important;
-            font-weight: 800 !important;
-            color: #000000 !important;
-            background: transparent !important;
-            text-align: center !important;
-            line-height: 1 !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-        
-        .quantity-input-horizontal:focus {
-            box-shadow: none !important;
-            border: none !important;
-            background: transparent !important;
-            color: #000000 !important;
+        .quantity-container input:focus {
             outline: none !important;
-        }
-        
-        .quantity-input-horizontal:disabled {
-            background: transparent !important;
-            color: #000000 !important;
-            opacity: 1 !important;
-        }
-        
-        .quantity-input::-webkit-outer-spin-button,
-        .quantity-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        
-        .quantity-input[type=number] {
-            -moz-appearance: textfield;
-        }
-        
-        /* Force visibility */
-        #productQuantity {
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            color: #000000 !important;
-            background-color: #ffffff !important;
-            text-align: center !important;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            box-shadow: none !important;
         }
         
         /* Responsive Adjustments */
@@ -333,30 +235,20 @@
                 font-size: 1.3rem !important;
             }
             
-            .quantity-controls {
-                width: fit-content;
-                padding: 0;
-                gap: 12px !important;
-                margin: 0;
+            .quantity-container {
+                padding: 8px 15px !important;
+                gap: 10px !important;
             }
             
-            .quantity-controls .section-title {
-                margin-right: 10px;
-                font-size: 1rem;
+            .quantity-container button {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 0.8rem;
             }
             
-            .btn-quantity-horizontal {
-                width: 50px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .quantity-input-horizontal {
-                width: 80px !important;
-                height: 40px !important;
-                font-size: 1.4rem !important;
-                font-weight: 800 !important;
-                color: #000000 !important;
+            .quantity-container input {
+                width: 50px !important;
+                font-size: 1.1rem !important;
             }
         }
     </style>
@@ -645,31 +537,27 @@
                     </div>
 
                     <div class="product-description mb-4">
-                        <h6 class="section-title" style="font-size: 2rem; font-weight: 600; color: #2d3748; margin-bottom: 0.75rem;">
-                            <i class="fas fa-align-right me-2 text-muted"></i>
+                        <h6 class="mb-3 fw-bold text-dark">
+                            <i class="fas fa-info-circle me-2 text-primary"></i>
                             وصف المنتج
                         </h6>
-                        <p style="font-size: 0.9rem; line-height: 1.6; color: #4a5568;">{{ $product->description }}</p>
+                        <p class="text-muted lh-base">{{ $product->description }}</p>
                     </div>
 
                     <!-- Product Details Section -->
                     @if($product->details && count($product->details) > 0)
                     <div class="product-details-section mb-4">
-                        <h6 class="section-title" style="font-size: 2rem; font-weight: 600; color: #2d3748; margin-bottom: 0.75rem;">
-                            <i class="fas fa-list-ul me-2 text-muted"></i>
+                        <h6 class="mb-3 fw-bold text-dark">
+                            <i class="fas fa-list me-2 text-primary"></i>
                             تفاصيل المنتج
                         </h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <tbody>
-                                    @foreach($product->details as $key => $value)
-                                    <tr>
-                                        <th class="bg-light" style="width: 40%; font-size: 0.85rem; font-weight: 600;">{{ $key }}</th>
-                                        <td style="font-size: 0.85rem; color: #4a5568;">{{ $value }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="bg-light p-3 rounded">
+                            @foreach($product->details as $key => $value)
+                            <div class="d-flex justify-content-between py-2 {{ !$loop->last ? 'border-bottom' : '' }}">
+                                <span class="fw-bold text-dark">{{ $key }}:</span>
+                                <span class="text-muted">{{ $value }}</span>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                     @endif
@@ -679,10 +567,10 @@
                     <!-- Colors Section -->
                     @if($product->allow_color_selection && $product->colors->isNotEmpty())
                         <div class="colors-section mb-4">
-                            <h5 class="section-title">
-                                <i class="fas fa-palette me-2"></i>
+                            <h6 class="mb-3 fw-bold text-dark">
+                                <i class="fas fa-palette me-2 text-primary"></i>
                                 الألوان المتاحة
-                            </h5>
+                            </h6>
                             <div class="colors-grid mb-3">
                                 @foreach($product->colors as $color)
                                     <div class="color-item {{ $color->is_available ? 'available' : 'unavailable' }}"
@@ -708,10 +596,10 @@
                     <!-- Custom Color Input -->
                     @if($product->allow_custom_color)
                         <div class="custom-color-section mb-4">
-                            <h5 class="section-title">
-                                <i class="fas fa-palette me-2"></i>
+                            <h6 class="mb-3 fw-bold text-dark">
+                                <i class="fas fa-palette me-2 text-primary"></i>
                                 اللون المطلوب
-                            </h5>
+                            </h6>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="customColor" placeholder="اكتب اللون المطلوب">
                             </div>
@@ -721,7 +609,10 @@
                     <!-- Available Sizes Section -->
                     @if($product->allow_size_selection && $product->sizes->isNotEmpty())
                         <div class="available-sizes mb-4">
-                            <h5 class="fw-bold mb-3">المقاسات المتاحة</h5>
+                            <h6 class="mb-3 fw-bold text-dark">
+                                <i class="fas fa-ruler me-2 text-primary"></i>
+                                المقاسات المتاحة
+                            </h6>
                             <div class="d-flex flex-wrap gap-2">
                                 @foreach($product->sizes as $size)
                                     @if($size->is_available)
@@ -748,10 +639,10 @@
                     <!-- Custom Size Input -->
                     @if($product->allow_custom_size)
                         <div class="custom-size-input mb-4">
-                            <h5 class="section-title">
-                                <i class="fas fa-ruler me-2"></i>
+                            <h6 class="mb-3 fw-bold text-dark">
+                                <i class="fas fa-ruler me-2 text-primary"></i>
                                 المقاس المطلوب
-                            </h5>
+                            </h6>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="customSize" placeholder="اكتب المقاس المطلوب">
                             </div>
@@ -759,19 +650,17 @@
                     @endif
 
                     <!-- Quantity Selector -->
-                    <div class="quantity-selector mb-4">
-                        <div class="quantity-controls d-flex align-items-center gap-4">
-                            <h5 class="section-title mb-0">
-                                <i class="fas fa-cubes me-2 text-muted"></i>
-                                الكمية
-                            </h5>
-                            <button class="btn btn-quantity-horizontal btn-decrease" type="button" id="decreaseQuantity">
+                    <div class="text-center mb-4">
+                        <h6 class="mb-3 text-dark">
+                            <i class="fas fa-shopping-basket me-2 text-primary"></i>
+                            الكمية
+                        </h6>
+                        <div class="d-inline-flex align-items-center bg-light rounded-pill p-2 quantity-container" style="gap: 15px;">
+                            <button class="btn btn-sm btn-outline-primary rounded-circle" type="button" id="decreaseQuantity" style="width: 40px; height: 40px;">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <div class="quantity-display">
-                                <input type="number" class="form-control quantity-input-horizontal text-center" id="productQuantity" value="1" min="1">
-                            </div>
-                            <button class="btn btn-quantity-horizontal btn-increase" type="button" id="increaseQuantity">
+                            <input type="number" class="form-control text-center fw-bold border-0 bg-transparent" style="width: 60px;" id="productQuantity" value="1" min="1">
+                            <button class="btn btn-sm btn-outline-primary rounded-circle" type="button" id="increaseQuantity" style="width: 40px; height: 40px;">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -918,12 +807,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Listen for Livewire events
             Livewire.on('show-success', message => {
-                alert('✅ ' + message);
+                // alert('✅ ' + message); // Disabled alert
                 updateCartDisplay(); // Update cart count if function exists
             });
             
             Livewire.on('show-error', message => {
-                alert('❌ ' + message);
+                // alert('❌ ' + message); // Disabled alert
             });
             
             Livewire.on('show-login-prompt', () => {
@@ -934,6 +823,31 @@
                 // Refresh cart if needed
                 if (typeof updateCartDisplay === 'function') {
                     updateCartDisplay();
+                }
+                
+                // إرسال custom event
+                document.dispatchEvent(new CustomEvent('cartUpdated'));
+                
+                // تحديث عداد السلة مع تأخير أطول للـ Livewire
+                if (typeof loadCartCount === 'function') {
+                    setTimeout(function() {
+                        loadCartCount();
+                    }, 500);
+                }
+            });
+            
+            // Listen for Livewire components initialization
+            Livewire.hook('component.initialized', (component) => {
+                console.log('Livewire component initialized');
+            });
+            
+            // Listen for Livewire updates
+            Livewire.hook('message.processed', (message, component) => {
+                console.log('Livewire message processed');
+                if (typeof loadCartCount === 'function') {
+                    setTimeout(function() {
+                        loadCartCount();
+                    }, 300);
                 }
             });
         });

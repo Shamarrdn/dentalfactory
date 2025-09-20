@@ -4,6 +4,17 @@
     direction: rtl;
 }
 
+/* Hide scrollbars but keep functionality */
+.achievements-table .table-responsive {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: auto;
+}
+
+.achievements-table .table-responsive::-webkit-scrollbar {
+    display: none;
+}
+
 .page-header {
     background: linear-gradient(135deg, #2E8B57 0%, #3CB371 50%, #20B2AA 100%);
     color: white;

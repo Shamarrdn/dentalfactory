@@ -1,5 +1,57 @@
 /* Customer News Styles */
 
+/* COMPLETELY DISABLE ALL HOVER EFFECTS ON CARDS */
+.news-card:hover,
+.news-card-home:hover,
+.featured-card:hover,
+.related-item:hover,
+.news-item:hover,
+.contact-item:hover,
+.footer-news:hover,
+.footer-contact:hover,
+.hover-lift:hover,
+.card:hover,
+.item:hover,
+*[class*="news"]:hover,
+*[class*="card"]:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+    background: inherit !important;
+    border: inherit !important;
+    opacity: inherit !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Force disable hover pseudo-class effects */
+@media (hover: hover) {
+    .news-card:hover,
+    .news-card-home:hover,
+    .featured-card:hover,
+    *[class*="news"]:hover,
+    *[class*="card"]:hover {
+        transform: none !important;
+        box-shadow: inherit !important;
+        background: inherit !important;
+    }
+}
+
+/* Disable transitions on cards to prevent any animations */
+.news-card,
+.news-card-home,
+.featured-card,
+.related-item,
+.news-item,
+.contact-item,
+.footer-news,
+.footer-contact,
+.hover-lift,
+.card,
+.item {
+    transition: none !important;
+}
+
 /* News Hero Section */
 .news-hero {
     background: transparent;
@@ -91,10 +143,7 @@
     flex-direction: column;
 }
 
-.news-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-}
+/* Hover effects removed for news cards */
 
 .news-image {
     position: relative;
@@ -109,9 +158,7 @@
     transition: transform 0.4s ease;
 }
 
-.news-card:hover .news-image img {
-    transform: scale(1.05);
-}
+/* Transform effect removed from news card images for better UX */
 
 .news-badge {
     position: absolute;
@@ -203,11 +250,7 @@
     gap: 0.5rem;
 }
 
-.news-footer .btn:hover {
-    background: linear-gradient(135deg, #0056b3, #004085);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
-}
+/* News footer button hover effects removed */
 
 /* Featured News Section */
 .featured-news {
@@ -239,10 +282,7 @@
     height: 100%;
 }
 
-.featured-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
+/* Hover effects removed for featured cards */
 
 .featured-image {
     height: 160px;
@@ -256,9 +296,7 @@
     transition: transform 0.3s ease;
 }
 
-.featured-card:hover .featured-image img {
-    transform: scale(1.05);
-}
+/* Transform effect removed from featured card images for better UX */
 
 .featured-content {
     padding: 1.25rem;
@@ -469,9 +507,7 @@
     transition: all 0.3s ease;
 }
 
-.share-buttons .btn:hover {
-    transform: translateY(-2px);
-}
+/* Transform effect removed from share buttons for better UX */
 
 /* Article Navigation */
 .article-navigation {
@@ -489,13 +525,7 @@
     border: 1px solid #e9ecef;
 }
 
-.nav-link-prev:hover,
-.nav-link-next:hover {
-    color: #007bff;
-    background: #f8f9fa;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+/* Navigation link hover effects completely disabled */
 
 /* Sidebar Styles */
 .sidebar-widget {
@@ -538,11 +568,7 @@
     border-bottom: none;
 }
 
-.related-news .related-item:hover {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 1rem;
-}
+/* Hover effects removed for related news items */
 
 .related-title {
     font-size: 0.95rem;
@@ -571,9 +597,7 @@
     transition: transform 0.3s ease;
 }
 
-.related-item:hover img {
-    transform: scale(1.05);
-}
+/* Transform effect removed from related item images for better UX */
 
 /* Search Bar */
 .search-bar {
@@ -693,7 +717,6 @@
     color: #0056b3;
     background-color: #f8f9fa;
     border-color: #007bff;
-    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,123,255,0.15);
 }
 
@@ -714,7 +737,6 @@
 }
 
 .pagination .page-item.disabled .page-link:hover {
-    transform: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -732,7 +754,6 @@
 .pagination .page-item:last-child .page-link:hover {
     background: linear-gradient(135deg, #0056b3, #004085);
     color: white;
-    transform: translateY(-2px);
 }
 
 .pagination .page-item:first-child.disabled .page-link,
@@ -745,7 +766,6 @@
 .pagination .page-item:first-child.disabled .page-link:hover,
 .pagination .page-item:last-child.disabled .page-link:hover {
     background: #6c757d;
-    transform: none;
 }
 
 /* RTL support for pagination */
@@ -926,14 +946,9 @@
 }
 
 /* Hover Effects */
-.hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+/* All hover-lift transitions completely disabled */
 
-.hover-lift:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
+/* Hover lift effects removed */
 
 /* Footer News Styles */
 .footer-news {
@@ -947,10 +962,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.footer-news:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
+/* Footer news hover effects removed */
 
 .footer-news .footer-heading {
     color: #2c3e50;
@@ -975,11 +987,7 @@
     margin-bottom: 1.5rem;
 }
 
-.latest-news .news-item:hover {
-    background-color: rgba(255,255,255,0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+/* Latest news item hover effects removed */
 
 .latest-news .news-link {
     color: #2c3e50;
@@ -1027,7 +1035,6 @@
     background-color: #007bff;
     border-color: #007bff;
     color: #ffffff;
-    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,123,255,0.3);
 }
 
@@ -1044,7 +1051,6 @@
 .nav-buttons .btn-link:hover {
     color: #007bff;
     background-color: rgba(0,123,255,0.1);
-    transform: translateY(-1px);
 }
 
 .nav-buttons .btn-link i {
@@ -1064,10 +1070,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.footer-contact:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
+/* Footer contact hover effects removed */
 
 .footer-contact .footer-heading {
     color: #2c3e50;
@@ -1087,11 +1090,7 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.footer-contact .contact-item:hover {
-    background-color: rgba(255,255,255,0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+/* Footer contact item hover effects removed */
 
 .footer-contact .contact-item:last-child {
     border-bottom: none;
@@ -1137,9 +1136,7 @@
         text-align: center;
     }
     
-    .latest-news .news-link:hover {
-        transform: none;
-    }
+    /* Transform effect removed from news links for better mobile UX */
     
     .latest-news .news-title {
         font-size: 0.9rem;
@@ -1212,10 +1209,7 @@
     flex-direction: column;
 }
 
-.news-card-home:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
+/* Hover effects removed for home news cards */
 
 .news-image-home {
     position: relative;
@@ -1230,9 +1224,7 @@
     transition: transform 0.4s ease;
 }
 
-.news-card-home:hover .news-image-home img {
-    transform: scale(1.08);
-}
+/* Transform effect removed from home news card images for better UX */
 
 .news-overlay {
     position: absolute;
@@ -1248,9 +1240,7 @@
     transition: opacity 0.3s ease;
 }
 
-.news-card-home:hover .news-overlay {
-    opacity: 1;
-}
+/* News overlay hover effect removed */
 
 .news-overlay-link {
     color: white;
@@ -1266,11 +1256,7 @@
     transition: all 0.3s ease;
 }
 
-.news-overlay-link:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.1);
-    color: white;
-}
+/* News overlay link hover effects removed */
 
 .news-content-home {
     padding: 2rem;
@@ -1330,10 +1316,7 @@
     transition: all 0.3s ease;
 }
 
-.news-card-home .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
-}
+/* News card button hover effects removed */
 
 .no-news-message {
     padding: 4rem 2rem;

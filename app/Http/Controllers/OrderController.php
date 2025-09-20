@@ -16,23 +16,29 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        // If user is admin, show all orders. If customer, show only their orders
+        // Only allow customers to access this route
         if ($user->hasRole('admin')) {
-            $orders = Order::with(['items.product', 'user'])
-                ->latest()
-                ->paginate(10);
-        } else {
-            $orders = $user->orders()
-                ->with(['items.product'])
-                ->latest()
-                ->paginate(10);
+            abort(403, 'Access denied. Admins cannot access customer orders.');
         }
+
+        // Show only customer's orders
+        $orders = $user->orders()
+            ->with(['items.product'])
+            ->latest()
+            ->paginate(10);
 
         return view('orders.index', compact('orders'));
     }
 
     public function show(Order $order)
     {
+        $user = Auth::user();
+
+        // Only allow customers to access this route
+        if ($user->hasRole('admin')) {
+            abort(403, 'Access denied. Admins cannot access customer orders.');
+        }
+
         $this->authorize('view', $order);
 
         $order->load(['items.product']);

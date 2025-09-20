@@ -1,9 +1,130 @@
 /* Customer Achievements Page Styles */
+
+/* COMPLETELY DISABLE ALL HOVER EFFECTS ON ACHIEVEMENT CARDS */
+.achievement-card:hover,
+.related-card:hover,
+.achievement-item:hover,
+.card:hover,
+.item:hover,
+*[class*="achievement"]:hover,
+*[class*="card"]:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+    background: inherit !important;
+    border: inherit !important;
+    opacity: inherit !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Force disable hover pseudo-class effects */
+@media (hover: hover) {
+    .achievement-card:hover,
+    .related-card:hover,
+    *[class*="achievement"]:hover,
+    *[class*="card"]:hover {
+        transform: none !important;
+        box-shadow: inherit !important;
+        background: inherit !important;
+    }
+}
+
+/* Disable transitions on cards to prevent any animations */
+.achievement-card,
+.related-card,
+.achievement-item,
+.card,
+.item {
+    transition: none !important;
+}
 .achievements-page {
     font-family: 'Tajawal', sans-serif;
     direction: rtl;
-    background: transparent;
+    background-image: url('/assets/images/dental-team-background.png.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #667eea; /* Fallback color */
     min-height: 100vh;
+    position: relative;
+}
+
+/* Fallback with gradient if image fails */
+.achievements-page:not([style*="background-image"]) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.achievements-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    z-index: -1;
+}
+
+/* Responsive background adjustments */
+@media (max-width: 768px) {
+    .achievements-page {
+        background-attachment: scroll;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .achievements-page::before {
+        background: rgba(255, 255, 255, 0.85);
+    }
+}
+
+/* Debug - Force background image with multiple path attempts */
+.achievements-page {
+    background-image: 
+        url('/assets/images/dental-team-background.png.jpg'),
+        url('./assets/images/dental-team-background.png.jpg'),
+        url('../assets/images/dental-team-background.png.jpg') !important;
+}
+
+/* Alternative background paths for different servers */
+@supports not (background-image: url('/assets/images/dental-team-background.png.jpg')) {
+    .achievements-page {
+        background: 
+            url('./images/dental-team-background.png.jpg') center center no-repeat,
+            url('../images/dental-team-background.png.jpg') center center no-repeat,
+            linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: cover;
+    }
+}
+
+/* Hide scrollbars but keep functionality */
+.achievements-page {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.achievements-page::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbars for all scrollable elements in achievements */
+.achievement-detail-body,
+.achievement-content-wrapper,
+.related-grid,
+.achievements-grid,
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.achievement-detail-body::-webkit-scrollbar,
+.achievement-content-wrapper::-webkit-scrollbar,
+.related-grid::-webkit-scrollbar,
+.achievements-grid::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
 }
 
 /* Hero Section */
@@ -103,7 +224,6 @@
 }
 
 .achievement-card:hover {
-    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
@@ -117,12 +237,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: opacity 0.4s ease;
 }
 
-.achievement-card:hover .achievement-image {
-    transform: scale(1.05);
-}
+/* Transform effect removed from achievement images for better UX */
 
 .achievement-overlay {
     position: absolute;
@@ -151,17 +269,13 @@
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    transform: translateY(20px);
 }
 
-.achievement-card:hover .view-btn {
-    transform: translateY(0);
-}
+/* Transform effect removed from view buttons for better UX */
 
 .view-btn:hover {
     background: #f8f9fa;
     color: #007bff;
-    transform: scale(1.05);
 }
 
 /* Card Content */
@@ -344,7 +458,6 @@
 }
 
 .related-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     text-decoration: none;
     color: inherit;
@@ -399,7 +512,6 @@
     background: #007bff;
     color: white;
     border-color: #007bff;
-    transform: translateY(-2px);
 }
 
 .pagination .page-item.active .page-link {

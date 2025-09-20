@@ -4,6 +4,33 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/customer/achievements.css') }}">
+<style>
+    /* Extra scrollbar hiding for achievements detail page */
+    body, html {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+    }
+    
+    body::-webkit-scrollbar,
+    html::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .achievements-page,
+    .achievement-detail-content,
+    .achievement-content-wrapper,
+    .achievement-detail-body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .achievements-page::-webkit-scrollbar,
+    .achievement-detail-content::-webkit-scrollbar,
+    .achievement-content-wrapper::-webkit-scrollbar,
+    .achievement-detail-body::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -187,6 +214,18 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.transform = 'translateY(30px)';
             element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
             observer.observe(element);
+            
+            // Disable hover effects on related cards
+            if (element.classList.contains('related-card')) {
+                element.addEventListener('mouseenter', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+                element.addEventListener('mouseover', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+            }
         });
     });
 
@@ -228,15 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Add hover effect
+        // Hover effects disabled for better UX
         img.style.cursor = 'pointer';
-        img.style.transition = 'transform 0.3s ease';
-        img.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-        });
-        img.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
     });
 
     // Add reading progress indicator
@@ -260,18 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
         progressBar.style.width = scrollPercent + '%';
     });
 
-    // Add smooth hover effects to share buttons
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-            this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
-        });
-        
-        btn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = 'none';
-        });
-    });
+    // Button hover effects disabled for better UX
 });
 
 // Copy to clipboard function

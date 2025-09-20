@@ -50,7 +50,28 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
-    overflow-y: hidden;
+    overflow-y: auto;
+    /* Hide scrollbars */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbars for all admin tables and containers */
+.table-responsive,
+.table-wrapper,
+.orders-container .table-responsive {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.table-responsive::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar,
+.orders-container .table-responsive::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar-header {
