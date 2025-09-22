@@ -1,7 +1,7 @@
 
 @extends('layouts.dental')
 
-@section('title', 'من نحن - مصنع منتجات الأسنان')
+@section('title', 'من نحن - مصنع جينودينت')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset(path: 'assets/css/dental-css/about.css') }}?t={{ time() }}">
@@ -14,7 +14,7 @@
     <div class="container position-relative z-2">
         <h1 class="hero-bg-title mb-4">من نحن</h1>
         <p class="hero-bg-desc mb-4">
-            مصنع رائد في تصنيع منتجات طب الأسنان، نتميز بخبرة أكثر من 25 عاماً في مجال الصناعة الطبية
+            مصنع سعودي متخصص في إنتاج مواد طب الأسنان الأساسية، يقع في منطقة عسير ويستهدف تلبية الطلب المحلي المتزايد
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <a href="#about" class="hero-bg-btn main-btn">تعرف علينا</a>
@@ -71,8 +71,9 @@
             <div class="col-md-6">
                 <div class="story-content-wrapper">
                     <h2 class="story-title gradient-text">قصتنا</h2>
-                    <p class="story-lead">تأسس مصنع نجران للمواد الطبية للأسنان بهدف توفير بديل محلي عالي الجودة لمنتجات طب الأسنان</p>
-                    <p class="story-text">نسعى في مصنع نجران للمواد الطبية للأسنان إلى تلبية احتياجات السوق المحلي والإقليمي من خلال تصنيع مجموعة متنوعة من منتجات طب الأسنان بأعلى معايير الجودة وبأسعار تنافسية. تشمل منتجاتنا مواد الترميم المباشر وغير المباشر، منتجات الوقاية، ومنتجات مكافحة العدوى مثل مطهر اليدين وأقنعة الوجه. نعتمد على كوادر ماهرة ذات كفاءة عالية ومعدات حديثة لضمان دقة وجودة الإنتاج.</p>
+                    <p class="story-lead">"جينودينت" هو مصنع سعودي متخصص في إنتاج مواد طب الأسنان الأساسية، يقع في منطقة عسير، ويستهدف تلبية الطلب المحلي المتزايد على منتجات الترميم، الوقاية، ومكافحة العدوى، بجودة عالية وأسعار تنافسية.</p>
+                    <p class="story-text">يوفر المصنع تشكيلة واسعة تشمل الترميم المباشر وغير المباشر، ومنتجات الوقاية، المختبر، والانطباعات الرقمية. ينطلق المشروع من رؤية استراتيجية ترتكز على الابتكار والتطوير المستدام، ويستفيد من البيئة الاقتصادية والصناعية المستقرة في المملكة، حيث يشهد الناتج المحلي الإجمالي نمواً إيجابياً، ومعدلات التضخم والبطالة ضمن مستويات آمنة ومحفزة للاستثمار.</p>
+ء                    <p class="story-text">كما يستند المشروع إلى مستهدفات الاستراتيجية الوطنية للصناعة التي تهدف إلى مضاعفة مساهمة الصناعة في الناتج المحلي، وزيادة عدد المصانع إلى 36 ألف مصنع بحلول 2035، واستحداث أكثر من 3.2 مليون وظيفة صناعية. ويأتي قطاع الصناعات الطبية في قلب هذه الاستراتيجية، حيث ارتفع عدد مصانع الأجهزة الطبية بنسبة 200% منذ 2018، مما يعزز من فرص نجاح "جينودينت" كمشروع صناعي طبي واعد في منطقة ذات إمكانات نمو كبيرة.</p>
 
                     <div class="story-feature-item">
                         <div class="feature-icon-wrapper">
@@ -126,19 +127,19 @@
                         </div>
                         <h3 class="vision-title">رؤيتنا</h3>
                         <div class="vision-decoration"></div>
-                        <p class="vision-desc">نسعى لأن نكون الشركة المصنعة الرائدة عالمياً في مجال منتجات طب الأسنان، من خلال تقديم منتجات متميزة بأحدث التقنيات العالمية وأعلى معايير الجودة.</p>
+                        <p class="vision-desc">أن نكون الشريك الرائد في صناعة مواد طب الأسنان بالمملكة بحلول عام 2030، مع توسيع بصمتنا الإقليمية والعالمية عبر الابتكار التقني والتطوير المستدام.</p>
                         <div class="vision-features">
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>منتجات مبتكرة</span>
+                                <span>الابتكار التقني</span>
                             </div>
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>معايير عالمية</span>
+                                <span>التطوير المستدام</span>
                             </div>
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>جودة متميزة</span>
+                                <span>التوسع الإقليمي</span>
                             </div>
                         </div>
                     </div>
@@ -152,19 +153,418 @@
                         </div>
                         <h3 class="mission-title">رسالتنا</h3>
                         <div class="mission-decoration"></div>
-                        <p class="mission-desc">نلتزم بإنتاج مواد طبية متخصصة في مجال طب الأسنان تتميز بالكفاءة والسلامة، مع التركيز على الابتكار والاستدامة، لتلبية احتياجات القطاع الطبي السعودي وتعزيز الثقة في المنتج المحلي.</p>
+                        <p class="mission-desc">نسعى في "جينودينت" إلى تصنيع وتوفير مواد طب الأسنان بمعايير جودة عالمية وأسعار تنافسية، مساهمين في تعزيز الاكتفاء الذاتي للمملكة ودعم قطاع الرعاية الصحية محلياً وإقليمياً بما يواكب تطلعات رؤية السعودية 2030.</p>
                         <div class="mission-features">
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>الكفاءة والسلامة</span>
+                                <span>الاكتفاء الذاتي</span>
                             </div>
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>الابتكار والاستدامة</span>
+                                <span>رؤية السعودية 2030</span>
                             </div>
                             <div class="feature">
                                 <div class="feature-dot"></div>
-                                <span>تعزيز المنتج المحلي</span>
+                                <span>الجودة العالمية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="strategic-goals-section py-5">
+    <div class="container">
+        <div class="goals-wrapper position-relative">
+            <div class="vm-shape-1"></div>
+            <div class="vm-shape-2"></div>
+            <div class="vm-pattern"></div>
+
+            <div class="text-center mb-5">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">استراتيجيتنا</span>
+                <h2 class="section-title gradient-text animate__animated animate__fadeInUp">الأهداف الاستراتيجية</h2>
+                <p class="section-subtitle">أهدافنا الاستراتيجية التي نسعى لتحقيقها لضمان الريادة والنمو المستدام</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="goal-card h-100">
+                        <div class="goal-icon">
+                            <div class="icon-backdrop"></div>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="goal-title">العوائد المالية المستدامة</h3>
+                        <p class="goal-desc">ضمان عوائد مالية مستدامة تعزز استمرارية وتوسّع المصنع</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="goal-card h-100">
+                        <div class="goal-icon">
+                            <div class="icon-backdrop"></div>
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="goal-title">تطوير تقنيات الإنتاج</h3>
+                        <p class="goal-desc">تطوير تقنيات إنتاج حديثة لرفع الجودة والكفاءة</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="goal-card h-100">
+                        <div class="goal-icon">
+                            <div class="icon-backdrop"></div>
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="goal-title">دعم الاقتصاد المحلي</h3>
+                        <p class="goal-desc">دعم الاقتصاد المحلي عبر خلق فرص عمل وتعزيز الإنتاجية</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="goal-card h-100">
+                        <div class="goal-icon">
+                            <div class="icon-backdrop"></div>
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="goal-title">الممارسات البيئية المسؤولة</h3>
+                        <p class="goal-desc">الالتزام بممارسات بيئية مسؤولة تحقق الاستدامة</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="goal-card h-100">
+                        <div class="goal-icon">
+                            <div class="icon-backdrop"></div>
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <h3 class="goal-title">تحسين الكفاءة التشغيلية</h3>
+                        <p class="goal-desc">تلبية الطلب المتنامي عبر تحسين الكفاءة التشغيلية وتوسيع الطاقة الإنتاجية</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="goal-card h-100">
+                        <div class="goal-icon">
+                            <div class="icon-backdrop"></div>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="goal-title">ترسيخ السمعة</h3>
+                        <p class="goal-desc">ترسيخ سمعة "جينودينت" كعلامة تجارية موثوقة في السوق الطبي</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="company-values-section py-5">
+    <div class="container">
+        <div class="values-wrapper position-relative">
+            <div class="cert-shape-1"></div>
+            <div class="cert-shape-2"></div>
+            <div class="cert-pattern"></div>
+
+            <div class="text-center mb-5">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">قيمنا الأساسية</span>
+                <h2 class="section-title gradient-text animate__animated animate__fadeInUp">القيم التي نؤمن بها</h2>
+                <p class="section-subtitle">القيم الأساسية التي تحكم عملنا وتوجه قراراتنا الاستراتيجية</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="values-grid">
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="value-icon">
+                                <i class="fas fa-award"></i>
+                                <div class="value-glow"></div>
+                            </div>
+                            <div class="value-content">
+                                <h3 class="value-title">الجودة والاعتمادية</h3>
+                                <p class="value-desc">نلتزم بأعلى معايير التصنيع والاعتماد</p>
+                            </div>
+                        </div>
+
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="value-icon">
+                                <i class="fas fa-lightbulb"></i>
+                                <div class="value-glow"></div>
+                            </div>
+                            <div class="value-content">
+                                <h3 class="value-title">الابتكار المستمر</h3>
+                                <p class="value-desc">نطوّر تقنياتنا لتلبية احتياجات السوق المتغيرة</p>
+                            </div>
+                        </div>
+
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="value-icon">
+                                <i class="fas fa-recycle"></i>
+                                <div class="value-glow"></div>
+                            </div>
+                            <div class="value-content">
+                                <h3 class="value-title">الاستدامة البيئية</h3>
+                                <p class="value-desc">نحرص على تقليل الأثر البيئي</p>
+                            </div>
+                        </div>
+
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                                <div class="value-glow"></div>
+                            </div>
+                            <div class="value-content">
+                                <h3 class="value-title">المسؤولية المجتمعية</h3>
+                                <p class="value-desc">نوظف ونطوّر الكفاءات المحلية</p>
+                            </div>
+                        </div>
+
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="value-icon">
+                                <i class="fas fa-eye"></i>
+                                <div class="value-glow"></div>
+                            </div>
+                            <div class="value-content">
+                                <h3 class="value-title">الشفافية والأخلاق</h3>
+                                <p class="value-desc">نعمل بنزاهة مع شركائنا وعملائنا</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="achievements-roadmap-section py-5">
+    <div class="container">
+        <div class="roadmap-wrapper position-relative">
+            <div class="vm-shape-1"></div>
+            <div class="vm-shape-2"></div>
+            <div class="vm-pattern"></div>
+
+            <div class="text-center mb-5">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">خريطة الطريق</span>
+                <h2 class="section-title gradient-text animate__animated animate__fadeInUp">الإنجازات المتوقعة</h2>
+                <p class="section-subtitle">رؤيتنا المستقبلية والإنجازات التي نسعى لتحقيقها على المدى القصير والمتوسط والطويل</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="achievements-timeline">
+                <!-- Short Term - السنة الأولى والثانية -->
+                <div class="timeline-period short-term" data-aos="fade-up" data-aos-delay="100">
+                    <div class="period-header">
+                        <div class="period-icon short-term">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="period-title">على المدى القصير</h3>
+                        <p class="period-subtitle">السنة الأولى – الثانية</p>
+                    </div>
+                    
+                    <div class="achievements-list">
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="200">
+                            <div class="achievement-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>تشغيل المصنع بكامل طاقته الإنتاجية</h4>
+                                <p>وفقاً للمعايير السعودية والدولية (SFDA، ISO، CE، FDA)</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="250">
+                            <div class="achievement-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>الحصول على التراخيص والاعتمادات</h4>
+                                <p>التراخيص التنظيمية اللازمة لتسويق المنتجات داخل المملكة</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="300">
+                            <div class="achievement-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>إطلاق أول مجموعة منتجات رسمية</h4>
+                                <p>تشمل الترميم المباشر، الوقاية، ومكافحة العدوى</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="350">
+                            <div class="achievement-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>توقيع عقود توريد استراتيجية</h4>
+                                <p>مع مستشفيات وعيادات سعودية، بما في ذلك شراكة مع شركة نبكو</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="400">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>توظيف وتدريب الكوادر المحلية</h4>
+                                <p>بنسبة لا تقل عن 60% من إجمالي القوى العاملة</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="450">
+                            <div class="achievement-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>المشاركة في المعارض الدولية</h4>
+                                <p>معرض سعودي دولي للصناعات الطبية لعرض المنتجات وبناء شبكة علاقات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Term - السنة الثالثة والرابعة -->
+                <div class="timeline-period medium-term" data-aos="fade-up" data-aos-delay="500">
+                    <div class="period-header">
+                        <div class="period-icon medium-term">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="period-title">على المدى المتوسط</h3>
+                        <p class="period-subtitle">السنة الثالثة – الرابعة</p>
+                    </div>
+                    
+                    <div class="achievements-list">
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="600">
+                            <div class="achievement-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>الحصول على اعتماد دولي للمنتجات</h4>
+                                <p>(مثل CE أو FDA) لفتح باب التصدير</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="650">
+                            <div class="achievement-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>دخول الأسواق الخليجية والإقليمية</h4>
+                                <p>عبر وكلاء توزيع أو فروع مباشرة</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="700">
+                            <div class="achievement-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>إضافة خطوط إنتاج رقمية ومختبرية</h4>
+                                <p>تشمل مواد الانطباعات والكواشف المخبرية</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="750">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trending-up"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>تحقيق نمو سنوي في الإيرادات</h4>
+                                <p>بنسبة 15–20% مدفوعاً بتوسع السوق</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="800">
+                            <div class="achievement-icon">
+                                <i class="fas fa-expand"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>توسيع الطاقة الإنتاجية</h4>
+                                <p>بنسبة 50% لتلبية الطلب المتزايد</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="850">
+                            <div class="achievement-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>إطلاق مبادرة "جينودينت للابتكار"</h4>
+                                <p>لدعم البحث والتطوير في المواد الطبية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Long Term - السنة الخامسة وما بعدها -->
+                <div class="timeline-period long-term" data-aos="fade-up" data-aos-delay="900">
+                    <div class="period-header">
+                        <div class="period-icon long-term">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="period-title">على المدى الطويل</h3>
+                        <p class="period-subtitle">السنة الخامسة وما بعدها</p>
+                    </div>
+                    
+                    <div class="achievements-list">
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="1000">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>تحقيق حصة سوقية تتجاوز 10%</h4>
+                                <p>من سوق مواد طب الأسنان في المملكة</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="1050">
+                            <div class="achievement-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>تصدير المنتجات إلى أكثر من 10 دول</h4>
+                                <p>في الشرق الأوسط وشمال إفريقيا</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="1100">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>الحصول على جائزة وطنية أو دولية</h4>
+                                <p>في الابتكار الصناعي أو التصنيع الطبي</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="1150">
+                            <div class="achievement-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>المساهمة في توطين 80%</h4>
+                                <p>من احتياجات القطاع الحكومي من مواد طب الأسنان</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="1200">
+                            <div class="achievement-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>إنشاء مركز تدريب صناعي متخصص</h4>
+                                <p>في عسير لتأهيل الكفاءات السعودية في التصنيع الطبي</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item" data-aos="fade-right" data-aos-delay="1250">
+                            <div class="achievement-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>إدراج جينودينت ضمن قائمة "صنع في السعودية"</h4>
+                                <p>و"تقنية سعودية" كعلامة وطنية رائدة</p>
                             </div>
                         </div>
                     </div>

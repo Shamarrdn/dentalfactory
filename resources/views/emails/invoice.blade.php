@@ -146,7 +146,7 @@
     <div class="email-container">
         <!-- Header -->
         <div class="header">
-            <h1>🦷 مصنع منتجات الأسنان</h1>
+            <h1>🦷 مصنع جينودينت</h1>
             <p>فاتورة الطلب الخاص بك</p>
         </div>
 
@@ -216,7 +216,7 @@
             </p>
 
             <p style="margin-top: 30px; color: #666; font-style: italic;">
-                شكراً لاختيارك مصنع منتجات الأسنان
+                شكراً لاختيارك مصنع جينودينت
             </p>
         </div>
 
@@ -225,13 +225,13 @@
             <h4>تواصل معنا</h4>
             <div class="contact-info">
                 <div class="contact-item">
-                    📧 info@dentalfactory.com
+                    📧 info@genodent.com
                 </div>
                 <div class="contact-item">
                     📱 +966 50 123 4567
                 </div>
                 <div class="contact-item">
-                    🌐 www.dentalfactory.com
+                    🌐 www.genodent.com
                 </div>
             </div>
         </div>

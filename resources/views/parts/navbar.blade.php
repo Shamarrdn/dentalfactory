@@ -4,7 +4,7 @@
         <div class="container">
 
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset('logo.png') }}" alt="مصنع منتجات الأسنان" class="logo-img">
+                <img src="{{ asset('logo.png') }}" alt="مصنع جينودينت" class="logo-img">
             </a>
 
 

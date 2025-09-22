@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'لوحة التحكم') - مصنع منتجات الأسنان</title>
+    <title>@yield('title', 'لوحة التحكم') - مصنع جينودينت</title>
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -97,7 +97,7 @@
         <aside class="sidebar shadow-sm" id="sidebar">
             <div class="sidebar-header">
                 <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">
-                    <img src="{{ asset('logo.png') }}" alt="مصنع منتجات الأسنان" class="img-fluid">
+                    <img src="{{ asset('logo.png') }}" alt="مصنع جينودينت" class="img-fluid">
                 </a>
                 <button class="d-lg-none btn btn-close" id="closeSidebar" aria-label="Close">
                     <i class="fas fa-times"></i>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رسالة جديدة من نموذج الاتصال - مصنع منتجات الأسنان</title>
+    <title>رسالة جديدة من نموذج الاتصال - مصنع جينودينت</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,7 +44,7 @@
     <div class="container">
         <div class="header">
             <h2>رسالة جديدة من نموذج الاتصال</h2>
-            <p>مصنع منتجات الأسنان</p>
+            <p>مصنع جينودينت</p>
         </div>
         <div class="content">
             <div class="field">

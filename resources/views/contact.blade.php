@@ -1,6 +1,6 @@
 @extends('layouts.dental')
 
-@section('title', 'مصنع منتجات الأسنان - اتصل بنا')
+@section('title', 'مصنع جينودينت - اتصل بنا')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/contact.css') }}?t={{ time() }}">
@@ -49,7 +49,7 @@
     <div class="container position-relative z-2">
         <h1 class="hero-bg-title mb-4">تواصل معنا</h1>
         <p class="hero-bg-desc mb-4">
-            نحن هنا لمساعدتك في كل ما تحتاجه من منتجات طب الأسنان عالية الجودة
+            نحن هنا لمساعدتك في الحصول على أفضل مواد طب الأسنان من مصنع جينودينت في منطقة عسير
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <a href="#contact-form" class="hero-bg-btn main-btn">تواصل الآن</a>

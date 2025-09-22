@@ -9,7 +9,7 @@
     justify-content: center;
     direction: rtl;
     overflow: hidden;
-    background-attachment: fixed;
+    /* background-attachment: fixed; - removed for performance */
     background-position: center center;
     background-size: cover;
     transition: background-position 0.3s cubic-bezier(.4,1,.7,1);

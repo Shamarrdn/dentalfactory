@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     @include('parts.head')
-    <title>@yield('title', 'مصنع منتجات الأسنان')</title>
+    <title>@yield('title', 'مصنع جينودينت')</title>
     @yield('styles')
 </head>
 <body>

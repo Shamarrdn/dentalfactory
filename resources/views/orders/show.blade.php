@@ -635,10 +635,6 @@
                 عرض الفاتورة
             </a>
             
-            <button onclick="window.print()" class="btn btn-success">
-                <i class="bi bi-printer"></i>
-                طباعة التفاصيل
-            </button>
             
             <a href="/products" class="btn btn-outline-primary">
                 <i class="bi bi-cart-plus"></i>

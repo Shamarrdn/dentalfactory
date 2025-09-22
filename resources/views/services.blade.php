@@ -1,6 +1,6 @@
 @extends('layouts.dental')
 
-@section('title', 'خدماتنا - مصنع منتجات الأسنان')
+@section('title', 'خدماتنا - مصنع جينودينت')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset(path: 'assets/css/dental-css/services.css') }}?t={{ time() }}">
@@ -12,9 +12,9 @@
 <section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
     <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
-        <h1 class="hero-bg-title mb-4">منتجات طب الأسنان عالية الجودة</h1>
+        <h1 class="hero-bg-title mb-4">جينودينت - منتجات طب الأسنان المتطورة</h1>
         <p class="hero-bg-desc mb-4">
-            نقدم مجموعة شاملة من منتجات طب الأسنان المصنعة بأعلى معايير الجودة لتلبية احتياجات أطباء الأسنان والمرضى
+            نوفر تشكيلة واسعة من مواد طب الأسنان تشمل الترميم المباشر وغير المباشر، ومنتجات الوقاية، المختبر، والانطباعات الرقمية بجودة عالية وأسعار تنافسية
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <a href="#products" class="hero-bg-btn main-btn">تصفح منتجاتنا</a>

@@ -1,6 +1,6 @@
 @extends('layouts.dental')
 
-@section('title', 'مصنع منتجات الأسنان - الصفحة الرئيسية')
+@section('title', 'مصنع جينودينت - الصفحة الرئيسية')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/index.css') }}?t={{ time() }}">
@@ -83,9 +83,9 @@
 <section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
     <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
-        <h1 class="hero-bg-title mb-4">أفضل منتجات طب الأسنان بتقنيات حديثة</h1>
+        <h1 class="hero-bg-title mb-4">جينودينت - مواد طب الأسنان المتطورة</h1>
         <p class="hero-bg-desc mb-4">
-            نصنع منتجات طب الأسنان بأعلى معايير الجودة وبأحدث التقنيات العالمية لنضمن لك أفضل النتائج.
+            مصنع سعودي متخصص في إنتاج مواد طب الأسنان بجودة عالية وأسعار تنافسية، يقع في منطقة عسير ويخدم السوق المحلي والإقليمي.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <a href="#order" class="hero-bg-btn main-btn">اطلب الآن</a>
@@ -226,8 +226,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-content" data-aos="fade-up">
-                        <h3 class="about-subtitle">نحن رواد صناعة منتجات الأسنان</h3>
-                        <p class="about-description">نحن مصنع رائد في إنتاج منتجات طب الأسنان عالية الجودة بأحدث التقنيات وأعلى معايير الجودة العالمية، نسعى دائماً للتطوير والابتكار لتقديم أفضل المنتجات لعملائنا حول العالم.</p>
+                        <h3 class="about-subtitle">جينودينت - الشريك الرائد في منطقة عسير</h3>
+                        <p class="about-description">مصنع سعودي متخصص في إنتاج مواد طب الأسنان الأساسية، نوفر تشكيلة واسعة تشمل الترميم المباشر وغير المباشر، ومنتجات الوقاية، المختبر، والانطباعات الرقمية. نسعى لتحقيق الاكتفاء الذاتي ودعم رؤية السعودية 2030.</p>
 
                         <div class="stats-grid">
                             <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">

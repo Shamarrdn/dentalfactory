@@ -11,10 +11,10 @@
                             <div class="footer-logo-icon">
                                 <img src="{{ asset('logo.png') }}" alt="Logo" width="600" height="600">
                             </div>
-                            <h4 class="">مصنع منتجات الأسنان</h4>
+                            <h4 class="">مصنع جينودينت</h4>
                         </div>
                         <p class="footer-description">
-                            نصنع أفضل منتجات طب الأسنان بأحدث التقنيات العالمية لضمان أعلى مستويات الجودة والكفاءة
+                            مصنع سعودي متخصص في إنتاج مواد طب الأسنان الأساسية في منطقة عسير، نوفر منتجات الترميم والوقاية بجودة عالية وأسعار تنافسية
                         </p>
                         <div class="footer-social">
                             <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -108,7 +108,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="copyright">
-                <p>© {{ date('Y') }} مصنع منتجات الأسنان. جميع الحقوق محفوظة.</p>
+                <p>© {{ date('Y') }} مصنع جينودينت. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </div>

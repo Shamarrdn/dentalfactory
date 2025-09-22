@@ -19,9 +19,24 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
-                    <div class="user-badge">
-                        <i class="fas fa-user-circle"></i>
-                        <span>{{ Auth::user()->role === 'admin' ? 'مدير' : 'عميل' }}</span>
+                    <div class="dashboard-header-actions d-flex align-items-center justify-content-md-end gap-3">
+                        <!-- Notifications Button -->
+                        <a href="/notifications" class="btn btn-outline-primary position-relative">
+                            <i class="fas fa-bell"></i>
+                            <span class="d-none d-sm-inline ms-2">الإشعارات</span>
+                            @if($stats['unread_notifications'] > 0)
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ $stats['unread_notifications'] }}
+                                    <span class="visually-hidden">إشعارات غير مقروءة</span>
+                                </span>
+                            @endif
+                        </a>
+                        
+                        <!-- User Badge -->
+                        <div class="user-badge">
+                            <i class="fas fa-user-circle"></i>
+                            <span>{{ Auth::user()->role === 'admin' ? 'مدير' : 'عميل' }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,6 +218,19 @@
                                     <div class="action-content">
                                         <h6>تحديث الملف الشخصي</h6>
                                         <p>إدارة بياناتك الشخصية</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="/notifications" class="quick-action-btn">
+                                    <div class="action-icon bg-danger">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h6>الإشعارات</h6>
+                                        <p>تابع إشعاراتك الجديدة</p>
+                                        @if($stats['unread_notifications'] > 0)
+                                            <span class="badge bg-light text-dark">{{ $stats['unread_notifications'] }} جديد</span>
+                                        @endif
                                     </div>
                                 </a>
                                 

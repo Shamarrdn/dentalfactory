@@ -1,6 +1,6 @@
 @extends('layouts.dental')
 
-@section('title', $product->name . ' - مصنع منتجات الأسنان')
+@section('title', $product->name . ' - مصنع جينودينت')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/customer/products-show.css') }}?t={{ time() }}">

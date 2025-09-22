@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'مصنع منتجات الأسنان | منتجات أسنان عالية الجودة')</title>
+    <title>@yield('title', 'مصنع جينودينت | منتجات أسنان عالية الجودة')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +83,7 @@
         <div class="container-fluid">
             <!-- Logo positioned at the beginning -->
             <a class="navbar-brand logo-container" href="/">
-                <img src="{{ asset('logo.png') }}" alt="مصنع منتجات الأسنان" class="img-fluid">
+                <img src="{{ asset('logo.png') }}" alt="مصنع جينودينت" class="img-fluid">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

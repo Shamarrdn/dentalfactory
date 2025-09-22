@@ -19,18 +19,35 @@
         }
         
         body {
-            font-family: 'Noto Sans Arabic', 'DejaVu Sans', sans-serif;
+            font-family: 'Noto Sans Arabic', 'Tajawal', 'DejaVu Sans', sans-serif;
             line-height: 1.6;
             color: #2c3e50;
-            background: #ffffff;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             font-size: 14px;
+            min-height: 100vh;
         }
         
         .invoice-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 40px;
             background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+            transform-origin: center bottom;
+        }
+        
+        .invoice-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         /* Header */
@@ -48,17 +65,19 @@
         }
         
         .company-logo {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 24px;
+            font-size: 36px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transform: perspective(1000px) rotateY(-5deg);
         }
         
         .company-name {
@@ -86,10 +105,14 @@
         }
         
         .invoice-title {
-            font-size: 32px;
+            font-size: 42px;
             font-weight: 700;
-            color: #667eea;
-            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .invoice-number {
@@ -114,10 +137,17 @@
         
         .customer-info, .order-info {
             flex: 1;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
             border-right: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .customer-info:hover, .order-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         
         .info-title {
@@ -165,20 +195,23 @@
         .products-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             background: white;
-            border-radius: 8px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
         }
         
         .products-table th {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px 12px;
+            padding: 18px 15px;
             text-align: center;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .products-table td {
@@ -187,8 +220,14 @@
             border-bottom: 1px solid #e9ecef;
         }
         
+        .products-table tbody tr {
+            transition: all 0.3s ease;
+        }
+        
         .products-table tbody tr:hover {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .product-name {
@@ -210,11 +249,12 @@
         }
         
         .totals-table {
-            width: 350px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            border: 1px solid #e9ecef;
+            width: 400px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .total-row {
@@ -257,17 +297,20 @@
         }
         
         .footer-content {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 25px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
             margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
         
         .footer-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 15px;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .contact-grid {
@@ -280,49 +323,73 @@
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #666;
+            gap: 10px;
+            font-size: 15px;
+            color: white;
+            font-weight: 500;
+            opacity: 0.95;
         }
         
         .footer-note {
-            font-size: 12px;
-            color: #999;
+            font-size: 14px;
+            color: #666;
             font-style: italic;
-            margin-top: 20px;
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
         
         /* Print Controls Styles */
         .print-controls {
-            animation: fadeInDown 0.5s ease-out;
+            animation: fadeInDown 0.8s ease-out;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .print-controls .btn-group {
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .print-controls .btn {
             border: none;
-            padding: 12px 20px;
+            padding: 15px 25px;
             font-weight: 600;
+            font-size: 14px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: 0.5px;
         }
         
         .print-controls .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
         
         .print-controls .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid transparent;
+        }
+        
+        .print-controls .btn-primary:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
         }
         
         .print-controls .btn-secondary {
             background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            border: 2px solid transparent;
+        }
+        
+        .print-controls .btn-secondary:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
         }
         
         @keyframes fadeInDown {
@@ -335,6 +402,17 @@
                 transform: translateY(0);
             }
         }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
         /* Print Styles */
         @media print {
@@ -345,43 +423,102 @@
             
             body {
                 font-size: 12px;
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
             }
             
             .invoice-container {
-                padding: 0;
+                padding: 20px;
                 box-shadow: none;
                 margin: 0;
+                border-radius: 0;
+                animation: none;
+                max-width: 100%;
+            }
+            
+            .invoice-container::before {
+                display: block;
             }
             
             .invoice-header {
                 page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            
+            .company-logo {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
             }
             
             .products-table {
                 page-break-inside: avoid;
+                font-size: 11px;
+            }
+            
+            .products-table th {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
             }
             
             .totals-section {
                 page-break-inside: avoid;
+            }
+            
+            .footer-content {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .status-badge {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
             }
         }
         
         /* Status Badge */
         .status-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 8px 16px;
+            border-radius: 25px;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
         }
         
-        .status-pending { background: #fff3cd; color: #856404; }
-        .status-confirmed { background: #d4edda; color: #155724; }
-        .status-processing { background: #cce5ff; color: #004085; }
-        .status-shipped { background: #e2e3e5; color: #383d41; }
-        .status-delivered { background: #d1ecf1; color: #0c5460; }
-        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .status-pending { 
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e); 
+            color: #6c5ce7; 
+            border-color: rgba(108, 92, 231, 0.2);
+        }
+        .status-confirmed { 
+            background: linear-gradient(135deg, #a8e6cf, #7fdbda); 
+            color: #00b894; 
+            border-color: rgba(0, 184, 148, 0.2);
+        }
+        .status-processing { 
+            background: linear-gradient(135deg, #74b9ff, #0984e3); 
+            color: white; 
+            border-color: rgba(9, 132, 227, 0.2);
+        }
+        .status-shipped { 
+            background: linear-gradient(135deg, #ddd6fe, #c4b5fd); 
+            color: #6d28d9; 
+            border-color: rgba(109, 40, 217, 0.2);
+        }
+        .status-delivered { 
+            background: linear-gradient(135deg, #10ac84, #00d2d3); 
+            color: white; 
+            border-color: rgba(16, 172, 132, 0.2);
+        }
+        .status-cancelled { 
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52); 
+            color: white; 
+            border-color: rgba(255, 107, 107, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -404,12 +541,12 @@
         <div class="invoice-header">
             <div class="company-info">
                 <div class="company-logo">🦷</div>
-                <div class="company-name">مصنع منتجات الأسنان</div>
-                <div class="company-tagline">جودة عالية - أسعار مناسبة</div>
+                <div class="company-name">مصنع جينودينت</div>
+                <div class="company-tagline">مواد طب الأسنان المتطورة - منطقة عسير</div>
                 <div class="company-contact">
-                    العنوان: المملكة العربية السعودية<br>
+                    العنوان: منطقة عسير - المملكة العربية السعودية<br>
                     الهاتف: +966 50 123 4567<br>
-                    البريد الإلكتروني: info@dentalfactory.com
+                    البريد الإلكتروني: info@genodent.com
                 </div>
             </div>
             <div class="invoice-meta">
@@ -600,18 +737,18 @@
                 <div class="footer-title">معلومات التواصل</div>
                 <div class="contact-grid">
                     <div class="contact-item">
-                        📧 info@dentalfactory.com
+                        📧 info@genodent.com
                     </div>
                     <div class="contact-item">
                         📱 +966 50 123 4567
                     </div>
                     <div class="contact-item">
-                        🌐 www.dentalfactory.com
+                        🌐 www.genodent.com
                     </div>
                 </div>
             </div>
             <div class="footer-note">
-                شكراً لاختيارك مصنع منتجات الأسنان - جودة عالية وأسعار مناسبة
+                شكراً لاختيارك مصنع جينودينت - الشريك الرائد في مواد طب الأسنان
             </div>
         </div>
     </div>
