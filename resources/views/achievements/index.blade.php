@@ -3,49 +3,86 @@
 @section('title', 'الإنجازات')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/customer/achievements.css') }}">
-<style>
-    /* Hide scrollbars for achievements index page */
-    body, html {
-        -ms-overflow-style: none !important;
-        scrollbar-width: none !important;
-    }
-    
-    body::-webkit-scrollbar,
-    html::-webkit-scrollbar {
-        display: none !important;
-    }
-    
-    .achievements-page,
-    .achievements-grid,
-    .achievement-card {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    
-    .achievements-page::-webkit-scrollbar,
-    .achievements-grid::-webkit-scrollbar,
-    .achievement-card::-webkit-scrollbar {
-        display: none;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('assets/css/dental-css/achievements.css') }}?t={{ time() }}">
 @endsection
 
 @section('content')
-<div class="achievements-page">
-    <!-- Hero Section -->
-    <section class="achievements-hero">
+<!-- Hero Section -->
+<section class="achievements-hero-section d-flex align-items-center justify-content-center text-center">
+    <div class="achievements-hero-overlay"></div>
+    <div class="container position-relative z-2">
         <div class="achievements-hero-content">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8">
-                        <h1><i class="fas fa-trophy"></i> إنجازاتنا</h1>
-                        <p>نفخر بالإنجازات التي حققناها والشهادات التي حصلنا عليها في مجال منتجات الأسنان والرعاية الصحية</p>
+            <div class="achievements-hero-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h1 class="achievements-hero-title mb-4">إنجازات جينودينت</h1>
+            <p class="achievements-hero-desc mb-4">
+                نفخر بالإنجازات والشهادات والاعتمادات التي حققناها في مجال صناعة مواد طب الأسنان المتطورة
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="#achievements-gallery" class="achievements-hero-btn main-btn">مشاهدة الإنجازات</a>
+                <a href="#achievements-categories" class="achievements-hero-btn ghost-btn">التصنيفات</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Categories Section -->
+<section id="achievements-categories" class="achievements-categories-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">تصنيفات الإنجازات</span>
+            <h2 class="section-title gradient-text">تميزنا في كافة المجالات</h2>
+            <p class="section-subtitle">إنجازاتنا وشهادات الجودة والاعتماد التي حصلنا عليها</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="achievement-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-certificate"></i>
                     </div>
+                    <h3 class="category-title">شهادات الجودة</h3>
+                    <p class="category-desc">اعتمادات دولية ومحلية للجودة</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="achievement-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="category-title">الجوائز والتكريم</h3>
+                    <p class="category-desc">جوائز التميز والإبداع الصناعي</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="achievement-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="category-title">الشراكات الاستراتيجية</h3>
+                    <p class="category-desc">تعاوننا مع الجامعات والمؤسسات</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="achievement-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="category-title">النمو والتطوير</h3>
+                    <p class="category-desc">معالم النمو والتوسع التجاري</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<div class="achievements-page">
+    <section id="achievements-gallery" class="achievements-listing-section py-5">
+        <div class="container">
 
     <!-- Achievements Content -->
     <section class="achievements-container">

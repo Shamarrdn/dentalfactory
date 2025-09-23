@@ -51,6 +51,10 @@ Route::get('/services', function () {
 
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 
+Route::get('/research-development', function () {
+    return view('research-development');
+})->name('research.development');
+
 Route::get('/shop', function () {
     return view('shop');
 })->name('shop');

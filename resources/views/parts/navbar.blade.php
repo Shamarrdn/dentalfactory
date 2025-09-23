@@ -26,6 +26,9 @@
                         <a class="nav-link {{ request()->is('services*') ? 'active' : '' }}" href="{{ route('services') }}">خدماتنا</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->is('research-development*') ? 'active' : '' }}" href="{{ route('research.development') }}">البحث والتطوير</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="/products">المنتجات</a>
                     </li>
                     <li class="nav-item">

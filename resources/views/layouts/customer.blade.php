@@ -120,6 +120,9 @@
                                 <i class="fas fa-building ms-1"></i>الملف التعريفي للشركة
                             </a></li>
                             @endif
+                            <li><a class="dropdown-item {{ request()->is('research-development*') ? 'active' : '' }}" href="{{ route('research.development') }}">
+                                <i class="fas fa-flask ms-1"></i>البحث والتطوير
+                            </a></li>
                             <li><a class="dropdown-item {{ request()->is('about*') ? 'active' : '' }}" href="/about">
                                 <i class="fas fa-info-circle ms-1"></i>من نحن
                             </a></li>
@@ -206,6 +209,12 @@
                     <a class="nav-link {{ request()->is('news*') ? 'active' : '' }}" href="{{ route('news.index') }}">
                         <i class="fas fa-newspaper"></i>
                         الأخبار
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('research-development*') ? 'active' : '' }}" href="{{ route('research.development') }}">
+                        <i class="fas fa-flask"></i>
+                        البحث والتطوير
                     </a>
                 </li>
                 <li class="nav-item">

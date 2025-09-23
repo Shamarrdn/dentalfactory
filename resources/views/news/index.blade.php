@@ -3,58 +3,127 @@
 @section('title', 'الأخبار')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/customer/news.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dental-css/news.css') }}?t={{ time() }}">
 @endsection
 
 @section('content')
 <!-- Hero Section -->
-<section class="news-hero">
-    <div class="news-hero-content">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <h1><i class="fas fa-newspaper"></i> الأخبار</h1>
-                    <p>تابع آخر الأخبار والمستجدات في عالم منتجات الأسنان</p>
+<section class="news-hero-section d-flex align-items-center justify-content-center text-center">
+    <div class="news-hero-overlay"></div>
+    <div class="container position-relative z-2">
+        <div class="news-hero-content">
+            <div class="news-hero-icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <h1 class="news-hero-title mb-4">أخبار جينودينت</h1>
+            <p class="news-hero-desc mb-4">
+                تابع آخر الأخبار والمستجدات والابتكارات في مجال صناعة مواد طب الأسنان المتطورة
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="#latest-news" class="news-hero-btn main-btn">آخر الأخبار</a>
+                <a href="#news-categories" class="news-hero-btn ghost-btn">تصنيفات الأخبار</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Categories Section -->
+<section id="news-categories" class="news-categories-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">تصنيفات الأخبار</span>
+            <h2 class="section-title gradient-text">تابع أحدث التطورات</h2>
+            <p class="section-subtitle">اكتشف آخر الأخبار والمستجدات في مختلف مجالات عملنا</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="news-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="category-title">البحث والابتكار</h3>
+                    <p class="category-desc">آخر التطورات في مجال البحث والتطوير</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="news-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="category-title">الإنجازات</h3>
+                    <p class="category-desc">شهادات الجودة والاعتمادات الجديدة</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="news-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="category-title">التطوير التقني</h3>
+                    <p class="category-desc">تحديثات المعدات والتقنيات</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="news-category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="category-title">الشراكات</h3>
+                    <p class="category-desc">التعاون مع الجامعات والمؤسسات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+                <div class="news-search-wrapper">
+                    <form method="GET" action="{{ route('news.index') }}">
+                        <div class="news-search-group">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <input type="text" class="news-search-input" name="search"
+                                   value="{{ request('search') }}"
+                                   placeholder="ابحث في الأخبار والمقالات...">
+                            <button class="news-search-btn" type="submit">
+                                بحث
+                            </button>
+                            @if(request('search'))
+                                <a href="{{ route('news.index') }}" class="news-clear-btn">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            @endif
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="container my-5">
+<section id="latest-news" class="news-listing-section py-5">
+    <div class="container">
 
-    <!-- Search Bar -->
-    <div class="row mb-4">
-        <div class="col-md-6 mx-auto">
-            <form method="GET" action="{{ route('news.index') }}">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search"
-                           value="{{ request('search') }}"
-                           placeholder="البحث في الأخبار...">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    @if(request('search'))
-                        <a href="{{ route('news.index') }}" class="btn btn-outline-secondary">
-                            <i class="fas fa-times"></i>
-                        </a>
-                    @endif
-                </div>
-            </form>
-        </div>
-    </div>
-
-    @if(request('search'))
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="alert alert-info">
-                    <i class="fas fa-search me-2"></i>
-                    نتائج البحث عن: <strong>"{{ request('search') }}"</strong>
-                    ({{ $news->total() }} نتيجة)
+        @if(request('search'))
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="search-results-header">
+                        <div class="search-results-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="search-results-content">
+                            <h3>نتائج البحث</h3>
+                            <p>نتائج البحث عن: <strong>"{{ request('search') }}"</strong> - {{ $news->total() }} نتيجة</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    @endif
+        @endif
 
     <!-- News Grid -->
     @if($news->count() > 0)
@@ -103,8 +172,8 @@
                         </div>
                     </article>
                 </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
 
         <!-- Pagination -->
         @if($news->hasPages())

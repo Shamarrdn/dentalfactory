@@ -1,3 +1,42 @@
+/* ===== GENODENT BRAND COLORS & VARIABLES ===== */
+:root {
+    /* Primary Brand Colors */
+    --genodent-primary: #009245;        /* Shamrock Green */
+    --genodent-secondary: #4F4F4F;      /* Dark Gray */
+    
+    /* Color Variations */
+    --genodent-primary-light: #00b854;
+    --genodent-primary-dark: #007a38;
+    --genodent-secondary-light: #6a6a6a;
+    --genodent-secondary-dark: #3a3a3a;
+    
+    /* Gradients */
+    --genodent-gradient-primary: linear-gradient(135deg, #009245 0%, #00b854 100%);
+    --genodent-gradient-secondary: linear-gradient(135deg, #4F4F4F 0%, #6a6a6a 100%);
+    --genodent-gradient-mixed: linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
+    
+    /* Text Colors */
+    --genodent-text-primary: #1e293b;
+    --genodent-text-secondary: #64748b;
+    --genodent-text-light: #94a3b8;
+    
+    /* Background Colors */
+    --genodent-bg-primary: #f8fffe;
+    --genodent-bg-secondary: #f1f5f4;
+    --genodent-bg-accent: rgba(0, 146, 69, 0.05);
+    
+    /* Shadow Colors */
+    --genodent-shadow-primary: rgba(0, 146, 69, 0.15);
+    --genodent-shadow-secondary: rgba(79, 79, 79, 0.15);
+}
+
+/* Legacy Support - Update old blue colors to green */
+:root {
+    --primary: var(--genodent-primary);
+    --primary-gradient: var(--genodent-gradient-primary);
+    --secondary: var(--genodent-secondary);
+}
+
 /* ===== OUR STORY SECTION - MODERN 2025 STYLING ===== */
 /* --- Fix Overflow Issues --- */
 html, body {
@@ -1760,7 +1799,7 @@ section {
     width: 80px;
     height: 80px;
     margin: 0 auto 20px;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    background: var(--genodent-gradient-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1768,7 +1807,7 @@ section {
     position: relative;
     font-size: 2rem;
     color: white;
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 8px 20px var(--genodent-shadow-primary);
 }
 
 .goal-title {
@@ -1841,7 +1880,7 @@ section {
     width: 70px;
     height: 70px;
     margin: 0 auto 20px;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    background: var(--genodent-gradient-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1849,7 +1888,7 @@ section {
     position: relative;
     font-size: 1.8rem;
     color: white;
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 8px 20px var(--genodent-shadow-primary);
 }
 
 .value-glow {
@@ -1965,18 +2004,18 @@ section {
 }
 
 .period-icon.short-term {
-    background: linear-gradient(135deg, #10b981, #059669);
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    background: var(--genodent-gradient-primary);
+    box-shadow: 0 10px 30px var(--genodent-shadow-primary);
 }
 
 .period-icon.medium-term {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+    background: var(--genodent-gradient-secondary);
+    box-shadow: 0 10px 30px var(--genodent-shadow-secondary);
 }
 
 .period-icon.long-term {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    background: var(--genodent-gradient-mixed);
+    box-shadow: 0 10px 30px var(--genodent-shadow-primary);
 }
 
 .period-icon::after {
@@ -2036,7 +2075,7 @@ section {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+    background: var(--genodent-gradient-primary);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
@@ -2089,30 +2128,30 @@ section {
 
 /* Progress Indicators */
 .timeline-period.short-term .achievement-item:hover {
-    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 15px 35px var(--genodent-shadow-primary);
 }
 
 .timeline-period.medium-term .achievement-item:hover {
-    box-shadow: 0 15px 35px rgba(245, 158, 11, 0.2);
+    box-shadow: 0 15px 35px var(--genodent-shadow-secondary);
 }
 
 .timeline-period.long-term .achievement-item:hover {
-    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 15px 35px var(--genodent-shadow-primary);
 }
 
 .timeline-period.short-term .achievement-icon {
-    background: linear-gradient(135deg, #10b981, #059669);
-    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+    background: var(--genodent-gradient-primary);
+    box-shadow: 0 6px 15px var(--genodent-shadow-primary);
 }
 
 .timeline-period.medium-term .achievement-icon {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3);
+    background: var(--genodent-gradient-secondary);
+    box-shadow: 0 6px 15px var(--genodent-shadow-secondary);
 }
 
 .timeline-period.long-term .achievement-icon {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.3);
+    background: var(--genodent-gradient-mixed);
+    box-shadow: 0 6px 15px var(--genodent-shadow-primary);
 }
 
 /* Special Effects */
