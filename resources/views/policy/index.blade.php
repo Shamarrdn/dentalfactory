@@ -78,11 +78,11 @@
                 <ul>
                     <li>
                         <i class="bi bi-envelope"></i>
-                        البريد الإلكتروني: support@example.com
+                        البريد الإلكتروني: Genodent.1@gmail.com
                     </li>
                     <li>
                         <i class="bi bi-telephone"></i>
-                        الهاتف: +966 XX XXX XXXX
+                        الهاتف: +966 54 411 7002
                     </li>
                     <li>
                         <i class="bi bi-clock"></i>

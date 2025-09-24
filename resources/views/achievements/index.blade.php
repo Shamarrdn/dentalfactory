@@ -8,106 +8,55 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="achievements-hero-section d-flex align-items-center justify-content-center text-center">
-    <div class="achievements-hero-overlay"></div>
+<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
+    <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
-        <div class="achievements-hero-content">
-            <div class="achievements-hero-icon">
-                <i class="fas fa-trophy"></i>
-            </div>
-            <h1 class="achievements-hero-title mb-4">إنجازات جينودينت</h1>
-            <p class="achievements-hero-desc mb-4">
-                نفخر بالإنجازات والشهادات والاعتمادات التي حققناها في مجال صناعة مواد طب الأسنان المتطورة
-            </p>
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="#achievements-gallery" class="achievements-hero-btn main-btn">مشاهدة الإنجازات</a>
-                <a href="#achievements-categories" class="achievements-hero-btn ghost-btn">التصنيفات</a>
-            </div>
+        <div class="achievements-hero-icon">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <h1 class="hero-bg-title mb-4">إنجازات جينودينت</h1>
+        <p class="hero-bg-desc mb-4">
+            نفخر بالإنجازات والشهادات والاعتمادات التي حققناها في مجال صناعة مواد طب الأسنان المتطورة
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#achievements-gallery" class="hero-bg-btn main-btn">مشاهدة الإنجازات</a>
         </div>
     </div>
 </section>
 
-<!-- Achievements Categories Section -->
-<section id="achievements-categories" class="achievements-categories-section py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">تصنيفات الإنجازات</span>
-            <h2 class="section-title gradient-text">تميزنا في كافة المجالات</h2>
-            <p class="section-subtitle">إنجازاتنا وشهادات الجودة والاعتماد التي حصلنا عليها</p>
-        </div>
-
-        <div class="row g-4 mb-5">
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="achievement-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3 class="category-title">شهادات الجودة</h3>
-                    <p class="category-desc">اعتمادات دولية ومحلية للجودة</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="achievement-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3 class="category-title">الجوائز والتكريم</h3>
-                    <p class="category-desc">جوائز التميز والإبداع الصناعي</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="achievement-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="category-title">الشراكات الاستراتيجية</h3>
-                    <p class="category-desc">تعاوننا مع الجامعات والمؤسسات</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="achievement-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="category-title">النمو والتطوير</h3>
-                    <p class="category-desc">معالم النمو والتوسع التجاري</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <div class="achievements-page">
     <section id="achievements-gallery" class="achievements-listing-section py-5">
         <div class="container">
+        
+        <!-- Section Title -->
+        <div class="text-center mb-5">
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">معرض الإنجازات</span>
+            <h2 class="section-title gradient-text">فخورون بإنجازاتنا</h2>
+            <p class="section-subtitle">شهادات الجودة والاعتمادات والجوائز التي حققناها في مجال طب الأسنان</p>
+        </div>
 
-    <!-- Achievements Content -->
-    <section class="achievements-container">
-        <div class="container">
             <!-- Search Bar -->
             <div class="row mb-4">
-                <div class="col-md-6 mx-auto">
-                    <form method="GET" action="{{ route('achievements.index') }}">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" 
-                                   value="{{ request('search') }}" 
-                                   placeholder="البحث في الإنجازات..."
-                                   style="border-radius: 25px 0 0 25px; border: 2px solid #007bff; padding: 12px 20px;">
-                            <button class="btn btn-primary" type="submit" 
-                                    style="border-radius: 0 25px 25px 0; background: linear-gradient(135deg, #007bff, #0056b3); border: none; padding: 12px 20px;">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            @if(request('search'))
-                                <a href="{{ route('achievements.index') }}" class="btn btn-outline-secondary" 
-                                   style="border-radius: 25px; margin-right: 10px; padding: 12px 20px;">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            @endif
-                        </div>
-                    </form>
+                <div class="col-md-8 mx-auto">
+                    <div class="achievements-search-wrapper">
+                        <form method="GET" action="{{ route('achievements.index') }}">
+                            <div class="achievements-search-group">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" class="achievements-search-input" name="search" 
+                                       value="{{ request('search') }}" 
+                                       placeholder="البحث في الإنجازات...">
+                                <button class="achievements-search-btn" type="submit">
+                                    <i class="fas fa-search me-1"></i> بحث
+                                </button>
+                                @if(request('search'))
+                                    <a href="{{ route('achievements.index') }}" class="achievements-clear-btn">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                @endif
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -115,10 +64,14 @@
             @if(request('search'))
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="alert alert-info" style="border-radius: 15px; border: none; background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
-                            <i class="fas fa-search me-2"></i>
-                            نتائج البحث عن: <strong>"{{ request('search') }}"</strong>
-                            ({{ $achievements->total() }} نتيجة)
+                        <div class="search-results-header">
+                            <div class="search-results-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="search-results-content">
+                                <h3>نتائج البحث عن: "{{ request('search') }}"</h3>
+                                <p>تم العثور على {{ $achievements->total() }} إنجاز</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,28 +81,27 @@
             @if($achievements->count() > 0)
                 <div class="achievements-grid">
                     @foreach($achievements as $achievement)
-                        <article class="achievement-card">
-                            <div class="achievement-image-container">
-                                <img src="{{ $achievement->cover_image_url }}" 
+                        <article class="achievement-article-card">
+                            <div class="achievement-article-image-container">
+                                <img src="{{ $achievement->cover_image_url ?? asset('assets/images/achievements-default.jpg') }}" 
                                      alt="{{ $achievement->title }}" 
-                                     class="achievement-image">
-                                <div class="achievement-overlay">
-                                    <a href="{{ route('achievements.show', $achievement->slug) }}" class="view-btn">
+                                     class="achievement-article-image"
+                                     onerror="this.src='https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?auto=format&fit=crop&w=400&q=80'">
+                                
+                                <div class="achievement-category-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    إنجاز
+                                </div>
+                                
+                                <div class="achievement-article-overlay">
+                                    <a href="{{ route('achievements.show', $achievement->slug) }}" class="achievement-read-btn">
                                         <i class="fas fa-eye"></i> عرض التفاصيل
                                     </a>
                                 </div>
                             </div>
                             
-                            <div class="achievement-content">
-                                <h3 class="achievement-title">
-                                    {{ $achievement->title }}
-                                </h3>
-                                
-                                <p class="achievement-description">
-                                    {{ $achievement->short_description }}
-                                </p>
-                                
-                                <div class="achievement-meta">
+                            <div class="achievement-article-content">
+                                <div class="achievement-article-meta">
                                     <span class="achievement-date">
                                         <i class="fas fa-calendar-alt"></i>
                                         {{ $achievement->published_at->format('Y-m-d') }}
@@ -159,6 +111,16 @@
                                         {{ $achievement->formatted_views }}
                                     </span>
                                 </div>
+                                
+                                <h3 class="achievement-article-title">
+                                    <a href="{{ route('achievements.show', $achievement->slug) }}">
+                                        {{ $achievement->title }}
+                                    </a>
+                                </h3>
+                                
+                                <p class="achievement-article-excerpt">
+                                    {{ $achievement->short_description }}
+                                </p>
                             </div>
                         </article>
                     @endforeach
@@ -166,20 +128,21 @@
 
                 <!-- Pagination -->
                 @if($achievements->hasPages())
-                <div class="pagination-wrapper">
+                <div class="achievements-pagination-wrapper">
                     {{ $achievements->withQueryString()->links() }}
                 </div>
                 @endif
             @else
                 <!-- Empty State -->
-                <div class="achievements-empty">
-                    <div class="achievements-empty-icon">
+                <div class="achievements-empty-state">
+                    <div class="empty-state-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
                     @if(request('search'))
                         <h3>لم نجد أي إنجازات</h3>
                         <p>لم نجد أي إنجازات تطابق بحثك عن "{{ request('search') }}"</p>
-                        <a href="{{ route('achievements.index') }}" class="btn btn-primary">
+                        <a href="{{ route('achievements.index') }}" class="btn btn-primary" 
+                           style="background: var(--genodent-gradient-primary); border: none; border-radius: 50px; padding: 12px 25px;">
                             <i class="fas fa-arrow-right"></i> عرض جميع الإنجازات
                         </a>
                     @else

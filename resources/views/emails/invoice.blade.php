@@ -225,10 +225,10 @@
             <h4>تواصل معنا</h4>
             <div class="contact-info">
                 <div class="contact-item">
-                    📧 info@genodent.com
+                    📧 Genodent.1@gmail.com
                 </div>
                 <div class="contact-item">
-                    📱 +966 50 123 4567
+                    📱 +966 54 411 7002
                 </div>
                 <div class="contact-item">
                     🌐 www.genodent.com

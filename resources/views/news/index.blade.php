@@ -8,78 +8,34 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="news-hero-section d-flex align-items-center justify-content-center text-center">
-    <div class="news-hero-overlay"></div>
+<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
+    <div class="hero-bg-overlay"></div>
     <div class="container position-relative z-2">
-        <div class="news-hero-content">
-            <div class="news-hero-icon">
-                <i class="fas fa-newspaper"></i>
-            </div>
-            <h1 class="news-hero-title mb-4">أخبار جينودينت</h1>
-            <p class="news-hero-desc mb-4">
-                تابع آخر الأخبار والمستجدات والابتكارات في مجال صناعة مواد طب الأسنان المتطورة
-            </p>
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="#latest-news" class="news-hero-btn main-btn">آخر الأخبار</a>
-                <a href="#news-categories" class="news-hero-btn ghost-btn">تصنيفات الأخبار</a>
-            </div>
+        <div class="news-hero-icon">
+            <i class="fas fa-newspaper"></i>
+        </div>
+        <h1 class="hero-bg-title mb-4">أخبار جينودينت</h1>
+        <p class="hero-bg-desc mb-4">
+            تابع آخر الأخبار والمستجدات والابتكارات في مجال صناعة مواد طب الأسنان المتطورة
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#latest-news" class="hero-bg-btn main-btn">آخر الأخبار</a>
         </div>
     </div>
 </section>
 
-<!-- News Categories Section -->
-<section id="news-categories" class="news-categories-section py-5">
+
+<section id="latest-news" class="news-listing-section py-5">
     <div class="container">
+        <!-- Section Title -->
         <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">تصنيفات الأخبار</span>
-            <h2 class="section-title gradient-text">تابع أحدث التطورات</h2>
-            <p class="section-subtitle">اكتشف آخر الأخبار والمستجدات في مختلف مجالات عملنا</p>
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">آخر الأخبار</span>
+            <h2 class="section-title gradient-text">تابع جديدنا</h2>
+            <p class="section-subtitle">اكتشف آخر الأخبار والمستجدات في مجال صناعة مواد طب الأسنان</p>
         </div>
-
-        <div class="row g-4 mb-5">
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3 class="category-title">البحث والابتكار</h3>
-                    <p class="category-desc">آخر التطورات في مجال البحث والتطوير</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="news-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3 class="category-title">الإنجازات</h3>
-                    <p class="category-desc">شهادات الجودة والاعتمادات الجديدة</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="news-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="category-title">التطوير التقني</h3>
-                    <p class="category-desc">تحديثات المعدات والتقنيات</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="news-category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="category-title">الشراكات</h3>
-                    <p class="category-desc">التعاون مع الجامعات والمؤسسات</p>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- Search Bar -->
-        <div class="row mb-4">
+        <div class="row mb-5">
             <div class="col-md-8 mx-auto">
                 <div class="news-search-wrapper">
                     <form method="GET" action="{{ route('news.index') }}">
@@ -103,11 +59,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section id="latest-news" class="news-listing-section py-5">
-    <div class="container">
 
         @if(request('search'))
             <div class="row mb-4">

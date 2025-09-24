@@ -73,7 +73,7 @@
                             <textarea name="company_phone" id="company_phone" 
                                       class="form-control @error('company_phone') is-invalid @enderror" 
                                       rows="1" 
-                                      placeholder="+966 123 456 789"
+                                      placeholder="+966 54 411 7002"
                                       style="resize: vertical;">{{ old('company_phone', $settings->where('key', 'company_phone')->first()->value ?? '') }}</textarea>
                             <div class="form-text">
                                 <i class="fas fa-info-circle text-info"></i>
@@ -85,16 +85,37 @@
                         </div>
                         <!-- Company Email -->
                         <div class="form-group mb-2">
-                            <label for="company_email" class="form-label">
+                            <label class="form-label">
                                 <i class="fas fa-envelope text-info"></i>
-                                البريد الإلكتروني للشركة
+                                عناوين البريد الإلكتروني للشركة
                             </label>
-                            <input type="email" name="company_email" id="company_email" 
-                                   class="form-control @error('company_email') is-invalid @enderror" 
-                                   value="{{ old('company_email', $settings->where('key', 'company_email')->first()->value ?? '') }}" 
-                                   placeholder="info@company.com">
+                            
+                            <!-- Email Input -->
+                            <div class="input-group mb-2">
+                                <input type="email" id="email_input" class="form-control" placeholder="أدخل بريد إلكتروني صحيح">
+                                <button type="button" id="add_email_btn" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> إضافة
+                                </button>
+                            </div>
+                            
+                            <!-- Email List -->
+                            <div id="email_list" class="border rounded p-2 mb-2" style="min-height: 60px; max-height: 200px; overflow-y: auto;">
+                                <div id="no_emails" class="text-muted text-center py-2" style="font-size: 0.9rem;">
+                                    <i class="fas fa-info-circle"></i> لم يتم إضافة أي عنوان بريد إلكتروني بعد
+                                </div>
+                            </div>
+                            
+                            <!-- Hidden input to store emails -->
+                            <input type="hidden" name="company_email" id="company_email" 
+                                   value="{{ old('company_email', $settings->where('key', 'company_email')->first()->value ?? '') }}">
+                            
+                            <div class="form-text">
+                                <i class="fas fa-info-circle text-info"></i>
+                                أضف عناوين البريد الإلكتروني واحداً تلو الآخر. يمكنك حذف أي عنوان بالضغط على أيقونة الحذف.
+                            </div>
+                            
                             @error('company_email')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                         <!-- Company Website -->
@@ -205,6 +226,57 @@
     </form>
 </div>
 @endsection
+
+@push('styles')
+<style>
+    .email-tag {
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .email-tag:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.9) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .email-tag .btn:hover {
+        background-color: rgba(255,255,255,0.2);
+        border-radius: 50%;
+    }
+    
+    #email_list:empty::before {
+        content: '';
+    }
+    
+    #add_email_btn:hover {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(var(--bs-primary-rgb), 0.3);
+    }
+    
+    #email_input:focus {
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+    }
+    
+    .toast-notification {
+        animation: slideInRight 0.3s ease-out;
+    }
+    
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+</style>
+@endpush
 
 @section('scripts')
 <script>
@@ -325,7 +397,148 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add placeholder text with line breaks
     if (!phoneTextarea.value) {
-        phoneTextarea.placeholder = '+966 123 456 789\n+966 987 654 321\n+966 555 123 456';
+        phoneTextarea.placeholder = '+966 54 411 7002\nGenodent.1@gmail.com\nGenodent.2@gmail.com';
+    }
+    
+    // Email management system
+    const emailInput = document.getElementById('email_input');
+    const addEmailBtn = document.getElementById('add_email_btn');
+    const emailList = document.getElementById('email_list');
+    const hiddenEmailInput = document.getElementById('company_email');
+    const noEmailsMsg = document.getElementById('no_emails');
+    
+    let emails = [];
+    
+    // Email validation function
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email.trim());
+    }
+    
+    // Update hidden input with current emails
+    function updateHiddenInput() {
+        hiddenEmailInput.value = emails.join('\n');
+    }
+    
+    // Create email tag element
+    function createEmailTag(email, index) {
+        return `
+            <div class="email-tag d-inline-flex align-items-center bg-primary text-white rounded px-2 py-1 me-2 mb-2" 
+                 style="font-size: 0.85rem;">
+                <i class="fas fa-envelope me-1"></i>
+                <span>${email}</span>
+                <button type="button" class="btn btn-sm ms-1 p-0 text-white border-0" 
+                        onclick="removeEmail(${index})" title="حذف البريد الإلكتروني">
+                    <i class="fas fa-times" style="font-size: 0.8rem;"></i>
+                </button>
+            </div>
+        `;
+    }
+    
+    // Remove email function (global scope)
+    window.removeEmail = function(index) {
+        const emailToRemove = emails[index];
+        if (confirm(`هل أنت متأكد من حذف البريد الإلكتروني: ${emailToRemove}؟`)) {
+            emails.splice(index, 1);
+            renderEmails();
+            updateHiddenInput();
+            showToast('تم حذف البريد الإلكتروني بنجاح', 'success');
+        }
+    };
+    
+    // Render emails list
+    function renderEmails() {
+        if (emails.length === 0) {
+            noEmailsMsg.style.display = 'block';
+            emailList.innerHTML = noEmailsMsg.outerHTML;
+        } else {
+            noEmailsMsg.style.display = 'none';
+            emailList.innerHTML = emails.map((email, index) => 
+                createEmailTag(email, index)
+            ).join('');
+        }
+    }
+    
+    // Add email function
+    function addEmail() {
+        const email = emailInput.value.trim();
+        
+        if (!email) {
+            emailInput.classList.add('is-invalid');
+            showToast('يرجى إدخال بريد إلكتروني', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            emailInput.classList.add('is-invalid');
+            showToast('يرجى إدخال بريد إلكتروني صحيح', 'error');
+            return;
+        }
+        
+        if (emails.includes(email)) {
+            emailInput.classList.add('is-invalid');
+            showToast('هذا البريد الإلكتروني موجود بالفعل', 'warning');
+            return;
+        }
+        
+        emails.push(email);
+        emailInput.value = '';
+        emailInput.classList.remove('is-invalid');
+        renderEmails();
+        updateHiddenInput();
+        showToast('تم إضافة البريد الإلكتروني بنجاح', 'success');
+    }
+    
+    // Enhanced toast notification
+    function showToast(message, type = 'info') {
+        const icons = {
+            success: 'fas fa-check-circle',
+            error: 'fas fa-exclamation-circle',
+            warning: 'fas fa-exclamation-triangle',
+            info: 'fas fa-info-circle'
+        };
+        
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `toast-notification alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
+        toast.style.cssText = 'top: 20px; left: 20px; z-index: 9999; min-width: 300px; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+        toast.innerHTML = `
+            <div class="d-flex align-items-center">
+                <i class="${icons[type === 'error' ? 'error' : type]} me-2"></i>
+                <span class="flex-grow-1">${message}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // Auto remove after 4 seconds
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, 4000);
+    }
+    
+    // Event listeners
+    addEmailBtn.addEventListener('click', addEmail);
+    
+    emailInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addEmail();
+        }
+    });
+    
+    emailInput.addEventListener('input', function() {
+        this.classList.remove('is-invalid');
+    });
+    
+    // Initialize emails from hidden input
+    if (hiddenEmailInput.value) {
+        emails = hiddenEmailInput.value.split('\n').filter(email => email.trim() !== '');
+        renderEmails();
     }
 });
 </script>

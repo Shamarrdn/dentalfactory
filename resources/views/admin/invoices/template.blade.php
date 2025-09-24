@@ -545,8 +545,8 @@
                 <div class="company-tagline">مواد طب الأسنان المتطورة - منطقة عسير</div>
                 <div class="company-contact">
                     العنوان: منطقة عسير - المملكة العربية السعودية<br>
-                    الهاتف: +966 50 123 4567<br>
-                    البريد الإلكتروني: info@genodent.com
+                    الهاتف: +966 54 411 7002<br>
+                    البريد الإلكتروني: Genodent.1@gmail.com
                 </div>
             </div>
             <div class="invoice-meta">
@@ -737,10 +737,10 @@
                 <div class="footer-title">معلومات التواصل</div>
                 <div class="contact-grid">
                     <div class="contact-item">
-                        📧 info@genodent.com
+                        📧 Genodent.1@gmail.com
                     </div>
                     <div class="contact-item">
-                        📱 +966 50 123 4567
+                        📱 +966 54 411 7002
                     </div>
                     <div class="contact-item">
                         🌐 www.genodent.com

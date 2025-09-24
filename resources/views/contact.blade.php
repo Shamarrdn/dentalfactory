@@ -96,9 +96,9 @@
                     @php
                         $companyPhone = \App\Models\Setting::get('company_phone', '');
                         $phoneNumbers = get_phone_numbers_array($companyPhone);
-                        $firstPhone = !empty($phoneNumbers) ? $phoneNumbers[0] : '+966 11 234 5678';
+                        $firstPhone = !empty($phoneNumbers) ? $phoneNumbers[0] : '+966 54 411 7002';
                     @endphp
-                    <p>{!! format_phone_numbers($companyPhone, '<br>') ?: '+966 11 234 5678<br>+966 50 123 4567' !!}</p>
+                    <p>{!! format_phone_numbers($companyPhone, '<br>') ?: '+966 54 411 7002' !!}</p>
                     <a href="tel:{{ str_replace([' ', '+'], '', $firstPhone) }}" class="contact-info-link">
                         <span>اتصل الآن</span>
                         <i class="fas fa-phone"></i>
@@ -115,11 +115,11 @@
                     @php
                         $companyEmail = \App\Models\Setting::get('company_email', '');
                         $companyWebsite = \App\Models\Setting::get('company_website', '');
-                        $displayEmail = $companyEmail ?: 'info@dentalproducts.com';
-                        $displayWebsite = $companyWebsite ?: 'sales@dentalproducts.com';
+                        $displayEmails = format_email_addresses($companyEmail, '<br>') ?: 'Genodent.1@gmail.com<br>Genodent.2@gmail.com';
+                        $primaryEmail = get_primary_email($companyEmail) ?: 'Genodent.1@gmail.com';
                     @endphp
-                    <p>{{ $displayEmail }}@if($companyWebsite)<br>{{ $companyWebsite }}@endif</p>
-                    <a href="mailto:{{ $displayEmail }}" class="contact-info-link">
+                    <p>{!! $displayEmails !!}@if($companyWebsite)<br>{{ $companyWebsite }}@endif</p>
+                    <a href="mailto:{{ $primaryEmail }}" class="contact-info-link">
                         <span>أرسل رسالة</span>
                         <i class="fas fa-paper-plane"></i>
                     </a>

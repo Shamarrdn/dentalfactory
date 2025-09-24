@@ -52,7 +52,7 @@
                             <span class="input-group-text">
                                 <i class="fas fa-phone"></i>
                             </span>
-                            <input type="tel" class="form-control" name="phone" :value="old('phone')" placeholder="أدخل رقم الهاتف مع رمز الدولة (+966)" required>
+                            <input type="tel" class="form-control" name="phone" :value="old('phone')" placeholder="مثال: +966 54 411 7002" required>
                         </div>
                     </div>
 

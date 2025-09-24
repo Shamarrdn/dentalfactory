@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="contact-text">
                                     @php
-                                        $companyPhone = \App\Models\Setting::get('company_phone', '+20 567 234 890');
+                                        $companyPhone = \App\Models\Setting::get('company_phone', '+966 54 411 7002');
                                     @endphp
                                     <p>{!! format_phone_numbers($companyPhone, '<br>') ?: $companyPhone !!}</p>
                                 </div>
@@ -94,9 +94,10 @@
                                 </div>
                                 <div class="contact-text">
                                     @php
-                                        $companyEmail = \App\Models\Setting::get('company_email', 'info@dentalproducts.com');
+                                        $companyEmail = \App\Models\Setting::get('company_email', 'Genodent.1@gmail.com');
+                                        $displayEmails = format_email_addresses($companyEmail, '<br>') ?: $companyEmail;
                                     @endphp
-                                    <p>{{ $companyEmail }}</p>
+                                    <p>{!! $displayEmails !!}</p>
                                 </div>
                             </div>
                         </div>
