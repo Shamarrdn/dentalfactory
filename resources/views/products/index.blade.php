@@ -158,7 +158,7 @@
                                 </a>
                                 <div class="product-rating">
                                     <div class="stars" style="--rating: {{ $product['rating'] }}"></div>
-                                    <span class="reviews">({{ $product['reviews'] }} تقييم)</span>
+                                    <span class="reviews">{{ $product['reviews'] }}</span>
                                 </div>
                                 <p class="product-price">
                                     @if($product->min_price == $product->max_price)

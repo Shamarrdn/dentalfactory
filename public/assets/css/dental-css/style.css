@@ -107,6 +107,7 @@ a:hover {
     height: 60px;
     width: auto;
     transition: var(--transition);
+    filter: brightness(0) invert(1);
 }
 
 .navbar-scrolled .logo-img {
@@ -369,7 +370,7 @@ a:hover {
 .footer-logo-icon img {
     width: 90px;
     height: 90px;
-    filter: none;
+    filter: brightness(0) invert(1);
     position: relative;
     z-index: 2;
     animation: pulse 2s infinite ease-in-out;

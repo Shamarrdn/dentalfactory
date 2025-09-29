@@ -8,19 +8,21 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="hero-bg-image-section d-flex align-items-center justify-content-center text-center">
-    <div class="hero-bg-overlay"></div>
+<section class="rd-hero-section d-flex align-items-center justify-content-center text-center">
+    <div class="rd-hero-overlay"></div>
     <div class="container position-relative z-2">
-        <div class="rd-hero-icon">
-            <i class="fas fa-flask"></i>
-        </div>
-        <h1 class="hero-bg-title mb-4">البحث والتطوير والابتكار</h1>
-        <p class="hero-bg-desc mb-4">
-            R&D & Innovation - نحو مستقبل أكثر إشراقاً في مجال صناعة مواد طب الأسنان
-        </p>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="#innovation-vision" class="hero-bg-btn main-btn">رؤيتنا في الابتكار</a>
-            <a href="#research-areas" class="hero-bg-btn ghost-btn">مجالات البحث</a>
+        <div class="rd-hero-content">
+            <div class="rd-hero-icon">
+                <i class="fas fa-flask"></i>
+            </div>
+            <h1 class="rd-hero-title mb-4">البحث والتطوير والابتكار</h1>
+            <p class="rd-hero-desc mb-4">
+                R&D & Innovation - نحو مستقبل أكثر إشراقاً في مجال صناعة مواد طب الأسنان
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="#innovation-vision" class="rd-hero-btn main-btn">رؤيتنا في الابتكار</a>
+                <a href="#research-areas" class="rd-hero-btn ghost-btn">مجالات البحث</a>
+            </div>
         </div>
     </div>
 </section>
@@ -79,7 +81,6 @@
 <section id="research-areas" class="rd-areas-section py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">مجالاتنا البحثية</span>
             <h2 class="section-title gradient-text">مجالات البحث والتطوير</h2>
             <p class="section-subtitle">نركز جهودنا البحثية على المجالات الأكثر تأثيراً في تطوير صناعة مواد طب الأسنان</p>
         </div>
@@ -343,11 +344,11 @@
                         <div class="rd-contact-info">
                             <div class="rd-contact-item">
                                 <i class="fas fa-envelope"></i>
-                                <span>Genodent.1@gmail.com</span>
+                                <span>innovation@genodent.sa</span>
                             </div>
                             <div class="rd-contact-item">
                                 <i class="fas fa-phone"></i>
-                                <span>+966 54 411 7002</span>
+                                <span>+966 17 XXX XXXX</span>
                             </div>
                         </div>
                     </div>

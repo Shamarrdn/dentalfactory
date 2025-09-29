@@ -125,14 +125,7 @@
     opacity: 0.5;
 }
 
-.feature-box:hover::after {
-    height: 100%;
-}
-
-.feature-box:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-color);
-}
+/* hover effects removed */
 
 .feature-box img {
     width: 64px;
@@ -167,10 +160,7 @@
     transition: var(--transition);
 }
 
-.testimonial-box:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-color);
-}
+/* hover effects removed */
 
 /* CTA Section */
 .cta-section {
@@ -235,11 +225,7 @@
     transform: scale(1);
 }
 
-.product-card-modern:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(38, 224, 127, 0.15);
-    border-color: rgba(38, 224, 127, 0.3);
-}
+/* hover effects removed */
 
 .product-card-modern::before {
     content: '';
@@ -256,9 +242,7 @@
     z-index: 1;
 }
 
-.product-card-modern:hover::before {
-    opacity: 1;
-}
+/* hover effects removed */
 
 .product-icon-wrapper {
     position: relative;
@@ -281,10 +265,7 @@
     box-shadow: none;
 }
 
-.product-card-modern:hover .product-icon-bg {
-    background: transparent;
-    box-shadow: none;
-}
+/* hover effects removed */
 
 .product-icon {
     width: 100%;
@@ -298,10 +279,7 @@
     border-radius: 0;
 }
 
-.product-card-modern:hover .product-icon {
-    transform: scale(1.05);
-    filter: none;
-}
+/* hover effects removed */
 
 .product-content {
     padding: 30px;
@@ -1178,10 +1156,7 @@
     z-index: 2;
 }
 
-.order-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 35px 60px rgba(38, 224, 127, 0.1);
-}
+/* hover effects removed */
 
 .order-card-shape {
     position: absolute;
@@ -1355,14 +1330,7 @@ select.custom-select option {
     transition: transform 0.7s ease;
 }
 
-.btn-order-submit:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(38, 224, 127, 0.35);
-}
-
-.btn-order-submit:hover::before {
-    transform: translateX(100%);
-}
+/* hover effects removed */
 
 .btn-order-submit .btn-text {
     margin-right: 15px;
@@ -1379,9 +1347,7 @@ select.custom-select option {
     transition: all 0.3s ease;
 }
 
-.btn-order-submit:hover .btn-icon {
-    transform: rotate(45deg);
-}
+/* hover effects removed */
 
 /* Promo Badge */
 .promo-badge {
@@ -1446,11 +1412,7 @@ select.custom-select option {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
 }
 
-.feature-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(38, 224, 127, 0.1);
-    border-color: rgba(38, 224, 127, 0.2);
-}
+/* hover effects removed */
 
 .feature-icon {
     width: 40px;
@@ -1465,18 +1427,12 @@ select.custom-select option {
     transition: all 0.3s ease;
 }
 
-.feature-item:hover .feature-icon {
-    background: var(--primary-gradient);
-}
+/* hover effects removed */
 
 .feature-icon i {
     font-size: 1.2rem;
     color: var(--primary);
     transition: all 0.3s ease;
-}
-
-.feature-item:hover .feature-icon i {
-    color: white;
 }
 
 .feature-text {
@@ -1801,10 +1757,7 @@ select.custom-select option {
     transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.discounted-products-section .product-card-modern:hover {
-    box-shadow: 0 12px 32px rgba(38, 224, 127, 0.18) !important;
-    transform: translateY(-6px) scale(1.02);
-}
+/* hover effects removed */
 
 .discounted-products-section .product-card-modern img {
     max-width: 90%;
@@ -2107,10 +2060,7 @@ select.custom-select option {
     flex-direction: column;
 }
 
-.testimonial-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(38, 224, 127, 0.12);
-}
+/* hover effects removed */
 
 .testimonial-pattern {
     position: absolute;

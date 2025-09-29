@@ -43,6 +43,7 @@
             height: 60px;
             width: auto;
             transition: transform 0.3s ease;
+            filter: brightness(0) invert(1);
         }
 
         .navbar-brand.logo-container:hover img {
