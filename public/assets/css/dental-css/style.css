@@ -62,9 +62,7 @@ a {
     transition: var(--transition);
 }
 
-a:hover {
-    color: var(--primary);
-}
+/* Hover effect removed for links */
 
 .container {
     width: 100%;
@@ -106,8 +104,6 @@ a:hover {
 .logo-img {
     height: 60px;
     width: auto;
-    transition: var(--transition);
-    filter: brightness(0) invert(1);
 }
 
 .navbar-scrolled .logo-img {
@@ -143,9 +139,7 @@ a:hover {
     display: block;
 }
 
-.nav-link:hover {
-    color: var(--primary);
-}
+/* Hover effect removed for nav links */
 
 .nav-link.active {
     color: var(--primary);
@@ -167,9 +161,7 @@ a:hover {
     display: flex;
 }
 
-.nav-icon:hover {
-    color: var(--primary);
-}
+/* Hover effect removed for nav icons */
 
 .cart-badge {
     position: absolute;
@@ -209,9 +201,7 @@ a:hover {
     margin-left: 5px;
 }
 
-.user-toggle-btn:hover {
-    box-shadow: 0 4px 8px rgba(38, 224, 127, 0.15);
-}
+/* Hover effect removed for user toggle button */
 
 .account-button {
     display: flex;
@@ -228,19 +218,9 @@ a:hover {
     color: var(--primary);
 }
 
-.account-button:hover {
-    background-color: rgba(38, 224, 127, 0.2);
-    box-shadow: 0 4px 8px rgba(38, 224, 127, 0.15);
-    transform: translateY(-2px);
-}
+/* Hover effect removed for account button */
 
-.user-toggle:hover {
-    color: var(--primary);
-}
-
-.user-toggle:hover i {
-    transform: scale(1.1);
-}
+/* Hover effect removed for user toggle */
 
 .dropdown-menu {
     position: absolute;
@@ -273,10 +253,7 @@ a:hover {
     border-radius: 5px;
 }
 
-.dropdown-item:hover {
-    background-color: rgba(38, 224, 127, 0.1);
-    color: var(--primary);
-}
+/* Hover effect removed for dropdown items */
 
 .dropdown-divider {
     height: 1px;
@@ -433,15 +410,9 @@ a:hover {
     z-index: -1;
 }
 
-.social-link:hover {
-    color: white;
-    transform: translateY(-5px) rotate(360deg);
-    box-shadow: 0 5px 15px rgba(38, 224, 127, 0.3), 0 3px 8px rgba(10, 175, 255, 0.2);
-}
+/* Hover effect removed for social links */
 
-.social-link:hover::before {
-    transform: scale(1);
-}
+/* Hover effect removed for social link before */
 
 .footer-heading {
     font-size: 20px;
@@ -483,10 +454,7 @@ a:hover {
     display: inline-block;
 }
 
-.footer-links a:hover {
-    color: var(--primary);
-    transform: translateX(-5px);
-}
+/* Hover effect removed for footer links */
 
 .footer-contact {
     margin-bottom: 25px;
@@ -516,11 +484,7 @@ a:hover {
     box-shadow: 0 3px 8px rgba(0,0,0,0.03);
 }
 
-.contact-item:hover {
-    background-color: rgba(255,255,255,0.9);
-    box-shadow: 0 5px 15px rgba(38, 224, 127, 0.1);
-    transform: translateY(-3px);
-}
+/* Hover effect removed for contact items */
 
 .icon-container {
     width: 40px;
@@ -539,9 +503,7 @@ a:hover {
     transition: transform 0.3s ease;
 }
 
-.contact-item:hover .icon-container {
-    transform: scale(1.1) rotate(5deg);
-}
+/* Hover effect removed for contact item icons */
 
 .icon-container::after {
     content: '';
@@ -555,9 +517,7 @@ a:hover {
     transition: transform 0.5s ease;
 }
 
-.contact-item:hover .icon-container::after {
-    transform: scale(2) translateX(75%);
-}
+/* Hover effect removed for contact item icon after */
 
 .contact-text p {
     margin: 0;
@@ -622,14 +582,9 @@ a:hover {
     transition: transform 0.5s ease;
 }
 
-.form-container button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(38, 224, 127, 0.4), 0 3px 8px rgba(10, 175, 255, 0.3);
-}
+/* Hover effect removed for form buttons */
 
-.form-container button:hover::before {
-    transform: translateY(100%);
-}
+/* Hover effect removed for form button before */
 
 .footer-bottom {
     background: linear-gradient(to right, rgba(38, 224, 127, 0.05), rgba(10, 175, 255, 0.05));
@@ -672,9 +627,7 @@ a:hover {
     transition: width 0.3s ease;
 }
 
-.copyright p:hover::after {
-    width: 70%;
-}
+/* Hover effect removed for copyright */
 
 /* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 992px) {
@@ -686,9 +639,7 @@ a:hover {
         transition: all 0.2s ease;
     }
 
-    .navbar-toggler:hover {
-        background-color: rgba(38, 224, 127, 0.1);
-    }
+    /* Hover effect removed for navbar toggler */
 
     .navbar-toggler:focus {
         outline: none;
@@ -917,9 +868,7 @@ a:hover {
     transition: var(--transition);
   }
 
-  .btn:hover::before {
-    width: 100%;
-  }
+  /* Hover effect removed for button before */
 
   .btn-primary {
     background: var(--primary) !important;
@@ -927,10 +876,7 @@ a:hover {
     box-shadow: 0 5px 15px rgba(38, 224, 127, 0.15);
 }
 
-.btn-primary:hover {
-    background: var(--primary-gradient) !important;
-    box-shadow: 0 10px 25px rgba(38, 224, 127, 0.25) !important;
-}
+/* Hover effect removed for primary buttons */
 
 .btn-outline-primary {
     color: var(--primary) !important;
@@ -938,9 +884,7 @@ a:hover {
     background: transparent !important;
 }
 
-.btn-outline-primary:hover {
-    background-color: rgba(38, 224, 127, 0.1) !important;
-}
+/* Hover effect removed for outline primary buttons */
 
 /* Adjust button size variants */
 .btn-sm {

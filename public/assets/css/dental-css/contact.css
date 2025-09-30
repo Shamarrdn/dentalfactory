@@ -55,19 +55,13 @@
     color: #13c5c1;
     border: none;
 }
-.hero-bg-btn.main-btn:hover {
-    background: #26e07f;
-    color: #fff;
-}
+/* Hover effect removed for hero main button */
 .hero-bg-btn.ghost-btn {
     background: transparent;
     color: #fff;
     border: 2px solid #fff;
 }
-.hero-bg-btn.ghost-btn:hover {
-    background: #fff;
-    color: #13c5c1;
-}
+/* Hover effect removed for hero ghost button */
 @media (max-width: 991px) {
     .hero-bg-title { font-size: 2rem; }
     .hero-bg-desc { font-size: 1rem; }
@@ -209,12 +203,7 @@
     transition: all 0.5s ease;
 }
 
-.contact-form-card:hover {
-    transform: translateY(-10px);
-    box-shadow:
-        0 30px 100px rgba(0, 0, 0, 0.09),
-        0 15px 40px rgba(38, 224, 127, 0.15);
-}
+/* Hover effect removed for contact form cards */
 
 .contact-form-card-shape {
     position: absolute;
@@ -230,9 +219,7 @@
     transition: all 0.5s ease;
 }
 
-.contact-form-card:hover .contact-form-card-shape {
-    transform: rotate(60deg) scale(1.2);
-}
+/* Hover effect removed for contact form card shapes */
 
 /* Form Input Styles */
 .form-group {
@@ -329,9 +316,7 @@
     background: #26e07f !important; /* لون ثابت */
     color: white;
 }
-.submit:hover{
-    color: white;
-}
+/* Hover effect removed for submit button */
 .btn-contact-submit {
     display: inline-flex;
     align-items: center;
@@ -351,10 +336,7 @@
     box-shadow: 0 10px 30px rgba(38, 224, 127, 0.3);
 }
 
-.btn-contact-submit:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(38, 224, 127, 0.4);
-}
+/* Hover effect removed for contact submit button */
 
 .btn-contact-submit::after {
     content: '';
@@ -368,18 +350,13 @@
     z-index: 1;
 }
 
-.btn-contact-submit:hover::after {
-    width: 100%;
-}
+/* Hover effect removed for contact submit button after */
 
 .btn-icon {
     z-index: 2;
 }
 
-.btn-contact-submit:hover .btn-icon {
-    transform: translateX(5px);
-    transition: transform 0.3s ease;
-}
+/* Hover effect removed for contact submit button icon */
 
 /* Map Section Enhancement */
 .map-container {
@@ -392,12 +369,7 @@
     transform: perspective(1000px) rotateY(0deg);
 }
 
-.map-container:hover {
-    transform: perspective(1000px) rotateY(2deg);
-    box-shadow:
-        0 40px 100px rgba(0, 0, 0, 0.12),
-        0 15px 40px rgba(38, 224, 127, 0.15);
-}
+/* Hover effect removed for map container */
 
 /* Responsive Styles - Enhance for all screens */
 @media (max-width: 991px) {
@@ -526,12 +498,7 @@
     transform: perspective(1000px) rotateY(0deg);
 }
 
-.map-container:hover {
-    transform: perspective(1000px) rotateY(2deg);
-    box-shadow:
-        0 40px 100px rgba(0, 0, 0, 0.12),
-        0 15px 40px rgba(38, 224, 127, 0.15);
-}
+/* Hover effect removed for map container */
 
 /* Additional Modern Effects */
 .contact-hero-badge {
@@ -550,9 +517,7 @@
     transition: left 0.8s ease;
 }
 
-.contact-hero-badge:hover::after {
-    left: 100%;
-}
+/* Hover effect removed for contact hero badge */
 
 /* Enhanced Container Spacing */
 @media (min-width: 1400px) {
@@ -806,12 +771,7 @@
     box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
 }
 
-.map-actions .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(46, 139, 87, 0.4);
-    color: white;
-    text-decoration: none;
-}
+/* Hover effect removed for map actions button */
 
 /* Footer Maps Link */
 .maps-link {
@@ -826,20 +786,14 @@
     margin-top: 0.5rem;
 }
 
-.maps-link:hover {
-    color: #2E8B57;
-    text-decoration: none;
-    transform: translateX(-2px);
-}
+/* Hover effect removed for maps link */
 
 .maps-link i {
     font-size: 0.8rem;
     transition: transform 0.3s ease;
 }
 
-.maps-link:hover i {
-    transform: scale(1.1);
-}
+/* Hover effect removed for maps link icon */
 
 /* Map Responsive */
 @media (max-width: 768px) {

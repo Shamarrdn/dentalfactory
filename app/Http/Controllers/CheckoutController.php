@@ -17,6 +17,7 @@ use App\Mail\InvoiceEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Jobs\SendInvoiceEmail;
 
 class CheckoutController extends Controller
 {
@@ -284,11 +285,11 @@ class CheckoutController extends Controller
         } catch (\Exception $e) {
         }
 
-        // إرسال الفاتورة عبر البريد الإلكتروني
-        $this->sendInvoiceEmail($order);
+        // إرسال الفاتورة عبر البريد الإلكتروني في الخلفية
+        SendInvoiceEmail::dispatch($order);
 
-        return redirect()->route('orders.show', $order)
-          ->with('success', 'تم تأكيد طلبك بنجاح وتم إرسال الفاتورة إلى بريدك الإلكتروني');
+        return redirect()->route('orders.index')
+          ->with('success', 'تم تأكيد طلبك بنجاح! يمكنك الآن تتبع حالة طلبك من صفحة الطلبات.');
       });
     } catch (ValidationException $e) {
       return back()->withErrors($e->errors())->withInput();
@@ -382,12 +383,14 @@ class CheckoutController extends Controller
       'customer' => $order->user,
       'items' => $order->items,
       'storeInfo' => [
-        'name' => 'مصنع منتجات الأسنان',
-        'logo' => '🦷',
+        'name' => 'Genodent',
+        'logo' => '<img src="' . url('logo.png') . '" alt="Genodent" style="height: 60px; width: auto;">',
         'address' => 'المملكة العربية السعودية',
-        'phone' => '+966 XX XXX XXXX',
-        'email' => 'info@dentalfactory.com',
-        'website' => 'www.dentalfactory.com'
+        'phone' => '+966 54 411 7002',
+        'email' => 'Genodent.1@gmail.com',
+        'email2' => 'Genodent.2@gmail.com',
+        'whatsapp' => '+966 54 411 7002',
+        'website' => 'www.genodent.com'
       ]
     ];
   }

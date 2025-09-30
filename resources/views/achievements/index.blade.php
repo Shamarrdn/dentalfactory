@@ -129,7 +129,7 @@
                 <!-- Pagination -->
                 @if($achievements->hasPages())
                 <div class="achievements-pagination-wrapper">
-                    {{ $achievements->withQueryString()->links() }}
+                    {{ $achievements->withQueryString()->links('custom.pagination') }}
                 </div>
                 @endif
             @else

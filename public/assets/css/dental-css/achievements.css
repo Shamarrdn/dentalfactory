@@ -124,10 +124,7 @@ html, body {
     border: none;
 }
 
-.hero-bg-btn.main-btn:hover {
-    background: #26e07f;
-    color: #fff;
-}
+/* Hover effect removed for hero main button */
 
 .hero-bg-btn.ghost-btn {
     background: transparent;
@@ -135,10 +132,7 @@ html, body {
     border: 2px solid #fff;
 }
 
-.hero-bg-btn.ghost-btn:hover {
-    background: #fff;
-    color: #13c5c1;
-}
+/* Hover effect removed for hero ghost button */
 
 /* Responsive Design */
 @media (max-width: 991px) {
@@ -215,14 +209,7 @@ html, body {
     transition: transform 0.3s ease;
 }
 
-.achievement-category-card:hover::before {
-    transform: scaleX(1);
-}
-
-.achievement-category-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--genodent-shadow-primary);
-}
+/* Hover effect removed for achievement category cards */
 
 .category-icon {
     width: 70px;
@@ -309,9 +296,7 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.achievements-search-btn:hover {
-    background: var(--genodent-primary-dark);
-}
+/* Hover effect removed for search button */
 
 .achievements-clear-btn {
     position: absolute;
@@ -329,10 +314,7 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.achievements-clear-btn:hover {
-    background: #c82333;
-    color: white;
-}
+/* Hover effect removed for clear button */
 
 /* ===== SEARCH RESULTS HEADER ===== */
 .search-results-header {
@@ -389,10 +371,7 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.achievement-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--genodent-shadow-primary);
-}
+/* Hover effect removed for achievement cards */
 
 .achievement-image-container {
     position: relative;
@@ -407,9 +386,7 @@ html, body {
     transition: transform 0.3s ease;
 }
 
-.achievement-card:hover .achievement-image {
-    transform: scale(1.1);
-}
+/* Hover effect removed for achievement images */
 
 .achievement-overlay {
     position: absolute;
@@ -422,9 +399,7 @@ html, body {
     transition: opacity 0.3s ease;
 }
 
-.achievement-card:hover .achievement-overlay {
-    opacity: 1;
-}
+/* Hover effect removed for achievement overlays */
 
 .view-btn {
     background: var(--genodent-gradient-primary);
@@ -440,14 +415,9 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.achievement-card:hover .view-btn {
-    transform: translateY(0);
-}
+/* Hover effect removed for achievement view buttons */
 
-.view-btn:hover {
-    background: var(--genodent-primary-dark);
-    color: white;
-}
+/* Hover effect removed for view button */
 
 .achievement-content {
     padding: 25px;
@@ -485,10 +455,7 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.achievement-article-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--genodent-shadow-primary);
-}
+/* Hover effect removed for achievement article cards */
 
 .achievement-article-image-container {
     position: relative;
@@ -503,9 +470,7 @@ html, body {
     transition: transform 0.3s ease;
 }
 
-.achievement-article-card:hover .achievement-article-image {
-    transform: scale(1.1);
-}
+/* Hover effect removed for achievement article images */
 
 .achievement-article-overlay {
     position: absolute;
@@ -518,9 +483,7 @@ html, body {
     transition: opacity 0.3s ease;
 }
 
-.achievement-article-card:hover .achievement-article-overlay {
-    opacity: 1;
-}
+/* Hover effect removed for achievement article overlays */
 
 .achievement-read-btn {
     background: var(--genodent-gradient-primary);
@@ -536,14 +499,9 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.achievement-article-card:hover .achievement-read-btn {
-    transform: translateY(0);
-}
+/* Hover effect removed for achievement article read buttons */
 
-.achievement-read-btn:hover {
-    background: var(--genodent-primary-dark);
-    color: white;
-}
+/* Hover effect removed for read button */
 
 .achievement-category-badge {
     position: absolute;
@@ -593,9 +551,7 @@ html, body {
     transition: color 0.3s ease;
 }
 
-.achievement-article-title a:hover {
-    color: var(--genodent-primary);
-}
+/* Hover effect removed for article title link */
 
 .achievement-article-excerpt {
     color: #64748b;
@@ -608,6 +564,54 @@ html, body {
     display: flex;
     justify-content: center;
     margin-top: 40px;
+}
+
+/* ===== BRAND PAGINATION (ACHIEVEMENTS) ===== */
+.pagination-nav {
+    display: flex;
+    justify-content: center;
+    direction: rtl;
+}
+
+.pagination-nav .pagination {
+    margin: 0;
+    gap: 8px;
+}
+
+.pagination-nav .page-item .page-link {
+    color: var(--genodent-primary);
+    border: 1px solid rgba(0, 146, 69, 0.25);
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 40px;
+    text-align: center;
+    box-shadow: 0 6px 14px var(--genodent-shadow-primary);
+}
+
+.pagination-nav .page-item .page-link:hover,
+.pagination-nav .page-item .page-link:focus {
+    color: #ffffff;
+    background: var(--genodent-gradient-primary);
+    border-color: transparent;
+    outline: none;
+}
+
+.pagination-nav .page-item.active .page-link {
+    color: #ffffff;
+    background: var(--genodent-gradient-primary);
+    border-color: transparent;
+}
+
+.pagination-nav .page-item.disabled .page-link {
+    color: #9aa0a6;
+    background-color: #f3f4f6;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: none;
+}
+
+.pagination-nav .page-link i {
+    vertical-align: middle;
 }
 
 /* ===== EMPTY STATE ===== */

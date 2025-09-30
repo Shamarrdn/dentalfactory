@@ -134,8 +134,8 @@ Route::middleware([
             Route::post('/apply-coupon', 'applyCoupon')->name('apply-coupon');
         });
 
-        // Orders - Only for customers, not admins
-        Route::middleware(['role:customer'])->prefix('orders')->name('orders.')->group(function () {
+        // Orders - Allow both admin and customer to access their own orders
+        Route::prefix('orders')->name('orders.')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('index');
             Route::get('/{order:uuid}', [OrderController::class, 'show'])->name('show');
         });
@@ -231,11 +231,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/cart/remove/{cartItem}', [ProductController::class, 'removeCartItem'])->name('cart.remove-item');
 });
 
-// مسارات لوحة تحكم العميل
-Route::middleware('client')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    // ... باقي مسارات العميل
-});
+// Duplicate dashboard route removed - handled by main auth middleware group above
 
 
 

@@ -69,11 +69,9 @@
                                 <a href="/user/profile" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; border-bottom: 1px solid #f0f0f0;">
                                     <i class="fas fa-user me-2" style="color: #17a2b8;"></i>الملف الشخصي
                                 </a>
-                                @if(!auth()->user()->hasRole('admin'))
                                 <a href="/orders" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; border-bottom: 1px solid #f0f0f0;">
-                                    <i class="fas fa-shopping-bag me-2" style="color: #28a745;"></i>طلباتي
+                                    <i class="fas fa-clipboard-list me-2" style="color: #6f42c1;"></i>طلباتي
                                 </a>
-                                @endif
                                 <a href="{{ route('logout') }}" style="display: block; padding: 12px 16px; text-decoration: none; color: #dc3545; border-top: 1px solid #f0f0f0;"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج

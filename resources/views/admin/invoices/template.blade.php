@@ -540,13 +540,18 @@
         <!-- Header -->
         <div class="invoice-header">
             <div class="company-info">
-                <div class="company-logo">🦷</div>
-                <div class="company-name">مصنع جينودينت</div>
-                <div class="company-tagline">مواد طب الأسنان المتطورة - منطقة عسير</div>
+                <div class="company-logo">
+                    <img src="{{ url('logo.png') }}" alt="Genodent" style="height: 60px; width: auto;">
+                </div>
+                <div class="company-name">Genodent</div>
+                <div class="company-tagline">جودة عالية - أسعار مناسبة</div>
                 <div class="company-contact">
-                    العنوان: منطقة عسير - المملكة العربية السعودية<br>
-                    الهاتف: +966 54 411 7002<br>
-                    البريد الإلكتروني: Genodent.1@gmail.com
+                    📍 المملكة العربية السعودية<br>
+                    📞 هاتف: +966 54 411 7002<br>
+                    📱 واتساب: +966 54 411 7002<br>
+                    ✉️ إيميل 1: Genodent.1@gmail.com<br>
+                    ✉️ إيميل 2: Genodent.2@gmail.com<br>
+                    🌐 موقع: www.genodent.com
                 </div>
             </div>
             <div class="invoice-meta">

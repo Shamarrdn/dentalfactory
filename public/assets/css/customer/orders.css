@@ -89,11 +89,7 @@ body {
     max-width: 100%;
 }
 
-.order-card:hover {
-    z-index: 20;
-    box-shadow: none;
-    border-color: rgba(108, 92, 231, 0.3);
-}
+/* hover effect removed */
 
 .order-header {
     padding: 1rem;
@@ -127,11 +123,7 @@ body {
     box-shadow: none;
 }
 
-.order-card:hover .order-icon {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
+/* hover effect removed */
 
 .order-number {
     font-weight: 700;
@@ -257,10 +249,7 @@ body {
     max-height: 280px;
 }
 
-.order-item:hover {
-    box-shadow: none;
-    border-color: rgba(108, 92, 231, 0.3);
-}
+/* hover effect removed */
 
 .item-image {
     width: 100%;
@@ -364,10 +353,7 @@ body {
     box-shadow: none;
 }
 
-.btn-primary:hover {
-    background: var(--secondary-color);
-    box-shadow: none;
-}
+/* hover effect removed */
 
 .btn-secondary {
     background: rgba(108, 92, 231, 0.1);
@@ -375,9 +361,7 @@ body {
     border: 1px solid rgba(108, 92, 231, 0.2);
 }
 
-.btn-secondary:hover {
-    background: rgba(108, 92, 231, 0.15);
-}
+/* hover effect removed */
 
 .btn-outline-primary {
     border: 2px solid var(--primary-color);
@@ -385,11 +369,7 @@ body {
     background: transparent;
 }
 
-.btn-outline-primary:hover {
-    background: var(--primary-color);
-    color: white;
-    box-shadow: none;
-}
+/* hover effect removed */
 
 /* Info Groups */
 .section-title {
@@ -597,9 +577,7 @@ body {
     border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-}
+/* hover effect removed */
 
 /* Order Actions */
 .order-actions {
@@ -623,13 +601,10 @@ body {
     font-weight: 600;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 146, 69, 0.2);
-    transition: all 0.3s ease;
+    /* transition removed */
 }
 
-.order-actions .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 146, 69, 0.3);
-}
+/* hover effect removed */
 
 .order-actions .btn-primary i {
     font-size: 1.1rem;
@@ -654,16 +629,11 @@ body {
     color: #007bff;
     background: transparent;
     border-radius: 12px;
-    transition: all 0.3s ease;
+    /* transition removed */
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
 }
 
-.invoice-dropdown .dropdown-toggle:hover {
-    background: #007bff;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-}
+/* hover effect removed */
 
 .invoice-dropdown .dropdown-menu {
     position: absolute;
@@ -691,13 +661,10 @@ body {
     align-items: center;
     font-size: 0.9rem;
     color: #333;
-    transition: all 0.3s ease;
+    /* transition removed */
 }
 
-.invoice-dropdown .dropdown-item:hover {
-    background: #f8f9fa;
-    color: #007bff;
-}
+/* hover effect removed */
 
 .invoice-dropdown .dropdown-item i {
     width: 20px;
@@ -779,13 +746,10 @@ body {
     border-radius: 15px;
     border: 1px solid var(--border-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    /* transition removed */
 }
 
-.order-tracking:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    border-color: rgba(74, 58, 255, 0.3);
-}
+/* hover effect removed */
 
 .tracking-title {
     color: var(--text-color);
@@ -821,7 +785,7 @@ body {
     position: relative;
     padding-bottom: 2.5rem;
     opacity: 0.6;
-    transition: all 0.3s ease;
+    /* transition removed */
 }
 
 .tracking-step.completed {
@@ -845,7 +809,7 @@ body {
     border: 2px solid var(--border-color);
     position: relative;
     z-index: 2;
-    transition: all 0.3s ease;
+    /* transition removed */
     flex-shrink: 0;
 }
 
@@ -865,7 +829,7 @@ body {
     width: 2px;
     background-color: var(--border-color);
     z-index: 1;
-    transition: all 0.5s ease;
+    /* transition removed */
 }
 
 .tracking-step:last-child .step-line {
@@ -883,14 +847,14 @@ body {
     border-radius: 15px;
     border: 1px solid var(--border-color);
     flex: 1;
-    transition: all 0.3s ease;
+    /* transition removed */
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 .tracking-step.completed .step-content {
     border-color: rgba(74, 58, 255, 0.3);
     background: rgba(74, 58, 255, 0.05);
-    transform: translateY(-3px);
+    /* transform removed */
 }
 
 .step-content h4 {
@@ -898,7 +862,7 @@ body {
     font-weight: 700;
     font-size: 1.2rem;
     color: var(--text-color);
-    transition: all 0.3s ease;
+    /* transition removed */
 }
 
 .tracking-step.completed .step-content h4 {
@@ -1015,7 +979,7 @@ body {
     color: var(--text-color);
     padding: 0.5rem 1rem;
     border-radius: 12px;
-    transition: all 0.3s ease;
+    /* transition removed */
     font-weight: 500;
     min-width: 40px;
     height: 40px;
@@ -1025,18 +989,13 @@ body {
     margin: 0;
 }
 
-.page-link:hover {
-    background: rgba(74, 58, 255, 0.1);
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-}
+/* hover effect removed */
 
 .page-item.active .page-link {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
-    transform: translateY(-2px);
+    /* transform removed */
 }
 
 /* تحسين مظهر الأسهم */

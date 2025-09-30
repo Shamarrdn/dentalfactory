@@ -35,15 +35,21 @@ html, body {
     min-height: 90vh;
     padding-top: 80px;
     width: 100%;
-    background: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80') center center/cover no-repeat;
+    background: linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
+    background-image: 
+        url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1950&q=80'),
+        url('https://images.unsplash.com/photo-1553531580-77b2a0cd3c8b?auto=format&fit=crop&q=80'),
+        url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     direction: rtl;
     overflow: hidden;
-    background-position: center center;
-    background-size: cover;
     transition: background-position 0.3s cubic-bezier(.4,1,.7,1);
+    background-attachment: scroll;
 }
 
 .hero-bg-overlay {
@@ -59,6 +65,30 @@ html, body {
 .hero-bg-image-section .container {
     position: relative;
     z-index: 2;
+}
+
+.news-hero-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #fff;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: newsFloat 3s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes newsFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(2deg); }
+    50% { transform: translateY(-8px) rotate(0deg); }
+    75% { transform: translateY(-5px) rotate(-2deg); }
 }
 
 .news-hero-icon {
@@ -92,6 +122,58 @@ html, body {
 }
 
 .hero-bg-desc {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.hero-bg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-bg-btn.main-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hero-bg-btn.main-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-bg-btn.ghost-btn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.hero-bg-btn.ghost-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.hero-bg-desc {
     color: #ffffff;
     font-size: 1.25rem;
     font-weight: 500;
@@ -116,10 +198,7 @@ html, body {
     border: none;
 }
 
-.hero-bg-btn.main-btn:hover {
-    background: #26e07f;
-    color: #fff;
-}
+/* Hover effect removed for hero main button */
 
 .hero-bg-btn.ghost-btn {
     background: transparent;
@@ -127,10 +206,7 @@ html, body {
     border: 2px solid #fff;
 }
 
-.hero-bg-btn.ghost-btn:hover {
-    background: #fff;
-    color: #13c5c1;
-}
+/* Hover effect removed for hero ghost button */
 
 /* Responsive Design */
 @media (max-width: 991px) {
@@ -197,14 +273,7 @@ html, body {
     transition: transform 0.3s ease;
 }
 
-.news-category-card:hover::before {
-    transform: scaleX(1);
-}
-
-.news-category-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--genodent-shadow-primary);
-}
+/* Hover effect removed for news category cards */
 
 .category-icon {
     width: 70px;
@@ -285,9 +354,7 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.news-search-btn:hover {
-    background: var(--genodent-primary-dark);
-}
+/* Hover effect removed for news search button */
 
 .news-clear-btn {
     position: absolute;
@@ -305,10 +372,7 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.news-clear-btn:hover {
-    background: #c82333;
-    color: white;
-}
+/* Hover effect removed for news clear button */
 
 /* ===== SEARCH RESULTS HEADER ===== */
 .search-results-header {
@@ -367,10 +431,7 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.news-article-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--genodent-shadow-primary);
-}
+/* Hover effect removed for news article cards */
 
 .news-article-image-container {
     position: relative;
@@ -385,9 +446,7 @@ html, body {
     transition: transform 0.3s ease;
 }
 
-.news-article-card:hover .news-article-image {
-    transform: scale(1.1);
-}
+/* Hover effect removed for news article images */
 
 .news-article-overlay {
     position: absolute;
@@ -400,9 +459,7 @@ html, body {
     transition: opacity 0.3s ease;
 }
 
-.news-article-card:hover .news-article-overlay {
-    opacity: 1;
-}
+/* Hover effect removed for news article overlays */
 
 .news-read-btn {
     background: var(--genodent-gradient-primary);
@@ -418,14 +475,9 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.news-article-card:hover .news-read-btn {
-    transform: translateY(0);
-}
+/* Hover effect removed for news read buttons */
 
-.news-read-btn:hover {
-    background: var(--genodent-primary-dark);
-    color: white;
-}
+/* Hover effect removed for news read button */
 
 .news-category-badge {
     position: absolute;
@@ -475,9 +527,7 @@ html, body {
     transition: color 0.3s ease;
 }
 
-.news-article-title a:hover {
-    color: var(--genodent-primary);
-}
+/* Hover effect removed for news article title link */
 
 .news-article-excerpt {
     color: #64748b;
@@ -490,6 +540,54 @@ html, body {
     display: flex;
     justify-content: center;
     margin-top: 40px;
+}
+
+/* ===== BRAND PAGINATION (NEWS) ===== */
+.pagination-nav {
+    display: flex;
+    justify-content: center;
+    direction: rtl;
+}
+
+.pagination-nav .pagination {
+    margin: 0;
+    gap: 8px;
+}
+
+.pagination-nav .page-item .page-link {
+    color: var(--genodent-primary);
+    border: 1px solid rgba(0, 146, 69, 0.25);
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 40px;
+    text-align: center;
+    box-shadow: 0 6px 14px var(--genodent-shadow-primary);
+}
+
+.pagination-nav .page-item .page-link:hover,
+.pagination-nav .page-item .page-link:focus {
+    color: #ffffff;
+    background: var(--genodent-gradient-primary);
+    border-color: transparent;
+    outline: none;
+}
+
+.pagination-nav .page-item.active .page-link {
+    color: #ffffff;
+    background: var(--genodent-gradient-primary);
+    border-color: transparent;
+}
+
+.pagination-nav .page-item.disabled .page-link {
+    color: #9aa0a6;
+    background-color: #f3f4f6;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: none;
+}
+
+.pagination-nav .page-link i {
+    vertical-align: middle;
 }
 
 /* ===== EMPTY STATE ===== */

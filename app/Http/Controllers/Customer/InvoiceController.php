@@ -50,12 +50,14 @@ class InvoiceController extends Controller
             'customer' => $order->user,
             'items' => $order->items,
             'storeInfo' => [
-                'name' => 'مصنع منتجات الأسنان',
-                'logo' => '🦷',
+                'name' => 'Genodent',
+                'logo' => '<img src="' . url('logo.png') . '" alt="Genodent" style="height: 60px; width: auto;">',
                 'address' => 'المملكة العربية السعودية',
-                'phone' => '+966 XX XXX XXXX',
-                'email' => 'info@dentalfactory.com',
-                'website' => 'www.dentalfactory.com'
+                'phone' => '+966 54 411 7002',
+                'email' => 'Genodent.1@gmail.com',
+                'email2' => 'Genodent.2@gmail.com',
+                'whatsapp' => '+966 54 411 7002',
+                'website' => 'www.genodent.com'
             ]
         ];
     }

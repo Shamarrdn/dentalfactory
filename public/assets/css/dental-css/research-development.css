@@ -1,4 +1,9 @@
 /* ===== RESEARCH & DEVELOPMENT PAGE STYLES ===== */
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
 /* ===== GENODENT BRAND COLORS ===== */
 :root {
     /* Primary Brand Colors */
@@ -39,15 +44,34 @@ html, body {
     min-height: 90vh;
     padding-top: 80px;
     width: 100%;
-    background: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80') center center/cover no-repeat;
+    /* صور بديلة متعددة مع ضمان الظهور */
+    background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=1950&q=80') center center/cover no-repeat;
+    background-image: 
+        url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=1950&q=80'),
+        url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1950&q=80'),
+        url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1950&q=80'),
+        linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     display: flex;
     align-items: center;
     justify-content: center;
     direction: rtl;
     overflow: hidden;
-    background-position: center center;
-    background-size: cover;
+    /* خلفية احتياطية مضمونة */
+    background-color: #009245 !important;
     transition: background-position 0.3s cubic-bezier(.4,1,.7,1);
+}
+
+/* Force Background Images to Load on All Devices */
+@media (max-width: 768px) {
+    .hero-bg-image-section {
+        background-attachment: scroll !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
 }
 
 .hero-bg-overlay {
@@ -63,28 +87,6 @@ html, body {
 .hero-bg-image-section .container {
     position: relative;
     z-index: 2;
-}
-
-.rd-hero-icon {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 30px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #fff;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    animation: floatIcon 3s ease-in-out infinite;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-}
-
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
 }
 
 .hero-bg-title {
@@ -120,10 +122,7 @@ html, body {
     border: none;
 }
 
-.hero-bg-btn.main-btn:hover {
-    background: #26e07f;
-    color: #fff;
-}
+/* Hover effect removed for hero main button */
 
 .hero-bg-btn.ghost-btn {
     background: transparent;
@@ -131,10 +130,7 @@ html, body {
     border: 2px solid #fff;
 }
 
-.hero-bg-btn.ghost-btn:hover {
-    background: #fff;
-    color: #13c5c1;
-}
+/* Hover effect removed for hero ghost button */
 
 /* Responsive Design */
 @media (max-width: 991px) {
@@ -469,10 +465,7 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.rd-partnership-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--genodent-shadow-primary);
-}
+/* Hover effect removed for research development partnership cards */
 
 .rd-partnership-icon {
     width: 90px;
@@ -724,12 +717,7 @@ html, body {
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.rd-contact-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    color: white;
-}
+/* Hover effect removed for R&D contact button */
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {

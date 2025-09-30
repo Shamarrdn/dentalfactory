@@ -57,19 +57,13 @@
     color: #13c5c1;
     border: none;
 }
-.hero-bg-btn.main-btn:hover {
-    background: #26e07f;
-    color: #fff;
-}
+/* Hover effect removed for hero main button */
 .hero-bg-btn.ghost-btn {
     background: transparent;
     color: #fff;
     border: 2px solid #fff;
 }
-.hero-bg-btn.ghost-btn:hover {
-    background: #fff;
-    color: #13c5c1;
-}
+/* Hover effect removed for hero ghost button */
 @media (max-width: 991px) {
     .hero-bg-title {
         font-size: 2rem;
@@ -174,9 +168,7 @@
     transition: transform 0.3s ease;
 }
 
-.feature-list li:hover {
-    transform: translateX(-5px);
-}
+/* Hover effect removed for feature list items */
 
 .feature-list li::before {
     content: '';
@@ -190,9 +182,7 @@
     transition: background-color 0.3s ease;
 }
 
-.feature-list li:hover::before {
-    background: rgba(38, 224, 127, 0.3);
-}
+/* Hover effect removed for feature list before */
 
 .feature-list li::after {
     content: '✓';
@@ -204,9 +194,7 @@
     transition: transform 0.3s ease;
 }
 
-.feature-list li:hover::after {
-    transform: scale(1.2);
-}
+/* Hover effect removed for feature list after */
 
 /* تحسين صور المنتجات */
 .product-card .position-relative {
@@ -305,11 +293,7 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(38, 224, 127, 0.3);
-    background: linear-gradient(135deg, #13c5c1 0%, #26e07f 100%);
-}
+/* Hover effect removed for primary buttons */
 
 .btn-outline-primary {
     color: #26e07f;
@@ -319,12 +303,7 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.btn-outline-primary:hover {
-    background: linear-gradient(135deg, #26e07f 0%, #13c5c1 100%);
-    border-color: transparent;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(38, 224, 127, 0.2);
-}
+/* Hover effect removed for outline primary buttons */
 
 /* تحسين صناديق الميزات */
 .feature-box {
@@ -339,10 +318,7 @@
     border: 1px solid rgba(38, 224, 127, 0.08);
 }
 
-.feature-box:hover {
-    box-shadow: 0 20px 40px rgba(38, 224, 127, 0.1);
-    border-color: rgba(38, 224, 127, 0.2);
-}
+/* Hover effect removed for feature boxes */
 
 
 /* التكيف مع الشاشات المختلفة */
@@ -418,10 +394,5 @@
     border: 1px solid rgba(38, 224, 127, 0.05);
 }
 
-.contact-item:hover {
-    background: rgba(255, 255, 255, 0.95);
-    transform: translateX(-8px);
-    box-shadow: 0 10px 20px rgba(38, 224, 127, 0.1);
-    border-color: rgba(38, 224, 127, 0.2);
-}
+/* Hover effect removed for contact items */
 }

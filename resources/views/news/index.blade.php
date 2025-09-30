@@ -24,18 +24,10 @@
     </div>
 </section>
 
-
 <section id="latest-news" class="news-listing-section py-5">
     <div class="container">
-        <!-- Section Title -->
-        <div class="text-center mb-5">
-            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">آخر الأخبار</span>
-            <h2 class="section-title gradient-text">تابع جديدنا</h2>
-            <p class="section-subtitle">اكتشف آخر الأخبار والمستجدات في مجال صناعة مواد طب الأسنان</p>
-        </div>
-        
         <!-- Search Bar -->
-        <div class="row mb-5">
+        <div class="row mb-4">
             <div class="col-md-8 mx-auto">
                 <div class="news-search-wrapper">
                     <form method="GET" action="{{ route('news.index') }}">

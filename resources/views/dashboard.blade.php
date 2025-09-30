@@ -82,7 +82,7 @@
                 
                 <div class="col-12 col-sm-6 col-lg-3">
                     <a href="/notifications" class="text-decoration-none">
-                        <div class="stat-card stat-notifications" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='';">
+                        <div class="stat-card stat-notifications" style="cursor: pointer;">
                             <div class="stat-icon">
                                 <i class="fas fa-bell"></i>
                             </div>
@@ -208,6 +208,16 @@
                                     <div class="action-content">
                                         <h6>إتمام الطلب</h6>
                                         <p>أكمل طلبك الحالي</p>
+                                    </div>
+                                </a>
+                                
+                                <a href="/orders" class="quick-action-btn">
+                                    <div class="action-icon bg-primary">
+                                        <i class="fas fa-list-alt"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h6>طلباتي</h6>
+                                        <p>عرض وتتبع جميع طلباتك</p>
                                     </div>
                                 </a>
                                 

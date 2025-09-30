@@ -206,54 +206,163 @@
             margin-top: 5px;
         }
 
-        /* Totals Section */
+        /* Totals Section - محمي من hover وثابت بصرياً */
         .totals-section {
-            margin-bottom: 40px;
+            margin-bottom: 40px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
         .totals-container {
-            max-width: 400px;
-            margin-right: auto;
-            background: #f7fafc;
-            padding: 25px;
-            border-radius: 10px;
-            border: 2px solid #e2e8f0;
+            max-width: 400px !important;
+            margin-right: auto !important;
+            background: linear-gradient(135deg, #009245 0%, #4F4F4F 100%) !important;
+            padding: 25px !important;
+            border-radius: 10px !important;
+            border: 2px solid #009245 !important;
+            box-shadow: 0 8px 25px rgba(0, 146, 69, 0.3) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .totals-container:hover,
+        .totals-container:focus,
+        .totals-container:active {
+            background: linear-gradient(135deg, #009245 0%, #4F4F4F 100%) !important;
+            border: 2px solid #009245 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
         .total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 16px;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-bottom: 15px !important;
+            font-size: 16px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            transition: none !important;
+            background: transparent !important;
+        }
+
+        .total-row:hover,
+        .total-row:focus,
+        .total-row:active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            background: transparent !important;
         }
 
         .total-row:last-child {
-            margin-bottom: 0;
-            padding-top: 15px;
-            border-top: 2px solid #e2e8f0;
-            font-weight: 700;
-            font-size: 18px;
-            color: #2d3748;
+            margin-bottom: 0 !important;
+            padding-top: 15px !important;
+            border-top: 2px solid rgba(255,255,255,0.3) !important;
+            font-weight: 700 !important;
+            font-size: 18px !important;
+            color: white !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
+        .total-row:last-child:hover,
+        .total-row:last-child:focus,
+        .total-row:last-child:active {
+            color: white !important;
+            border-top: 2px solid rgba(255,255,255,0.3) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
         .total-label {
-            color: #4a5568;
+            color: rgba(255,255,255,0.9) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
+        .total-label:hover,
+        .total-label:focus,
+        .total-label:active {
+            color: rgba(255,255,255,0.9) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
         .total-value {
-            font-weight: 600;
-            color: #2d3748;
+            font-weight: 600 !important;
+            color: white !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
+        .total-value:hover,
+        .total-value:focus,
+        .total-value:active {
+            color: white !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
         .discount-value {
-            color: #38a169;
-            font-weight: 600;
+            color: #90EE90 !important;
+            font-weight: 600 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
+        .discount-value:hover,
+        .discount-value:focus,
+        .discount-value:active {
+            color: #90EE90 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
         .tax-value {
-            color: #d69e2e;
-            font-weight: 600;
+            color: #FFD700 !important;
+            font-weight: 600 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
+        .tax-value:hover,
+        .tax-value:focus,
+        .tax-value:active {
+            color: #FFD700 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+
+        /* حماية شاملة لقسم ملخص التكاليف */
+        .totals-section *,
+        .totals-section *:hover,
+        .totals-section *:focus,
+        .totals-section *:active,
+        .totals-container *,
+        .totals-container *:hover,
+        .totals-container *:focus,
+        .totals-container *:active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            transition: none !important;
+            filter: none !important;
         }
 
         /* Footer */
@@ -429,14 +538,16 @@
         <!-- Header -->
         <div class="invoice-header">
             <div class="company-info">
-                <div class="company-logo">{{ $storeInfo['logo'] }}</div>
+                <div class="company-logo">{!! $storeInfo['logo'] !!}</div>
                 <div class="company-name">{{ $storeInfo['name'] }}</div>
                 <div class="company-tagline">جودة عالية - أسعار مناسبة</div>
                 <div class="company-contact">
-                    <div>{{ $storeInfo['address'] }}</div>
-                    <div>هاتف: {{ $storeInfo['phone'] }}</div>
-                    <div>إيميل: {{ $storeInfo['email'] }}</div>
-                    <div>موقع: {{ $storeInfo['website'] }}</div>
+                    <div>📍 {{ $storeInfo['address'] }}</div>
+                    <div>📞 هاتف: {{ $storeInfo['phone'] }}</div>
+                    <div>📱 واتساب: {{ $storeInfo['whatsapp'] }}</div>
+                    <div>✉️ إيميل 1: {{ $storeInfo['email'] }}</div>
+                    <div>✉️ إيميل 2: {{ $storeInfo['email2'] }}</div>
+                    <div>🌐 موقع: {{ $storeInfo['website'] }}</div>
                 </div>
             </div>
             <div class="invoice-info">
@@ -582,8 +693,12 @@
                 <p><strong>{{ $storeInfo['name'] }}</strong></p>
                 <div class="d-flex justify-content-center gap-4 mt-2">
                     <span>📞 {{ $storeInfo['phone'] }}</span>
+                    <span>📱 {{ $storeInfo['whatsapp'] }}</span>
                     <span>✉️ {{ $storeInfo['email'] }}</span>
                     <span>🌐 {{ $storeInfo['website'] }}</span>
+                </div>
+                <div class="d-flex justify-content-center gap-4 mt-1">
+                    <span>✉️ {{ $storeInfo['email2'] }}</span>
                 </div>
             </div>
             <div class="footer-note">
@@ -637,6 +752,53 @@
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
+        
+        // حماية إضافية لقسم ملخص التكاليف من الاختفاء
+        function protectTotalsSection() {
+            const totalsSection = document.querySelector('.totals-section');
+            const totalsContainer = document.querySelector('.totals-container');
+            const totalRows = document.querySelectorAll('.total-row');
+            
+            function forceVisibility(element) {
+                if (element) {
+                    element.style.setProperty('opacity', '1', 'important');
+                    element.style.setProperty('visibility', 'visible', 'important');
+                    element.style.setProperty('transform', 'none', 'important');
+                    element.style.setProperty('transition', 'none', 'important');
+                    element.style.setProperty('filter', 'none', 'important');
+                }
+            }
+            
+            // حماية العناصر الرئيسية
+            [totalsSection, totalsContainer, ...totalRows].forEach(element => {
+                if (element) {
+                    forceVisibility(element);
+                    
+                    // مراقبة جميع الأحداث
+                    ['mouseenter', 'mouseleave', 'mouseover', 'mouseout', 'focus', 'blur', 'click'].forEach(event => {
+                        element.addEventListener(event, () => forceVisibility(element), true);
+                    });
+                    
+                    // حماية العناصر الفرعية
+                    const children = element.querySelectorAll('*');
+                    children.forEach(child => {
+                        forceVisibility(child);
+                        ['mouseenter', 'mouseleave', 'mouseover', 'mouseout'].forEach(event => {
+                            child.addEventListener(event, () => {
+                                forceVisibility(child);
+                                forceVisibility(element);
+                            }, true);
+                        });
+                    });
+                }
+            });
+        }
+        
+        // تشغيل الحماية
+        protectTotalsSection();
+        
+        // إعادة تشغيل الحماية بشكل دوري
+        setInterval(protectTotalsSection, 1000);
         
         console.log('Customer invoice viewer loaded successfully');
         console.log('Keyboard shortcuts: Ctrl+P (Print), Esc (Close)');

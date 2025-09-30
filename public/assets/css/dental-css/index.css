@@ -13,7 +13,7 @@
     /* background-attachment: fixed; - removed for performance */
     background-position: center center;
     background-size: cover;
-    transition: background-position 0.3s cubic-bezier(.4,1,.7,1);
+    /* transition removed for static design */
 }
 .hero-bg-overlay {
     position: absolute;
@@ -49,7 +49,7 @@
     font-weight: 700;
     font-size: 1.1rem;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     margin: 0 8px;
 }
 .hero-bg-btn.main-btn {
@@ -57,18 +57,24 @@
     color: #13c5c1;
     border: none;
 }
+
 .hero-bg-btn.main-btn:hover {
-    background: #26e07f;
+    background: var(--genodent-gradient-primary);
     color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 146, 69, 0.3);
 }
+
 .hero-bg-btn.ghost-btn {
     background: transparent;
     color: #fff;
     border: 2px solid #fff;
 }
+
 .hero-bg-btn.ghost-btn:hover {
-    background: #fff;
-    color: #13c5c1;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
 }
 @media (max-width: 991px) {
     .hero-bg-title {
@@ -103,7 +109,7 @@
     background: linear-gradient(145deg, #ffffff, #f5f9fa);
     box-shadow: 0 12px 28px rgba(0,181,173,0.12), 0 4px 10px rgba(0,0,0,0.05) !important;
     border-radius: var(--border-radius);
-    transition: var(--transition);
+    /* transition removed for static cards */
 
     padding: 2rem;
     height: 100%;
@@ -121,7 +127,7 @@
     height: 0;
     background: linear-gradient(to bottom, var(--primary-light) 0%, rgba(255,255,255,0) 100%);
     z-index: -1;
-    transition: height 0.5s ease;
+    /* transition removed for static cards */
     opacity: 0.5;
 }
 
@@ -130,14 +136,14 @@
 .feature-box img {
     width: 64px;
     height: 64px;
-    transition: var(--transition);
+    /* transition removed for static cards */
     filter: drop-shadow(0 5px 15px rgba(38, 224, 127, 0.2));
 }
 
 .feature-box i {
     color: var(--primary);
     font-size: 3rem;
-    transition: var(--transition);
+    /* transition removed for static cards */
 }
 
 /* Emergency Section */
@@ -157,7 +163,7 @@
     position: relative;
     z-index: 1;
     border: 1px solid rgba(230, 230, 230, 0.5);
-    transition: var(--transition);
+    /* transition removed for static cards */
 }
 
 /* hover effects removed */
@@ -220,27 +226,14 @@
     margin-bottom: 24px;
     position: relative;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    /* transition removed for static cards */
     min-height: 450px;
     transform: scale(1);
 }
 
 /* hover effects removed */
 
-.product-card-modern::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.2) 0%,
-                rgba(255, 255, 255, 0) 100%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 1;
-}
+/* ::before pseudo-element removed */
 
 /* hover effects removed */
 
@@ -261,7 +254,7 @@
     height: 100%;
     background: transparent;
     z-index: 1;
-    transition: all 0.5s ease;
+    /* transition removed for static cards */
     box-shadow: none;
 }
 
@@ -273,7 +266,7 @@
     object-fit: cover;
     position: relative;
     z-index: 2;
-    transition: all 0.5s ease;
+    /* transition removed for static cards */
     filter: none;
     padding: 0;
     border-radius: 0;
@@ -315,10 +308,7 @@
     font-weight: 500;
 }
 
-.feature-list-modern li:hover {
-    color: var(--primary);
-    transform: translateX(-5px);
-}
+/* Hover effect removed for feature list items */
 
 .feature-bullet {
     position: absolute;
@@ -351,36 +341,9 @@
     margin-top: 20px;
 }
 
-.btn-modern::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, #13c5c1 100%);
-    transition: width 0.4s ease;
-    z-index: -1;
-}
+/* ::before pseudo-element removed */
 
-.btn-modern:hover {
-    color: white;
-    border-color: transparent;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(38, 224, 127, 0.25);
-}
-
-.btn-modern:hover::before {
-    width: 100%;
-}
-
-.btn-modern i {
-    transition: transform 0.3s ease;
-}
-
-.btn-modern:hover i {
-    transform: translateX(-5px);
-}
+/* Hover effects removed for modern buttons */
 
 /* Custom Products Carousel */
 #productsCarousel {
@@ -429,12 +392,7 @@
     transition: all 0.3s ease;
 }
 
-#productsCarousel .carousel-control-prev:hover,
-#productsCarousel .carousel-control-next:hover {
-    opacity: 1;
-    box-shadow: 0 8px 25px rgba(38, 224, 127, 0.2);
-    background: var(--primary-gradient);
-}
+/* Hover effect removed for carousel controls */
 
 #productsCarousel .carousel-control-prev {
     left: -25px;
@@ -452,10 +410,7 @@
     transition: all 0.3s ease;
 }
 
-#productsCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
-#productsCarousel .carousel-control-next:hover .carousel-control-next-icon {
-    filter: brightness(0) invert(1);
-}
+/* Hover icon effect removed for carousel controls */
 
 @keyframes blob-animation {
     0% {
@@ -672,16 +627,7 @@
     padding-right: 15px;
 }
 
-.about-subtitle::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 4px;
-    background: var(--primary-gradient);
-    border-radius: 4px;
-}
+/* ::before pseudo-element removed */
 
 .about-description {
     font-size: 1.05rem;
@@ -713,9 +659,7 @@
     vertical-align: middle;
 }
 
-.about-image-wrapper:hover .about-image {
-    transform: scale(1.05);
-}
+/* Hover effect removed for about image wrapper */
 
 .about-image-shape {
     position: absolute;
@@ -765,11 +709,7 @@
     100% { transform: translateY(0); }
 }
 
-.image-card-1:hover, .image-card-2:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(38, 224, 127, 0.15);
-    border-color: rgba(38, 224, 127, 0.3);
-}
+/* Hover effects removed for image cards */
 
 .card-icon {
     width: 40px;
@@ -784,9 +724,7 @@
     transition: all 0.3s ease;
 }
 
-.image-card-1:hover .card-icon, .image-card-2:hover .card-icon {
-    background: var(--primary-gradient);
-}
+/* Hover effects removed for card icons */
 
 .card-icon i {
     font-size: 1.2rem;
@@ -794,9 +732,7 @@
     transition: all 0.3s ease;
 }
 
-.image-card-1:hover .card-icon i, .image-card-2:hover .card-icon i {
-    color: white;
-}
+/* Hover effects removed for card icon text */
 
 .card-content h5 {
     font-size: 0.9rem;
@@ -870,27 +806,9 @@
     overflow: hidden;
 }
 
-.stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: linear-gradient(to bottom, rgba(38, 224, 127, 0.05) 0%, rgba(255,255,255,0) 100%);
-    z-index: -1;
-    transition: height 0.5s ease;
-}
+/* ::before pseudo-element removed */
 
-.stat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(38, 224, 127, 0.15);
-    border-color: rgba(38, 224, 127, 0.3);
-}
-
-.stat-card:hover::before {
-    height: 100%;
-}
+/* Hover effects removed for stat cards */
 
 .stat-icon {
     width: 50px;
@@ -904,10 +822,7 @@
     transition: all 0.3s ease;
 }
 
-.stat-card:hover .stat-icon {
-    background: var(--primary-gradient);
-    transform: scale(1.1) rotateY(180deg);
-}
+/* Hover effects removed for stat card icons */
 
 .stat-icon i {
     font-size: 1.2rem;
@@ -915,9 +830,7 @@
     transition: all 0.3s ease;
 }
 
-.stat-card:hover .stat-icon i {
-    color: white;
-}
+/* Hover effects removed for stat card icon text */
 
 .stat-number {
 
@@ -954,35 +867,15 @@
     border: 1px solid rgba(38, 224, 127, 0.3);
 }
 
-.btn-about-more::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: var(--primary-gradient);
-    transition: width 0.4s ease;
-    z-index: -1;
-}
+/* ::before pseudo-element removed */
 
-.btn-about-more:hover {
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(38, 224, 127, 0.2);
-}
+/* Hover effect removed for about more button */
 
-.btn-about-more:hover::before {
-    width: 100%;
-}
+/* Hover effect removed for about more button before */
 
-.btn-about-more i {
-    transition: transform 0.3s ease;
-}
+/* Hover effect removed for about more button icon */
 
-.btn-about-more:hover i {
-    transform: translateX(-8px);
-}
+/* Hover effect removed for about more button icon */
 
 /* Responsive Adjustments */
 @media (max-width: 991px) {
@@ -1156,7 +1049,6 @@
     z-index: 2;
 }
 
-/* hover effects removed */
 
 .order-card-shape {
     position: absolute;
@@ -1274,11 +1166,11 @@
     font-family: inherit !important;
 }
 
-.custom-select option:checked,
-.custom-select option:hover {
+.custom-select option:checked {
     background-color: #f8f9fa !important;
     color: #333333 !important;
 }
+/* Hover effect removed for custom select option */
 
 /* إزالة أي خلفيات غريبة */
 .custom-select optgroup,
@@ -1318,17 +1210,7 @@ select.custom-select option {
     min-width: 220px;
 }
 
-.btn-order-submit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.7s ease;
-}
+/* ::before pseudo-element removed */
 
 /* hover effects removed */
 
@@ -1532,14 +1414,7 @@ select.custom-select option {
     z-index: 10;
 }
 
-.owl-carousel .owl-nav button.owl-next:hover,
-.owl-carousel .owl-nav button.owl-prev:hover,
-.owl-carousel .owl-nav button.owl-next:active,
-.owl-carousel .owl-nav button.owl-prev:active {
-    background: var(--primary-gradient) !important;
-    opacity: 0.9;
-
-}
+/* Hover effects removed for owl carousel buttons */
 
 .owl-carousel .owl-nav button.owl-prev {
     left: 10px;
@@ -1564,11 +1439,11 @@ select.custom-select option {
     border-radius: 30px;
 }
 
-.owl-carousel .owl-dots .owl-dot.active span,
-.owl-carousel .owl-dots .owl-dot:hover span {
+.owl-carousel .owl-dots .owl-dot.active span {
     background: var(--primary);
     transform: scale(1.3);
 }
+/* Hover effect removed for owl dots */
 
 
 .products-carousel .product-icon-wrapper {
@@ -1578,9 +1453,7 @@ select.custom-select option {
     background-position: center;
 }
 
-.products-carousel .product-card-modern:hover .product-icon-wrapper {
-    transform: scale(1.05);
-}
+/* Hover effects removed for product cards */
 
 .products-carousel .product-content {
     padding: 15px;
@@ -1754,7 +1627,7 @@ select.custom-select option {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: box-shadow 0.3s, transform 0.3s;
+    /* transition removed for static cards */
 }
 
 /* hover effects removed */
@@ -1812,10 +1685,9 @@ select.custom-select option {
 }
 
 .discounted-products-section .btn-modern:hover {
-    background: linear-gradient(135deg, #13c5c1 0%, #26e07f 100%);
-    color: #fff;
-    box-shadow: 0 6px 18px rgba(38, 224, 127, 0.18);
-    transform: translateY(-2px) scale(1.04);
+    background: linear-gradient(135deg, #00b854 0%, #009245 100%);
+    box-shadow: 0 4px 15px rgba(38, 224, 127, 0.25);
+    transform: translateY(-1px);
 }
 
 /* === Coupon Cards Styles === */
@@ -1824,13 +1696,11 @@ select.custom-select option {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    /* transition removed for static cards */
     height: 100%;
 }
 
-.coupon-card:hover {
-    transform: translateY(-5px);
-}
+/* Hover effects removed for coupon cards */
 
 .coupon-content {
     padding: 20px;
@@ -2124,10 +1994,7 @@ select.custom-select option {
     transition: all 0.3s ease;
 }
 
-.testimonial-card:hover .author-image {
-    box-shadow: 0 8px 20px rgba(38, 224, 127, 0.2);
-    border-color: rgba(38, 224, 127, 0.2);
-}
+/* Hover effects removed for testimonial cards */
 
 .author-image img {
     width: 100%;

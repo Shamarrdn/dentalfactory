@@ -16,12 +16,7 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        // Only allow customers to access this route
-        if ($user->hasRole('admin')) {
-            abort(403, 'Access denied. Admins cannot access customer orders.');
-        }
-
-        // Show only customer's orders
+        // Show only current user's orders (both admin and customer can see their own orders)
         $orders = $user->orders()
             ->with(['items.product'])
             ->latest()
@@ -34,11 +29,7 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        // Only allow customers to access this route
-        if ($user->hasRole('admin')) {
-            abort(403, 'Access denied. Admins cannot access customer orders.');
-        }
-
+        // Use authorization policy to ensure user can only view their own orders
         $this->authorize('view', $order);
 
         $order->load(['items.product']);

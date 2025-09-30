@@ -69,6 +69,28 @@
                 position: relative;
             }
         }
+        
+        /* Sidebar Logo Styling */
+        .sidebar-logo {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-logo a {
+            text-decoration: none;
+            border-bottom: none;
+        }
+        
+        .sidebar-logo a:hover {
+            background: none !important;
+        }
+        
+        .sidebar-logo img {
+            filter: none !important;
+            transition: none !important;
+            transform: none !important;
+        }
     </style>
 </head>
 
@@ -187,6 +209,12 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
+        <!-- Logo in Sidebar -->
+        <div class="sidebar-logo">
+            <a href="/" class="d-flex justify-content-center align-items-center py-3">
+                <img src="{{ asset('logo.png') }}" alt="مصنع جينودينت" style="max-height: 60px; width: auto;">
+            </a>
+        </div>
         <div class="sidebar-user-info">
             <h5 class="mb-2">{{ Auth::user()->name }}</h5>
             <span class="badge bg-primary">{{ Auth::user()->role === 'admin' ? 'مدير' : 'عميل' }}</span>

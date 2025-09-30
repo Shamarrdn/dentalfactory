@@ -6,52 +6,65 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <style>
     .orders-container {
-        background: #f8fafc;
+ك        background: linear-gradient(135deg, #f8fafc 0%, #e6f7f1 100%);
         min-height: 100vh;
         padding-top: 100px;
     }
     
     .page-header {
-        background: white;
+        background: linear-gradient(135deg, #1a9d5a 0%, #2db870 100%);
         border-radius: 16px;
         padding: 2rem;
         margin-bottom: 2rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 25px rgba(0, 146, 69, 0.25);
+        border: none;
     }
     
     .page-title {
-        color: #1e293b;
+        color: #ffffff;
         font-size: 2.5rem;
         font-weight: 700;
         margin: 0;
         text-align: center;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     
     .page-subtitle {
-        color: #6b7280;
+        color: rgba(255,255,255,0.9);
         font-size: 1.2rem;
         text-align: center;
         margin: 0.5rem 0 0 0;
     }
     
     .order-card {
-        background: white;
-        border-radius: 16px;
-        margin-bottom: 2rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-        border: 1px solid #e2e8f0;
-        overflow: hidden;
-        transition: all 0.3s ease;
+        position: relative !important;
+        background: white !important;
+        border-radius: 16px !important;
+        margin-bottom: 2rem !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06) !important;
+        border: 1px solid #e2e8f0 !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
     }
     
-    .order-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    .order-card:hover,
+    .order-card:focus,
+    .order-card:active {
+        background: white !important;
+        border-radius: 16px !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06) !important;
+        border: 1px solid #e2e8f0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
     }
+    
+    
     
     .order-header {
-        background: #6b7280;
+        background: linear-gradient(135deg, #13c5c1 0%, #11b6b3 100%);
         color: white;
         padding: 1.5rem 2rem;
         position: relative;
@@ -128,6 +141,61 @@
     
     .order-body {
         padding: 2rem;
+        background: white !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+    
+    .order-body:hover {
+        background: white !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+    
+    /* حماية شاملة من تأثيرات hover مع حماية البوردر */
+    .order-card, 
+    .order-card:hover,
+    .order-card *,
+    .order-card *:hover,
+    .order-body,
+    .order-body:hover,
+    .order-body *,
+    .order-body *:hover {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+        border-collapse: separate !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* حماية إضافية للكارد والمحتوى */
+    .order-card .order-header,
+    .order-card .order-body,
+    .order-card .order-items,
+    .order-card .order-actions {
+        border: none !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+        position: relative !important;
+    }
+    
+    /* استثناء للأزرار للحفاظ على ألوانها */
+    .btn-primary,
+    .btn-outline-primary {
+        pointer-events: auto !important;
+    }
+    
+    /* قاعدة نهائية لضمان عدم اoتفاء أي شيء */
+    * {
+        will-change: auto !important;
+    }
+    
+    *:hover {
+        will-change: auto !important;
     }
     
     .order-items {
@@ -142,15 +210,9 @@
         border-radius: 12px;
         padding: 1.5rem;
         text-align: center;
-        transition: all 0.3s ease;
         border: 1px solid #e2e8f0;
     }
     
-    .order-item:hover {
-        background: #f1f5f9;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    }
     
     .item-image {
         width: 80px;
@@ -193,7 +255,6 @@
         border-radius: 8px;
         padding: 0.75rem 1.5rem;
         font-weight: 600;
-        transition: all 0.3s ease;
         border: none;
         text-decoration: none;
         display: inline-flex;
@@ -202,28 +263,18 @@
     }
     
     .btn-primary {
-        background: #6b7280;
+        background: linear-gradient(135deg, #009245 0%, #00b854 100%);
         color: white;
+        border: none;
     }
     
-    .btn-primary:hover {
-        background: #4b5563;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        color: white;
-    }
     
     .btn-outline-primary {
-        border: 1px solid #6b7280;
-        color: #6b7280;
+        border: 2px solid #13c5c1;
+        color: #13c5c1;
         background: transparent;
     }
     
-    .btn-outline-primary:hover {
-        background: #6b7280;
-        color: white;
-        transform: translateY(-1px);
-    }
     
     .empty-state {
         text-align: center;
@@ -282,15 +333,9 @@
         color: #6b7280 !important;
         text-decoration: none;
         font-weight: 600;
-        transition: all 0.3s ease;
         border: 1px solid #e2e8f0 !important;
     }
     
-    .page-link:hover {
-        background: #6b7280 !important;
-        color: white !important;
-        border-color: #6b7280 !important;
-    }
     
     .page-item.active .page-link {
         background: #6b7280 !important;
@@ -529,17 +574,57 @@
 
     // Order status updates (if needed)
     document.addEventListener('DOMContentLoaded', function() {
-        const orderCards = document.querySelectorAll('.order-card');
+        // Hover effects removed
         
-        orderCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px)';
-            });
+        // حماية قوية جداً للبوردر
+        function protectBorders() {
+            const orderCards = document.querySelectorAll('.order-card');
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-5px)';
+            orderCards.forEach(function(card) {
+                // إجبار البوردر على البقاء
+                function forceBorder() {
+                    card.style.setProperty('border', '1px solid #e2e8f0', 'important');
+                    card.style.setProperty('border-radius', '16px', 'important');
+                    card.style.setProperty('box-shadow', '0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)', 'important');
+                    card.style.setProperty('background', 'white', 'important');
+                    card.style.setProperty('opacity', '1', 'important');
+                    card.style.setProperty('visibility', 'visible', 'important');
+                    card.style.setProperty('transform', 'none', 'important');
+                    card.style.setProperty('overflow', 'visible', 'important');
+                }
+                
+                // تطبيق البوردر فوراً
+                forceBorder();
+                
+                // مراقبة جميع الأحداث
+                ['mouseenter', 'mouseleave', 'mouseover', 'mouseout', 'focus', 'blur', 'click', 'touchstart', 'touchend'].forEach(event => {
+                    card.addEventListener(event, forceBorder, true);
+                });
+                
+                // مراقبة تغييرات الـ CSS
+                const observer = new MutationObserver(function() {
+                    forceBorder();
+                });
+                
+                observer.observe(card, {
+                    attributes: true,
+                    attributeFilter: ['style', 'class'],
+                    childList: false,
+                    subtree: false
+                });
+                
+                // مراقبة كل ثانية للتأكد
+                setInterval(forceBorder, 1000);
             });
-        });
+        }
+        
+        // تشغيل الحماية
+        protectBorders();
+        
+        // إعادة تشغيل الحماية عند تحميل المحتوى
+        setTimeout(protectBorders, 100);
+        setTimeout(protectBorders, 500);
+        setTimeout(protectBorders, 1000);
     });
   </script>
   @endsection
