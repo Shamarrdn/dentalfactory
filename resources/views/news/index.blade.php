@@ -70,53 +70,52 @@
 
     <!-- News Grid -->
     @if($news->count() > 0)
-        <div class="row g-4">
-            @foreach($news as $article)
+        <div class="row g-4 justify-content-center">
+            @foreach($news as $index => $article)
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <article class="news-card h-100">
-                        <div class="news-image">
+                    <article class="news-card-modern h-100" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                        <div class="news-image-wrapper">
                             <img src="{{ $article->cover_image_url }}"
                                  alt="{{ $article->title }}"
-                                 class="img-fluid">
-                            <div class="news-badge">
-                                <span class="badge bg-primary">جديد</span>
+                                 class="news-image">
+                            <div class="news-overlay-gradient"></div>
+                            <div class="news-category-badge">
+                                <i class="fas fa-bookmark"></i>
+                                <span>جديد</span>
                             </div>
                         </div>
 
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">
+                        <div class="news-content-wrapper">
+                            <div class="news-meta-info">
+                                <span class="news-date-item">
                                     <i class="fas fa-calendar-alt"></i>
                                     {{ $article->published_at->format('Y-m-d') }}
                                 </span>
-                                <span class="reading-time">
+                                <span class="news-time-item">
                                     <i class="fas fa-clock"></i>
-                                    {{ $article->reading_time }} دقيقة
+                                    {{ $article->reading_time }} دقائق
                                 </span>
                             </div>
 
-                            <h3 class="news-title">
+                            <h3 class="news-card-title">
                                 <a href="{{ route('news.show', $article->slug) }}">
                                     {{ $article->title }}
                                 </a>
                             </h3>
 
-                            <p class="news-excerpt">
-                                {{ $article->short_description }}
+                            <p class="news-excerpt-text">
+                                {{ Str::limit($article->short_description, 120) }}
                             </p>
 
-                            <div class="news-footer">
-                                <a href="{{ route('news.show', $article->slug) }}"
-                                   class="btn btn-outline-primary btn-sm">
-                                    اقرأ المزيد
-                                    <i class="fas fa-arrow-left ms-1"></i>
-                                </a>
-                            </div>
+                            <a href="{{ route('news.show', $article->slug) }}" class="btn-news-read">
+                                <span>اقرأ المزيد</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
                         </div>
                     </article>
                 </div>
-                @endforeach
-            </div>
+            @endforeach
+        </div>
 
         <!-- Pagination -->
         @if($news->hasPages())
@@ -132,30 +131,30 @@
         <!-- No News Found -->
         <div class="row">
             <div class="col-12">
-                <div class="text-center py-5">
-                    <div class="empty-state">
-                        <i class="fas fa-newspaper fa-4x text-muted mb-4"></i>
-                        <h3 class="text-muted mb-3">
-                            @if(request('search'))
-                                لا توجد نتائج للبحث
-                            @else
-                                لا توجد أخبار متاحة حالياً
-                            @endif
-                        </h3>
-                        <p class="text-muted mb-4">
-                            @if(request('search'))
-                                جرب البحث بكلمات أخرى أو تصفح جميع الأخبار
-                            @else
-                                ترقب الأخبار الجديدة قريباً
-                            @endif
-                        </p>
-                        @if(request('search'))
-                            <a href="{{ route('news.index') }}" class="btn btn-primary">
-                                <i class="fas fa-list me-2"></i>
-                                عرض جميع الأخبار
-                            </a>
-                        @endif
+                <div class="no-news-container" data-aos="fade-up">
+                    <div class="no-news-icon">
+                        <i class="fas fa-newspaper"></i>
                     </div>
+                    <h4 class="no-news-title">
+                        @if(request('search'))
+                            لا توجد نتائج للبحث
+                        @else
+                            لا توجد أخبار متاحة حالياً
+                        @endif
+                    </h4>
+                    <p class="no-news-text">
+                        @if(request('search'))
+                            جرب البحث بكلمات أخرى أو تصفح جميع الأخبار
+                        @else
+                            ترقب الأخبار الجديدة قريباً
+                        @endif
+                    </p>
+                    @if(request('search'))
+                        <a href="{{ route('news.index') }}" class="btn-all-news mt-4">
+                            <span>عرض جميع الأخبار</span>
+                            <i class="fas fa-list"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -164,42 +163,66 @@
 
 <!-- Featured News Section -->
 @if(!request('search') && $news->count() > 0)
-    <section class="featured-news bg-light py-5 mt-5">
+    <section class="featured-news-section py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <h2 class="section-title">أهم الأخبار</h2>
-                    <p class="section-subtitle">اطلع على أبرز الأخبار والمقالات</p>
-                </div>
-            </div>
+            <div class="featured-news-wrapper position-relative">
+                <!-- Decorative elements -->
+                <div class="featured-blob-1"></div>
+                <div class="featured-blob-2"></div>
 
-            <div class="row">
-                @foreach($news->take(3) as $featured)
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="featured-card">
-                            <div class="featured-image">
-                                <img src="{{ $featured->cover_image_url }}"
-                                     alt="{{ $featured->title }}"
-                                     class="img-fluid">
-                            </div>
-                            <div class="featured-content">
-                                <h4 class="featured-title">
-                                    <a href="{{ route('news.show', $featured->slug) }}">
-                                        {{ Str::limit($featured->title, 60) }}
-                                    </a>
-                                </h4>
-                                <p class="featured-excerpt">
-                                    {{ Str::limit($featured->short_description, 100) }}
-                                </p>
-                                <div class="featured-meta">
-                                    <span class="featured-date">
-                                        {{ $featured->published_at->format('M d, Y') }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="text-center mb-5">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">أهم الأخبار</span>
+                    <h2 class="section-title gradient-text">أبرز الأخبار والمقالات</h2>
+                    <div class="title-separator">
+                        <div class="separator-line"></div>
+                        <div class="separator-icon"><i class="fas fa-star"></i></div>
+                        <div class="separator-line"></div>
                     </div>
-                @endforeach
+                    <p class="section-subtitle">تابع أهم وأبرز الأخبار في عالم طب الأسنان</p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    @foreach($news->take(3) as $index => $featured)
+                        <div class="col-lg-4 col-md-6">
+                            <article class="featured-news-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                                <div class="featured-image-wrapper">
+                                    <img src="{{ $featured->cover_image_url }}"
+                                         alt="{{ $featured->title }}"
+                                         class="featured-image">
+                                    <div class="featured-overlay"></div>
+                                    <div class="featured-badge">
+                                        <i class="fas fa-star"></i>
+                                        <span>مميز</span>
+                                    </div>
+                                </div>
+                                <div class="featured-content-wrapper">
+                                    <div class="featured-meta-info">
+                                        <span class="featured-date-item">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            {{ $featured->published_at->format('Y-m-d') }}
+                                        </span>
+                                        <span class="featured-time-item">
+                                            <i class="fas fa-clock"></i>
+                                            {{ $featured->reading_time }} دقائق
+                                        </span>
+                                    </div>
+                                    <h4 class="featured-card-title">
+                                        <a href="{{ route('news.show', $featured->slug) }}">
+                                            {{ Str::limit($featured->title, 60) }}
+                                        </a>
+                                    </h4>
+                                    <p class="featured-excerpt-text">
+                                        {{ Str::limit($featured->short_description, 100) }}
+                                    </p>
+                                    <a href="{{ route('news.show', $featured->slug) }}" class="btn-featured-read">
+                                        <span>اقرأ المزيد</span>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>

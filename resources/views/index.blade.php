@@ -4,7 +4,6 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dental-css/index.css') }}?t={{ time() }}">
-<link rel="stylesheet" href="{{ asset('assets/css/customer/news.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 <style>
@@ -546,74 +545,83 @@
 </section>
 
 <!-- Latest News Section -->
-<section class="latest-news-section py-5 bg-light">
+<section class="latest-news-section py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h2 class="section-heading fw-bold">آخر الأخبار</h2>
-                <p class="section-description text-muted">تابع أحدث الأخبار والمستجدات في عالم طب الأسنان</p>
+        <div class="news-wrapper position-relative">
+            <!-- Decorative elements -->
+            <div class="news-blob-1"></div>
+            <div class="news-blob-2"></div>
+            <div class="news-pattern"></div>
+
+            <div class="text-center mb-5">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2 animate__animated animate__fadeIn">الأخبار</span>
+                <h2 class="section-title gradient-text animate__animated animate__fadeInUp">آخر الأخبار</h2>
+                <div class="title-separator">
+                    <div class="separator-line"></div>
+                    <div class="separator-icon"><i class="fas fa-newspaper"></i></div>
+                    <div class="separator-line"></div>
+                </div>
+                <p class="section-subtitle">تابع أحدث الأخبار والمستجدات في عالم طب الأسنان</p>
             </div>
-        </div>
 
-        @php
-            $latestNews = \App\Models\News::published()->latest()->limit(3)->get();
-        @endphp
+            @php
+                $latestNews = \App\Models\News::published()->latest()->limit(3)->get();
+            @endphp
 
-        @if($latestNews->count() > 0)
-            <div class="row g-4">
-                @foreach($latestNews as $article)
-                <div class="col-lg-4 col-md-6">
-                    <article class="news-card-home h-100">
-                        <div class="news-image-home">
-                            <img src="{{ $article->cover_image_url }}" alt="{{ $article->title }}" class="img-fluid">
-                            <div class="news-overlay">
-                                <a href="{{ route('news.show', $article->slug) }}" class="news-overlay-link">
+            @if($latestNews->count() > 0)
+                <div class="row g-4 justify-content-center">
+                    @foreach($latestNews as $index => $article)
+                    <div class="col-lg-4 col-md-6">
+                        <article class="news-card-modern" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                            <div class="news-image-wrapper">
+                                <img src="{{ $article->cover_image_url }}" alt="{{ $article->title }}" class="news-image">
+                                <div class="news-overlay-gradient"></div>
+                                <div class="news-category-badge">
+                                    <i class="fas fa-bookmark"></i>
+                                    <span>أخبار</span>
+                                </div>
+                            </div>
+                            <div class="news-content-wrapper">
+                                <div class="news-meta-info">
+                                    <span class="news-date-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        {{ $article->published_at->format('Y-m-d') }}
+                                    </span>
+                                    <span class="news-time-item">
+                                        <i class="fas fa-clock"></i>
+                                        {{ $article->reading_time }} دقائق
+                                    </span>
+                                </div>
+                                <h3 class="news-card-title">
+                                    <a href="{{ route('news.show', $article->slug) }}">{{ $article->title }}</a>
+                                </h3>
+                                <p class="news-excerpt-text">{{ Str::limit($article->short_description, 100) }}</p>
+                                <a href="{{ route('news.show', $article->slug) }}" class="btn-news-read">
+                                    <span>اقرأ المزيد</span>
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
                             </div>
-                        </div>
-                        <div class="news-content-home">
-                            <div class="news-meta-home">
-                                <span class="news-date-home">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    {{ $article->published_at->format('Y-m-d') }}
-                                </span>
-                                <span class="reading-time-home">
-                                    <i class="fas fa-clock"></i>
-                                    {{ $article->reading_time }} دقائق
-                                </span>
-                            </div>
-                            <h3 class="news-title-home">
-                                <a href="{{ route('news.show', $article->slug) }}">{{ $article->title }}</a>
-                            </h3>
-                            <p class="news-excerpt-home">{{ Str::limit($article->short_description, 100) }}</p>
-                            <a href="{{ route('news.show', $article->slug) }}" class="btn btn-outline-primary btn-sm">
-                                اقرأ المزيد <i class="fas fa-arrow-left ms-1"></i>
-                            </a>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
-            </div>
 
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <a href="{{ route('news.index') }}" class="btn btn-primary btn-lg">
-                        <i class="fas fa-newspaper me-2"></i>جميع الأخبار
+                <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+                    <a href="{{ route('news.index') }}" class="btn-all-news">
+                        <span>جميع الأخبار</span>
+                        <i class="fas fa-newspaper"></i>
                     </a>
                 </div>
-            </div>
-        @else
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="no-news-message">
-                        <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
-                        <h4 class="text-muted">لا توجد أخبار متاحة حالياً</h4>
-                        <p class="text-muted">ترقب الأخبار الجديدة قريباً!</p>
+            @else
+                <div class="no-news-container" data-aos="fade-up">
+                    <div class="no-news-icon">
+                        <i class="fas fa-newspaper"></i>
                     </div>
+                    <h4 class="no-news-title">لا توجد أخبار متاحة حالياً</h4>
+                    <p class="no-news-text">ترقب الأخبار الجديدة قريباً!</p>
                 </div>
-            </div>
-        @endif
+            @endif
+        </div>
     </div>
 </section>
 
