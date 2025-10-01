@@ -53,6 +53,14 @@
         margin-bottom: 30px;
         overflow: hidden;
     }
+
+    .order-card:hover,
+    .order-card:focus,
+    .order-card:active {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transform: none;
+    }
     
     .order-card-header {
         background: linear-gradient(135deg, #13c5c1 0%, #11b6b3 100%);
@@ -60,6 +68,23 @@
         padding: 20px;
         font-weight: 600;
         font-size: 1.2rem;
+    }
+
+    .order-card:hover .order-card-header,
+    .order-card:focus .order-card-header,
+    .order-card:active .order-card-header {
+        background: linear-gradient(135deg, #13c5c1 0%, #11b6b3 100%) !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .order-card:hover .order-card-header i,
+    .order-card:focus .order-card-header i,
+    .order-card:active .order-card-header i {
+        color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     
     .order-card-header i {

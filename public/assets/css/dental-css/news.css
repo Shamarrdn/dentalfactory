@@ -91,28 +91,6 @@ html, body {
     75% { transform: translateY(-5px) rotate(-2deg); }
 }
 
-.news-hero-icon {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 30px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    color: #fff;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    animation: floatIcon 3s ease-in-out infinite;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-}
-
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-}
-
 .hero-bg-title {
     color: #fff;
     font-size: 2.7rem;
@@ -173,41 +151,6 @@ html, body {
     transform: translateY(-2px);
 }
 
-.hero-bg-desc {
-    color: #ffffff;
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.hero-bg-btn {
-    display: inline-block;
-    padding: 13px 36px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-decoration: none;
-    transition: all 0.3s;
-    margin: 0 8px;
-}
-
-.hero-bg-btn.main-btn {
-    background: #fff;
-    color: #13c5c1;
-    border: none;
-}
-
-/* Hover effect removed for hero main button */
-
-.hero-bg-btn.ghost-btn {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-}
-
-/* Hover effect removed for hero ghost button */
-
 /* Responsive Design */
 @media (max-width: 991px) {
     .hero-bg-title {
@@ -224,6 +167,16 @@ html, body {
     }
 }
 
+@media (max-width: 768px) {
+    .hero-bg-image-section {
+        min-height: 80vh;
+        padding-top: 60px;
+        background-attachment: scroll !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
+}
+
 @media (max-width: 600px) {
     .hero-bg-title {
         font-size: 1.3rem;
@@ -233,9 +186,11 @@ html, body {
         padding: 10px 18px; 
         font-size: 1rem; 
     }
-    .hero-bg-image-section {
-        min-height: 80vh;
-        padding-top: 60px;
+    .news-hero-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
     }
 }
 
