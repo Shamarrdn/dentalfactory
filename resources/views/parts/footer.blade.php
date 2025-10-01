@@ -1,5 +1,4 @@
 <!-- Footer -->
-<link rel="stylesheet" href="{{ asset('assets/css/customer/news.css') }}?t={{ time() }}">
 <footer class="footer-2025">
     <div class="footer-content">
         <div class="container">
