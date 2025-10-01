@@ -2,16 +2,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize dashboard animations
     initializeAnimations();
-    
+
     // Initialize tooltips
     initializeTooltips();
-    
+
     // Initialize stat cards animations
     initializeStatCards();
-    
+
     // Initialize responsive behavior
     initializeResponsive();
-    
+
     // Initialize auto-refresh for stats
     initializeAutoRefresh();
 });
@@ -24,7 +24,7 @@ function initializeAnimations() {
         card.style.animationDelay = `${index * 0.1}s`;
         card.classList.add('fade-in');
     });
-    
+
     // Add slide-in animations to dashboard cards
     const dashboardCards = document.querySelectorAll('.dashboard-card');
     dashboardCards.forEach((card, index) => {
@@ -35,14 +35,14 @@ function initializeAnimations() {
             card.classList.add('slide-in-right');
         }
     });
-    
+
     // Add hover effects to interactive elements
     const interactiveElements = document.querySelectorAll('.order-item, .quick-action-btn');
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', function() {
             this.style.transform = 'translateX(-4px)';
         });
-        
+
         element.addEventListener('mouseleave', function() {
             this.style.transform = 'translateX(0)';
             });
@@ -63,7 +63,7 @@ function initializeTooltips() {
 // Initialize stat cards with counter animations
 function initializeStatCards() {
     const statNumbers = document.querySelectorAll('.stat-number');
-    
+
     // Intersection Observer for counter animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -75,7 +75,7 @@ function initializeStatCards() {
     }, {
         threshold: 0.5
     });
-    
+
     statNumbers.forEach(number => {
         observer.observe(number);
     });
@@ -87,7 +87,7 @@ function animateCounter(element) {
     const duration = 2000; // 2 seconds
     const step = target / (duration / 16); // 60 FPS
     let current = 0;
-    
+
     const timer = setInterval(() => {
         current += step;
         if (current >= target) {
@@ -103,10 +103,10 @@ function animateCounter(element) {
 function initializeResponsive() {
     // Handle mobile navigation for dashboard
     const mobileBreakpoint = 768;
-    
+
     function handleResize() {
         const isMobile = window.innerWidth < mobileBreakpoint;
-        
+
         // Adjust dashboard layout for mobile
         const dashboardCards = document.querySelectorAll('.dashboard-card');
         dashboardCards.forEach(card => {
@@ -116,7 +116,7 @@ function initializeResponsive() {
                 card.classList.remove('mobile-layout');
             }
         });
-        
+
         // Adjust stat cards layout
         const statCards = document.querySelectorAll('.stat-card');
         statCards.forEach(card => {
@@ -127,10 +127,10 @@ function initializeResponsive() {
             }
         });
     }
-    
+
     // Initial check
     handleResize();
-    
+
     // Listen for resize events
     window.addEventListener('resize', handleResize);
 }
@@ -139,7 +139,7 @@ function initializeResponsive() {
 function initializeAutoRefresh() {
     // Refresh stats every 5 minutes
     const refreshInterval = 5 * 60 * 1000; // 5 minutes
-    
+
     setInterval(() => {
         refreshDashboardStats();
     }, refreshInterval);
@@ -149,7 +149,7 @@ function initializeAutoRefresh() {
 function refreshDashboardStats() {
     // Only refresh if page is visible
     if (document.hidden) return;
-    
+
     fetch('/dashboard/stats', {
         method: 'GET',
         headers: {
@@ -173,13 +173,13 @@ function updateStatCards(data) {
     if (ordersCount && data.orders_count !== undefined) {
         animateCounterUpdate(ordersCount, data.orders_count);
     }
-    
+
     // Update cart items count
     const cartCount = document.querySelector('.stat-cart .stat-number');
     if (cartCount && data.cart_items_count !== undefined) {
         animateCounterUpdate(cartCount, data.cart_items_count);
     }
-    
+
     // Update notifications count
     const notificationsCount = document.querySelector('.stat-notifications .stat-number');
     if (notificationsCount && data.unread_notifications !== undefined) {
@@ -191,17 +191,17 @@ function updateStatCards(data) {
 function animateCounterUpdate(element, newValue) {
     const currentValue = parseInt(element.textContent);
     if (currentValue === newValue) return;
-    
+
     const duration = 1000;
     const step = (newValue - currentValue) / (duration / 16);
     let current = currentValue;
-    
+
     const timer = setInterval(() => {
         current += step;
         if ((step > 0 && current >= newValue) || (step < 0 && current <= newValue)) {
             element.textContent = newValue;
             clearInterval(timer);
-            
+
             // Add highlight effect
             element.parentElement.parentElement.classList.add('updated');
             setTimeout(() => {
@@ -218,24 +218,15 @@ document.addEventListener('click', function(e) {
     // Handle quick action buttons
     if (e.target.closest('.quick-action-btn')) {
         const button = e.target.closest('.quick-action-btn');
-        
+
         // Add click animation
         button.style.transform = 'scale(0.95)';
         setTimeout(() => {
             button.style.transform = '';
         }, 150);
     }
-    
-    // Handle stat card clicks
-    if (e.target.closest('.stat-card')) {
-        const card = e.target.closest('.stat-card');
-        
-        // Add click animation
-        card.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-            card.style.transform = '';
-        }, 150);
-    }
+
+    // Handle stat card clicks - removed to prevent style conflicts
 });
 
 // Handle page visibility change
@@ -256,10 +247,10 @@ function showNotification(message, type = 'info') {
         ${message}
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     `;
-    
+
     // Add to page
     document.body.appendChild(notification);
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {

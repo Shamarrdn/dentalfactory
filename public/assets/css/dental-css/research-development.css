@@ -9,18 +9,18 @@
     /* Primary Brand Colors */
     --genodent-primary: #009245;        /* Shamrock Green */
     --genodent-secondary: #4F4F4F;      /* Dark Gray */
-    
+
     /* Color Variations */
     --genodent-primary-light: #00b854;
     --genodent-primary-dark: #007a38;
     --genodent-secondary-light: #6a6a6a;
     --genodent-secondary-dark: #3a3a3a;
-    
+
     /* Gradients */
     --genodent-gradient-primary: linear-gradient(135deg, #009245 0%, #00b854 100%);
     --genodent-gradient-secondary: linear-gradient(135deg, #4F4F4F 0%, #6a6a6a 100%);
     --genodent-gradient-mixed: linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
-    
+
     /* Shadow Colors */
     --genodent-shadow-primary: rgba(0, 146, 69, 0.15);
     --genodent-shadow-secondary: rgba(79, 79, 79, 0.15);
@@ -46,7 +46,7 @@ html, body {
     width: 100%;
     /* صور بديلة متعددة مع ضمان الظهور */
     background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=1950&q=80') center center/cover no-repeat;
-    background-image: 
+    background-image:
         url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=1950&q=80'),
         url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1950&q=80'),
         url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1950&q=80'),
@@ -153,9 +153,9 @@ html, body {
         font-size: 1.3rem;
         text-shadow: 0 3px 15px rgba(0,0,0,0.4);
     }
-    .hero-bg-btn { 
-        padding: 10px 18px; 
-        font-size: 1rem; 
+    .hero-bg-btn {
+        padding: 10px 18px;
+        font-size: 1rem;
     }
     .hero-bg-image-section {
         min-height: 80vh;
@@ -724,85 +724,85 @@ html, body {
     .rd-hero-title {
         font-size: 2.5rem;
     }
-    
+
     .rd-hero-desc {
         font-size: 1.1rem;
     }
-    
+
     .rd-hero-icon {
         width: 100px;
         height: 100px;
         font-size: 2.5rem;
     }
-    
+
     .rd-vision-stats {
         justify-content: center;
         gap: 20px;
     }
-    
+
     .rd-stat-number {
         font-size: 2rem;
     }
-    
+
     .rd-area-card {
         padding: 25px 20px;
     }
-    
+
     .rd-area-icon {
         width: 70px;
         height: 70px;
         font-size: 1.8rem;
     }
-    
+
     .rd-project-item {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .rd-project-number {
         align-self: center;
     }
-    
+
     .rd-partnership-card {
         padding: 30px 20px;
     }
-    
+
     .rd-platform-visual {
         height: 300px;
     }
-    
+
     .rd-innovation-circle {
         width: 250px;
         height: 250px;
     }
-    
+
     .rd-orbit-1 {
         width: 150px;
         height: 150px;
         top: 50px;
         left: 50px;
     }
-    
+
     .rd-orbit-2 {
         width: 200px;
         height: 200px;
         top: 25px;
         left: 25px;
     }
-    
+
     .rd-orbit-3 {
         width: 250px;
         height: 250px;
     }
-    
+
     .rd-contact-wrapper {
         padding: 30px 20px;
     }
-    
+
     .rd-contact-title {
         font-size: 2rem;
     }
-    
+
     .rd-contact-cta {
         text-align: center;
         margin-top: 30px;

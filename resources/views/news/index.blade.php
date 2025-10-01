@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transform = 'translateY(20px)';
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
-        
+
         // Disable all hover effects
         card.style.pointerEvents = 'auto';
         card.addEventListener('mouseenter', function(e) {

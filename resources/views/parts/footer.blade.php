@@ -1,5 +1,5 @@
 <!-- Footer -->
-<link rel="stylesheet" href="{{ asset('assets/css/customer/news.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/customer/news.css') }}?t={{ time() }}">
 <footer class="footer-2025">
     <div class="footer-content">
         <div class="container">
@@ -36,7 +36,7 @@
                             <li><a href="{{ route('contact') }}">اتصل بنا</a></li>
                         </ul>
                     </div>
-                    
+
                     <!-- Policies -->
                     <div class="footer-links mt-4">
                         <h5 class="footer-heading">السياسات</h5>

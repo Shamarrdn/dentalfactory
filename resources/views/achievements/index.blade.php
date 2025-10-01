@@ -26,9 +26,9 @@
 
 
 <div class="achievements-page">
-    <section id="achievements-gallery" class="achievements-listing-section py-5">
+    <section id="achievements-gallery" class="achievements-listing-section py-5" >
         <div class="container">
-        
+
         <!-- Section Title -->
         <div class="text-center mb-5">
             <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">معرض الإنجازات</span>
@@ -43,8 +43,8 @@
                         <form method="GET" action="{{ route('achievements.index') }}">
                             <div class="achievements-search-group">
                                 <i class="fas fa-search search-icon"></i>
-                                <input type="text" class="achievements-search-input" name="search" 
-                                       value="{{ request('search') }}" 
+                                <input type="text" class="achievements-search-input" name="search"
+                                       value="{{ request('search') }}"
                                        placeholder="البحث في الإنجازات...">
                                 <button class="achievements-search-btn" type="submit">
                                     <i class="fas fa-search me-1"></i> بحث
@@ -83,23 +83,23 @@
                     @foreach($achievements as $achievement)
                         <article class="achievement-article-card">
                             <div class="achievement-article-image-container">
-                                <img src="{{ $achievement->cover_image_url ?? asset('assets/images/achievements-default.jpg') }}" 
-                                     alt="{{ $achievement->title }}" 
+                                <img src="{{ $achievement->cover_image_url ?? asset('assets/images/achievements-default.jpg') }}"
+                                     alt="{{ $achievement->title }}"
                                      class="achievement-article-image"
                                      onerror="this.src='https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?auto=format&fit=crop&w=400&q=80'">
-                                
+
                                 <div class="achievement-category-badge">
                                     <i class="fas fa-trophy"></i>
                                     إنجاز
                                 </div>
-                                
+
                                 <div class="achievement-article-overlay">
                                     <a href="{{ route('achievements.show', $achievement->slug) }}" class="achievement-read-btn">
                                         <i class="fas fa-eye"></i> عرض التفاصيل
                                     </a>
                                 </div>
                             </div>
-                            
+
                             <div class="achievement-article-content">
                                 <div class="achievement-article-meta">
                                     <span class="achievement-date">
@@ -111,13 +111,13 @@
                                         {{ $achievement->formatted_views }}
                                     </span>
                                 </div>
-                                
+
                                 <h3 class="achievement-article-title">
                                     <a href="{{ route('achievements.show', $achievement->slug) }}">
                                         {{ $achievement->title }}
                                     </a>
                                 </h3>
-                                
+
                                 <p class="achievement-article-excerpt">
                                     {{ $achievement->short_description }}
                                 </p>
@@ -141,7 +141,7 @@
                     @if(request('search'))
                         <h3>لم نجد أي إنجازات</h3>
                         <p>لم نجد أي إنجازات تطابق بحثك عن "{{ request('search') }}"</p>
-                        <a href="{{ route('achievements.index') }}" class="btn btn-primary" 
+                        <a href="{{ route('achievements.index') }}" class="btn btn-primary"
                            style="background: var(--genodent-gradient-primary); border: none; border-radius: 50px; padding: 12px 25px;">
                             <i class="fas fa-arrow-right"></i> عرض جميع الإنجازات
                         </a>
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transform = 'translateY(30px)';
         card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(card);
-        
+
         // Disable all hover effects
         card.style.pointerEvents = 'auto';
         card.addEventListener('mouseenter', function(e) {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced search functionality
     const searchForm = document.querySelector('form');
     const searchInput = document.querySelector('input[name="search"]');
-    
+
     if (searchForm && searchInput) {
         // Auto-submit on Enter key
         searchInput.addEventListener('keypress', function(e) {
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
         img.style.opacity = '0';
         img.style.transition = 'opacity 0.3s ease';
         imageObserver.observe(img);
-        
+
         img.addEventListener('load', function() {
             this.style.opacity = '1';
         });
@@ -261,7 +261,7 @@ function animateNumber(element, start, end, duration) {
     const range = end - start;
     const increment = range / (duration / 16);
     let current = start;
-    
+
     const timer = setInterval(() => {
         current += increment;
         if (current >= end) {

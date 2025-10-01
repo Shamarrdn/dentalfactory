@@ -16,7 +16,7 @@
         background-image: none !important;
         padding: 8px 15px !important;
     }
-    
+
     .custom-select option:hover,
     .custom-select option:focus,
     .custom-select option:active {
@@ -24,13 +24,13 @@
         color: #333333 !important;
         background-image: none !important;
     }
-    
+
     .custom-select option:checked {
         background: #e9ecef !important;
         color: #333333 !important;
         background-image: none !important;
     }
-    
+
     /* إزالة أي أنماط إضافية */
     select.custom-select option,
     select option {
@@ -419,7 +419,7 @@
                                 </div>
                             </form>
                         </div>
-                    
+
                     </div>
 
                     <!-- Features -->
@@ -554,11 +554,11 @@
                 <p class="section-description text-muted">تابع أحدث الأخبار والمستجدات في عالم طب الأسنان</p>
             </div>
         </div>
-        
+
         @php
             $latestNews = \App\Models\News::published()->latest()->limit(3)->get();
         @endphp
-        
+
         @if($latestNews->count() > 0)
             <div class="row g-4">
                 @foreach($latestNews as $article)
@@ -595,7 +595,7 @@
                 </div>
                 @endforeach
             </div>
-            
+
             <div class="row mt-5">
                 <div class="col-12 text-center">
                     <a href="{{ route('news.index') }}" class="btn btn-primary btn-lg">

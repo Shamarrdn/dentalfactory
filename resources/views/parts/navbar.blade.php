@@ -98,7 +98,7 @@
                             @php
                                 // حساب العدد الكلي للمنتجات
                                 $cart_total_quantity = 0;
-                                
+
                                 // أولاً جرب cartCount من ViewComposer
                                 if(isset($cartCount)) {
                                     $cart_total_quantity = $cartCount;
@@ -111,7 +111,7 @@
                                 } elseif(isset($stats) && isset($stats['cart_items_count'])) {
                                     $cart_total_quantity = $stats['cart_items_count'];
                                 }
-                                
+
                                 // Debug information
                                 if(config('app.debug')) {
                                     \Log::info('Navbar cart count debug', [

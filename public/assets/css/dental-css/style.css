@@ -3,7 +3,7 @@
     /* Genodent Primary Brand Colors */
     --genodent-primary: #009245;        /* Shamrock Green - الصحة والشفاء والثقة */
     --genodent-secondary: #4F4F4F;      /* Dark Gray - الاحترافية والدقة */
-    
+
     /* Legacy Support & Color Variations */
     --primary: var(--genodent-primary);
     --secondary: var(--genodent-secondary);
@@ -11,7 +11,7 @@
     --primary-dark: #007a38;
     --secondary-light: #6a6a6a;
     --secondary-dark: #3a3a3a;
-    
+
     /* Base Colors */
     --dark: #333333;
     --light: #F5F9FC;
@@ -20,18 +20,18 @@
     --danger: #dc3545;
     --warning: #ffc107;
     --info: #17a2b8;
-    
+
     /* Genodent Gradients */
     --genodent-gradient-primary: linear-gradient(135deg, #009245 0%, #00b854 100%);
     --genodent-gradient-secondary: linear-gradient(135deg, #4F4F4F 0%, #6a6a6a 100%);
     --genodent-gradient-mixed: linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
     --primary-gradient: var(--genodent-gradient-primary);
-    
+
     /* Shadows with Brand Colors */
     --genodent-shadow-primary: rgba(0, 146, 69, 0.15);
     --genodent-shadow-secondary: rgba(79, 79, 79, 0.15);
     --box-shadow: 0 5px 20px var(--genodent-shadow-primary);
-    
+
     /* Base Settings */
     --transition: all 0.3s ease;
     --font-family: 'Tajawal', sans-serif;
@@ -794,7 +794,7 @@ a {
     .user-toggle i {
         font-size: 2rem; /* زيادة حجم أيقونة المستخدم في الموبايل */
     }
-    
+
     /* Mobile auth buttons styling */
     .navbar-actions .nav-item:has(.btn) {
         margin-top: 0.5rem;

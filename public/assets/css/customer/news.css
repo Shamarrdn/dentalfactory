@@ -1,57 +1,5 @@
 /* Customer News Styles */
 
-/* COMPLETELY DISABLE ALL HOVER EFFECTS ON CARDS */
-.news-card:hover,
-.news-card-home:hover,
-.featured-card:hover,
-.related-item:hover,
-.news-item:hover,
-.contact-item:hover,
-.footer-news:hover,
-.footer-contact:hover,
-.hover-lift:hover,
-.card:hover,
-.item:hover,
-*[class*="news"]:hover,
-*[class*="card"]:hover {
-    transform: none !important;
-    box-shadow: inherit !important;
-    background: inherit !important;
-    border: inherit !important;
-    opacity: inherit !important;
-    filter: none !important;
-    transition: none !important;
-    animation: none !important;
-}
-
-/* Force disable hover pseudo-class effects */
-@media (hover: hover) {
-    .news-card:hover,
-    .news-card-home:hover,
-    .featured-card:hover,
-    *[class*="news"]:hover,
-    *[class*="card"]:hover {
-        transform: none !important;
-        box-shadow: inherit !important;
-        background: inherit !important;
-    }
-}
-
-/* Disable transitions on cards to prevent any animations */
-.news-card,
-.news-card-home,
-.featured-card,
-.related-item,
-.news-item,
-.contact-item,
-.footer-news,
-.footer-contact,
-.hover-lift,
-.card,
-.item {
-    transition: none !important;
-}
-
 /* News Hero Section */
 .news-hero {
     background: transparent;
@@ -106,18 +54,18 @@
     .news-hero {
         padding: 120px 0 60px;
     }
-    
+
     .news-hero h1 {
         font-size: 2.2rem;
         color: #1a5a96;
     }
-    
+
     .news-hero h1 i {
         font-size: 2rem;
         margin-left: 10px;
         color: #28a745;
     }
-    
+
     .news-hero p {
         font-size: 1.1rem;
         color: #495057;
@@ -807,17 +755,17 @@
         min-width: 36px;
         min-height: 36px;
     }
-    
+
     .pagination .page-item:first-child .page-link,
     .pagination .page-item:last-child .page-link {
         padding: 0.5rem 1rem;
     }
-    
+
     /* Hide some page numbers on mobile */
     .pagination .page-item:not(.active):not(:first-child):not(:last-child):not(.disabled) {
         display: none;
     }
-    
+
     .pagination .page-item.active,
     .pagination .page-item:first-child,
     .pagination .page-item:last-child {
@@ -830,20 +778,20 @@
     .news-card {
         margin-bottom: 2rem;
     }
-    
+
     .article-title {
         font-size: 2rem;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
-    
+
     .article-meta {
         gap: 1rem;
         justify-content: center;
     }
-    
+
     .meta-item {
         font-size: 0.8rem;
         padding: 0.5rem 1rem;
@@ -854,32 +802,32 @@
     .news-card {
         margin-bottom: 1.5rem;
     }
-    
+
     .news-content {
         padding: 1.25rem;
     }
-    
+
     .article-title {
         font-size: 1.75rem;
     }
-    
+
     .article-content {
         font-size: 1rem;
     }
-    
+
     .article-meta {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .sidebar-widget {
         padding: 1.25rem;
     }
-    
+
     .share-buttons {
         text-align: center;
     }
-    
+
     .share-buttons .btn {
         margin: 0.25rem;
         font-size: 0.8rem;
@@ -890,27 +838,27 @@
     .news-image {
         height: 180px;
     }
-    
+
     .news-content {
         padding: 1rem;
     }
-    
+
     .news-title {
         font-size: 1.1rem;
     }
-    
+
     .article-title {
         font-size: 1.5rem;
     }
-    
+
     .featured-content {
         padding: 1rem;
     }
-    
+
     .featured-title {
         font-size: 0.95rem;
     }
-    
+
     .article-content {
         font-size: 0.95rem;
         line-height: 1.7;
@@ -1135,23 +1083,23 @@
         margin-top: 2rem;
         text-align: center;
     }
-    
+
     /* Transform effect removed from news links for better mobile UX */
-    
+
     .latest-news .news-title {
         font-size: 0.9rem;
     }
-    
+
     .footer-news .btn-outline-light {
         width: 100%;
         margin-top: 1rem;
     }
-    
+
     .footer-contact .contact-item {
         justify-content: center;
         text-align: center;
     }
-    
+
     .footer-contact .icon-container {
         margin: 0 auto 0.5rem auto;
     }
@@ -1161,7 +1109,7 @@
     .nav-buttons .btn-link span {
         display: none !important;
     }
-    
+
     .nav-buttons .btn-link {
         padding: 0.5rem;
     }
@@ -1327,19 +1275,19 @@
     .latest-news-section {
         padding: 3rem 0;
     }
-    
+
     .latest-news-section .section-heading {
         font-size: 2rem;
     }
-    
+
     .news-image-home {
         height: 180px;
     }
-    
+
     .news-content-home {
         padding: 1.5rem;
     }
-    
+
     .news-title-home {
         font-size: 1.1rem;
     }
@@ -1349,7 +1297,7 @@
     .news-content-home {
         padding: 1.25rem;
     }
-    
+
     .news-meta-home {
         flex-direction: column;
         gap: 0.5rem;
@@ -1366,7 +1314,7 @@
     .btn {
         break-inside: avoid;
     }
-    
+
     .article-content img {
         max-width: 100% !important;
         height: auto !important;

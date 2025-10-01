@@ -4,18 +4,18 @@
     /* Primary Brand Colors */
     --genodent-primary: #009245;        /* Shamrock Green */
     --genodent-secondary: #4F4F4F;      /* Dark Gray */
-    
+
     /* Color Variations */
     --genodent-primary-light: #00b854;
     --genodent-primary-dark: #007a38;
     --genodent-secondary-light: #6a6a6a;
     --genodent-secondary-dark: #3a3a3a;
-    
+
     /* Gradients */
     --genodent-gradient-primary: linear-gradient(135deg, #009245 0%, #00b854 100%);
     --genodent-gradient-secondary: linear-gradient(135deg, #4F4F4F 0%, #6a6a6a 100%);
     --genodent-gradient-mixed: linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
-    
+
     /* Shadow Colors */
     --genodent-shadow-primary: rgba(0, 146, 69, 0.15);
     --genodent-shadow-secondary: rgba(79, 79, 79, 0.15);
@@ -36,7 +36,7 @@ html, body {
     padding-top: 80px;
     width: 100%;
     background: linear-gradient(135deg, #009245 0%, #4F4F4F 100%);
-    background-image: 
+    background-image:
         url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1950&q=80'),
         url('https://images.unsplash.com/photo-1553531580-77b2a0cd3c8b?auto=format&fit=crop&q=80'),
         url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80');
@@ -132,11 +132,14 @@ html, body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.hero-bg-btn.main-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+/* Hover effects only for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .hero-bg-btn.main-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
 }
 
 .hero-bg-btn.ghost-btn {
@@ -145,10 +148,12 @@ html, body {
     border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
-.hero-bg-btn.ghost-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+    .hero-bg-btn.ghost-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+    }
 }
 
 /* Responsive Design */
@@ -182,9 +187,9 @@ html, body {
         font-size: 1.3rem;
         text-shadow: 0 3px 15px rgba(0,0,0,0.4);
     }
-    .hero-bg-btn { 
-        padding: 10px 18px; 
-        font-size: 1rem; 
+    .hero-bg-btn {
+        padding: 10px 18px;
+        font-size: 1rem;
     }
     .news-hero-icon {
         width: 75px;
@@ -520,7 +525,16 @@ html, body {
     box-shadow: 0 6px 14px var(--genodent-shadow-primary);
 }
 
-.pagination-nav .page-item .page-link:hover,
+/* Hover effects only for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .pagination-nav .page-item .page-link:hover {
+        color: #ffffff;
+        background: var(--genodent-gradient-primary);
+        border-color: transparent;
+        outline: none;
+    }
+}
+
 .pagination-nav .page-item .page-link:focus {
     color: #ffffff;
     background: var(--genodent-gradient-primary);
@@ -587,63 +601,63 @@ html, body {
     .news-hero-title {
         font-size: 2.2rem;
     }
-    
+
     .news-hero-desc {
         font-size: 1.1rem;
     }
-    
+
     .news-hero-icon {
         width: 80px;
         height: 80px;
         font-size: 2rem;
     }
-    
+
     .news-category-card {
         padding: 25px 15px;
     }
-    
+
     .category-icon {
         width: 60px;
         height: 60px;
         font-size: 1.5rem;
     }
-    
+
     .news-search-wrapper {
         padding: 15px;
     }
-    
+
     .news-search-input {
         padding: 12px 40px 12px 40px;
         font-size: 0.9rem;
     }
-    
+
     .news-search-btn {
         padding: 12px 20px;
     }
-    
+
     .news-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .news-article-image-container {
         height: 200px;
     }
-    
+
     .news-article-content {
         padding: 20px;
     }
-    
+
     .news-article-title {
         font-size: 1.2rem;
     }
-    
+
     .empty-state-icon {
         width: 100px;
         height: 100px;
         font-size: 2.5rem;
     }
-    
+
     .news-empty-state h3 {
         font-size: 1.5rem;
     }
@@ -653,26 +667,26 @@ html, body {
     .news-hero-title {
         font-size: 1.8rem;
     }
-    
+
     .news-hero-btn {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-    
+
     .news-search-group {
         flex-direction: column;
         border-radius: 15px;
     }
-    
+
     .news-search-input {
         padding: 15px 20px;
     }
-    
+
     .news-search-btn {
         width: 100%;
         border-radius: 0 0 15px 15px;
     }
-    
+
     .news-clear-btn {
         position: static;
         width: 100%;
