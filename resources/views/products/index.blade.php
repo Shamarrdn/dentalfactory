@@ -30,7 +30,7 @@
     <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <i class="fas fa-shopping-cart me-2"></i>
+                <i class="fas fa-shopping-cart me-2"></i>   
                 <strong class="me-auto">تحديث السلة</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -147,7 +147,7 @@
                                         @foreach($product->categories as $additionalCategory)
                                             @if($additionalCategory->id != $product->category_id)
                                                 <a href="?category={{ $additionalCategory->slug }}" class="text-decoration-none">
-                                                    <span class="badge rounded-pill bg-light text-dark border">{{ $additionalCategory->name }}</span>
+                                                    <span class="badge rounded-pill bg-light text-dark b">{{ $additionalCategory->name }}</span>
                                                 </a>
                                             @endif
                                         @endforeach
@@ -168,7 +168,7 @@
                                     @endif
                                 </p>
                                 <div class="product-actions">
-                                    <a href="{{ route('products.show', $product->slug) }}" class="order-product-btn">
+                                    <a href="{{ route('products.show', $product->slug) }}" class="-product-btn">
                                         <i class="fas fa-shopping-cart me-2"></i>
                                         طلب المنتج
                                     </a>
@@ -217,7 +217,7 @@
     <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content glass-modal">
-                <div class="modal-header border-0">
+                <div class="modal-header b-0">
                     <h5 class="modal-title">تفاصيل المنتج</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

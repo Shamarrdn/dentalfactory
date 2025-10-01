@@ -147,6 +147,103 @@ section {
     display: block;
 }
 
+/* Decorations pinned to the image corner */
+.story-image-decorations {
+    position: static; /* children will position relative to wrapper */
+    display: block;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.story-decoration {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    pointer-events: auto;
+}
+
+/* Place each badge at opposite image corners */
+.story-decoration-1,
+.story-decoration-2 {
+    position: absolute;
+}
+
+.story-decoration-1 { /* top-right */
+    top: 12px;
+    right: -28px;
+}
+
+.story-decoration-2 { /* bottom-left */
+    bottom: 12px;
+    left: -28px;
+}
+
+.story-image-wrapper:hover .story-decoration-1 {
+    transform: translate(-6px, -2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.10);
+}
+
+.story-image-wrapper:hover .story-decoration-2 {
+    transform: translate(6px, 2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.10);
+}
+
+.story-decoration .decoration-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 14px rgba(38, 224, 127, 0.25);
+}
+
+.story-decoration .decoration-icon i {
+    color: #ffffff !important; /* override global .fas color */
+    font-size: 14px;
+}
+
+.story-decoration .decoration-content h6 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1e293b;
+}
+
+.story-decoration .decoration-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+@media (max-width: 991px) {
+    /* keep desktop corners; nothing needed here */
+}
+
+@media (max-width: 767px) {
+    .story-image-decorations {
+        position: static;
+        margin-top: 12px;
+        align-items: flex-start;
+    }
+    .story-decoration-1,
+    .story-decoration-2 {
+        position: static;
+        transform: none !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        margin-bottom: 10px;
+    }
+}
+
 .story-badge {
     position: absolute;
     top: -25px;

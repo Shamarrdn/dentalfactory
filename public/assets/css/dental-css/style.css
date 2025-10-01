@@ -137,6 +137,7 @@ a {
     font-weight: 500;
     position: relative;
     display: block;
+    white-space: nowrap; /* keep navbar labels on a single line */
 }
 
 /* Hover effect removed for nav links */
