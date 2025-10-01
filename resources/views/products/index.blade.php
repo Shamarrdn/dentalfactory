@@ -167,8 +167,8 @@
                                         {{ number_format($product->min_price, 2) }} - {{ number_format($product->max_price, 2) }} ر.س
                                     @endif
                                 </p>
-                                <div class="product-actions mt-3">
-                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
+                                <div class="product-actions">
+                                    <a href="{{ route('products.show', $product->slug) }}" class="-product-btn">
                                         <i class="fas fa-shopping-cart me-2"></i>
                                         طلب المنتج
                                     </a>
