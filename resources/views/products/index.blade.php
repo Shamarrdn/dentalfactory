@@ -30,7 +30,7 @@
     <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <i class="fas fa-shopping-cart me-2"></i>   
+                <i class="fas fa-shopping-cart me-2"></i>
                 <strong class="me-auto">تحديث السلة</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -167,8 +167,8 @@
                                         {{ number_format($product->min_price, 2) }} - {{ number_format($product->max_price, 2) }} ر.س
                                     @endif
                                 </p>
-                                <div class="product-actions">
-                                    <a href="{{ route('products.show', $product->slug) }}" class="-product-btn">
+                                <div class="product-actions mt-3">
+                                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
                                         <i class="fas fa-shopping-cart me-2"></i>
                                         طلب المنتج
                                     </a>
