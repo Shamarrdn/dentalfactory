@@ -16,10 +16,11 @@
                             مصنع سعودي متخصص في إنتاج مواد طب الأسنان الأساسية في منطقة عسير، نوفر منتجات الترميم والوقاية بجودة عالية وأسعار تنافسية
                         </p>
                         <div class="footer-social">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61581506953386&mibextid=ZbWKwL" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/genodents?s=09" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/genodents?igsh=MXNsY3M3NjRiMjFwbA==" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/@genodents" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+                            <a href="https://wa.me/message/CVTU4PJKKZSSN1" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>

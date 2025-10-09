@@ -49,17 +49,18 @@
     text-decoration: none;
     transition: all 0.3s;
     margin: 0 8px;
+    box-shadow: 0 5px 15px rgba(38, 224, 127, 0.15);
 }
-.hero-bg-btn.main-btn {
-    background: #fff;
-    color: #13c5c1;
-    border: none;
+.hero-bg-btn.main-btn { /* match navbar filled button */
+    background: var(--primary);
+    color: #fff;
+    border: 2px solid var(--primary);
 }
 /* Hover effect removed for hero main button */
-.hero-bg-btn.ghost-btn {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+.hero-bg-btn.ghost-btn { /* match navbar outline button */
+    background: #fff;
+    color: var(--primary);
+    border: 2px solid var(--primary);
 }
 /* Hover effect removed for hero ghost button */
 @media (max-width: 991px) {

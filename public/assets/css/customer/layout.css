@@ -54,28 +54,22 @@
             padding: 0.75rem 1.25rem;
             margin: 0 0.15rem;
             transition: all 0.3s;
-            border-radius: 8px;
+            border-radius: 30px; /* match main navbar pill style */
             font-weight: 500;
             font-size: 1.05rem;
             position: relative;
+            white-space: nowrap; /* prevent text wrapping */
         }
 
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
-            background: rgba(0, 146, 69, 0.08);
+            background: rgba(0, 146, 69, 0.15); /* match main navbar */
             color: var(--primary-color);
-            box-shadow: 0 2px 8px rgba(0, 146, 69, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 146, 69, 0.12); /* match main navbar */
+            border-radius: 30px; /* ensure pill shape on hover/active */
         }
 
-        .navbar-nav .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 1.25rem;
-            left: 1.25rem;
-            height: 2px;
-            background: var(--primary-color);
-        }
+        /* Remove bottom border - using pill background instead */
 
         .navbar-nav .nav-link i {
             color: var(--primary-color);

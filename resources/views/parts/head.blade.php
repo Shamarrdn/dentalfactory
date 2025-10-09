@@ -111,10 +111,16 @@
     .nav-buttons .btn {
         color: #666;
         text-decoration: none;
+        border-radius: 30px !important; /* consistent pill shape */
+        padding: 8px 15px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease;
     }
 
     .nav-buttons .btn:hover {
-        color: #007bff;
+        color: var(--primary);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 146, 69, 0.15);
     }
 
     .navbar-nav .nav-link {

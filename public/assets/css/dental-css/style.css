@@ -138,15 +138,23 @@ a {
     position: relative;
     display: block;
     white-space: nowrap; /* keep navbar labels on a single line */
+    border-radius: 30px; /* rounded pill look */
 }
 
 /* Hover effect removed for nav links */
 
 .nav-link.active {
     color: var(--primary);
-    background-color: rgba(38, 224, 127, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(38, 224, 127, 0.1);
+    background-color: rgba(38, 224, 127, 0.15);
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(38, 224, 127, 0.12);
+}
+
+/* make hover consistent with active style */
+.nav-link:hover {
+    color: var(--primary);
+    background-color: rgba(38, 224, 127, 0.08);
+    border-radius: 30px;
 }
 
 .navbar-actions {
@@ -271,7 +279,7 @@ a {
     font-size: 0.9rem;
     padding: 8px 15px !important;
     margin: 0 5px;
-    border-radius: 8px !important;
+    border-radius: 30px !important; /* pill shape */
     white-space: nowrap;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
@@ -847,7 +855,7 @@ a {
 
   /* Buttons */
   .btn {
-    border-radius: 50px !important;
+    border-radius: 30px !important; /* consistent pill shape */
     padding: 0.75rem 2rem !important;
     transition: var(--transition) !important;
     font-weight: 700 !important;
